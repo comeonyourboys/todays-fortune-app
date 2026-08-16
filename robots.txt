@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://todays-fortune-app.vercel.app/sitemap.xml

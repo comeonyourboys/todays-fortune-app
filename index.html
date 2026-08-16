@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>오늘의 운세 — 별자리 운세</title>
+
+<!-- SEO -->
+<meta name="description" content="매일 업데이트되는 12별자리 운세. 독설 유머로 보는 오늘의 운세, 연애운, 직장운, 재물운.">
+<meta property="og:title" content="오늘의 운세 — 별자리 운세">
+<meta property="og:description" content="별들이 전하는 솔직한 오늘의 운세. 매일 새로운 별자리 운세를 확인하세요.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://todays-fortune-app.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://todays-fortune-app.vercel.app">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="오늘의 운세 — 별자리 운세">
+<meta name="twitter:description" content="별들이 전하는 솔직한 오늘의 운세. 매일 새로운 별자리 운세를 확인하세요.">
+<meta name="twitter:image" content="https://todays-fortune-app.vercel.app/og-image.png">
+<meta name="robots" content="index, follow">
+<meta name="google-site-verification" content="1f373KtNH3atCzIil1snRuWtDwrzIfDYspZs5GWiRT4">
+<meta name="author" content="오늘의 운세">
+<meta name="theme-color" content="#1a1a2e">
+<link rel="canonical" href="https://todays-fortune-app.vercel.app/">
+
+<!-- JSON-LD: WebSite -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "오늘의 운세",
+  "url": "https://todays-fortune-app.vercel.app",
+  "description": "매일 업데이트되는 12별자리 운세. 별자리별 맞춤 독설 유머 운세.",
+  "inLanguage": "ko"
+}
+</script>
+
+<!-- JSON-LD: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "오늘의 별자리 운세는 어떻게 확인하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "사이트에서 본인 별자리를 선택하면 총운, 연애운, 직장운, 재물운을 확인할 수 있습니다. 매일 운세가 업데이트됩니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "별자리 운세는 매일 바뀌나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네, 12별자리 모두 매일 새로운 운세가 제공됩니다. 별자리 성격(원소, 수호성)에 기반한 맞춤 운세입니다."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- Kakao SDK -->
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6692623657038108" crossorigin="anonymous"></script>
+
+<!-- Kakao SDK -->
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js" crossorigin="anonymous"></script>
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>">
+
+<!-- Google Analytics (GA4) — ID를 발급받은 뒤 아래 주석을 해제하고 G-XXXXXXXXXX 를 교체하세요 -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body {
+    font-family:'Pretendard',sans-serif;
+    background:#f5f5f5;
+    color:#1a1a1a;
+    min-height:100vh;
+  }
+
+  .container{max-width:920px;margin:0 auto;padding:0 20px;}
+
+  /* Header */
+  .header{
+    background:#fff;
+    border-bottom:1px solid rgba(0,0,0,0.06);
+  }
+  .header-inner{
+    display:flex;align-items:center;gap:20px;
+    padding:20px clamp(20px,5vw,48px);
+    max-width:920px;margin:0 auto;
+  }
+  .date-block{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .date-day{
+    font-family:'Outfit',sans-serif;
+    font-size:clamp(56px,9vw,80px);font-weight:200;
+    line-height:1;letter-spacing:-0.03em;color:#0a0a0a;
+  }
+  .date-meta{display:flex;flex-direction:column;gap:2px;}
+  .date-month{font-size:15px;font-weight:700;color:#0a0a0a;letter-spacing:0.02em;}
+  .date-year{font-size:12px;font-weight:400;color:#888;letter-spacing:0.02em;}
+  .date-weekday{font-size:12px;font-weight:700;color:#5b5ef4;letter-spacing:0.04em;margin-top:2px;}
+  .date-block::after{
+    content:'';display:block;width:1px;height:40px;
+    background:rgba(0,0,0,0.1);margin-left:12px;
+  }
+  .title-block{flex:1;}
+  .header-title{
+    font-size:clamp(24px,4vw,34px);font-weight:800;
+    letter-spacing:-0.03em;line-height:1.1;margin:0;color:#0a0a0a;
+  }
+  .header-sub{font-size:13px;font-weight:400;color:#888;margin-top:6px;letter-spacing:0.01em;}
+  @media(max-width:480px){
+    .header-inner{gap:14px;padding:20px 20px;}
+    .date-day{font-size:48px;}
+    .date-block::after{height:28px;}
+  }
+
+  /* Zodiac */
+  .zodiac-section{padding:20px 0;}
+  .zodiac-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+  @media(max-width:768px){.zodiac-grid{grid-template-columns:repeat(4,1fr);}}
+  @media(max-width:480px){.zodiac-grid{grid-template-columns:repeat(3,1fr);}}
+
+  .zodiac-btn{
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    padding:20px 10px;border:none;cursor:pointer;transition:all 0.2s;
+    background:#fff;border-radius:14px;color:#888;
+    border:2px solid transparent;font-family:inherit;
+  }
+  .zodiac-btn:hover{border-color:#ddd;transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.06);color:#1a1a1a;}
+  .zodiac-btn.active{border-color:#1a1a1a;color:#1a1a1a;background:#fff;box-shadow:0 4px 16px rgba(0,0,0,0.08);}
+  .zodiac-btn .emoji{font-size:36px;line-height:1;}
+  .zodiac-btn .name{font-size:13px;font-weight:700;}
+  .zodiac-btn .period{font-size:10px;color:#aaa;}
+
+  /* Integrated Hero Card */
+  .hero-card{
+    background:#1a1a1a;color:#fff;border-radius:20px;padding:32px;
+    margin-bottom:12px;animation:cardIn 0.4s ease both;
+  }
+  .hero-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
+  .hero-left{display:flex;align-items:center;gap:12px;}
+  .hero-emoji{font-size:48px;line-height:1;}
+  .hero-name{font-size:28px;font-weight:800;letter-spacing:-0.5px;}
+  .hero-score{font-family:'Outfit',sans-serif;font-size:56px;font-weight:900;line-height:1;}
+  .hero-meta{font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:8px;margin-top:4px;}
+  .hero-trait{font-size:14px;color:rgba(255,255,255,0.6);font-weight:400;line-height:1.6;margin-bottom:24px;}
+  .hero-trait strong{color:rgba(255,255,255,0.85);font-weight:600;}
+
+  /* Score Grid inside hero */
+  .score-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;margin-bottom:24px;}
+  .score-row{display:flex;align-items:center;gap:10px;}
+  .score-label{font-size:12px;color:rgba(255,255,255,0.5);width:36px;flex-shrink:0;}
+  .score-val{font-family:'Outfit',sans-serif;font-size:16px;font-weight:700;width:28px;text-align:right;flex-shrink:0;}
+  .score-bar{flex:1;height:6px;background:rgba(255,255,255,0.1);border-radius:3px;overflow:hidden;}
+  .score-bar .fill{height:100%;border-radius:3px;transition:width 0.8s ease;}
+  .fill.love{background:#ff4d6d} .fill.money{background:#ffb703} .fill.work{background:#06d6a0} .fill.health{background:#4cc9f0}
+
+  /* Summary section inside hero */
+  .hero-summary-label{font-size:12px;color:rgba(255,255,255,0.45);letter-spacing:1.5px;font-weight:700;margin-bottom:10px;}
+  .hero-summary-text{font-size:16px;line-height:1.9;color:rgba(255,255,255,0.88);font-weight:400;}
+  .hero-quote{font-size:14px;color:rgba(255,255,255,0.5);margin-top:20px;font-style:italic;line-height:1.6;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08);}
+
+  /* Bento Grid */
+  .bento{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding-bottom:12px;}
+  @media(max-width:480px){.bento{grid-template-columns:1fr;}}
+
+  .bento-card{
+    background:#fff;border-radius:16px;padding:28px;
+    border:1px solid #eee;
+    transition:all 0.2s;animation:cardIn 0.4s ease both;
+  }
+  .bento-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.06);border-color:#ddd;}
+  .bento-card.wide{grid-column:span 2;}
+  @media(max-width:480px){.bento-card.wide{grid-column:span 1;}}
+
+  @keyframes cardIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  .bento-card:nth-child(1){animation-delay:0s}
+  .bento-card:nth-child(2){animation-delay:0.05s}
+  .bento-card:nth-child(3){animation-delay:0.1s}
+
+  /* Lucky Info Grid */
+  /* Card content styles */
+  .card-label{font-size:12px;color:#888;letter-spacing:1.5px;font-weight:700;margin-bottom:10px;}
+  .card-text{font-size:16px;line-height:1.8;color:#333;font-weight:500;}
+
+  /* 오늘의 키워드 통합 카드 */
+  .keyword-card{
+    background:#fff;border-radius:16px;padding:28px;
+    border:1px solid #eee;margin-bottom:12px;
+    animation:cardIn 0.4s ease both;animation-delay:0.2s;
+  }
+  .keyword-title{font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:20px;}
+  .keyword-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  @media(max-width:768px){.keyword-grid{grid-template-columns:repeat(2,1fr);}}
+  .keyword-item{text-align:center;}
+  .keyword-item .ki-emoji{font-size:32px;margin-bottom:8px;}
+  .keyword-item .ki-label{font-size:11px;color:#999;font-weight:500;letter-spacing:0.5px;}
+  .keyword-item .ki-value{font-size:16px;font-weight:700;color:#1a1a1a;margin-top:4px;}
+
+  /* 궁합 + 팁 통합 그리드 */
+  .bottom-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding-bottom:12px;}
+  @media(max-width:480px){.bottom-grid{grid-template-columns:1fr;}}
+  .bottom-card{
+    background:#fff;border-radius:16px;padding:24px;
+    border:1px solid #eee;animation:cardIn 0.4s ease both;
+  }
+  .bottom-card .bc-header{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+  .bottom-card .bc-emoji{font-size:20px;}
+  .bottom-card .bc-title{font-size:13px;font-weight:700;color:#1a1a1a;}
+  .bottom-card .bc-content{font-size:14px;font-weight:600;color:#444;}
+  .bottom-card .bc-sub{font-size:11px;color:#aaa;margin-top:2px;}
+  .bottom-card.do{background:#f0fdf4;border-color:#d1fae5;}
+  .bottom-card.do .bc-title{color:#059669;}
+  .bottom-card.dont{background:#fef2f2;border-color:#fecdd3;}
+  .bottom-card.dont .bc-title{color:#dc2626;}
+  .bottom-card .bc-list{list-style:none;padding:0;margin:0;}
+  .bottom-card .bc-list li{font-size:15px;color:#444;padding:6px 0;font-weight:500;display:flex;align-items:center;gap:6px;}
+  .bottom-card.good{background:#f0fdf4;border-color:#d1fae5;}
+  .bottom-card.bad{background:#fef2f2;border-color:#fecdd3;}
+
+  /* Share */
+  .share-row{display:flex;gap:8px;padding-bottom:24px;}
+  .share-btn{
+    flex:1;padding:16px;border:none;border-radius:14px;font-size:15px;font-weight:600;
+    cursor:pointer;transition:all 0.2s;font-family:inherit;
+  }
+  .share-btn:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.08);}
+  .share-btn.kakao{background:#fee500;color:#1a1a1a;}
+  .share-btn.link{background:#eee;color:#444;}
+
+  /* 오늘의 랭킹 */
+  .ranking-section{padding:24px 0 12px;}
+  .ranking-title{font-size:15px;font-weight:700;margin-bottom:12px;color:#1a1a1a;}
+  .ranking-list{display:flex;flex-wrap:wrap;gap:6px;}
+  .rank-chip{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
+    background:#fff;border:1px solid #eee;color:#666;cursor:pointer;transition:all 0.2s;
+  }
+  .rank-chip:hover{border-color:#ddd;background:#f8f8f8;}
+  .rank-chip.gold{background:#fffbeb;border-color:#fcd34d;color:#92400e;}
+  .rank-chip.silver{background:#f8fafc;border-color:#cbd5e1;color:#475569;}
+  .rank-chip.bronze{background:#fff7ed;border-color:#fdba74;color:#9a3412;}
+  .rank-chip.me{border-color:#5b5ef4;color:#5b5ef4;background:#eef2ff;font-weight:700;}
+  .rank-num{font-family:'Outfit',sans-serif;font-weight:800;font-size:13px;}
+
+  /* 어제 vs 오늘 변화 */
+  .change-badge{
+    display:inline-flex;align-items:center;gap:3px;
+    font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;
+    padding:2px 8px;border-radius:6px;margin-left:6px;
+  }
+  .change-badge.up{background:rgba(34,197,94,0.15);color:#16a34a;}
+  .change-badge.down{background:rgba(239,68,68,0.15);color:#ef4444;}
+  .change-badge.same{background:rgba(156,163,175,0.15);color:#6b7280;}
+
+  /* tips는 bottom-grid로 통합됨 */
+
+  /* Ad — 광고 로드되면 보이고 안 되면 숨김 */
+  .ad-space{border-radius:12px;margin-bottom:32px;min-height:0;}
+  .ad-space:empty{display:none;}
+
+  /* Footer */
+  .footer{text-align:center;padding:32px 24px 48px;font-size:11px;color:#ccc;border-top:1px solid #eee;background:#fff;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="date-block">
+      <span class="date-day" id="dayNum"></span>
+      <div class="date-meta">
+        <span class="date-month" id="dayMonth"></span>
+        <span class="date-year" id="dayYear"></span>
+        <span class="date-weekday" id="dayWeekday"></span>
+      </div>
+    </div>
+    <div class="title-block">
+      <h1 class="header-title">오늘의 운세</h1>
+      <p class="header-sub">별자리를 선택하면 오늘의 운세를 알려드려요</p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="zodiac-section">
+    <div class="zodiac-grid" id="grid"></div>
+  </div>
+
+  <!-- 쿠팡 배너: 결과 하단으로 이동 -->
+
+  <div id="result"></div>
+</div>
+
+<div id="adsWrap" style="max-width:920px;margin:0 auto;padding:0 20px 12px;display:none;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6692623657038108" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>
+  try{(adsbygoogle=window.adsbygoogle||[]).push({});
+  setTimeout(function(){var a=document.querySelector('.adsbygoogle');if(a&&a.offsetHeight>0)document.getElementById('adsWrap').style.display='block';},2000);
+  }catch(e){}
+  </script>
+</div>
+
+<div style="max-width:920px;margin:0 auto;padding:0 20px 24px;overflow:hidden;border-radius:16px;">
+  <script src="https://ads-partners.coupang.com/g.js"></script>
+  <script>new PartnersCoupang.G({"id":1017186,"template":"carousel","trackingCode":"AF7330023","width":"100%","height":"140","tsource":""});</script>
+</div>
+
+<div class="footer">
+  <p>재미로 보는 운세 · 매일 업데이트 · 진지하게 받아들이지 마세요 😉</p>
+  <p style="margin-top:8px;font-size:10px;color:#bbb;">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+</div>
+
+<script>
+const Z=[
+  {n:'물병자리',e:'🏺',p:'1.20-2.18',el:'공기',ruler:'천왕성',trait:'독창적이고 자유로운',
+   desc:'혁신적 사고와 독립심이 강한 당신에게',k:'aquarius'},
+  {n:'물고기자리',e:'🐟',p:'2.19-3.20',el:'물',ruler:'해왕성',trait:'감성적이고 직관적인',
+   desc:'풍부한 상상력과 공감 능력의 소유자인 당신에게',k:'pisces'},
+  {n:'양자리',e:'🐏',p:'3.21-4.19',el:'불',ruler:'화성',trait:'열정적이고 도전적인',
+   desc:'타고난 리더십과 추진력을 가진 당신에게',k:'aries'},
+  {n:'황소자리',e:'🐂',p:'4.20-5.20',el:'땅',ruler:'금성',trait:'안정적이고 신중한',
+   desc:'인내심과 실용적 감각이 뛰어난 당신에게',k:'taurus'},
+  {n:'쌍둥이자리',e:'👯',p:'5.21-6.21',el:'공기',ruler:'수성',trait:'다재다능하고 소통에 능한',
+   desc:'빠른 적응력과 유연한 사고의 당신에게',k:'gemini'},
+  {n:'게자리',e:'🦀',p:'6.22-7.22',el:'물',ruler:'달',trait:'다정하고 보호본능이 강한',
+   desc:'깊은 감정과 따뜻한 마음을 가진 당신에게',k:'cancer'},
+  {n:'사자자리',e:'🦁',p:'7.23-8.22',el:'불',ruler:'태양',trait:'당당하고 카리스마 있는',
+   desc:'타고난 존재감과 자신감의 당신에게',k:'leo'},
+  {n:'처녀자리',e:'👸',p:'8.23-9.22',el:'땅',ruler:'수성',trait:'꼼꼼하고 분석적인',
+   desc:'완벽주의와 실천력을 겸비한 당신에게',k:'virgo'},
+  {n:'천칭자리',e:'⚖️',p:'9.23-10.22',el:'공기',ruler:'금성',trait:'조화롭고 균형 잡힌',
+   desc:'미적 감각과 공정함을 추구하는 당신에게',k:'libra'},
+  {n:'전갈자리',e:'🦂',p:'10.23-11.21',el:'물',ruler:'명왕성',trait:'깊이 있고 통찰력 있는',
+   desc:'강한 의지와 날카로운 직관의 당신에게',k:'scorpio'},
+  {n:'사수자리',e:'🏹',p:'11.22-12.21',el:'불',ruler:'목성',trait:'자유롭고 낙천적인',
+   desc:'모험심과 넓은 시야를 가진 당신에게',k:'sagittarius'},
+  {n:'염소자리',e:'🐐',p:'12.22-1.19',el:'땅',ruler:'토성',trait:'성실하고 목표지향적인',
+   desc:'끈기와 책임감이 남다른 당신에게',k:'capricorn'},
+];
+
+// 별자리별 맞춤 운세 데이터 — 월별 JSON 파일에서 로드
+var CUSTOM_FORTUNE = null;
+
+const OL_90=["오늘 로또 사세요. 진지합니다.","별들이 올해 최고의 날이라고 난리.","이 점수 실화? 뭘 해도 됩니다.","우주가 당신 편입니다.","오늘의 주인공은 당신.","100점 만점에 거의 치트키.","이런 날은 1년에 3번. 낭비하지 마세요.","오늘은 셀카도 잘 나옵니다. 프사 바꾸세요.","별들이 박수치고 있습니다.","다른 별자리들이 부러워하고 있습니다."];
+const OL_80=["꽤 괜찮은 하루! 무리만 안 하면 OK.","컨디션 좋을 거예요. 과신은 금물.","80점대면 상위권. 자신감 가지세요.","하는 일의 70%는 잘 풀립니다.","점심에 비싼 거 먹어도 되는 날.","자판기에서 음료 2개 나올 운세.","별들의 평가: '쓸만한 하루'.","당신의 오라가 빛나고 있습니다.","좋은 소식: 운 좋음. 나쁜 소식: 내일은 모름.","별들이 고개 끄덕이고 있습니다."];
+const OL_70=["평범한 하루. 평범한 게 감사한 거예요.","대박도 없고 사고도 없고. 이게 행복.","70점대는 C+. 졸업은 합니다.","나쁘지 않아요. 좋지도 않지만.","커피 한 잔이면 80점대 가능.","존재감 없이 조용히 지나가는 게 최선.","점수가 애매하죠? 인생도 원래 그래요.","별들도 딱히 할 말이 없답니다.","모험하지 마세요. 현상 유지가 승리.","그럭저럭. 인생의 대부분이 그럭저럭."];
+const OL_60=["버티면 내일은 나아질 수도. 아닐 수도.","기대를 낮추세요. 실망도 줄어듭니다.","살짝 운이 없는 날. 중요한 결정은 내일로.","별들이 '오늘은 좀...' 하며 고개를 돌림.","60점대면 과락은 면했습니다.","안 풀리면 운세 탓 하세요. 허락합니다.","숨 쉬고 있는 것만으로도 잘하고 있는 겁니다.","이 점수에 놀라지 마세요. 어제 좋았으면 오늘 빠지는 거.","오늘의 생존 전략: 눈에 띄지 않기.","내일의 운세가 나을 거라는 보장은 없지만 희망은 있음."];
+const OL_LOW=["오늘은 그냥 집에 계세요. 진심.","별들이 오늘만큼은 미안하다고 합니다.","내일은 반드시 낫습니다. 이보다 나빠지기 어려우니까.","이 점수를 본 표정이 보입니다. 괜찮아요.","아무것도 하지 마세요. 진지하게.","우주가 당신을 시험하고 있습니다.","바닥을 찍어야 올라갈 일만 남아요.","이런 날은 치킨이 답. 과학적으로 증명됨.","위로: 내일 운세가 이것보다 높을 확률 94%.","오늘의 유일한 행운: 이 운세를 미리 본 것."];
+
+const COLORS=['빨강','파랑','초록','노랑','보라','주황','분홍','네이비','골드','민트','코랄','라벤더','베이지','와인','아이보리','로즈골드','청록','피치','라임','카키'];
+const FOODS=['치킨','삼겹살','피자','초밥','떡볶이','라멘','햄버거','파스타','김치찌개','제육볶음','칼국수','냉면','족발','닭갈비','짜장면','비빔밥','돈까스','마라탕','감자탕','부대찌개','붕어빵','카페라떼','와플','케이크','타코','곱창','쌀국수','순대국','브런치','아이스크림'];
+
+// 오늘 하면 좋은 일 / 피할 일 풀
+const DO_ITEMS=[
+  '점심 좀 비싼 거 먹기 (오늘은 됨)',
+  '퇴근하고 치킨 시키기 (별의 허락)',
+  '하고 싶은 말 참기 (내일도 출근해야 함)',
+  '읽씹 당해도 쿨하게 넘기기',
+  '장바구니 비우기 (결제 말고)',
+  '카페 가서 멍 때리기',
+  '맛있는 거 사진 찍기 (먹는 건 그다음)',
+  '오늘만 야근 안 하기',
+  '좋아하는 유튜버 영상 몰아보기',
+  '배달앱 대신 직접 가서 사 먹기',
+  '내일의 나한테 일 미루기 (합법)',
+  '퇴근 후 아무 생각 없이 걷기',
+  '안 읽은 알림 999개 무시하기',
+  '오늘은 나한테 좀 잘해주기',
+  '넷플릭스 새로 뜬 거 1편만 보기',
+  '아무한테나 이모티콘 보내기',
+  '오랜만에 노래방 가기 (혼자도 OK)',
+  '오늘 하루 불평 제로 도전',
+  '사고 싶었던 거 하나만 사기 (하나만)',
+  '좋아하는 사람한테 먼저 연락하기',
+  '30분만 일찍 자기 (이것도 성공임)',
+  '오늘은 엘리베이터 대신 계단 (1층만)',
+  '폰 배경화면 바꾸기 (기분 전환)',
+  '안 쓰는 구독 하나 해지하기 (돈 아낌)',
+  '오늘은 카페인 2잔까지만 (3잔째는 내일)',
+  '퇴근길에 편의점 디저트 하나',
+  '좋아하는 노래 풀볼륨으로 듣기',
+  '집에서 아무것도 안 해도 되는 시간 1시간',
+  '인스타 안 올리고 그냥 즐기기',
+  '오늘만 다이어트 무시하기',
+];
+const DONT_ITEMS=[
+  '쿠팡 앱 열기 (열면 30만원 나감)',
+  '전 여친/남친 인스타 보기',
+  '새벽 2시에 배달 시키기',
+  '"나 한 잔만" 하기 (이미 3잔째임)',
+  '월급 들어온 날 쇼핑하기',
+  '카톡에서 "ㅋ" 하나로 답하기',
+  '피곤한데 "괜찮아~" 하기',
+  '자기 전에 업무 메일 확인하기',
+  '남의 여행 사진 보고 현타 오기',
+  '빈속에 커피 마시기',
+  '새벽에 중고나라 보기',
+  '술자리에서 전화번호 따기',
+  '월요일에 큰 결정 하기',
+  '화난 상태로 카톡 보내기',
+  '아무 생각 없이 유튜브 쇼츠 보기 (2시간 증발)',
+  '연봉 검색하고 자괴감 느끼기',
+  '"다이어트는 내일부터" 하기',
+  '잠 안 온다고 폰 보기 (더 안 옴)',
+  '배고플 때 편의점 가기 (3만원 나옴)',
+  '금요일 밤에 월요일 걱정하기',
+  '택배 왔는데 또 택배 주문하기',
+  '"이거 마지막" 하고 넷플릭스 한 편 더 보기',
+  '남이 산 거 보고 나도 사기',
+  '술 마시고 쇼핑하기',
+  '새벽에 과거 흑역사 떠올리기',
+  '동기 승진 소식에 자괴감 느끼기',
+  '인스타 스토리 올리고 반응 체크하기',
+  '"읽씹 왜 했지?" 집착하기',
+  '핑계 대고 약속 취소하기',
+  '피곤한데 "할 수 있어!" 무리하기',
+];
+
+function sr(s){let x=Math.sin(s)*10000;return x-Math.floor(x);}
+function pk(a,s){return a[Math.floor(sr(s)*a.length)];}
+function sc(s){return Math.floor(sr(s)*18+80);}
+function getCustom(signKey, field, seed) {
+  const day = String(today.getDate());
+  const dayPad = day.padStart(2,'0');
+  // 두 가지 키 포맷 모두 시도
+  if (CUSTOM_FORTUNE && CUSTOM_FORTUNE[signKey]) {
+    const data = CUSTOM_FORTUNE[signKey][day] || CUSTOM_FORTUNE[signKey][dayPad];
+    if (data && data[field]) return data[field];
+  }
+  return '운세 데이터를 확인 중...';
+}
+function getOL(score,seed){
+  if(score>=95)return pk(OL_90,seed);
+  if(score>=88)return pk(OL_80,seed);
+  return pk(OL_70,seed);
+}
+
+// Date
+const today=new Date();
+
+// 월별 운세 데이터 로드
+(function() {
+  var m = String(today.getMonth() + 1).padStart(2, '0');
+  fetch('data/fortune-' + m + '.json')
+    .then(function(r) { return r.json(); })
+    .then(function(d) { CUSTOM_FORTUNE = d; console.log('✅ ' + m + '월 운세 로드 완료'); })
+    .catch(function() { console.log('⚠️ ' + m + '월 운세 파일 없음'); });
+})();
+const days=['일','월','화','수','목','금','토'];
+const months=['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+document.getElementById('dayNum').textContent=today.getDate();
+document.getElementById('dayMonth').textContent=`${months[today.getMonth()]}`;
+document.getElementById('dayYear').textContent=`${today.getFullYear()}`;
+document.getElementById('dayWeekday').textContent=`${days[today.getDay()]}요일`;
+
+// 어제 점수 계산
+function getYesterdayScore(zi) {
+  const y=today.getFullYear(), m=today.getMonth()+1, d=today.getDate()-1;
+  const b=y*100000+m*1000+d*13+zi*7;
+  return sc(b);
+}
+
+// 변화 뱃지 HTML
+function changeBadge(todayScore, yesterdayScore) {
+  const diff = todayScore - yesterdayScore;
+  if(diff > 0) return `<span class="change-badge up">▲${diff}</span>`;
+  if(diff < 0) return `<span class="change-badge down">▼${Math.abs(diff)}</span>`;
+  return `<span class="change-badge same">—</span>`;
+}
+
+// 랭킹 생성
+function getRanking(selectedIndex) {
+  const y=today.getFullYear(), m=today.getMonth()+1, d=today.getDate();
+  return Z.map((z,i)=>{
+    const b=y*100000+m*1000+d*13+i*7;
+    return {index:i, name:z.n, emoji:z.e, score:sc(b)};
+  }).sort((a,b)=>b.score-a.score).map((item,rank)=>({...item, rank:rank+1, isMe:item.index===selectedIndex}));
+}
+
+// 오늘 하면 좋은 일 / 피할 일
+function getTips(seed) {
+  const doList=[], dontList=[];
+  const doUsed=new Set(), dontUsed=new Set();
+  for(let i=0;i<3;i++){
+    let idx;
+    do { idx=Math.floor(sr(seed+100+i*7)*DO_ITEMS.length); } while(doUsed.has(idx));
+    doUsed.add(idx); doList.push(DO_ITEMS[idx]);
+    do { idx=Math.floor(sr(seed+200+i*7)*DONT_ITEMS.length); } while(dontUsed.has(idx));
+    dontUsed.add(idx); dontList.push(DONT_ITEMS[idx]);
+  }
+  return {doList, dontList};
+}
+
+// Grid
+document.getElementById('grid').innerHTML=Z.map((z,i)=>`
+  <button class="zodiac-btn" onclick="sel(${i})">
+    <span class="emoji">${z.e}</span><span class="name">${z.n}</span><span class="period">${z.p}</span>
+  </button>`).join('');
+
+// 카카오 SDK 초기화
+var currentSign = null;
+var currentScore = null;
+var currentSummary = null;
+try { Kakao.init('4dc7d7690ca8b78aec06f64ca1158905'); } catch(e) { console.log('Kakao SDK 로딩 대기'); }
+
+function shareKakao() {
+  if (!currentSign) { alert('별자리를 먼저 선택하세요!'); return; }
+  Kakao.Share.sendDefault({
+    objectType: 'feed',
+    content: {
+      title: `${currentSign.e} ${currentSign.n} 오늘의 운세: ${currentScore}점`,
+      description: currentSummary,
+      imageUrl: 'https://todays-fortune-app.vercel.app/og-image.png',
+      link: { mobileWebUrl: window.location.href, webUrl: window.location.href },
+    },
+    social: { likeCount: currentScore },
+    buttons: [
+      { title: '내 운세 보기', link: { mobileWebUrl: window.location.href, webUrl: window.location.href } },
+    ],
+  });
+}
+
+function sel(i){
+  document.querySelectorAll('.zodiac-btn').forEach((b,j)=>b.classList.toggle('active',j===i));
+  const z=Z[i],y=today.getFullYear(),m=today.getMonth()+1,d=today.getDate();
+  const b=y*100000+m*1000+d*13+i*7;
+  const f={o:sc(b),l:sc(b+1),m:sc(b+2),w:sc(b+3),h:sc(b+4)};
+  const yo=getYesterdayScore(i);
+  currentSign=z; currentScore=f.o; currentSummary=getCustom(z.k,'summary',b);
+  const bestZ=Z[(i+Math.floor(sr(b+90)*11)+1)%12];
+  const avoidZ=Z[(i+Math.floor(sr(b+80)*11)+1)%12];
+  const ranking=getRanking(i);
+
+  document.getElementById('result').innerHTML=`
+    <div class="hero-card">
+      <div class="hero-top">
+        <div class="hero-left"><span class="hero-emoji">${z.e}</span><span class="hero-name">${z.n}</span></div>
+        <div class="hero-score">${f.o}${changeBadge(f.o, yo)}</div>
+      </div>
+      <div class="hero-meta">${z.el} 원소 · ${z.ruler} 지배</div>
+      <div class="hero-trait">${z.desc},<br><strong>${z.trait}</strong> 에너지가 흐르는 하루</div>
+
+      <div class="score-grid">
+        <div class="score-row"><span class="score-label">연애</span><span class="score-val">${f.l}</span><div class="score-bar"><div class="fill love" style="width:${f.l}%"></div></div></div>
+        <div class="score-row"><span class="score-label">재물</span><span class="score-val">${f.m}</span><div class="score-bar"><div class="fill money" style="width:${f.m}%"></div></div></div>
+        <div class="score-row"><span class="score-label">직장</span><span class="score-val">${f.w}</span><div class="score-bar"><div class="fill work" style="width:${f.w}%"></div></div></div>
+        <div class="score-row"><span class="score-label">건강</span><span class="score-val">${f.h}</span><div class="score-bar"><div class="fill health" style="width:${f.h}%"></div></div></div>
+      </div>
+
+      <div class="hero-summary-label">📌 총운</div>
+      <div class="hero-summary-text">${getCustom(z.k,'summary',b)}</div>
+      <div class="hero-quote">"${getOL(f.o,b+45)}"</div>
+    </div>
+
+    <div class="bento">
+      <div class="bento-card"><div class="card-label">💕 연애운</div><div class="card-text">${getCustom(z.k,'love',b)}</div></div>
+      <div class="bento-card"><div class="card-label">💼 직장운</div><div class="card-text">${getCustom(z.k,'work',b)}</div></div>
+      <div class="bento-card wide"><div class="card-label">💰 재물운</div><div class="card-text">${getCustom(z.k,'money',b)}</div></div>
+    </div>
+
+    <div class="keyword-card">
+      <div class="keyword-title">🔮 오늘의 키워드</div>
+      <div class="keyword-grid">
+        <div class="keyword-item"><div class="ki-emoji">🎨</div><div class="ki-label">행운의 색</div><div class="ki-value">${pk(COLORS,b+50)}</div></div>
+        <div class="keyword-item"><div class="ki-emoji">🍽️</div><div class="ki-label">행운의 음식</div><div class="ki-value">${pk(FOODS,b+70)}</div></div>
+        <div class="keyword-item"><div class="ki-emoji">👍</div><div class="ki-label">잘 맞는 별자리</div><div class="ki-value">${bestZ.e} ${bestZ.n}</div></div>
+        <div class="keyword-item"><div class="ki-emoji">⚠️</div><div class="ki-label">피할 별자리</div><div class="ki-value">${avoidZ.e} ${avoidZ.n}</div></div>
+      </div>
+    </div>
+
+
+    <div class="share-row">
+      <button class="share-btn kakao" onclick="shareKakao()">💬 카카오톡 공유</button>
+      <button class="share-btn link" onclick="navigator.clipboard.writeText(location.href).then(()=>alert('링크 복사됨!'))">🔗 링크 복사</button>
+    </div>
+  `;
+  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
+
+}
+</script>
+
+<footer style="text-align:center;padding:32px 20px;font-size:12px;color:#aaa;border-top:1px solid #eee;margin-top:40px;">
+  <p style="margin-bottom:8px;">오늘의 운세 &copy; 2026</p>
+  <p>
+    <a href="about.html" style="color:#888;text-decoration:none;margin:0 12px;">서비스 소개</a>
+    <a href="privacy.html" style="color:#888;text-decoration:none;margin:0 12px;">개인정보처리방침</a>
+  </p>
+</footer>
+
+<!-- 쿠팡 파트너스: 상단에 인라인으로 삽입됨 -->
+
+</body>
+</html>
