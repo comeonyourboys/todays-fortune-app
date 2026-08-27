@@ -281,12 +281,16 @@
   .ad-side{width:160px;flex-shrink:0;display:none;padding:20px 8px;}
   .ad-side .ad-sticky{position:sticky;top:20px;}
   @media(min-width:1300px){
-    .ad-side.ad-loaded{display:block;}
+    .ad-side{display:block;}
   }
   /* Mobile bottom ad */
   .ad-mobile{display:none;}
+  .ad-pc-bottom{display:block;text-align:center;}
   @media(max-width:1299px){
-    .ad-mobile.ad-loaded{display:block;}
+    .ad-mobile{display:block;}
+  }
+  @media(max-width:768px){
+    .ad-pc-bottom{display:none;}
   }
 
   /* Footer */
@@ -297,10 +301,11 @@
 
 <div class="page-wrap">
 
-<!-- PC 좌측 광고 -->
+<!-- PC 좌측 광고 (Adsterra 160x600) -->
 <aside class="ad-side" id="adLeft">
   <div class="ad-sticky">
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6692623657038108" data-ad-slot="4636974885" data-ad-format="vertical" data-full-width-responsive="false"></ins>
+    <script>atOptions={'key':'9200b10f59adf378771129ca8cdf8360','format':'iframe','height':600,'width':160,'params':{}};</script>
+    <script src="https://www.highrevenueformat.com/9200b10f59adf378771129ca8cdf8360/invoke.js"></script>
   </div>
 </aside>
 
@@ -332,9 +337,16 @@
   <div id="result"></div>
 </div>
 
-<!-- 모바일 하단 광고 -->
-<div class="ad-mobile" id="adMobile" style="max-width:920px;margin:0 auto;padding:0 20px 12px;">
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6692623657038108" data-ad-slot="4361642712" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<!-- 모바일 하단 광고 (Adsterra 320x50) -->
+<div class="ad-mobile" id="adMobile" style="max-width:920px;margin:0 auto;padding:12px 20px;text-align:center;">
+  <script>atOptions={'key':'9d72c2bd8efd7ff34e045a592f11b361','format':'iframe','height':50,'width':320,'params':{}};</script>
+  <script src="https://www.highrevenueformat.com/9d72c2bd8efd7ff34e045a592f11b361/invoke.js"></script>
+</div>
+
+<!-- PC 본문 하단 광고 (Adsterra 728x90) -->
+<div class="ad-pc-bottom" style="max-width:920px;margin:0 auto;padding:0 20px 12px;text-align:center;">
+  <script>atOptions={'key':'d5236b7f8e6d5c09e0a8b7fd07eac38f','format':'iframe','height':90,'width':728,'params':{}};</script>
+  <script src="https://www.highrevenueformat.com/d5236b7f8e6d5c09e0a8b7fd07eac38f/invoke.js"></script>
 </div>
 
 <div style="max-width:920px;margin:0 auto;padding:0 20px 24px;overflow:hidden;border-radius:16px;">
@@ -628,31 +640,26 @@ function sel(i){
 
 </div><!-- /.main-col -->
 
-<!-- PC 우측 광고 -->
+<!-- PC 우측 광고 (Adsterra 160x300) -->
 <aside class="ad-side" id="adRight">
   <div class="ad-sticky">
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6692623657038108" data-ad-slot="9494705420" data-ad-format="vertical" data-full-width-responsive="false"></ins>
+    <script>atOptions={'key':'8436427d31e42b0249a7bae045125aa2','format':'iframe','height':300,'width':160,'params':{}};</script>
+    <script src="https://www.highrevenueformat.com/8436427d31e42b0249a7bae045125aa2/invoke.js"></script>
   </div>
 </aside>
 
 </div><!-- /.page-wrap -->
 
-<!-- 광고 로드 스크립트 -->
+<!-- 광고 로드 감지: iframe 있으면 사이드바 표시 -->
 <script>
 (function(){
-  try {
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  } catch(e) {}
-  // 광고 로드 감지: 높이가 생기면 ad-loaded 클래스 추가
   setTimeout(function(){
-    [['adLeft','.ad-side'],['adRight','.ad-side'],['adMobile','.ad-mobile']].forEach(function(pair){
-      var el = document.getElementById(pair[0]);
-      if(!el) return;
-      var ins = el.querySelector('ins.adsbygoogle');
-      if(ins && ins.offsetHeight > 0) el.classList.add('ad-loaded');
+    ['adLeft','adRight'].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el && el.querySelector('iframe')) el.classList.add('ad-loaded');
     });
+    var mob = document.getElementById('adMobile');
+    if(mob && mob.querySelector('iframe')) mob.classList.add('ad-loaded');
   }, 3000);
 })();
 </script>
