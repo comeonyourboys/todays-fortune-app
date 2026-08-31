@@ -275,40 +275,12 @@
 
   /* tips는 bottom-grid로 통합됨 */
 
-  /* 3-column ad layout */
-  .page-wrap{display:flex;justify-content:center;gap:0;min-height:100vh;}
-  .main-col{flex:1;max-width:920px;min-width:0;}
-  .ad-side{width:160px;flex-shrink:0;display:none;padding:20px 0;}
-  .ad-side .ad-sticky{position:sticky;top:20px;}
-  @media(min-width:1300px){
-    .ad-side{display:block;}
-  }
-  /* Mobile bottom ad */
-  .ad-mobile{display:none;text-align:center;padding:12px 0;}
-  @media(max-width:1299px){
-    .ad-mobile{display:block;}
-  }
-
   /* Footer */
   .footer{text-align:center;padding:32px 24px 48px;font-size:11px;color:#ccc;border-top:1px solid #eee;background:#fff;}
 </style>
-<script type="text/javascript" src="//t1.kakaocdn.net/kas/static/ba.min.js" async></script>
 </head>
 <body>
 
-<div class="page-wrap">
-
-<!-- PC 좌측 광고 (카카오 애드핏 160x600) -->
-<aside class="ad-side">
-  <div class="ad-sticky">
-    <ins class="kakao_ad_area" style="display:none;"
-    data-ad-unit="DAN-PJDk9Ix8QSZwmho2"
-    data-ad-width="160"
-    data-ad-height="600"></ins>
-  </div>
-</aside>
-
-<div class="main-col">
 <div class="header">
   <div class="header-inner">
     <div class="date-block">
@@ -336,16 +308,14 @@
   <div id="result"></div>
 </div>
 
-<!-- 모바일 하단 광고 (카카오 애드핏 320x50) -->
-<div class="ad-mobile" style="max-width:920px;margin:0 auto;">
-  <ins class="kakao_ad_area" style="display:none;"
-  data-ad-unit="DAN-XKdPIuDkSo3uxN1l"
-  data-ad-width="320"
-  data-ad-height="50"></ins>
+<div style="max-width:920px;margin:0 auto;padding:0 20px 24px;overflow:hidden;border-radius:16px;">
+  <script src="https://ads-partners.coupang.com/g.js"></script>
+  <script>new PartnersCoupang.G({"id":1017186,"template":"carousel","trackingCode":"AF7330023","width":"100%","height":"140","tsource":""});</script>
 </div>
 
 <div class="footer">
   <p>재미로 보는 운세 · 매일 업데이트 · 진지하게 받아들이지 마세요 😉</p>
+  <p style="margin-top:8px;font-size:10px;color:#bbb;">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
 </div>
 
 <script>
@@ -627,19 +597,6 @@ function sel(i){
 
 <!-- 쿠팡 파트너스: 상단에 인라인으로 삽입됨 -->
 
-</div><!-- /.main-col -->
-
-<!-- PC 우측 광고 (카카오 애드핏 160x600) -->
-<aside class="ad-side">
-  <div class="ad-sticky">
-    <ins class="kakao_ad_area" style="display:none;"
-    data-ad-unit="DAN-oPwQwRMLYEcXD02F"
-    data-ad-width="160"
-    data-ad-height="600"></ins>
-  </div>
-</aside>
-
-</div><!-- /.page-wrap -->
 
 </body>
 </html>
