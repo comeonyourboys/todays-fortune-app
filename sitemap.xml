@@ -6,6 +6,66 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://todays-fortune-app.vercel.app/zodiac/aquarius</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://todays-fortune-app.vercel.app/zodiac/pisces</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://todays-fortune-app.vercel.app/zodiac/aries</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://todays-fortune-app.vercel.app/zodiac/taurus</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://todays-fortune-app.vercel.app/zodiac/gemini</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://todays-fortune-app.vercel.app/zodiac/cancer</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://todays-fortune-app.vercel.app/zodiac/leo</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://todays-fortune-app.vercel.app/zodiac/virgo</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://todays-fortune-app.vercel.app/zodiac/libra</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://todays-fortune-app.vercel.app/zodiac/scorpio</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://todays-fortune-app.vercel.app/zodiac/sagittarius</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://todays-fortune-app.vercel.app/zodiac/capricorn</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://todays-fortune-app.vercel.app/about.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

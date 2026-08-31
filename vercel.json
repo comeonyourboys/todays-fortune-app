@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/zodiac/:sign", "destination": "/index.html" }
+  ]
+}

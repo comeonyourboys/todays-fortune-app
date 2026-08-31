@@ -505,6 +505,29 @@ document.getElementById('grid').innerHTML=Z.map((z,i)=>`
     <span class="emoji">${z.e}</span><span class="name">${z.n}</span><span class="period">${z.p}</span>
   </button>`).join('');
 
+// URL 기반 별자리 자동 선택 (/zodiac/aries 등)
+(function(){
+  var path = window.location.pathname;
+  var match = path.match(/^\/zodiac\/([a-z]+)/);
+  if(match){
+    var signKey = match[1];
+    var idx = Z.findIndex(function(z){ return z.k === signKey; });
+    if(idx >= 0){
+      // 운세 데이터 로드 대기 후 선택
+      setTimeout(function(){ sel(idx); }, 300);
+      // SEO: 동적 메타태그 업데이트
+      var z = Z[idx];
+      document.title = z.n + ' 오늘의 운세 — 별자리 운세';
+      var metaDesc = document.querySelector('meta[name="description"]');
+      if(metaDesc) metaDesc.content = z.n + ' 오늘의 운세. ' + z.trait + ' ' + z.n + '의 총운, 연애운, 직장운, 재물운을 확인하세요.';
+      var ogTitle = document.querySelector('meta[property="og:title"]');
+      if(ogTitle) ogTitle.content = z.e + ' ' + z.n + ' 오늘의 운세';
+      var ogDesc = document.querySelector('meta[property="og:description"]');
+      if(ogDesc) ogDesc.content = z.desc + '. 매일 새로운 별자리 운세를 확인하세요.';
+    }
+  }
+})();
+
 // 카카오 SDK 초기화
 var currentSign = null;
 var currentScore = null;
