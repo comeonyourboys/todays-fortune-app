@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>별자리 궁합 테스트 — 오늘의 운세</title>
+<meta name="description" content="12별자리 궁합 테스트. 나와 상대의 별자리 궁합을 연인, 친구, 직장 동료별로 확인해보세요.">
+<meta property="og:title" content="💕 별자리 궁합 테스트">
+<meta property="og:description" content="나와 상대의 별자리 궁합을 확인해보세요. 연인, 친구, 직장 궁합까지!">
+<meta property="og:image" content="https://todays-fortune-app.vercel.app/og-image.png?v=2">
+<meta property="og:url" content="https://todays-fortune-app.vercel.app/compatibility.html">
+<link rel="canonical" href="https://todays-fortune-app.vercel.app/compatibility.html">
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Pretendard',sans-serif;background:#f5f5f5;color:#1a1a1a;min-height:100vh;}
+.container{max-width:500px;margin:0 auto;padding:20px;}
+h1{font-size:28px;font-weight:800;text-align:center;margin:20px 0 8px;}
+.sub{text-align:center;color:#888;font-size:14px;margin-bottom:24px;}
+
+.pick-label{font-size:13px;font-weight:700;color:#888;letter-spacing:1px;margin-bottom:10px;}
+.pick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px;}
+.pick-btn{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:14px 6px;border:2px solid transparent;border-radius:14px;
+  background:#fff;cursor:pointer;font-family:inherit;transition:all 0.2s;
+}
+.pick-btn:hover{border-color:#ddd;transform:translateY(-2px);}
+.pick-btn.active{border-color:#5b5ef4;background:#eef2ff;}
+.pick-btn .emoji{font-size:28px;}
+.pick-btn .name{font-size:11px;font-weight:600;color:#666;}
+
+.vs{text-align:center;font-size:24px;font-weight:800;color:#ddd;margin:8px 0;}
+
+.result-btn{
+  width:100%;padding:16px;border:none;border-radius:14px;
+  background:#1a1a1a;color:#fff;font-size:16px;font-weight:700;
+  cursor:pointer;font-family:inherit;margin-bottom:24px;transition:all 0.2s;
+}
+.result-btn:hover{background:#333;}
+.result-btn:disabled{background:#ccc;cursor:default;}
+
+/* 결과 */
+.result{display:none;animation:fadeIn 0.4s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.result-card{background:#1a1a1a;color:#fff;border-radius:20px;padding:32px;margin-bottom:16px;}
+.result-top{display:flex;justify-content:center;align-items:center;gap:20px;margin-bottom:20px;}
+.result-sign{text-align:center;}
+.result-sign .emoji{font-size:48px;}
+.result-sign .name{font-size:14px;font-weight:600;margin-top:4px;}
+.result-heart{font-size:36px;}
+.result-score{text-align:center;margin-bottom:24px;}
+.result-score .num{font-family:'Outfit',sans-serif;font-size:64px;font-weight:900;}
+.result-score .label{font-size:13px;color:rgba(255,255,255,0.5);}
+.result-msg{font-size:16px;line-height:1.8;color:rgba(255,255,255,0.85);text-align:center;margin-bottom:24px;}
+
+.detail-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.detail-item{text-align:center;background:rgba(255,255,255,0.06);border-radius:12px;padding:16px 8px;}
+.detail-item .d-label{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:6px;}
+.detail-item .d-score{font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;}
+.detail-item .d-text{font-size:12px;color:rgba(255,255,255,0.6);margin-top:4px;}
+
+.tip-card{background:#fff;border-radius:16px;padding:24px;border:1px solid #eee;margin-bottom:12px;}
+.tip-title{font-size:14px;font-weight:700;margin-bottom:12px;}
+.tip-text{font-size:14px;line-height:1.8;color:#555;}
+.share-row{display:flex;gap:8px;padding-bottom:12px;}
+.share-btn{flex:1;padding:16px;border:none;border-radius:14px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.2s;}
+.share-btn:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.08);}
+.share-btn.kakao{background:#fee500;color:#1a1a1a;}
+.share-btn.link{background:#eee;color:#444;}
+</style>
+</head><body>
+<div class="container">
+  <h1>💕 별자리 궁합</h1>
+  <p class="sub">두 별자리의 궁합을 확인해보세요</p>
+
+  <div class="pick-label">내 별자리</div>
+  <div class="pick-grid" id="myGrid"></div>
+
+  <div class="vs">VS</div>
+
+  <div class="pick-label">상대 별자리</div>
+  <div class="pick-grid" id="yourGrid"></div>
+
+  <button class="result-btn" id="goBtn" disabled onclick="showResult()">궁합 보기</button>
+
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+const Z=[
+  {n:'물병',e:'🏺',el:'공기'},{n:'물고기',e:'🐟',el:'물'},
+  {n:'양',e:'🐏',el:'불'},{n:'황소',e:'🐂',el:'땅'},
+  {n:'쌍둥이',e:'👯',el:'공기'},{n:'게',e:'🦀',el:'물'},
+  {n:'사자',e:'🦁',el:'불'},{n:'처녀',e:'👸',el:'땅'},
+  {n:'천칭',e:'⚖️',el:'공기'},{n:'전갈',e:'🦂',el:'물'},
+  {n:'사수',e:'🏹',el:'불'},{n:'염소',e:'🐐',el:'땅'},
+];
+
+try { Kakao.init('4dc7d7690ca8b78aec06f64ca1158905'); } catch(e) {}
+
+function shareKakao(ae,an,be,bn,score){
+  Kakao.Share.sendDefault({
+    objectType:'feed',
+    content:{
+      title: ae+' '+an+'자리 × '+be+' '+bn+'자리 궁합: '+score+'점',
+      description: '나와 상대의 별자리 궁합을 확인해보세요!',
+      imageUrl:'https://todays-fortune-app.vercel.app/og-image.png?v=2',
+      link:{mobileWebUrl:'https://todays-fortune-app.vercel.app/compatibility.html',webUrl:'https://todays-fortune-app.vercel.app/compatibility.html'},
+    },
+    buttons:[{title:'궁합 테스트 하기',link:{mobileWebUrl:'https://todays-fortune-app.vercel.app/compatibility.html',webUrl:'https://todays-fortune-app.vercel.app/compatibility.html'}}],
+  });
+}
+
+let myPick=-1, yourPick=-1;
+
+function render(containerId, type){
+  document.getElementById(containerId).innerHTML = Z.map((z,i)=>
+    `<button class="pick-btn" onclick="pick('${type}',${i})" id="${type}_${i}">
+      <span class="emoji">${z.e}</span><span class="name">${z.n}자리</span>
+    </button>`
+  ).join('');
+}
+render('myGrid','my');
+render('yourGrid','your');
+
+function pick(type, i){
+  if(type==='my') myPick=i; else yourPick=i;
+  document.querySelectorAll(`#${type==='my'?'myGrid':'yourGrid'} .pick-btn`).forEach((b,j)=>b.classList.toggle('active',j===i));
+  document.getElementById('goBtn').disabled = (myPick<0||yourPick<0);
+}
+
+function getScore(el1, el2){
+  const good = {'불':['불','공기'],'공기':['공기','불'],'물':['물','땅'],'땅':['땅','물']};
+  const bad = {'불':['물'],'물':['불'],'공기':['땅'],'땅':['공기']};
+  if(el1===el2) return 85 + Math.floor(Math.random()*10);
+  if(good[el1]&&good[el1].includes(el2)) return 78 + Math.floor(Math.random()*12);
+  if(bad[el1]&&bad[el1].includes(el2)) return 45 + Math.floor(Math.random()*15);
+  return 60 + Math.floor(Math.random()*15);
+}
+
+function getMsg(score){
+  if(score>=90) return '운명적인 만남! 서로를 완벽하게 보완하는 최고의 조합이에요.';
+  if(score>=80) return '찰떡궁합! 함께 있으면 서로에게 좋은 에너지를 줄 수 있어요.';
+  if(score>=70) return '꽤 괜찮아요! 서로 다른 점이 오히려 매력이 될 수 있어요.';
+  if(score>=60) return '노력하면 좋아질 수 있어요. 서로 이해하려는 마음이 중요해요.';
+  return '좀 힘들 수도... 하지만 운세는 운세일 뿐! 노력이 답이에요.';
+}
+
+function getTip(el1, el2){
+  if(el1==='불'&&el2==='불') return '둘 다 불같은 성격이라 열정적이지만, 충돌도 잦을 수 있어요. 양보의 기술이 필요해요.';
+  if(el1==='물'&&el2==='물') return '감성이 풍부한 둘이라 깊은 교감이 가능해요. 다만 감정에 매몰되지 않도록 주의하세요.';
+  if(el1==='공기'&&el2==='공기') return '대화가 끊이지 않는 조합! 지적 자극을 주고받을 수 있지만 감정 표현도 잊지 마세요.';
+  if(el1==='땅'&&el2==='땅') return '안정적이고 신뢰할 수 있는 조합이에요. 가끔 새로운 시도도 함께 해보세요.';
+  if((el1==='불'&&el2==='공기')||(el1==='공기'&&el2==='불')) return '공기가 불을 키우듯, 서로에게 좋은 자극을 줄 수 있는 관계예요!';
+  if((el1==='물'&&el2==='땅')||(el1==='땅'&&el2==='물')) return '땅이 물을 품듯, 안정감 있고 깊은 관계를 만들 수 있어요.';
+  if((el1==='불'&&el2==='물')||(el1==='물'&&el2==='불')) return '정반대의 에너지라 끌리기도 하지만 충돌도 있어요. 서로의 다름을 존중하세요.';
+  if((el1==='공기'&&el2==='땅')||(el1==='땅'&&el2==='공기')) return '사고방식이 달라 처음엔 어색할 수 있지만, 배울 점이 많은 관계예요.';
+  return '서로의 차이를 이해하면 더 좋은 관계가 될 수 있어요.';
+}
+
+function showResult(){
+  const a=Z[myPick], b=Z[yourPick];
+  const total = getScore(a.el, b.el);
+  const love = getScore(a.el, b.el);
+  const friend = getScore(a.el, b.el);
+  const work = getScore(a.el, b.el);
+
+  document.getElementById('result').style.display='block';
+  document.getElementById('result').innerHTML = `
+    <div class="result-card">
+      <div class="result-top">
+        <div class="result-sign"><div class="emoji">${a.e}</div><div class="name">${a.n}자리</div></div>
+        <div class="result-heart">💕</div>
+        <div class="result-sign"><div class="emoji">${b.e}</div><div class="name">${b.n}자리</div></div>
+      </div>
+      <div class="result-score">
+        <div class="num">${total}</div>
+        <div class="label">궁합 점수</div>
+      </div>
+      <div class="result-msg">${getMsg(total)}</div>
+      <div class="detail-grid">
+        <div class="detail-item"><div class="d-label">연인</div><div class="d-score">${love}</div><div class="d-text">${love>=80?'💕 찰떡':love>=65?'😊 괜찮음':'😅 노력 필요'}</div></div>
+        <div class="detail-item"><div class="d-label">친구</div><div class="d-score">${friend}</div><div class="d-text">${friend>=80?'🤝 베프각':friend>=65?'😄 무난함':'🤔 거리감'}</div></div>
+        <div class="detail-item"><div class="d-label">직장</div><div class="d-score">${work}</div><div class="d-text">${work>=80?'💼 환상팀':work>=65?'👍 협업OK':'⚡ 마찰주의'}</div></div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-title">💡 궁합 팁</div>
+      <div class="tip-text">${getTip(a.el, b.el)}</div>
+    </div>
+
+    <div class="share-row">
+      <button class="share-btn kakao" onclick="shareKakao('${a.e}','${a.n}','${b.e}','${b.n}',${total})">💬 카카오톡 공유</button>
+      <button class="share-btn link" onclick="navigator.clipboard.writeText(location.href).then(()=>alert('링크 복사됨!'))">🔗 링크 복사</button>
+    </div>
+  `;
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+</script>
+
+<div style="max-width:500px;margin:0 auto;padding:0 20px 16px;">
+  <a href="/" style="display:block;text-align:center;padding:16px;background:#fff;border-radius:14px;border:1px solid #eee;font-size:15px;font-weight:600;color:#5b5ef4;text-decoration:none;transition:all 0.2s;">⭐ 오늘의 운세 보러가기</a>
+</div>
+
+<footer style="text-align:center;padding:32px 20px;font-size:12px;color:#aaa;border-top:1px solid #eee;margin-top:20px;">
+  <p style="margin-bottom:8px;">오늘의 운세 &copy; 2026</p>
+  <p>
+    <a href="/" style="color:#888;text-decoration:none;margin:0 12px;">오늘의 운세</a>
+    <a href="about.html" style="color:#888;text-decoration:none;margin:0 12px;">서비스 소개</a>
+    <a href="privacy.html" style="color:#888;text-decoration:none;margin:0 12px;">개인정보처리방침</a>
+  </p>
+</footer>
+
+</body></html>
