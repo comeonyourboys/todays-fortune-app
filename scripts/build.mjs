@@ -40,7 +40,7 @@ const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '
 const paras = (t) => String(t).split(/\n{2,}/).map((p) => `<p>${esc(p.trim())}</p>`).join('');
 const jsonld = (o) => `<script type="application/ld+json">${JSON.stringify(o).replace(/</g, '\\u003c')}</script>`;
 const byKey = new Map(signs.map((s) => [s.k, s]));
-const urlOf = (k) => `/zodiac/${k}/`;
+const urlOf = (k) => `/zodiac/${k}`;   // trailingSlash:false 라 슬래시 없이 링크
 const dayKey = (d) => String(d).padStart(2, '0');
 const fortuneOf = (k, d) => fortune[k]?.[dayKey(d)] ?? fortune[k]?.[String(d)] ?? null;
 const daysInMonth = new Date(Y, M, 0).getDate();
