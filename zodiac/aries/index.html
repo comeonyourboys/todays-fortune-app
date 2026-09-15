@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>양자리 오늘의 운세와 성격·궁합 (3.21-4.19) | 오늘의 운세</title>
+<meta name="description" content="양자리(3.21-4.19) 오늘의 총운·연애운·직장운·재물운과 성격, 강점과 약점, 잘 맞는 별자리, 신화 유래까지 한 페이지에 정리했습니다.">
+<link rel="canonical" href="https://todays-fortune-app.vercel.app/zodiac/aries/">
+<meta name="robots" content="index, follow">
+<meta name="google-site-verification" content="1f373KtNH3atCzIil1snRuWtDwrzIfDYspZs5GWiRT4">
+<meta name="theme-color" content="#1a1a2e">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="오늘의 운세">
+<meta property="og:title" content="양자리 오늘의 운세와 성격·궁합 (3.21-4.19) | 오늘의 운세">
+<meta property="og:description" content="양자리(3.21-4.19) 오늘의 총운·연애운·직장운·재물운과 성격, 강점과 약점, 잘 맞는 별자리, 신화 유래까지 한 페이지에 정리했습니다.">
+<meta property="og:url" content="https://todays-fortune-app.vercel.app/zodiac/aries/">
+<meta property="og:image" content="https://todays-fortune-app.vercel.app/og-image.png?v=2">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="양자리 오늘의 운세와 성격·궁합 (3.21-4.19) | 오늘의 운세">
+<meta name="twitter:description" content="양자리(3.21-4.19) 오늘의 총운·연애운·직장운·재물운과 성격, 강점과 약점, 잘 맞는 별자리, 신화 유래까지 한 페이지에 정리했습니다.">
+<meta name="twitter:image" content="https://todays-fortune-app.vercel.app/og-image.png?v=2">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>*{margin:0;padding:0;box-sizing:border-box;}
+  body {
+    font-family:'Pretendard',sans-serif;
+    background:#f5f5f5;
+    color:#1a1a1a;
+    min-height:100vh;
+  }
+
+  .container{max-width:920px;margin:0 auto;padding:0 20px;}
+
+  /* Header */
+  .header{
+    background:#fff;
+    border-bottom:1px solid rgba(0,0,0,0.06);
+  }
+  .header-inner{
+    display:flex;align-items:center;gap:20px;
+    padding:20px clamp(20px,5vw,48px);
+    max-width:920px;margin:0 auto;
+  }
+  .date-block{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .date-day{
+    font-family:'Outfit',sans-serif;
+    font-size:clamp(56px,9vw,80px);font-weight:200;
+    line-height:1;letter-spacing:-0.03em;color:#0a0a0a;
+  }
+  .date-meta{display:flex;flex-direction:column;gap:2px;}
+  .date-month{font-size:15px;font-weight:700;color:#0a0a0a;letter-spacing:0.02em;}
+  .date-year{font-size:12px;font-weight:400;color:#888;letter-spacing:0.02em;}
+  .date-weekday{font-size:12px;font-weight:700;color:#5b5ef4;letter-spacing:0.04em;margin-top:2px;}
+  .date-block::after{
+    content:'';display:block;width:1px;height:40px;
+    background:rgba(0,0,0,0.1);margin-left:12px;
+  }
+  .title-block{flex:1;}
+  .header-title{
+    font-size:clamp(24px,4vw,34px);font-weight:800;
+    letter-spacing:-0.03em;line-height:1.1;margin:0;color:#0a0a0a;
+  }
+  .header-sub{font-size:13px;font-weight:400;color:#888;margin-top:6px;letter-spacing:0.01em;}
+  @media(max-width:480px){
+    .header-inner{gap:14px;padding:20px 20px;}
+    .date-day{font-size:48px;}
+    .date-block::after{height:28px;}
+  }
+
+  /* Zodiac */
+  .zodiac-section{padding:20px 0;}
+  .zodiac-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+  @media(max-width:768px){.zodiac-grid{grid-template-columns:repeat(4,1fr);}}
+  @media(max-width:480px){.zodiac-grid{grid-template-columns:repeat(3,1fr);}}
+
+  .zodiac-btn{
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    padding:20px 10px;border:none;cursor:pointer;transition:all 0.2s;
+    background:#fff;border-radius:14px;color:#888;
+    border:2px solid transparent;font-family:inherit;
+  }
+  .zodiac-btn:hover{border-color:#ddd;transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.06);color:#1a1a1a;}
+  .zodiac-btn.active{border-color:#1a1a1a;color:#1a1a1a;background:#fff;box-shadow:0 4px 16px rgba(0,0,0,0.08);}
+  .zodiac-btn .emoji{font-size:36px;line-height:1;}
+  .zodiac-btn .name{font-size:13px;font-weight:700;}
+  .zodiac-btn .period{font-size:10px;color:#aaa;}
+
+  /* Integrated Hero Card */
+  .hero-card{
+    background:#1a1a1a;color:#fff;border-radius:20px;padding:32px;
+    margin-bottom:12px;animation:cardIn 0.4s ease both;
+  }
+  .hero-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
+  .hero-left{display:flex;align-items:center;gap:12px;}
+  .hero-emoji{font-size:48px;line-height:1;}
+  .hero-name{font-size:28px;font-weight:800;letter-spacing:-0.5px;}
+  .hero-score{font-family:'Outfit',sans-serif;font-size:56px;font-weight:900;line-height:1;}
+  .hero-meta{font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:8px;margin-top:4px;}
+  .hero-trait{font-size:14px;color:rgba(255,255,255,0.6);font-weight:400;line-height:1.6;margin-bottom:24px;}
+  .hero-trait strong{color:rgba(255,255,255,0.85);font-weight:600;}
+
+  /* Score Grid inside hero */
+  .score-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;margin-bottom:24px;}
+  .score-row{display:flex;align-items:center;gap:10px;}
+  .score-label{font-size:12px;color:rgba(255,255,255,0.5);width:36px;flex-shrink:0;}
+  .score-val{font-family:'Outfit',sans-serif;font-size:16px;font-weight:700;width:28px;text-align:right;flex-shrink:0;}
+  .score-bar{flex:1;height:6px;background:rgba(255,255,255,0.1);border-radius:3px;overflow:hidden;}
+  .score-bar .fill{height:100%;border-radius:3px;transition:width 0.8s ease;}
+  .fill.love{background:#ff4d6d} .fill.money{background:#ffb703} .fill.work{background:#06d6a0} .fill.health{background:#4cc9f0}
+
+  /* Summary section inside hero */
+  .hero-summary-label{font-size:12px;color:rgba(255,255,255,0.45);letter-spacing:1.5px;font-weight:700;margin-bottom:10px;}
+  .hero-summary-text{font-size:16px;line-height:1.9;color:rgba(255,255,255,0.88);font-weight:400;}
+  .hero-quote{font-size:14px;color:rgba(255,255,255,0.5);margin-top:20px;font-style:italic;line-height:1.6;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08);}
+
+  /* Bento Grid */
+  .bento{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding-bottom:12px;}
+  @media(max-width:480px){.bento{grid-template-columns:1fr;}}
+
+  .bento-card{
+    background:#fff;border-radius:16px;padding:28px;
+    border:1px solid #eee;
+    transition:all 0.2s;animation:cardIn 0.4s ease both;
+  }
+  .bento-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.06);border-color:#ddd;}
+  .bento-card.wide{grid-column:span 2;}
+  @media(max-width:480px){.bento-card.wide{grid-column:span 1;}}
+
+  @keyframes cardIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  .bento-card:nth-child(1){animation-delay:0s}
+  .bento-card:nth-child(2){animation-delay:0.05s}
+  .bento-card:nth-child(3){animation-delay:0.1s}
+
+  /* Lucky Info Grid */
+  /* Card content styles */
+  .card-label{font-size:12px;color:#888;letter-spacing:1.5px;font-weight:700;margin-bottom:10px;}
+  .card-text{font-size:16px;line-height:1.8;color:#333;font-weight:500;}
+
+  /* 오늘의 키워드 통합 카드 */
+  .keyword-card{
+    background:#fff;border-radius:16px;padding:28px;
+    border:1px solid #eee;margin-bottom:12px;
+    animation:cardIn 0.4s ease both;animation-delay:0.2s;
+  }
+  .keyword-title{font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:20px;}
+  .keyword-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  @media(max-width:768px){.keyword-grid{grid-template-columns:repeat(2,1fr);}}
+  .keyword-item{text-align:center;}
+  .keyword-item .ki-emoji{font-size:32px;margin-bottom:8px;}
+  .keyword-item .ki-label{font-size:11px;color:#999;font-weight:500;letter-spacing:0.5px;}
+  .keyword-item .ki-value{font-size:16px;font-weight:700;color:#1a1a1a;margin-top:4px;}
+
+  /* 궁합 + 팁 통합 그리드 */
+  .bottom-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding-bottom:12px;}
+  @media(max-width:480px){.bottom-grid{grid-template-columns:1fr;}}
+  .bottom-card{
+    background:#fff;border-radius:16px;padding:24px;
+    border:1px solid #eee;animation:cardIn 0.4s ease both;
+  }
+  .bottom-card .bc-header{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+  .bottom-card .bc-emoji{font-size:20px;}
+  .bottom-card .bc-title{font-size:13px;font-weight:700;color:#1a1a1a;}
+  .bottom-card .bc-content{font-size:14px;font-weight:600;color:#444;}
+  .bottom-card .bc-sub{font-size:11px;color:#aaa;margin-top:2px;}
+  .bottom-card.do{background:#f0fdf4;border-color:#d1fae5;}
+  .bottom-card.do .bc-title{color:#059669;}
+  .bottom-card.dont{background:#fef2f2;border-color:#fecdd3;}
+  .bottom-card.dont .bc-title{color:#dc2626;}
+  .bottom-card .bc-list{list-style:none;padding:0;margin:0;}
+  .bottom-card .bc-list li{font-size:15px;color:#444;padding:6px 0;font-weight:500;display:flex;align-items:center;gap:6px;}
+  .bottom-card.good{background:#f0fdf4;border-color:#d1fae5;}
+  .bottom-card.bad{background:#fef2f2;border-color:#fecdd3;}
+
+  /* Share */
+  .share-row{display:flex;gap:8px;padding-bottom:24px;}
+  .share-btn{
+    flex:1;padding:16px;border:none;border-radius:14px;font-size:15px;font-weight:600;
+    cursor:pointer;transition:all 0.2s;font-family:inherit;
+  }
+  .share-btn:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.08);}
+  .share-btn.kakao{background:#fee500;color:#1a1a1a;}
+  .share-btn.link{background:#eee;color:#444;}
+
+  /* 오늘의 랭킹 */
+  .ranking-section{padding:24px 0 12px;}
+  .ranking-title{font-size:15px;font-weight:700;margin-bottom:12px;color:#1a1a1a;}
+  .ranking-list{display:flex;flex-wrap:wrap;gap:6px;}
+  .rank-chip{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
+    background:#fff;border:1px solid #eee;color:#666;cursor:pointer;transition:all 0.2s;
+  }
+  .rank-chip:hover{border-color:#ddd;background:#f8f8f8;}
+  .rank-chip.gold{background:#fffbeb;border-color:#fcd34d;color:#92400e;}
+  .rank-chip.silver{background:#f8fafc;border-color:#cbd5e1;color:#475569;}
+  .rank-chip.bronze{background:#fff7ed;border-color:#fdba74;color:#9a3412;}
+  .rank-chip.me{border-color:#5b5ef4;color:#5b5ef4;background:#eef2ff;font-weight:700;}
+  .rank-num{font-family:'Outfit',sans-serif;font-weight:800;font-size:13px;}
+
+  /* 어제 vs 오늘 변화 */
+  .change-badge{
+    display:inline-flex;align-items:center;gap:3px;
+    font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;
+    padding:2px 8px;border-radius:6px;margin-left:6px;
+  }
+  .change-badge.up{background:rgba(34,197,94,0.15);color:#16a34a;}
+  .change-badge.down{background:rgba(239,68,68,0.15);color:#ef4444;}
+  .change-badge.same{background:rgba(156,163,175,0.15);color:#6b7280;}
+
+  /* tips는 bottom-grid로 통합됨 */
+
+  /* Footer */
+  .footer{text-align:center;padding:32px 24px 48px;font-size:11px;color:#ccc;border-top:1px solid #eee;background:#fff;}
+
+/* ===== 정적 페이지 추가 스타일 ===== */
+body{background:#f5f5f5;}
+.site-hdr{background:#fff;border-bottom:1px solid rgba(0,0,0,.06);position:sticky;top:0;z-index:50;}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;height:58px;gap:16px;}
+.brand{font-weight:800;font-size:17px;color:#1a1a1a;text-decoration:none;display:flex;align-items:center;gap:6px;white-space:nowrap;}
+.brand-star{color:#7c6cf0;}
+.hdr-nav{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end;}
+.hdr-nav a{font-size:13px;font-weight:600;color:#666;text-decoration:none;padding:6px 10px;border-radius:8px;white-space:nowrap;}
+.hdr-nav a:hover{background:#f0eefe;color:#5b4ce0;}
+
+.crumb{font-size:12px;color:#999;margin:18px 0 8px;display:flex;gap:6px;flex-wrap:wrap;}
+.crumb a{color:#7c6cf0;text-decoration:none;}
+
+.sign-page section{margin:34px 0;}
+.sign-hero{display:flex;align-items:center;gap:18px;padding:26px 24px;background:#fff;border-radius:20px;margin-top:10px;box-shadow:0 2px 12px rgba(0,0,0,.04);flex-wrap:wrap;}
+.sign-emoji{font-size:64px;line-height:1;}
+.sign-hero h1{font-size:30px;font-weight:800;letter-spacing:-.5px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;}
+.sign-en{font-size:13px;color:#bbb;font-weight:600;text-transform:uppercase;letter-spacing:1px;}
+.sign-meta{font-size:14px;color:#666;margin-top:6px;}
+.sign-trait{font-size:13px;color:#7c6cf0;font-weight:700;margin-top:3px;}
+
+.sec-title{font-size:19px;font-weight:800;margin-bottom:14px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;letter-spacing:-.3px;}
+.sub-title{font-size:15px;font-weight:700;margin:20px 0 10px;color:#555;}
+.today-date{font-size:13px;color:#999;font-weight:600;}
+
+.today-box{background:linear-gradient(135deg,#1a1a2e,#2d2b55);border-radius:20px;padding:24px;color:#fff;}
+.today-box .sec-title{color:#fff;}
+.today-box .today-date{color:rgba(255,255,255,.55);}
+.f-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px 18px;}
+.f-main{margin-bottom:10px;}
+.f-label{font-size:12px;font-weight:800;color:rgba(255,255,255,.6);letter-spacing:.5px;display:block;margin-bottom:6px;}
+.f-card p{font-size:15px;line-height:1.75;color:#fff;}
+.f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+@media(max-width:700px){.f-grid{grid-template-columns:1fr;}}
+
+.prose p{font-size:16px;line-height:1.85;color:#333;margin-bottom:14px;}
+.prose p:last-child{margin-bottom:0;}
+.prose-sm{font-size:14px;line-height:1.8;color:#555;margin-top:12px;background:#fff;padding:14px 16px;border-radius:12px;}
+.note{font-size:13px;color:#888;margin-top:12px;line-height:1.7;}
+.note a{color:#7c6cf0;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:700px){.two-col{grid-template-columns:1fr;}}
+.list-box{background:#fff;border-radius:16px;padding:20px;border-top:3px solid #ddd;}
+.list-box.good{border-top-color:#22c55e;}
+.list-box.bad{border-top-color:#f59e0b;}
+.list-box h3{font-size:15px;font-weight:800;margin-bottom:12px;}
+.list-box ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.list-box li{font-size:14.5px;line-height:1.65;color:#444;padding-left:18px;position:relative;}
+.list-box li::before{content:"·";position:absolute;left:5px;font-weight:900;color:#7c6cf0;}
+
+.style-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+@media(max-width:820px){.style-grid{grid-template-columns:1fr;}}
+.style-card{background:#fff;border-radius:16px;padding:20px;}
+.style-card h3{font-size:15px;font-weight:800;margin-bottom:10px;}
+.style-card p{font-size:14.5px;line-height:1.8;color:#444;}
+
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:700px){.match-grid{grid-template-columns:1fr;}}
+.match-card{display:flex;flex-direction:column;gap:5px;background:#fff;border-radius:16px;padding:18px 20px;text-decoration:none;border-left:4px solid #ddd;transition:transform .12s;}
+.match-card:hover{transform:translateY(-2px);}
+.match-card.good{border-left-color:#22c55e;}
+.match-card.bad{border-left-color:#ef4444;}
+.m-emoji{font-size:26px;line-height:1;}
+.m-name{font-size:16px;font-weight:800;color:#1a1a1a;}
+.m-why{font-size:13.5px;line-height:1.65;color:#666;}
+
+.sym-table{width:100%;background:#fff;border-radius:16px;overflow:hidden;border-collapse:collapse;font-size:14.5px;}
+.sym-table th,.sym-table td{padding:13px 16px;text-align:left;border-bottom:1px solid #f0f0f0;}
+.sym-table th{background:#fafafa;font-weight:700;color:#777;font-size:13px;width:22%;}
+.sym-table tr:last-child th,.sym-table tr:last-child td{border-bottom:none;}
+@media(max-width:600px){.sym-table th,.sym-table td{padding:10px 12px;font-size:13.5px;}.sym-table th{width:26%;}}
+
+.month-wrap{background:#fff;border-radius:16px;overflow:hidden;}
+.month-table{width:100%;border-collapse:collapse;font-size:14px;}
+.month-table th{text-align:left;padding:12px 16px;font-weight:700;color:#888;font-size:13px;white-space:nowrap;vertical-align:top;width:92px;border-bottom:1px solid #f4f4f4;}
+.month-table td{padding:12px 16px 12px 0;line-height:1.7;color:#444;border-bottom:1px solid #f4f4f4;}
+.month-table tr:last-child th,.month-table tr:last-child td{border-bottom:none;}
+.month-table tr.is-today th{color:#7c6cf0;}
+.month-table tr.is-today td{background:#f7f5ff;font-weight:600;color:#332;}
+@media(max-width:600px){.month-table th{width:74px;padding:10px 10px;font-size:12px;}.month-table td{padding:10px 10px 10px 0;font-size:13.5px;}}
+
+.sign-links,.elem-signs{display:flex;flex-wrap:wrap;gap:8px;}
+.sign-chip{display:inline-flex;align-items:center;gap:5px;background:#fff;border-radius:999px;padding:8px 14px;font-size:13.5px;font-weight:700;color:#444;text-decoration:none;}
+.sign-chip:hover{background:#f0eefe;color:#5b4ce0;}
+.sign-chip.on{background:#1a1a2e;color:#fff;}
+
+.home-hero{padding:34px 0 22px;text-align:center;}
+.hero-date{font-size:13px;color:#999;font-weight:700;letter-spacing:1px;}
+.home-hero h1{font-size:clamp(26px,5vw,34px);font-weight:800;margin:8px 0 10px;letter-spacing:-.6px;}
+.hero-sub{font-size:15px;color:#666;line-height:1.75;max-width:600px;margin:0 auto;}
+.home-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+@media(max-width:880px){.home-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:460px){.home-grid{grid-template-columns:1fr;}}
+.home-card{display:flex;flex-direction:column;gap:4px;background:#fff;border-radius:18px;padding:20px;text-decoration:none;transition:transform .12s,box-shadow .12s;}
+.home-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.07);}
+.hc-emoji{font-size:32px;line-height:1;}
+.hc-name{font-size:16px;font-weight:800;color:#1a1a1a;}
+.hc-period{font-size:11.5px;color:#aaa;font-weight:600;}
+.hc-sum{font-size:13px;color:#666;line-height:1.6;margin-top:5px;}
+
+.elem-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media(max-width:700px){.elem-grid{grid-template-columns:1fr;}}
+.elem-box{background:#fff;border-radius:16px;padding:20px;}
+.elem-box h3{font-size:15px;font-weight:800;margin-bottom:10px;}
+.elem-box p{font-size:13.5px;color:#666;line-height:1.7;margin-top:10px;}
+.elem-signs a{font-size:13.5px;font-weight:700;color:#5b4ce0;text-decoration:none;background:#f4f2ff;padding:6px 12px;border-radius:999px;}
+
+.ad-wrap{margin:30px auto 0;}
+.ad-inner{width:100%;max-width:100%;overflow:hidden;}
+.ad-inner iframe{max-width:100%!important;}
+.disclose{font-size:11px;color:#bbb;text-align:center;margin-top:6px;}
+
+.site-ftr{margin-top:36px;padding:26px 0 44px;border-top:1px solid rgba(0,0,0,.06);background:#fff;}
+.ftr-links{display:flex;flex-wrap:wrap;justify-content:center;gap:2px 0;margin-bottom:8px;}
+.ftr-links a{font-size:12.5px;color:#777;text-decoration:none;padding:4px 9px;position:relative;}
+.ftr-links a:hover{color:#5b4ce0;}
+.ftr-note{font-size:11.5px;color:#aaa;text-align:center;line-height:1.8;margin-top:10px;padding:0 10px;}
+.empty{color:#999;font-size:14px;padding:16px 0;}
+
+/* 궁합표 */
+.compat-table{border-collapse:collapse;font-size:13px;width:100%;min-width:560px;}
+.compat-table th{padding:8px 6px;font-weight:700;color:#777;font-size:13px;background:#fafafa;white-space:nowrap;}
+.compat-table thead th{font-size:18px;text-align:center;}
+.compat-table tbody th{text-align:left;font-size:12.5px;}
+.compat-table tbody th a{color:#444;text-decoration:none;}
+.compat-table td{padding:8px 4px;text-align:center;font-weight:700;color:#444;border:1px solid #f2f2f2;}
+.compat-table td.c-best{background:#dcfce7;color:#15803d;}
+.compat-table td.c-good{background:#eefbf3;color:#3f8c5f;}
+.compat-table td.c-mid{background:#fffbeb;color:#a16207;}
+.compat-table td.c-low{background:#fef2f2;color:#b91c1c;}
+.pair-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+@media(max-width:760px){.pair-grid{grid-template-columns:1fr;}}
+.pair-card{background:#fff;border-radius:14px;padding:16px 18px;}
+.pair-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+.pair-name{font-size:14.5px;font-weight:800;color:#1a1a1a;}
+.pair-score{font-size:19px;font-weight:800;color:#7c6cf0;font-variant-numeric:tabular-nums;}
+.pair-asp{font-size:12px;color:#aaa;font-weight:700;margin-top:3px;}
+.pair-text{font-size:13.5px;line-height:1.7;color:#555;margin-top:7px;}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"양자리 운세와 성격 — 3.21-4.19","description":"양자리는 황도 12궁에서 가장 먼저 놓인 자리입니다. '시작한다'는 행위 자체가 이 별자리의 정체성이라고 보셔도 좋습니다. 당신은 생각을 오래 굴리기보다 몸이 먼저 움직이는 편이고, 주변 사람들이 아직 상황을 파악하는 동안 이미 첫 걸음을 떼고 있는 경우가 많습니다. 불의 원소에 화성이","inLanguage":"ko","mainEntityOfPage":"https://todays-fortune-app.vercel.app/zodiac/aries/","image":"https://todays-fortune-app.vercel.app/og-image.png?v=2","datePublished":"2026-08-21","dateModified":"2026-09-15","author":{"@type":"Organization","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app"},"publisher":{"@type":"Organization","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"양자리는 몇 월 며칠생인가요?","acceptedAnswer":{"@type":"Answer","text":"양자리는 3.21-4.19 사이에 태어난 사람입니다. 불 원소에 속하고 지배행성은 화성입니다."}},{"@type":"Question","name":"양자리 성격은 어떤가요?","acceptedAnswer":{"@type":"Answer","text":"양자리는 황도 12궁에서 가장 먼저 놓인 자리입니다. '시작한다'는 행위 자체가 이 별자리의 정체성이라고 보셔도 좋습니다. 당신은 생각을 오래 굴리기보다 몸이 먼저 움직이는 편이고, 주변 사람들이 아직 상황을 파악하는 동안 이미 첫 걸음을 떼고 있는 경우가 많습니다. 불의 원소에 화성이 지키는 자리라 에너지의 출력 자체가 크고, 그 에너지가 향할 방향이 정해지는 순간 가속이 붙습니다."}},{"@type":"Question","name":"양자리와 잘 맞는 별자리는?","acceptedAnswer":{"@type":"Answer","text":"사자자리: 둘 다 숨기지 않고 표현하는 성향이라 눈치싸움 없이 관계가 굴러가고, 서로의 자신감을 깎지 않습니다. 사수자리: 속도와 모험심의 결이 비슷해 함께 있으면 답답할 일이 적고, 계획이 바뀌어도 서로 탓하지 않습니다."}},{"@type":"Question","name":"오늘 양자리 운세는?","acceptedAnswer":{"@type":"Answer","text":"9월 중순, 양자리에게 에너지가 충전되는 날입니다. 이번 달 전반부를 너무 열심히 달렸다면 오늘 잠깐 멈추고 보급을 받으세요. 후반전을 위한 전략적 휴식입니다."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://todays-fortune-app.vercel.app/"},{"@type":"ListItem","position":2,"name":"양자리","item":"https://todays-fortune-app.vercel.app/zodiac/aries/"}]}</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5479403345572412" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="site-hdr"><div class="container hdr-in">
+  <a class="brand" href="/"><span class="brand-star">✦</span> 오늘의 운세</a>
+  <nav class="hdr-nav"><a href="/">별자리 12</a><a href="/compatibility">궁합</a><a href="/about">소개</a></nav>
+</div></header>
+<main class="container">
+
+<nav class="crumb"><a href="/">홈</a> › <span>양자리</span></nav>
+
+<article class="sign-page">
+<header class="sign-hero">
+  <div class="sign-emoji">🐏</div>
+  <div>
+    <h1>양자리 <span class="sign-en">aries</span></h1>
+    <p class="sign-meta">3.21-4.19 · 불의 별자리 · 지배행성 화성</p>
+    <p class="sign-trait">열정적이고 도전적인 성향</p>
+  </div>
+</header>
+
+<section class="today-box" id="todayBox">
+  <h2 class="sec-title">오늘의 양자리 운세 <span class="today-date" id="todayDate">2026년 9월 15일</span></h2>
+  
+  <div class="f-card f-main"><span class="f-label">총운</span><p id="f-summary">9월 중순, 양자리에게 에너지가 충전되는 날입니다. 이번 달 전반부를 너무 열심히 달렸다면 오늘 잠깐 멈추고 보급을 받으세요. 후반전을 위한 전략적 휴식입니다.</p></div>
+  <div class="f-grid">
+    <div class="f-card"><span class="f-label">💕 연애운</span><p id="f-love">연인과 평소보다 진지한 대화를 나눌 수 있는 날. 듣는 것에 집중해보세요.</p></div>
+    <div class="f-card"><span class="f-label">💼 직장운</span><p id="f-work">지금까지 진행한 업무를 점검하고 남은 기간 계획을 다시 세우는 날.</p></div>
+    <div class="f-card"><span class="f-label">💰 재물운</span><p id="f-money">9월 중간 지출 점검을 해보세요. 계획과 실제 차이를 파악하는 것이 먼저입니다.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">양자리는 어떤 별자리인가요</h2>
+  <div class="prose"><p>양자리는 황도 12궁에서 가장 먼저 놓인 자리입니다. &#39;시작한다&#39;는 행위 자체가 이 별자리의 정체성이라고 보셔도 좋습니다. 당신은 생각을 오래 굴리기보다 몸이 먼저 움직이는 편이고, 주변 사람들이 아직 상황을 파악하는 동안 이미 첫 걸음을 떼고 있는 경우가 많습니다. 불의 원소에 화성이 지키는 자리라 에너지의 출력 자체가 크고, 그 에너지가 향할 방향이 정해지는 순간 가속이 붙습니다.</p><p>다른 별자리와 구별되는 양자리의 특징은 &#39;뒤끝이 없다&#39;는 데서 가장 뚜렷하게 드러납니다. 화를 낼 때는 크게 내지만 오래 담아두지 않고, 하루만 지나도 자신이 왜 그렇게까지 화가 났는지 잘 기억하지 못합니다. 계산해서 움직이는 유형이 아니라 솔직함이 그대로 무기가 되는 유형입니다.</p><p>다만 이 직진성은 지구력과는 다른 능력입니다. 불이 크게 붙는 만큼 빨리 사그라들 수 있어서, 양자리의 평생 과제는 &#39;어떻게 시작하느냐&#39;보다 &#39;붙여놓은 불을 어떻게 오래 유지하느냐&#39; 쪽에 가깝습니다.</p></div>
+</section>
+
+<section class="two-col">
+  <div class="list-box good">
+    <h3>강점</h3>
+    <ul><li>결단이 빠릅니다 — 선택지 앞에서 오래 머뭇거리지 않습니다</li><li>솔직합니다 — 속마음과 말이 거의 어긋나지 않아 신뢰를 얻습니다</li><li>겁이 적습니다 — 아무도 손대지 않은 일을 먼저 시도합니다</li><li>회복이 빠릅니다 — 실패를 오래 곱씹지 않고 다음 판으로 넘어갑니다</li><li>앞장서는 힘이 있습니다 — 분위기가 처질 때 먼저 움직여 판을 엽니다</li></ul>
+  </div>
+  <div class="list-box bad">
+    <h3>주의할 점</h3>
+    <ul><li>속도가 지나치면 준비 없이 뛰어들어 같은 실수를 반복합니다</li><li>직설이 지나치면 상대의 사정을 듣기 전에 결론을 던집니다</li><li>승부욕이 지나치면 이기지 않아도 될 자리에서까지 힘을 뺍니다</li><li>추진력이 지나치면 흥미가 식은 일을 그대로 버려두게 됩니다</li></ul>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">양자리의 연애·일·돈</h2>
+  <div class="style-grid">
+    <div class="style-card"><h3>💕 연애 스타일</h3><p>양자리는 좋아하는 마음을 오래 숨기지 못합니다. 눈치를 보며 신호를 흘리기보다 직접 물어보고 직접 표현하는 쪽이라, 상대는 당신의 마음을 비교적 빨리 알아차립니다. 밀고 당기는 기술에는 약한 대신 진심이 빠르게 전달된다는 강점이 있습니다. 다만 쫓을 때의 열기가 워낙 뜨겁다 보니, 관계가 안정되고 나면 스스로 온도가 내려간 것처럼 느낄 수 있습니다. 당신이 약한 지점은 무관심입니다. 상대가 반응을 주지 않으면 금세 흥미를 잃고, 반대로 정면으로 부딪혀오는 사람에게는 오히려 마음이 열립니다.</p></div>
+    <div class="style-card"><h3>💼 일하는 방식</h3><p>일에서 양자리는 &#39;0을 1로 만드는&#39; 구간에서 가장 빛납니다. 신규 프로젝트의 첫 삽, 아무도 나서지 않는 총대, 빠른 판단이 필요한 현장이 어울립니다. 경쟁 구도가 있으면 오히려 집중력이 올라가는 편입니다. 반대로 결재가 여러 단계로 쌓여 있고 합의만 반복되는 구조, 같은 작업을 장기간 반복해야 하는 자리에서는 에너지가 빠르게 소모됩니다. 지시를 받는 것 자체보다 &#39;납득되지 않는 지시&#39;를 견디기 어려워하므로, 이유를 설명해 주는 리더를 만나면 성과가 확연히 달라집니다.</p></div>
+    <div class="style-card"><h3>💰 돈 쓰는 습관</h3><p>양자리의 지출은 감정보다 순간의 판단에 좌우됩니다. 마음에 들면 가격 비교를 길게 하지 않고 바로 결제하는 편이라, 충동구매가 통장의 가장 큰 변수입니다. 대신 벌어들이는 쪽에도 적극적이어서 수입 자체를 늘리는 데는 강합니다. 저축이 잘 안 되는 이유는 의지가 약해서가 아니라 돈이 눈에 보이는 계좌에 머물러 있기 때문입니다. 자동이체로 돈을 손이 닿지 않는 곳에 먼저 옮겨두는 방식이 양자리에게는 가장 현실적인 해법입니다.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">양자리와 잘 맞는 별자리</h2>
+  <div class="match-grid">
+    <a class="match-card good" href="/zodiac/leo/"><span class="m-emoji">🦁</span><span class="m-name">사자자리</span><span class="m-why">둘 다 숨기지 않고 표현하는 성향이라 눈치싸움 없이 관계가 굴러가고, 서로의 자신감을 깎지 않습니다.</span></a><a class="match-card good" href="/zodiac/sagittarius/"><span class="m-emoji">🏹</span><span class="m-name">사수자리</span><span class="m-why">속도와 모험심의 결이 비슷해 함께 있으면 답답할 일이 적고, 계획이 바뀌어도 서로 탓하지 않습니다.</span></a>
+  </div>
+  <h3 class="sub-title">부딪히기 쉬운 별자리</h3>
+  <div class="match-grid">
+    <a class="match-card bad" href="/zodiac/cancer/"><span class="m-emoji">🦀</span><span class="m-name">게자리</span><span class="m-why">감정을 다루는 속도가 다릅니다. 양자리의 직설이 게자리에게는 배려 없는 말로 남기 쉽습니다.</span></a><a class="match-card bad" href="/zodiac/capricorn/"><span class="m-emoji">🐐</span><span class="m-name">염소자리</span><span class="m-why">지금 움직이려는 쪽과 절차를 갖추고 움직이려는 쪽이라, 일의 순서를 두고 부딪히기 쉽습니다.</span></a>
+  </div>
+  <p class="note">궁합은 성향 차이를 보는 참고일 뿐입니다. 자세한 조합은 <a href="/compatibility">별자리 궁합 페이지</a>에서 볼 수 있습니다.</p>
+</section>
+
+<section>
+  <h2 class="sec-title">양자리의 유래</h2>
+  <div class="prose"><p>양자리는 그리스 신화의 황금 양 크리소말로스에서 유래한 것으로 전해집니다. 계모의 음모로 목숨이 위태로웠던 프릭소스와 헬레 남매를 태우고 하늘을 날아 달아난 양이었습니다. 비행 도중 헬레는 바다로 떨어졌고, 그 바다는 훗날 헬레스폰토스라 불리게 됩니다. 무사히 콜키스에 닿은 프릭소스는 그 양을 신께 바쳤고, 남겨진 황금 양털은 신성한 숲의 용이 지키게 되었습니다. 이 양털을 되찾기 위한 여정이 바로 이아손과 아르고호 원정대의 이야기입니다. 구조하기 위해 스스로 뛰어들었고 끝내 하늘의 자리로 올라간 이 양의 이미지가, 양자리를 설명할 때 흔히 인용됩니다.</p></div>
+</section>
+
+<section>
+  <h2 class="sec-title">양자리의 상징</h2>
+  <table class="sym-table"><tbody>
+    <tr><th>기간</th><td>3.21-4.19</td><th>원소</th><td>불</td></tr>
+    <tr><th>지배행성</th><td>화성</td><th>탄생석</th><td>다이아몬드</td></tr>
+    <tr><th>행운의 색</th><td>선명한 붉은색</td><th>행운의 숫자</th><td>9</td></tr>
+    <tr><th>요일</th><td>화요일</td><th>꽃</th><td>엉겅퀴</td></tr>
+  </tbody></table>
+  <p class="prose-sm">양자리를 설명할 때는 흔히 &#39;출발 신호가 울리기 전에 이미 달리고 있는 사람&#39;이라는 표현이 쓰입니다. 첫 번째 별자리라는 위치 때문에 &#39;황도의 개척자&#39;라는 별칭도 자주 따라붙습니다.</p>
+</section>
+
+<section>
+  <h2 class="sec-title">9월 양자리 운세 흐름</h2>
+  <div class="month-wrap"><table class="month-table"><tbody><tr><th scope="row">9월 1일</th><td>9월의 첫날, 양자리의 속도계는 이미 시속 200km를 가리키고 있습니다. 출발도 하기 전에 이미 도착해 있는 기세인데, 목적지가 맞는지는 확인하셨나요?</td></tr><tr><th scope="row">9월 2일</th><td>오늘 양자리는 마치 레이싱카 같습니다. 엔진 출력은 최고인데 브레이크를 밟는 법을 모르는 것 같아요. 코너에서 속도를 줄이는 것도 실력입니다.</td></tr><tr><th scope="row">9월 3일</th><td>오늘 양자리에게 예상치 못한 변수가 찾아옵니다. 계획이 틀어졌을 때 패닉하지 않고 즉흥으로 대처하는 게 양자리의 숨겨진 무기입니다. 꺼내 쓸 시간이 왔어요.</td></tr><tr><th scope="row">9월 4일</th><td>양자리, 오늘은 평소보다 에너지가 살짝 내려간 날입니다. 억지로 달리려 하지 말고 몸의 신호를 들어보세요. 충전 없이 달리는 차는 결국 멈춥니다.</td></tr><tr><th scope="row">9월 5일</th><td>오늘 양자리의 직진 본능이 뜻밖의 성과를 만들어냅니다. 다른 별자리들이 머뭇거리는 동안 당신은 이미 세 걸음 앞에 있습니다. 이게 양자리의 진짜 경쟁력입니다.</td></tr><tr><th scope="row">9월 6일</th><td>양자리, 오늘 누군가가 당신 속도에 제동을 걸려 합니다. 화나는 거 이해하는데, 그 사람이 완전 틀린 말을 하는 건 아닐 수도 있습니다. 3초만 들어보세요.</td></tr><tr><th scope="row">9월 7일</th><td>오늘 양자리에게 새로운 아이디어가 쏟아집니다. 머릿속이 폭죽처럼 터지는 날. 이 아이디어들을 바로 행동으로 옮기기 전에 적어두는 습관을 들여보세요.</td></tr><tr><th scope="row">9월 8일</th><td>양자리, 오늘은 참을성 테스트의 날입니다. 우주가 의도적으로 느린 사람들을 당신 앞에 배치했습니다. 인내심이 바닥나기 전에 호흡을 고르세요. 이 시험 통과하면 운세 업그레이드됩니다.</td></tr><tr><th scope="row">9월 9일</th><td>오늘 양자리의 열정이 주변 사람들에게 전염됩니다. 당신의 에너지가 팀 전체를 움직이는 날. 이 영향력을 좋은 방향으로 사용해보세요.</td></tr><tr><th scope="row">9월 10일</th><td>양자리, 오늘 예전에 급하게 내린 결정의 여파가 돌아올 수 있습니다. &#39;그때 좀 더 생각했더라면&#39; 하는 순간. 지금부터라도 차분하게 수습하면 됩니다.</td></tr><tr><th scope="row">9월 11일</th><td>오늘 양자리에게 조용한 행운이 찾아옵니다. 화려하지 않지만 확실한 좋은 일이 생기는 날. 소소한 행복에 감사할 줄 아는 하루를 보내보세요.</td></tr><tr><th scope="row">9월 12일</th><td>양자리, 오늘은 경쟁 상대를 너무 의식하지 말라는 우주의 메시지가 옵니다. 남의 속도에 끌려다니면 본인 레이스를 잃게 됩니다. 당신의 트랙에서 당신의 속도로.</td></tr><tr><th scope="row">9월 13일</th><td>오늘 양자리는 대담한 도전을 앞두고 있습니다. 겁이 날 수 있지만, 양자리의 사전에 겁이라는 단어는 있어도 실제로 그 뜻을 적용한 적이 없죠. 그냥 뛰어드세요.</td></tr><tr><th scope="row">9월 14일</th><td>양자리, 오늘은 혼자가 아닌 함께하는 것의 힘을 깨닫는 날입니다. 빠르게 혼자 가는 것보다 멀리 함께 가는 것이 더 가치 있을 때가 있습니다.</td></tr><tr class="is-today"><th scope="row">9월 15일</th><td>9월 중순, 양자리에게 에너지가 충전되는 날입니다. 이번 달 전반부를 너무 열심히 달렸다면 오늘 잠깐 멈추고 보급을 받으세요. 후반전을 위한 전략적 휴식입니다.</td></tr><tr><th scope="row">9월 16일</th><td>오늘 양자리는 무언가를 강하게 원하는 날입니다. 그 욕망이 나쁜 건 아닌데, 방법이 과격해지지 않도록 주의하세요. 원하는 것을 얻되, 과정도 아름다워야 합니다.</td></tr><tr><th scope="row">9월 17일</th><td>양자리, 오늘 잠깐 다른 사람 관점에서 세상을 봐보는 날입니다. 평소엔 내 관점이 전부인 것 같지만, 각도를 바꾸면 전혀 다른 풍경이 보입니다.</td></tr><tr><th scope="row">9월 18일</th><td>오늘 양자리에게 굉장히 좋은 소식이 들어올 수 있습니다. 평소엔 기쁜 소식을 받아도 &#39;이제 뭐 해야 하지?&#39;로 바로 넘어가는데, 오늘은 잠깐 기뻐하는 시간을 가져보세요.</td></tr><tr><th scope="row">9월 19일</th><td>양자리, 오늘은 고집이 덕이 되는 날입니다. 포기하지 않고 밀어붙인 덕분에 결실을 맺는 순간이 옵니다. 역시 양자리는 끝까지 가야 빛납니다.</td></tr><tr><th scope="row">9월 20일</th><td>오늘 양자리는 평소보다 감수성이 예민한 날입니다. 보통은 달리느라 감정을 느낄 틈이 없는데, 오늘은 그 감정들이 한꺼번에 밀려올 수 있습니다. 받아들이세요.</td></tr><tr><th scope="row">9월 21일</th><td>양자리, 오늘 오전과 오후의 운세가 다릅니다. 오전에는 막히는 것들이 오후에 풀리는 패턴. 아침에 포기하지 말고 오후까지 기다려보세요.</td></tr><tr><th scope="row">9월 22일</th><td>오늘 양자리에게 완전히 새로운 관심사나 목표가 생깁니다. 아직은 씨앗이지만, 이게 나중에 큰 나무가 될 수 있습니다. 설레는 마음으로 심어두세요.</td></tr><tr><th scope="row">9월 23일</th><td>양자리, 오늘은 우주가 &#39;쉬어가&#39;라고 하는 날인데, 평소처럼 무시하면 저녁쯤 에너지가 방전됩니다. 오전에 한 번, 오후에 한 번, 작은 휴식 타임을 넣어보세요.</td></tr><tr><th scope="row">9월 24일</th><td>오늘 양자리에게 멘토 같은 사람이 나타날 수 있습니다. 평소엔 남 말 잘 안 듣는 양자리이지만, 오늘 만나는 사람의 이야기에는 귀를 기울여보세요.</td></tr><tr><th scope="row">9월 25일</th><td>양자리, 오늘은 작은 것들의 소중함을 새삼 깨닫는 날입니다. 항상 크고 빠른 것만 추구했는데, 오늘은 느리고 작은 것들이 실제로 더 많은 가치를 품고 있다는 걸 알게 됩니다.</td></tr><tr><th scope="row">9월 26일</th><td>오늘 양자리에게 창의적인 에너지가 폭발합니다. 평소엔 행동력이 앞서는데, 오늘은 창의력도 함께 달려오는 날. 이 조합이 만들어내는 결과물이 기대됩니다.</td></tr><tr><th scope="row">9월 27일</th><td>양자리, 오늘 뭔가 하다가 막히는 느낌이 드는 날입니다. 벽에 부딪힌 기분. 하지만 양자리는 벽을 우회하거나 뚫거나 넘어가는 세 가지 선택지가 있습니다. 고르세요.</td></tr><tr><th scope="row">9월 28일</th><td>오늘 양자리에게 흐름이 돌아옵니다. 어제의 막힘이 오늘의 흐름으로 바뀌는 날. 우주가 당신을 응원하고 있습니다. 자신 있게 나아가세요.</td></tr><tr><th scope="row">9월 29일</th><td>양자리, 오늘은 용감한 결단이 필요한 날입니다. 오래 고민해온 것들에 대해 YES or NO를 선택해야 합니다. 어차피 결정해야 했던 것들, 오늘 해치워버리세요.</td></tr><tr><th scope="row">9월 30일</th><td>9월의 마지막 날, 양자리여. 이번 달도 역시 빠르게 달렸습니다. 뒤를 돌아보면 꽤 많은 것들이 이루어져 있을 거예요. 10월에는 이 속도에 방향까지 더해보는 건 어떨까요?</td></tr></tbody></table></div>
+</section>
+
+<section>
+  <h2 class="sec-title">다른 별자리 보기</h2>
+  <div class="sign-links"><a class="sign-chip" href="/zodiac/aquarius/"><span>🏺</span>물병자리</a><a class="sign-chip" href="/zodiac/pisces/"><span>🐟</span>물고기자리</a><a class="sign-chip on" href="/zodiac/aries/"><span>🐏</span>양자리</a><a class="sign-chip" href="/zodiac/taurus/"><span>🐂</span>황소자리</a><a class="sign-chip" href="/zodiac/gemini/"><span>👯</span>쌍둥이자리</a><a class="sign-chip" href="/zodiac/cancer/"><span>🦀</span>게자리</a><a class="sign-chip" href="/zodiac/leo/"><span>🦁</span>사자자리</a><a class="sign-chip" href="/zodiac/virgo/"><span>👸</span>처녀자리</a><a class="sign-chip" href="/zodiac/libra/"><span>⚖️</span>천칭자리</a><a class="sign-chip" href="/zodiac/scorpio/"><span>🦂</span>전갈자리</a><a class="sign-chip" href="/zodiac/sagittarius/"><span>🏹</span>사수자리</a><a class="sign-chip" href="/zodiac/capricorn/"><span>🐐</span>염소자리</a></div>
+</section>
+</article>
+</main>
+<div class="container ad-wrap"><div class="ad-inner"><script src="https://ads-partners.coupang.com/g.js"></script><script>new PartnersCoupang.G({"id":1017186,"template":"carousel","trackingCode":"AF7330023","width":"100%","height":"140","tsource":""});</script></div>
+<p class="disclose">이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p></div>
+<footer class="site-ftr"><div class="container">
+  <div class="ftr-links"><a href="/zodiac/aquarius/">물병자리</a><a href="/zodiac/pisces/">물고기자리</a><a href="/zodiac/aries/">양자리</a><a href="/zodiac/taurus/">황소자리</a><a href="/zodiac/gemini/">쌍둥이자리</a><a href="/zodiac/cancer/">게자리</a><a href="/zodiac/leo/">사자자리</a><a href="/zodiac/virgo/">처녀자리</a><a href="/zodiac/libra/">천칭자리</a><a href="/zodiac/scorpio/">전갈자리</a><a href="/zodiac/sagittarius/">사수자리</a><a href="/zodiac/capricorn/">염소자리</a></div>
+  <div class="ftr-links"><a href="/">홈</a><a href="/compatibility">별자리 궁합</a><a href="/about">사이트 소개</a><a href="/privacy">개인정보처리방침</a></div>
+  <p class="ftr-note">별자리 운세는 서양 점성술의 전통적 해석을 참고해 정리한 읽을거리입니다. 의학·법률·투자 등 중요한 판단의 근거로 삼지 마세요. © 2026 오늘의 운세</p>
+</div></footer>
+<script>window.__M__={"10":{"summary":"양자리, 오늘 예전에 급하게 내린 결정의 여파가 돌아올 수 있습니다. '그때 좀 더 생각했더라면' 하는 순간. 지금부터라도 차분하게 수습하면 됩니다.","love":"충동적으로 했던 말이나 행동의 결과를 마주하는 날. 솔직한 사과가 가장 빠른 해결책입니다.","work":"성급한 결정의 결과가 드러나는 날. 인정하고 빠르게 수정하는 것이 현명합니다.","money":"충동 구매한 것의 가치를 재평가하게 되는 날. 반품이 아직 가능하다면 지금이 기회입니다."},"11":{"summary":"오늘 양자리에게 조용한 행운이 찾아옵니다. 화려하지 않지만 확실한 좋은 일이 생기는 날. 소소한 행복에 감사할 줄 아는 하루를 보내보세요.","love":"거창한 이벤트 없이도 연인과 따뜻한 하루를 보낼 수 있는 날. 편안함이 행복입니다.","work":"눈에 띄지 않는 곳에서 착실하게 성과가 쌓이는 날. 꾸준함이 결국 이깁니다.","money":"작은 절약이 모여 통장 잔고가 예상보다 높아지는 날. 기분 좋은 발견입니다."},"12":{"summary":"양자리, 오늘은 경쟁 상대를 너무 의식하지 말라는 우주의 메시지가 옵니다. 남의 속도에 끌려다니면 본인 레이스를 잃게 됩니다. 당신의 트랙에서 당신의 속도로.","love":"연애에서 다른 커플과 비교하는 것은 독입니다. 오늘 그 비교를 멈춰보세요.","work":"동료와 비교하며 자신을 깎아내리지 마세요. 각자의 강점이 다릅니다.","money":"남들 투자 따라가지 말고 본인 상황에 맞는 전략을 세우세요."},"13":{"summary":"오늘 양자리는 대담한 도전을 앞두고 있습니다. 겁이 날 수 있지만, 양자리의 사전에 겁이라는 단어는 있어도 실제로 그 뜻을 적용한 적이 없죠. 그냥 뛰어드세요.","love":"오래 망설인 고백, 오늘이 적기입니다. 결과에 상관없이 용기 자체가 빛납니다.","work":"어렵다고 피해왔던 업무를 오늘 정면 돌파하세요. 해보면 생각보다 할 만합니다.","money":"조심스러웠던 투자 결정, 오늘 충분히 알아보고 실행해보세요."},"14":{"summary":"양자리, 오늘은 혼자가 아닌 함께하는 것의 힘을 깨닫는 날입니다. 빠르게 혼자 가는 것보다 멀리 함께 가는 것이 더 가치 있을 때가 있습니다.","love":"연인과 함께 이루는 것들이 혼자 이루는 것보다 더 의미 있다는 걸 느끼는 날.","work":"협업의 시너지를 경험하는 날. 팀원을 믿고 맡겨보면 의외로 잘 해냅니다.","money":"공동 투자나 저축 목표를 함께 세우는 것이 효과적인 날."},"15":{"summary":"9월 중순, 양자리에게 에너지가 충전되는 날입니다. 이번 달 전반부를 너무 열심히 달렸다면 오늘 잠깐 멈추고 보급을 받으세요. 후반전을 위한 전략적 휴식입니다.","love":"연인과 평소보다 진지한 대화를 나눌 수 있는 날. 듣는 것에 집중해보세요.","work":"지금까지 진행한 업무를 점검하고 남은 기간 계획을 다시 세우는 날.","money":"9월 중간 지출 점검을 해보세요. 계획과 실제 차이를 파악하는 것이 먼저입니다."},"16":{"summary":"오늘 양자리는 무언가를 강하게 원하는 날입니다. 그 욕망이 나쁜 건 아닌데, 방법이 과격해지지 않도록 주의하세요. 원하는 것을 얻되, 과정도 아름다워야 합니다.","love":"상대방에게 원하는 것을 직접 말하는 날. 에둘러 표현하지 말고 솔직하게 부탁해보세요.","work":"하고 싶은 일, 원하는 포지션을 직접 요청해보는 날. 말해야 이루어집니다.","money":"원하는 것을 위해 예산을 조정하는 날. 우선순위를 정해서 계획적으로 모으세요."},"17":{"summary":"양자리, 오늘 잠깐 다른 사람 관점에서 세상을 봐보는 날입니다. 평소엔 내 관점이 전부인 것 같지만, 각도를 바꾸면 전혀 다른 풍경이 보입니다.","love":"연인이 불편함을 느끼는 것들을 오늘 처음으로 이해하게 되는 날. 이게 성장입니다.","work":"동료가 힘들어하는 이유를 공감하는 날. 팀워크가 한 단계 업그레이드됩니다.","money":"소비하는 상대방 입장에서 서비스를 바라보는 날. 새로운 아이디어가 생깁니다."},"18":{"summary":"오늘 양자리에게 굉장히 좋은 소식이 들어올 수 있습니다. 평소엔 기쁜 소식을 받아도 '이제 뭐 해야 하지?'로 바로 넘어가는데, 오늘은 잠깐 기뻐하는 시간을 가져보세요.","love":"기다리던 연락이나 고백이 올 수 있는 날. 기쁨을 충분히 누리세요.","work":"좋은 평가나 프로젝트 통과 소식을 받을 수 있는 날. 팀과 함께 기뻐하세요.","money":"예상보다 좋은 수익 소식이 오는 날. 감사한 마음으로 다음 단계를 계획하세요."},"19":{"summary":"양자리, 오늘은 고집이 덕이 되는 날입니다. 포기하지 않고 밀어붙인 덕분에 결실을 맺는 순간이 옵니다. 역시 양자리는 끝까지 가야 빛납니다.","love":"포기하지 않고 지속했던 관심이 드디어 빛을 발하는 날. 진심은 결국 전해집니다.","work":"끝까지 물고 늘어진 업무에서 돌파구가 열리는 날. 포기하지 않기를 잘했습니다.","money":"꾸준히 모아온 것이 의미 있는 금액이 된 것을 확인하는 날. 뿌듯합니다."},"20":{"summary":"오늘 양자리는 평소보다 감수성이 예민한 날입니다. 보통은 달리느라 감정을 느낄 틈이 없는데, 오늘은 그 감정들이 한꺼번에 밀려올 수 있습니다. 받아들이세요.","love":"연인에 대한 감사함과 애틋함이 특히 크게 느껴지는 날. 표현해보세요.","work":"동료에 대한 고마움을 갑자기 강하게 느끼는 날. 커피 한 잔으로 표현해보세요.","money":"돈의 가치를 감사하게 느끼는 날. 무분별한 지출보다 의미 있는 소비를 하세요."},"21":{"summary":"양자리, 오늘 오전과 오후의 운세가 다릅니다. 오전에는 막히는 것들이 오후에 풀리는 패턴. 아침에 포기하지 말고 오후까지 기다려보세요.","love":"아침에 냉랭했던 분위기가 오후에 풀리는 날. 섣부른 결론 내리지 마세요.","work":"오전에 막혔던 업무가 오후에 술술 풀리는 날. 꾸준히 시도하세요.","money":"아침에 들어온 부정적 소식이 오후에 긍정적으로 바뀔 수 있는 날."},"22":{"summary":"오늘 양자리에게 완전히 새로운 관심사나 목표가 생깁니다. 아직은 씨앗이지만, 이게 나중에 큰 나무가 될 수 있습니다. 설레는 마음으로 심어두세요.","love":"새로운 감정이 싹트는 날. 솔로라면 새 인연, 커플이라면 더 깊은 애정의 시작입니다.","work":"새로운 분야나 역할에 흥미가 생기는 날. 관련 정보를 알아보기 시작하세요.","money":"새로운 재테크 방법에 호기심이 생기는 날. 공부부터 시작해보세요."},"23":{"summary":"양자리, 오늘은 우주가 '쉬어가'라고 하는 날인데, 평소처럼 무시하면 저녁쯤 에너지가 방전됩니다. 오전에 한 번, 오후에 한 번, 작은 휴식 타임을 넣어보세요.","love":"연인과 아무것도 안 하고 그냥 함께 있는 시간이 필요한 날. 그것만으로 충분합니다.","work":"쉬엄쉬엄 하는 것이 오히려 생산성을 높이는 날. 무리하면 다음 날 더 힘듭니다.","money":"오늘은 소비보다 가계부 정리의 날. 현황 파악이 먼저입니다."},"24":{"summary":"오늘 양자리에게 멘토 같은 사람이 나타날 수 있습니다. 평소엔 남 말 잘 안 듣는 양자리이지만, 오늘 만나는 사람의 이야기에는 귀를 기울여보세요.","love":"연애에 대해 현명한 조언을 줄 사람이 나타나는 날. 자존심 내려두고 들어보세요.","work":"선배나 상사의 경험담이 오늘 특히 도움이 됩니다. 먼저 물어보세요.","money":"재정 전문가나 경험자의 조언이 큰 도움이 되는 날. 주변에 물어보세요."},"25":{"summary":"양자리, 오늘은 작은 것들의 소중함을 새삼 깨닫는 날입니다. 항상 크고 빠른 것만 추구했는데, 오늘은 느리고 작은 것들이 실제로 더 많은 가치를 품고 있다는 걸 알게 됩니다.","love":"소소한 일상 속 연인의 배려가 오늘따라 크게 감동으로 다가오는 날.","work":"눈에 띄지 않는 팀원의 기여가 실제로 엄청난 가치를 지니고 있다는 걸 알게 되는 날.","money":"소액이지만 꾸준한 저축이 얼마나 큰 힘을 발휘하는지 새삼 실감하는 날."},"26":{"summary":"오늘 양자리에게 창의적인 에너지가 폭발합니다. 평소엔 행동력이 앞서는데, 오늘은 창의력도 함께 달려오는 날. 이 조합이 만들어내는 결과물이 기대됩니다.","love":"연인에게 기발하고 참신한 방식으로 사랑을 표현하는 날. 상대방이 놀랍니다.","work":"참신한 접근법으로 오래된 문제를 해결하는 날. 당신의 아이디어가 채택됩니다.","money":"기존과 다른 방식으로 수입을 늘릴 아이디어가 떠오르는 날."},"27":{"summary":"양자리, 오늘 뭔가 하다가 막히는 느낌이 드는 날입니다. 벽에 부딪힌 기분. 하지만 양자리는 벽을 우회하거나 뚫거나 넘어가는 세 가지 선택지가 있습니다. 고르세요.","love":"관계에서 막힌 것 같은 느낌이 드는 날. 돌파구는 솔직한 대화에 있습니다.","work":"업무에서 막힌 부분이 생기는 날. 다른 방향에서 접근하면 길이 보입니다.","money":"재정적으로 막힌 느낌이 드는 날. 지출 구조를 바꿔보는 것이 해결책입니다."},"28":{"summary":"오늘 양자리에게 흐름이 돌아옵니다. 어제의 막힘이 오늘의 흐름으로 바뀌는 날. 우주가 당신을 응원하고 있습니다. 자신 있게 나아가세요.","love":"어색했던 분위기가 자연스럽게 풀리는 날. 관계가 한 단계 업그레이드됩니다.","work":"막혔던 업무가 갑자기 풀리는 날. 이 기세를 몰아 최대한 진행해두세요.","money":"재정적으로 숨통이 트이는 날. 기분 좋은 소식이 들어올 수 있습니다."},"29":{"summary":"양자리, 오늘은 용감한 결단이 필요한 날입니다. 오래 고민해온 것들에 대해 YES or NO를 선택해야 합니다. 어차피 결정해야 했던 것들, 오늘 해치워버리세요.","love":"관계의 다음 단계로 나아갈지 결정해야 할 날. 당신의 진심이 답입니다.","work":"지원할지 말지, 제안할지 말지, 오늘 결단을 내려야 하는 날.","money":"투자 여부, 목돈 사용처 등 미뤄온 결정을 오늘 내리는 날."},"30":{"summary":"9월의 마지막 날, 양자리여. 이번 달도 역시 빠르게 달렸습니다. 뒤를 돌아보면 꽤 많은 것들이 이루어져 있을 거예요. 10월에는 이 속도에 방향까지 더해보는 건 어떨까요?","love":"9월 한 달 동안 연인에게 충분히 표현했는지 돌아보는 날. 아직 늦지 않았습니다.","work":"이번 달 성과를 정리하고 다음 달 목표를 더 구체적으로 설정하는 날.","money":"9월 재정을 결산하고 10월 예산을 현실적으로 세우는 날. 숫자는 거짓말을 안 합니다."},"01":{"summary":"9월의 첫날, 양자리의 속도계는 이미 시속 200km를 가리키고 있습니다. 출발도 하기 전에 이미 도착해 있는 기세인데, 목적지가 맞는지는 확인하셨나요?","love":"먼저 고백하고 싶은 마음이 솟구치는 날. 오늘은 전략적으로 카드 한 장만 꺼내보세요.","work":"새 달 새 마음으로 일을 시작하고 싶지만, 일단 지난달 미완성 목록부터 꺼내보세요.","money":"9월 예산을 세우기 전에 이미 지출하고 싶은 것 목록이 더 긴 날. 역순으로 생각해보세요."},"02":{"summary":"오늘 양자리는 마치 레이싱카 같습니다. 엔진 출력은 최고인데 브레이크를 밟는 법을 모르는 것 같아요. 코너에서 속도를 줄이는 것도 실력입니다.","love":"상대방이 아직 0단계인데 혼자 10단계까지 달려간 날. 뒤를 돌아보고 기다려주세요.","work":"혼자 앞서 나가다 팀이 따라오지 못하는 상황이 생깁니다. 속도보다 방향을 맞추세요.","money":"빠른 결정이 빠른 후회로 이어지는 날. 재정 결정은 하루만 더 묵혀두세요."},"03":{"summary":"오늘 양자리에게 예상치 못한 변수가 찾아옵니다. 계획이 틀어졌을 때 패닉하지 않고 즉흥으로 대처하는 게 양자리의 숨겨진 무기입니다. 꺼내 쓸 시간이 왔어요.","love":"데이트 계획이 틀어져도 괜찮습니다. 즉흥적인 만남이 더 기억에 남는 법이니까요.","work":"돌발 상황이 생기지만 당신의 순발력이 빛나는 날. 상황을 즐기세요.","money":"예상치 못한 지출이 있지만 과도한 걱정은 하지 마세요. 충분히 감당 가능합니다."},"04":{"summary":"양자리, 오늘은 평소보다 에너지가 살짝 내려간 날입니다. 억지로 달리려 하지 말고 몸의 신호를 들어보세요. 충전 없이 달리는 차는 결국 멈춥니다.","love":"무리하게 표현하려 하지 말고, 오늘은 그냥 곁에 있어 주는 것만으로 충분합니다.","work":"완벽하게 해내려는 욕심을 잠깐 내려두세요. 오늘은 80%로도 훌륭합니다.","money":"소비 욕구가 낮은 날. 이 기회에 저축 통장을 들여다보세요."},"05":{"summary":"오늘 양자리의 직진 본능이 뜻밖의 성과를 만들어냅니다. 다른 별자리들이 머뭇거리는 동안 당신은 이미 세 걸음 앞에 있습니다. 이게 양자리의 진짜 경쟁력입니다.","love":"용기 있게 먼저 연락한 것이 예상보다 좋은 반응을 불러오는 날. 타이밍이 맞았습니다.","work":"먼저 자원한 업무에서 의외의 성과가 나오는 날. 손 들기 잘했습니다.","money":"작은 결단이 좋은 수익으로 돌아오는 날. 직감을 믿어도 좋습니다."},"06":{"summary":"양자리, 오늘 누군가가 당신 속도에 제동을 걸려 합니다. 화나는 거 이해하는데, 그 사람이 완전 틀린 말을 하는 건 아닐 수도 있습니다. 3초만 들어보세요.","love":"연인의 '천천히 해'라는 말이 억울하게 느껴지는 날. 상대 입장에서 한 번만 생각해보세요.","work":"상사나 동료의 제동에 답답할 수 있지만, 그 안에 중요한 조언이 담겨있습니다.","money":"투자 욕구가 강하지만 오늘은 조금만 기다리는 것이 더 현명합니다."},"07":{"summary":"오늘 양자리에게 새로운 아이디어가 쏟아집니다. 머릿속이 폭죽처럼 터지는 날. 이 아이디어들을 바로 행동으로 옮기기 전에 적어두는 습관을 들여보세요.","love":"연인에게 깜짝 이벤트를 하고 싶은 충동이 오는 날. 계획하고 실행하면 더 완벽합니다.","work":"아이디어를 제안하기 좋은 날. 두서없이 말하지 말고 핵심 세 가지로 정리해서 말하세요.","money":"새로운 수익 아이디어가 생기는 날. 흥분을 가라앉히고 현실성을 점검하세요."},"08":{"summary":"양자리, 오늘은 참을성 테스트의 날입니다. 우주가 의도적으로 느린 사람들을 당신 앞에 배치했습니다. 인내심이 바닥나기 전에 호흡을 고르세요. 이 시험 통과하면 운세 업그레이드됩니다.","love":"답장이 느린 상대 때문에 초조해지는 날. 안달하며 연속 문자 보내지 마세요. 제발요.","work":"진행이 느린 동료와 협업하는 날. 대신 해주고 싶은 충동을 참고 기다려주세요.","money":"수익이 기대만큼 빠르게 오지 않는 날. 복리의 힘을 믿고 기다리세요."},"09":{"summary":"오늘 양자리의 열정이 주변 사람들에게 전염됩니다. 당신의 에너지가 팀 전체를 움직이는 날. 이 영향력을 좋은 방향으로 사용해보세요.","love":"당신의 설레는 에너지가 상대방 마음을 두드리는 날. 솔직한 감정 표현이 통합니다.","work":"팀에 활력을 불어넣는 주인공이 되는 날. 먼저 시작하면 다들 따라옵니다.","money":"활발한 에너지가 기회를 불러오는 날. 재정 관련 대화나 협상이 잘 풀립니다."}};(function(){
+  var n=new Date(Date.now()+9*3600000), y=n.getUTCFullYear(), mo=n.getUTCMonth()+1, d=n.getUTCDate();
+  if(mo!==9||y!==2026||d===15)return;
+  var f=window.__M__[String(d).padStart(2,'0')]; if(!f)return;
+  var set=function(id,v){var el=document.getElementById(id); if(el&&v)el.textContent=v;};
+  set('f-summary',f.summary); set('f-love',f.love); set('f-work',f.work); set('f-money',f.money);
+  set('todayDate',y+'년 '+mo+'월 '+d+'일');
+})();</script>
+</body>
+</html>

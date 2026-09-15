@@ -3,91 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>오늘의 운세 — 별자리 운세</title>
-
-<!-- SEO -->
-<meta name="description" content="매일 업데이트되는 12별자리 운세. 독설 유머로 보는 오늘의 운세, 연애운, 직장운, 재물운.">
-<meta property="og:title" content="오늘의 운세 — 별자리 운세">
-<meta property="og:description" content="별들이 전하는 솔직한 오늘의 운세. 매일 새로운 별자리 운세를 확인하세요.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://todays-fortune-app.vercel.app/og-image.png?v=2">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:url" content="https://todays-fortune-app.vercel.app">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="오늘의 운세 — 별자리 운세">
-<meta name="twitter:description" content="별들이 전하는 솔직한 오늘의 운세. 매일 새로운 별자리 운세를 확인하세요.">
-<meta name="twitter:image" content="https://todays-fortune-app.vercel.app/og-image.png?v=2">
+<title>오늘의 운세 — 12별자리 오늘의 운세와 별자리별 성격·궁합</title>
+<meta name="description" content="12별자리 운세와 별자리별 성격·궁합·신화를 정리한 별자리 사전. 오늘의 총운, 연애운, 직장운, 재물운을 확인하세요.">
+<link rel="canonical" href="https://todays-fortune-app.vercel.app/">
 <meta name="robots" content="index, follow">
 <meta name="google-site-verification" content="1f373KtNH3atCzIil1snRuWtDwrzIfDYspZs5GWiRT4">
-<meta name="author" content="오늘의 운세">
 <meta name="theme-color" content="#1a1a2e">
-<link rel="canonical" href="https://todays-fortune-app.vercel.app/">
-
-<!-- JSON-LD: WebSite -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "오늘의 운세",
-  "url": "https://todays-fortune-app.vercel.app",
-  "description": "매일 업데이트되는 12별자리 운세. 별자리별 맞춤 독설 유머 운세.",
-  "inLanguage": "ko"
-}
-</script>
-
-<!-- JSON-LD: FAQPage -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "오늘의 별자리 운세는 어떻게 확인하나요?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "사이트에서 본인 별자리를 선택하면 총운, 연애운, 직장운, 재물운을 확인할 수 있습니다. 매일 운세가 업데이트됩니다."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "별자리 운세는 매일 바뀌나요?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "네, 12별자리 모두 매일 새로운 운세가 제공됩니다. 별자리 성격(원소, 수호성)에 기반한 맞춤 운세입니다."
-      }
-    }
-  ]
-}
-</script>
-
-<!-- Kakao SDK -->
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5479403345572412" crossorigin="anonymous"></script>
-
-<!-- Kakao SDK -->
-<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js" crossorigin="anonymous"></script>
-
-<!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>">
-
-<!-- Google Analytics (GA4) — ID를 발급받은 뒤 아래 주석을 해제하고 G-XXXXXXXXXX 를 교체하세요 -->
-<!--
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-</script>
--->
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="오늘의 운세">
+<meta property="og:title" content="오늘의 운세 — 12별자리 오늘의 운세와 별자리별 성격·궁합">
+<meta property="og:description" content="12별자리 운세와 별자리별 성격·궁합·신화를 정리한 별자리 사전. 오늘의 총운, 연애운, 직장운, 재물운을 확인하세요.">
+<meta property="og:url" content="https://todays-fortune-app.vercel.app/">
+<meta property="og:image" content="https://todays-fortune-app.vercel.app/og-image.png?v=2">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="오늘의 운세 — 12별자리 오늘의 운세와 별자리별 성격·궁합">
+<meta name="twitter:description" content="12별자리 운세와 별자리별 성격·궁합·신화를 정리한 별자리 사전. 오늘의 총운, 연애운, 직장운, 재물운을 확인하세요.">
+<meta name="twitter:image" content="https://todays-fortune-app.vercel.app/og-image.png?v=2">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>*{margin:0;padding:0;box-sizing:border-box;}
   body {
     font-family:'Pretendard',sans-serif;
     background:#f5f5f5;
@@ -277,351 +212,271 @@
 
   /* Footer */
   .footer{text-align:center;padding:32px 24px 48px;font-size:11px;color:#ccc;border-top:1px solid #eee;background:#fff;}
+
+/* ===== 정적 페이지 추가 스타일 ===== */
+body{background:#f5f5f5;}
+.site-hdr{background:#fff;border-bottom:1px solid rgba(0,0,0,.06);position:sticky;top:0;z-index:50;}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;height:58px;gap:16px;}
+.brand{font-weight:800;font-size:17px;color:#1a1a1a;text-decoration:none;display:flex;align-items:center;gap:6px;white-space:nowrap;}
+.brand-star{color:#7c6cf0;}
+.hdr-nav{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end;}
+.hdr-nav a{font-size:13px;font-weight:600;color:#666;text-decoration:none;padding:6px 10px;border-radius:8px;white-space:nowrap;}
+.hdr-nav a:hover{background:#f0eefe;color:#5b4ce0;}
+
+.crumb{font-size:12px;color:#999;margin:18px 0 8px;display:flex;gap:6px;flex-wrap:wrap;}
+.crumb a{color:#7c6cf0;text-decoration:none;}
+
+.sign-page section{margin:34px 0;}
+.sign-hero{display:flex;align-items:center;gap:18px;padding:26px 24px;background:#fff;border-radius:20px;margin-top:10px;box-shadow:0 2px 12px rgba(0,0,0,.04);flex-wrap:wrap;}
+.sign-emoji{font-size:64px;line-height:1;}
+.sign-hero h1{font-size:30px;font-weight:800;letter-spacing:-.5px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;}
+.sign-en{font-size:13px;color:#bbb;font-weight:600;text-transform:uppercase;letter-spacing:1px;}
+.sign-meta{font-size:14px;color:#666;margin-top:6px;}
+.sign-trait{font-size:13px;color:#7c6cf0;font-weight:700;margin-top:3px;}
+
+.sec-title{font-size:19px;font-weight:800;margin-bottom:14px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;letter-spacing:-.3px;}
+.sub-title{font-size:15px;font-weight:700;margin:20px 0 10px;color:#555;}
+.today-date{font-size:13px;color:#999;font-weight:600;}
+
+.today-box{background:linear-gradient(135deg,#1a1a2e,#2d2b55);border-radius:20px;padding:24px;color:#fff;}
+.today-box .sec-title{color:#fff;}
+.today-box .today-date{color:rgba(255,255,255,.55);}
+.f-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px 18px;}
+.f-main{margin-bottom:10px;}
+.f-label{font-size:12px;font-weight:800;color:rgba(255,255,255,.6);letter-spacing:.5px;display:block;margin-bottom:6px;}
+.f-card p{font-size:15px;line-height:1.75;color:#fff;}
+.f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+@media(max-width:700px){.f-grid{grid-template-columns:1fr;}}
+
+.prose p{font-size:16px;line-height:1.85;color:#333;margin-bottom:14px;}
+.prose p:last-child{margin-bottom:0;}
+.prose-sm{font-size:14px;line-height:1.8;color:#555;margin-top:12px;background:#fff;padding:14px 16px;border-radius:12px;}
+.note{font-size:13px;color:#888;margin-top:12px;line-height:1.7;}
+.note a{color:#7c6cf0;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:700px){.two-col{grid-template-columns:1fr;}}
+.list-box{background:#fff;border-radius:16px;padding:20px;border-top:3px solid #ddd;}
+.list-box.good{border-top-color:#22c55e;}
+.list-box.bad{border-top-color:#f59e0b;}
+.list-box h3{font-size:15px;font-weight:800;margin-bottom:12px;}
+.list-box ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.list-box li{font-size:14.5px;line-height:1.65;color:#444;padding-left:18px;position:relative;}
+.list-box li::before{content:"·";position:absolute;left:5px;font-weight:900;color:#7c6cf0;}
+
+.style-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+@media(max-width:820px){.style-grid{grid-template-columns:1fr;}}
+.style-card{background:#fff;border-radius:16px;padding:20px;}
+.style-card h3{font-size:15px;font-weight:800;margin-bottom:10px;}
+.style-card p{font-size:14.5px;line-height:1.8;color:#444;}
+
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:700px){.match-grid{grid-template-columns:1fr;}}
+.match-card{display:flex;flex-direction:column;gap:5px;background:#fff;border-radius:16px;padding:18px 20px;text-decoration:none;border-left:4px solid #ddd;transition:transform .12s;}
+.match-card:hover{transform:translateY(-2px);}
+.match-card.good{border-left-color:#22c55e;}
+.match-card.bad{border-left-color:#ef4444;}
+.m-emoji{font-size:26px;line-height:1;}
+.m-name{font-size:16px;font-weight:800;color:#1a1a1a;}
+.m-why{font-size:13.5px;line-height:1.65;color:#666;}
+
+.sym-table{width:100%;background:#fff;border-radius:16px;overflow:hidden;border-collapse:collapse;font-size:14.5px;}
+.sym-table th,.sym-table td{padding:13px 16px;text-align:left;border-bottom:1px solid #f0f0f0;}
+.sym-table th{background:#fafafa;font-weight:700;color:#777;font-size:13px;width:22%;}
+.sym-table tr:last-child th,.sym-table tr:last-child td{border-bottom:none;}
+@media(max-width:600px){.sym-table th,.sym-table td{padding:10px 12px;font-size:13.5px;}.sym-table th{width:26%;}}
+
+.month-wrap{background:#fff;border-radius:16px;overflow:hidden;}
+.month-table{width:100%;border-collapse:collapse;font-size:14px;}
+.month-table th{text-align:left;padding:12px 16px;font-weight:700;color:#888;font-size:13px;white-space:nowrap;vertical-align:top;width:92px;border-bottom:1px solid #f4f4f4;}
+.month-table td{padding:12px 16px 12px 0;line-height:1.7;color:#444;border-bottom:1px solid #f4f4f4;}
+.month-table tr:last-child th,.month-table tr:last-child td{border-bottom:none;}
+.month-table tr.is-today th{color:#7c6cf0;}
+.month-table tr.is-today td{background:#f7f5ff;font-weight:600;color:#332;}
+@media(max-width:600px){.month-table th{width:74px;padding:10px 10px;font-size:12px;}.month-table td{padding:10px 10px 10px 0;font-size:13.5px;}}
+
+.sign-links,.elem-signs{display:flex;flex-wrap:wrap;gap:8px;}
+.sign-chip{display:inline-flex;align-items:center;gap:5px;background:#fff;border-radius:999px;padding:8px 14px;font-size:13.5px;font-weight:700;color:#444;text-decoration:none;}
+.sign-chip:hover{background:#f0eefe;color:#5b4ce0;}
+.sign-chip.on{background:#1a1a2e;color:#fff;}
+
+.home-hero{padding:34px 0 22px;text-align:center;}
+.hero-date{font-size:13px;color:#999;font-weight:700;letter-spacing:1px;}
+.home-hero h1{font-size:clamp(26px,5vw,34px);font-weight:800;margin:8px 0 10px;letter-spacing:-.6px;}
+.hero-sub{font-size:15px;color:#666;line-height:1.75;max-width:600px;margin:0 auto;}
+.home-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+@media(max-width:880px){.home-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:460px){.home-grid{grid-template-columns:1fr;}}
+.home-card{display:flex;flex-direction:column;gap:4px;background:#fff;border-radius:18px;padding:20px;text-decoration:none;transition:transform .12s,box-shadow .12s;}
+.home-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.07);}
+.hc-emoji{font-size:32px;line-height:1;}
+.hc-name{font-size:16px;font-weight:800;color:#1a1a1a;}
+.hc-period{font-size:11.5px;color:#aaa;font-weight:600;}
+.hc-sum{font-size:13px;color:#666;line-height:1.6;margin-top:5px;}
+
+.elem-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media(max-width:700px){.elem-grid{grid-template-columns:1fr;}}
+.elem-box{background:#fff;border-radius:16px;padding:20px;}
+.elem-box h3{font-size:15px;font-weight:800;margin-bottom:10px;}
+.elem-box p{font-size:13.5px;color:#666;line-height:1.7;margin-top:10px;}
+.elem-signs a{font-size:13.5px;font-weight:700;color:#5b4ce0;text-decoration:none;background:#f4f2ff;padding:6px 12px;border-radius:999px;}
+
+.ad-wrap{margin:30px auto 0;}
+.ad-inner{width:100%;max-width:100%;overflow:hidden;}
+.ad-inner iframe{max-width:100%!important;}
+.disclose{font-size:11px;color:#bbb;text-align:center;margin-top:6px;}
+
+.site-ftr{margin-top:36px;padding:26px 0 44px;border-top:1px solid rgba(0,0,0,.06);background:#fff;}
+.ftr-links{display:flex;flex-wrap:wrap;justify-content:center;gap:2px 0;margin-bottom:8px;}
+.ftr-links a{font-size:12.5px;color:#777;text-decoration:none;padding:4px 9px;position:relative;}
+.ftr-links a:hover{color:#5b4ce0;}
+.ftr-note{font-size:11.5px;color:#aaa;text-align:center;line-height:1.8;margin-top:10px;padding:0 10px;}
+.empty{color:#999;font-size:14px;padding:16px 0;}
+
+/* 궁합표 */
+.compat-table{border-collapse:collapse;font-size:13px;width:100%;min-width:560px;}
+.compat-table th{padding:8px 6px;font-weight:700;color:#777;font-size:13px;background:#fafafa;white-space:nowrap;}
+.compat-table thead th{font-size:18px;text-align:center;}
+.compat-table tbody th{text-align:left;font-size:12.5px;}
+.compat-table tbody th a{color:#444;text-decoration:none;}
+.compat-table td{padding:8px 4px;text-align:center;font-weight:700;color:#444;border:1px solid #f2f2f2;}
+.compat-table td.c-best{background:#dcfce7;color:#15803d;}
+.compat-table td.c-good{background:#eefbf3;color:#3f8c5f;}
+.compat-table td.c-mid{background:#fffbeb;color:#a16207;}
+.compat-table td.c-low{background:#fef2f2;color:#b91c1c;}
+.pair-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+@media(max-width:760px){.pair-grid{grid-template-columns:1fr;}}
+.pair-card{background:#fff;border-radius:14px;padding:16px 18px;}
+.pair-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+.pair-name{font-size:14.5px;font-weight:800;color:#1a1a1a;}
+.pair-score{font-size:19px;font-weight:800;color:#7c6cf0;font-variant-numeric:tabular-nums;}
+.pair-asp{font-size:12px;color:#aaa;font-weight:700;margin-top:3px;}
+.pair-text{font-size:13.5px;line-height:1.7;color:#555;margin-top:7px;}
 </style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app","description":"12별자리 운세와 별자리별 성격·궁합·신화를 정리한 별자리 사전. 오늘의 총운, 연애운, 직장운, 재물운을 확인하세요.","inLanguage":"ko"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"12별자리","itemListElement":[{"@type":"ListItem","position":1,"name":"물병자리","url":"https://todays-fortune-app.vercel.app/zodiac/aquarius/"},{"@type":"ListItem","position":2,"name":"물고기자리","url":"https://todays-fortune-app.vercel.app/zodiac/pisces/"},{"@type":"ListItem","position":3,"name":"양자리","url":"https://todays-fortune-app.vercel.app/zodiac/aries/"},{"@type":"ListItem","position":4,"name":"황소자리","url":"https://todays-fortune-app.vercel.app/zodiac/taurus/"},{"@type":"ListItem","position":5,"name":"쌍둥이자리","url":"https://todays-fortune-app.vercel.app/zodiac/gemini/"},{"@type":"ListItem","position":6,"name":"게자리","url":"https://todays-fortune-app.vercel.app/zodiac/cancer/"},{"@type":"ListItem","position":7,"name":"사자자리","url":"https://todays-fortune-app.vercel.app/zodiac/leo/"},{"@type":"ListItem","position":8,"name":"처녀자리","url":"https://todays-fortune-app.vercel.app/zodiac/virgo/"},{"@type":"ListItem","position":9,"name":"천칭자리","url":"https://todays-fortune-app.vercel.app/zodiac/libra/"},{"@type":"ListItem","position":10,"name":"전갈자리","url":"https://todays-fortune-app.vercel.app/zodiac/scorpio/"},{"@type":"ListItem","position":11,"name":"사수자리","url":"https://todays-fortune-app.vercel.app/zodiac/sagittarius/"},{"@type":"ListItem","position":12,"name":"염소자리","url":"https://todays-fortune-app.vercel.app/zodiac/capricorn/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"별자리는 어떻게 정해지나요?","acceptedAnswer":{"@type":"Answer","text":"태어난 날짜에 태양이 지나던 황도 12궁 구간으로 정해집니다. 흔히 말하는 별자리는 이 태양 별자리를 가리키며, 생일이 경계에 걸치면 출생 시각에 따라 달라질 수 있습니다."}},{"@type":"Question","name":"별자리 운세는 매일 바뀌나요?","acceptedAnswer":{"@type":"Answer","text":"네, 12별자리 모두 날짜별로 총운·연애운·직장운·재물운이 준비되어 있습니다."}},{"@type":"Question","name":"별자리 궁합은 얼마나 믿을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"점성술의 궁합은 성향 차이를 설명하는 전통적 해석입니다. 과학적 근거가 있는 예측이 아니므로 관계를 이해하는 참고 자료로만 활용하시기 바랍니다."}}]}</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5479403345572412" crossorigin="anonymous"></script>
 </head>
 <body>
+<header class="site-hdr"><div class="container hdr-in">
+  <a class="brand" href="/"><span class="brand-star">✦</span> 오늘의 운세</a>
+  <nav class="hdr-nav"><a href="/">별자리 12</a><a href="/compatibility">궁합</a><a href="/about">소개</a></nav>
+</div></header>
+<main class="container">
 
-<div class="header">
-  <div class="header-inner">
-    <div class="date-block">
-      <span class="date-day" id="dayNum"></span>
-      <div class="date-meta">
-        <span class="date-month" id="dayMonth"></span>
-        <span class="date-year" id="dayYear"></span>
-        <span class="date-weekday" id="dayWeekday"></span>
-      </div>
-    </div>
-    <div class="title-block">
-      <h1 class="header-title">오늘의 운세</h1>
-      <p class="header-sub">별자리를 선택하면 오늘의 운세를 알려드려요</p>
+<section class="home-hero">
+  <p class="hero-date">2026년 9월 15일</p>
+  <h1>오늘의 별자리 운세</h1>
+  <p class="hero-sub">12별자리의 오늘 총운·연애운·직장운·재물운과 별자리별 성격·궁합·신화를 정리했습니다. 별자리를 눌러 보세요.</p>
+</section>
+
+<section>
+  <div class="home-grid">
+    <a class="home-card" href="/zodiac/aquarius/">
+      <span class="hc-emoji">🏺</span>
+      <span class="hc-name">물병자리</span>
+      <span class="hc-period">1.20-2.18</span>
+      <span class="hc-sum">공동체에 기여하고 싶은 욕구가 강한 날. 나보다 더 큰 무언가의 일부가 되고 싶은 물병…</span>
+    </a><a class="home-card" href="/zodiac/pisces/">
+      <span class="hc-emoji">🐟</span>
+      <span class="hc-name">물고기자리</span>
+      <span class="hc-period">2.19-3.20</span>
+      <span class="hc-sum">9월 중반, 올해 이루고 싶었던 것들을 돌아봐라. 아직 시간이 있다. 포기하지 마라.</span>
+    </a><a class="home-card" href="/zodiac/aries/">
+      <span class="hc-emoji">🐏</span>
+      <span class="hc-name">양자리</span>
+      <span class="hc-period">3.21-4.19</span>
+      <span class="hc-sum">9월 중순, 양자리에게 에너지가 충전되는 날입니다. 이번 달 전반부를 너무 열심히 달렸…</span>
+    </a><a class="home-card" href="/zodiac/taurus/">
+      <span class="hc-emoji">🐂</span>
+      <span class="hc-name">황소자리</span>
+      <span class="hc-period">4.20-5.20</span>
+      <span class="hc-sum">9월 중반, 당신의 에너지가 살짝 고갈된다. 억지로 생산적이려 하지 말고, 오늘은 재충…</span>
+    </a><a class="home-card" href="/zodiac/gemini/">
+      <span class="hc-emoji">👯</span>
+      <span class="hc-name">쌍둥이자리</span>
+      <span class="hc-period">5.21-6.21</span>
+      <span class="hc-sum">오늘 당신의 두뇌는 고속도로인데 목적지가 없는 상태. 에너지는 있고 방향이 없는 날. …</span>
+    </a><a class="home-card" href="/zodiac/cancer/">
+      <span class="hc-emoji">🦀</span>
+      <span class="hc-name">게자리</span>
+      <span class="hc-period">6.22-7.22</span>
+      <span class="hc-sum">9월 중반, 지금까지의 흐름을 점검할 시점이다. 잘 되고 있는 건 더 밀고, 안 되는 …</span>
+    </a><a class="home-card" href="/zodiac/leo/">
+      <span class="hc-emoji">🦁</span>
+      <span class="hc-name">사자자리</span>
+      <span class="hc-period">7.23-8.22</span>
+      <span class="hc-sum">9월 중순, 사자자리여. 이번 달 전반부에 얼마나 빛났는지 잠깐 점검해보세요. 그 빛이…</span>
+    </a><a class="home-card" href="/zodiac/virgo/">
+      <span class="hc-emoji">👸</span>
+      <span class="hc-name">처녀자리</span>
+      <span class="hc-period">8.23-9.22</span>
+      <span class="hc-sum">중간 점검의 날. 이번 달 계획 대비 실행률을 체크해라. 처녀자리는 이 작업을 위해 태…</span>
+    </a><a class="home-card" href="/zodiac/libra/">
+      <span class="hc-emoji">⚖️</span>
+      <span class="hc-name">천칭자리</span>
+      <span class="hc-period">9.23-10.22</span>
+      <span class="hc-sum">관계에 집중하는 날. 천칭자리는 관계 없이는 빛나기 어려운 별자리. 오늘은 소중한 사람…</span>
+    </a><a class="home-card" href="/zodiac/scorpio/">
+      <span class="hc-emoji">🦂</span>
+      <span class="hc-name">전갈자리</span>
+      <span class="hc-period">10.23-11.21</span>
+      <span class="hc-sum">9월 중반, 전갈자리는 이미 남은 보름의 계획이 세워져 있을 것이다. 계획대로 진행되고…</span>
+    </a><a class="home-card" href="/zodiac/sagittarius/">
+      <span class="hc-emoji">🏹</span>
+      <span class="hc-name">사수자리</span>
+      <span class="hc-period">11.22-12.21</span>
+      <span class="hc-sum">9월 중순, 사수자리. 이번 달 시작한 것들 점검해보세요. 몇 가지나 진행 중인지, 몇…</span>
+    </a><a class="home-card" href="/zodiac/capricorn/">
+      <span class="hc-emoji">🐐</span>
+      <span class="hc-name">염소자리</span>
+      <span class="hc-period">12.22-1.19</span>
+      <span class="hc-sum">중간 점검의 날. 이번 달 목표 달성률이 어떤지 냉정하게 평가해라. 염소자리는 이 평가…</span>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">별자리 운세, 이렇게 보세요</h2>
+  <div class="prose">
+    <p>별자리 운세는 태어난 날짜를 기준으로 태양이 어느 별자리 구간에 있었는지를 따지는 서양 점성술의 해석입니다. 흔히 말하는 "무슨 자리"는 이 태양 별자리를 가리킵니다. 생일이 두 별자리의 경계에 걸쳐 있다면 출생 연도와 시각에 따라 달라질 수 있어, 두 별자리 설명을 모두 읽어 보는 편이 낫습니다.</p>
+    <p>이 사이트는 별자리마다 오늘의 운세와 함께 <b>성격의 강점과 약점, 연애·일·돈을 대하는 방식, 잘 맞는 별자리와 부딪히기 쉬운 별자리, 별자리에 얽힌 신화</b>를 정리해 두었습니다. 운세만 확인하고 닫기보다 자기 별자리 페이지를 한 번 읽어 보시면 왜 그런 해석이 나오는지 이해하는 데 도움이 됩니다.</p>
+    <p>점성술은 과학적으로 검증된 예측 도구가 아닙니다. 오늘 하루를 돌아보는 계기 정도로 가볍게 보시고, 중요한 결정은 스스로의 판단으로 내리시기 바랍니다.</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">원소별로 묶어 보기</h2>
+  <div class="elem-grid">
+    <div class="elem-box">
+      <h3>불의 별자리</h3>
+      <div class="elem-signs"><a href="/zodiac/aries/">🐏 양자리</a><a href="/zodiac/leo/">🦁 사자자리</a><a href="/zodiac/sagittarius/">🏹 사수자리</a></div>
+      <p>행동이 앞서고 에너지가 밖으로 향합니다. 시작하는 힘이 강한 대신 지구력에서 아쉬울 때가 있습니다.</p>
+    </div><div class="elem-box">
+      <h3>땅의 별자리</h3>
+      <div class="elem-signs"><a href="/zodiac/taurus/">🐂 황소자리</a><a href="/zodiac/virgo/">👸 처녀자리</a><a href="/zodiac/capricorn/">🐐 염소자리</a></div>
+      <p>현실 감각과 꾸준함이 강점입니다. 안정을 중시해 변화 앞에서는 속도가 느려집니다.</p>
+    </div><div class="elem-box">
+      <h3>공기의 별자리</h3>
+      <div class="elem-signs"><a href="/zodiac/aquarius/">🏺 물병자리</a><a href="/zodiac/gemini/">👯 쌍둥이자리</a><a href="/zodiac/libra/">⚖️ 천칭자리</a></div>
+      <p>생각과 말이 빠르고 사람을 잇는 데 능합니다. 감정보다 논리를 앞세우는 편입니다.</p>
+    </div><div class="elem-box">
+      <h3>물의 별자리</h3>
+      <div class="elem-signs"><a href="/zodiac/pisces/">🐟 물고기자리</a><a href="/zodiac/cancer/">🦀 게자리</a><a href="/zodiac/scorpio/">🦂 전갈자리</a></div>
+      <p>감정과 직관으로 상황을 읽습니다. 공감 능력이 뛰어난 만큼 주변 분위기에 쉽게 물듭니다.</p>
     </div>
   </div>
-</div>
-
-<div class="container">
-  <div class="zodiac-section">
-    <div class="zodiac-grid" id="grid"></div>
-  </div>
-
-  <!-- 쿠팡 배너: 결과 하단으로 이동 -->
-
-  <div id="result"></div>
-
-  <a href="compatibility.html" style="display:block;text-align:center;padding:18px;background:#fff;border-radius:14px;border:1px solid #eee;font-size:15px;font-weight:600;color:#5b5ef4;text-decoration:none;margin-bottom:16px;transition:all 0.2s;" onmouseover="this.style.background='#f8f8ff'" onmouseout="this.style.background='#fff'">💕 별자리 궁합 테스트 해보기</a>
-</div>
-
-<div style="max-width:920px;margin:0 auto;padding:0 20px 24px;overflow:hidden;border-radius:16px;">
-  <script src="https://ads-partners.coupang.com/g.js"></script>
-  <script>new PartnersCoupang.G({"id":1017186,"template":"carousel","trackingCode":"AF7330023","width":"100%","height":"140","tsource":""});</script>
-</div>
-
-<div class="footer">
-  <p>재미로 보는 운세 · 매일 업데이트 · 진지하게 받아들이지 마세요 😉</p>
-  <p style="margin-top:8px;font-size:10px;color:#bbb;">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
-</div>
-
-<script>
-const Z=[
-  {n:'물병자리',e:'🏺',p:'1.20-2.18',el:'공기',ruler:'천왕성',trait:'독창적이고 자유로운',
-   desc:'혁신적 사고와 독립심이 강한 당신에게',k:'aquarius'},
-  {n:'물고기자리',e:'🐟',p:'2.19-3.20',el:'물',ruler:'해왕성',trait:'감성적이고 직관적인',
-   desc:'풍부한 상상력과 공감 능력의 소유자인 당신에게',k:'pisces'},
-  {n:'양자리',e:'🐏',p:'3.21-4.19',el:'불',ruler:'화성',trait:'열정적이고 도전적인',
-   desc:'타고난 리더십과 추진력을 가진 당신에게',k:'aries'},
-  {n:'황소자리',e:'🐂',p:'4.20-5.20',el:'땅',ruler:'금성',trait:'안정적이고 신중한',
-   desc:'인내심과 실용적 감각이 뛰어난 당신에게',k:'taurus'},
-  {n:'쌍둥이자리',e:'👯',p:'5.21-6.21',el:'공기',ruler:'수성',trait:'다재다능하고 소통에 능한',
-   desc:'빠른 적응력과 유연한 사고의 당신에게',k:'gemini'},
-  {n:'게자리',e:'🦀',p:'6.22-7.22',el:'물',ruler:'달',trait:'다정하고 보호본능이 강한',
-   desc:'깊은 감정과 따뜻한 마음을 가진 당신에게',k:'cancer'},
-  {n:'사자자리',e:'🦁',p:'7.23-8.22',el:'불',ruler:'태양',trait:'당당하고 카리스마 있는',
-   desc:'타고난 존재감과 자신감의 당신에게',k:'leo'},
-  {n:'처녀자리',e:'👸',p:'8.23-9.22',el:'땅',ruler:'수성',trait:'꼼꼼하고 분석적인',
-   desc:'완벽주의와 실천력을 겸비한 당신에게',k:'virgo'},
-  {n:'천칭자리',e:'⚖️',p:'9.23-10.22',el:'공기',ruler:'금성',trait:'조화롭고 균형 잡힌',
-   desc:'미적 감각과 공정함을 추구하는 당신에게',k:'libra'},
-  {n:'전갈자리',e:'🦂',p:'10.23-11.21',el:'물',ruler:'명왕성',trait:'깊이 있고 통찰력 있는',
-   desc:'강한 의지와 날카로운 직관의 당신에게',k:'scorpio'},
-  {n:'사수자리',e:'🏹',p:'11.22-12.21',el:'불',ruler:'목성',trait:'자유롭고 낙천적인',
-   desc:'모험심과 넓은 시야를 가진 당신에게',k:'sagittarius'},
-  {n:'염소자리',e:'🐐',p:'12.22-1.19',el:'땅',ruler:'토성',trait:'성실하고 목표지향적인',
-   desc:'끈기와 책임감이 남다른 당신에게',k:'capricorn'},
-];
-
-// 별자리별 맞춤 운세 데이터 — 월별 JSON 파일에서 로드
-var CUSTOM_FORTUNE = null;
-
-const OL_90=["오늘 로또 사세요. 진지합니다.","별들이 올해 최고의 날이라고 난리.","이 점수 실화? 뭘 해도 됩니다.","우주가 당신 편입니다.","오늘의 주인공은 당신.","100점 만점에 거의 치트키.","이런 날은 1년에 3번. 낭비하지 마세요.","오늘은 셀카도 잘 나옵니다. 프사 바꾸세요.","별들이 박수치고 있습니다.","다른 별자리들이 부러워하고 있습니다."];
-const OL_80=["꽤 괜찮은 하루! 무리만 안 하면 OK.","컨디션 좋을 거예요. 과신은 금물.","80점대면 상위권. 자신감 가지세요.","하는 일의 70%는 잘 풀립니다.","점심에 비싼 거 먹어도 되는 날.","자판기에서 음료 2개 나올 운세.","별들의 평가: '쓸만한 하루'.","당신의 오라가 빛나고 있습니다.","좋은 소식: 운 좋음. 나쁜 소식: 내일은 모름.","별들이 고개 끄덕이고 있습니다."];
-const OL_70=["평범한 하루. 평범한 게 감사한 거예요.","대박도 없고 사고도 없고. 이게 행복.","70점대는 C+. 졸업은 합니다.","나쁘지 않아요. 좋지도 않지만.","커피 한 잔이면 80점대 가능.","존재감 없이 조용히 지나가는 게 최선.","점수가 애매하죠? 인생도 원래 그래요.","별들도 딱히 할 말이 없답니다.","모험하지 마세요. 현상 유지가 승리.","그럭저럭. 인생의 대부분이 그럭저럭."];
-const OL_60=["버티면 내일은 나아질 수도. 아닐 수도.","기대를 낮추세요. 실망도 줄어듭니다.","살짝 운이 없는 날. 중요한 결정은 내일로.","별들이 '오늘은 좀...' 하며 고개를 돌림.","60점대면 과락은 면했습니다.","안 풀리면 운세 탓 하세요. 허락합니다.","숨 쉬고 있는 것만으로도 잘하고 있는 겁니다.","이 점수에 놀라지 마세요. 어제 좋았으면 오늘 빠지는 거.","오늘의 생존 전략: 눈에 띄지 않기.","내일의 운세가 나을 거라는 보장은 없지만 희망은 있음."];
-const OL_LOW=["오늘은 그냥 집에 계세요. 진심.","별들이 오늘만큼은 미안하다고 합니다.","내일은 반드시 낫습니다. 이보다 나빠지기 어려우니까.","이 점수를 본 표정이 보입니다. 괜찮아요.","아무것도 하지 마세요. 진지하게.","우주가 당신을 시험하고 있습니다.","바닥을 찍어야 올라갈 일만 남아요.","이런 날은 치킨이 답. 과학적으로 증명됨.","위로: 내일 운세가 이것보다 높을 확률 94%.","오늘의 유일한 행운: 이 운세를 미리 본 것."];
-
-const COLORS=['빨강','파랑','초록','노랑','보라','주황','분홍','네이비','골드','민트','코랄','라벤더','베이지','와인','아이보리','로즈골드','청록','피치','라임','카키'];
-const FOODS=['치킨','삼겹살','피자','초밥','떡볶이','라멘','햄버거','파스타','김치찌개','제육볶음','칼국수','냉면','족발','닭갈비','짜장면','비빔밥','돈까스','마라탕','감자탕','부대찌개','붕어빵','카페라떼','와플','케이크','타코','곱창','쌀국수','순대국','브런치','아이스크림'];
-
-// 오늘 하면 좋은 일 / 피할 일 풀
-const DO_ITEMS=[
-  '점심 좀 비싼 거 먹기 (오늘은 됨)',
-  '퇴근하고 치킨 시키기 (별의 허락)',
-  '하고 싶은 말 참기 (내일도 출근해야 함)',
-  '읽씹 당해도 쿨하게 넘기기',
-  '장바구니 비우기 (결제 말고)',
-  '카페 가서 멍 때리기',
-  '맛있는 거 사진 찍기 (먹는 건 그다음)',
-  '오늘만 야근 안 하기',
-  '좋아하는 유튜버 영상 몰아보기',
-  '배달앱 대신 직접 가서 사 먹기',
-  '내일의 나한테 일 미루기 (합법)',
-  '퇴근 후 아무 생각 없이 걷기',
-  '안 읽은 알림 999개 무시하기',
-  '오늘은 나한테 좀 잘해주기',
-  '넷플릭스 새로 뜬 거 1편만 보기',
-  '아무한테나 이모티콘 보내기',
-  '오랜만에 노래방 가기 (혼자도 OK)',
-  '오늘 하루 불평 제로 도전',
-  '사고 싶었던 거 하나만 사기 (하나만)',
-  '좋아하는 사람한테 먼저 연락하기',
-  '30분만 일찍 자기 (이것도 성공임)',
-  '오늘은 엘리베이터 대신 계단 (1층만)',
-  '폰 배경화면 바꾸기 (기분 전환)',
-  '안 쓰는 구독 하나 해지하기 (돈 아낌)',
-  '오늘은 카페인 2잔까지만 (3잔째는 내일)',
-  '퇴근길에 편의점 디저트 하나',
-  '좋아하는 노래 풀볼륨으로 듣기',
-  '집에서 아무것도 안 해도 되는 시간 1시간',
-  '인스타 안 올리고 그냥 즐기기',
-  '오늘만 다이어트 무시하기',
-];
-const DONT_ITEMS=[
-  '쿠팡 앱 열기 (열면 30만원 나감)',
-  '전 여친/남친 인스타 보기',
-  '새벽 2시에 배달 시키기',
-  '"나 한 잔만" 하기 (이미 3잔째임)',
-  '월급 들어온 날 쇼핑하기',
-  '카톡에서 "ㅋ" 하나로 답하기',
-  '피곤한데 "괜찮아~" 하기',
-  '자기 전에 업무 메일 확인하기',
-  '남의 여행 사진 보고 현타 오기',
-  '빈속에 커피 마시기',
-  '새벽에 중고나라 보기',
-  '술자리에서 전화번호 따기',
-  '월요일에 큰 결정 하기',
-  '화난 상태로 카톡 보내기',
-  '아무 생각 없이 유튜브 쇼츠 보기 (2시간 증발)',
-  '연봉 검색하고 자괴감 느끼기',
-  '"다이어트는 내일부터" 하기',
-  '잠 안 온다고 폰 보기 (더 안 옴)',
-  '배고플 때 편의점 가기 (3만원 나옴)',
-  '금요일 밤에 월요일 걱정하기',
-  '택배 왔는데 또 택배 주문하기',
-  '"이거 마지막" 하고 넷플릭스 한 편 더 보기',
-  '남이 산 거 보고 나도 사기',
-  '술 마시고 쇼핑하기',
-  '새벽에 과거 흑역사 떠올리기',
-  '동기 승진 소식에 자괴감 느끼기',
-  '인스타 스토리 올리고 반응 체크하기',
-  '"읽씹 왜 했지?" 집착하기',
-  '핑계 대고 약속 취소하기',
-  '피곤한데 "할 수 있어!" 무리하기',
-];
-
-function sr(s){let x=Math.sin(s)*10000;return x-Math.floor(x);}
-function pk(a,s){return a[Math.floor(sr(s)*a.length)];}
-function sc(s){return Math.floor(sr(s)*18+80);}
-function getCustom(signKey, field, seed) {
-  const day = String(today.getDate());
-  const dayPad = day.padStart(2,'0');
-  // 두 가지 키 포맷 모두 시도
-  if (CUSTOM_FORTUNE && CUSTOM_FORTUNE[signKey]) {
-    const data = CUSTOM_FORTUNE[signKey][day] || CUSTOM_FORTUNE[signKey][dayPad];
-    if (data && data[field]) return data[field];
-  }
-  return '운세 데이터를 확인 중...';
-}
-function getOL(score,seed){
-  if(score>=95)return pk(OL_90,seed);
-  if(score>=88)return pk(OL_80,seed);
-  return pk(OL_70,seed);
-}
-
-// Date
-const today=new Date();
-
-// 월별 운세 데이터 로드
-(function() {
-  var m = String(today.getMonth() + 1).padStart(2, '0');
-  fetch('data/fortune-' + m + '.json')
-    .then(function(r) { return r.json(); })
-    .then(function(d) { CUSTOM_FORTUNE = d; console.log('✅ ' + m + '월 운세 로드 완료'); })
-    .catch(function() { console.log('⚠️ ' + m + '월 운세 파일 없음'); });
-})();
-const days=['일','월','화','수','목','금','토'];
-const months=['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
-document.getElementById('dayNum').textContent=today.getDate();
-document.getElementById('dayMonth').textContent=`${months[today.getMonth()]}`;
-document.getElementById('dayYear').textContent=`${today.getFullYear()}`;
-document.getElementById('dayWeekday').textContent=`${days[today.getDay()]}요일`;
-
-// 어제 점수 계산
-function getYesterdayScore(zi) {
-  const y=today.getFullYear(), m=today.getMonth()+1, d=today.getDate()-1;
-  const b=y*100000+m*1000+d*13+zi*7;
-  return sc(b);
-}
-
-// 변화 뱃지 HTML
-function changeBadge(todayScore, yesterdayScore) {
-  const diff = todayScore - yesterdayScore;
-  if(diff > 0) return `<span class="change-badge up">▲${diff}</span>`;
-  if(diff < 0) return `<span class="change-badge down">▼${Math.abs(diff)}</span>`;
-  return `<span class="change-badge same">—</span>`;
-}
-
-// 랭킹 생성
-function getRanking(selectedIndex) {
-  const y=today.getFullYear(), m=today.getMonth()+1, d=today.getDate();
-  return Z.map((z,i)=>{
-    const b=y*100000+m*1000+d*13+i*7;
-    return {index:i, name:z.n, emoji:z.e, score:sc(b)};
-  }).sort((a,b)=>b.score-a.score).map((item,rank)=>({...item, rank:rank+1, isMe:item.index===selectedIndex}));
-}
-
-// 오늘 하면 좋은 일 / 피할 일
-function getTips(seed) {
-  const doList=[], dontList=[];
-  const doUsed=new Set(), dontUsed=new Set();
-  for(let i=0;i<3;i++){
-    let idx;
-    do { idx=Math.floor(sr(seed+100+i*7)*DO_ITEMS.length); } while(doUsed.has(idx));
-    doUsed.add(idx); doList.push(DO_ITEMS[idx]);
-    do { idx=Math.floor(sr(seed+200+i*7)*DONT_ITEMS.length); } while(dontUsed.has(idx));
-    dontUsed.add(idx); dontList.push(DONT_ITEMS[idx]);
-  }
-  return {doList, dontList};
-}
-
-// Grid
-document.getElementById('grid').innerHTML=Z.map((z,i)=>`
-  <button class="zodiac-btn" onclick="sel(${i})">
-    <span class="emoji">${z.e}</span><span class="name">${z.n}</span><span class="period">${z.p}</span>
-  </button>`).join('');
-
-// URL 기반 별자리 자동 선택 (/zodiac/aries 등)
-(function(){
-  var path = window.location.pathname;
-  var match = path.match(/^\/zodiac\/([a-z]+)/);
-  if(match){
-    var signKey = match[1];
-    var idx = Z.findIndex(function(z){ return z.k === signKey; });
-    if(idx >= 0){
-      // 운세 데이터 로드 대기 후 선택
-      setTimeout(function(){ sel(idx); }, 300);
-      // SEO: 동적 메타태그 업데이트
-      var z = Z[idx];
-      document.title = z.n + ' 오늘의 운세 — 별자리 운세';
-      var metaDesc = document.querySelector('meta[name="description"]');
-      if(metaDesc) metaDesc.content = z.n + ' 오늘의 운세. ' + z.trait + ' ' + z.n + '의 총운, 연애운, 직장운, 재물운을 확인하세요.';
-      var ogTitle = document.querySelector('meta[property="og:title"]');
-      if(ogTitle) ogTitle.content = z.e + ' ' + z.n + ' 오늘의 운세';
-      var ogDesc = document.querySelector('meta[property="og:description"]');
-      if(ogDesc) ogDesc.content = z.desc + '. 매일 새로운 별자리 운세를 확인하세요.';
-    }
-  }
-})();
-
-// 카카오 SDK 초기화
-var currentSign = null;
-var currentScore = null;
-var currentSummary = null;
-try { Kakao.init('4dc7d7690ca8b78aec06f64ca1158905'); } catch(e) { console.log('Kakao SDK 로딩 대기'); }
-
-function shareKakao() {
-  if (!currentSign) { alert('별자리를 먼저 선택하세요!'); return; }
-  Kakao.Share.sendDefault({
-    objectType: 'feed',
-    content: {
-      title: `${currentSign.e} ${currentSign.n} 오늘의 운세: ${currentScore}점`,
-      description: currentSummary,
-      imageUrl: 'https://todays-fortune-app.vercel.app/og-image.png?v=2',
-      link: { mobileWebUrl: window.location.href, webUrl: window.location.href },
-    },
-    social: { likeCount: currentScore },
-    buttons: [
-      { title: '내 운세 보기', link: { mobileWebUrl: window.location.href, webUrl: window.location.href } },
-    ],
-  });
-}
-
-function sel(i){
-  document.querySelectorAll('.zodiac-btn').forEach((b,j)=>b.classList.toggle('active',j===i));
-  const z=Z[i],y=today.getFullYear(),m=today.getMonth()+1,d=today.getDate();
-  const b=y*100000+m*1000+d*13+i*7;
-  const f={o:sc(b),l:sc(b+1),m:sc(b+2),w:sc(b+3),h:sc(b+4)};
-  const yo=getYesterdayScore(i);
-  currentSign=z; currentScore=f.o; currentSummary=getCustom(z.k,'summary',b);
-  const bestZ=Z[(i+Math.floor(sr(b+90)*11)+1)%12];
-  const avoidZ=Z[(i+Math.floor(sr(b+80)*11)+1)%12];
-  const ranking=getRanking(i);
-
-  document.getElementById('result').innerHTML=`
-    <div class="hero-card">
-      <div class="hero-top">
-        <div class="hero-left"><span class="hero-emoji">${z.e}</span><span class="hero-name">${z.n}</span></div>
-        <div class="hero-score">${f.o}${changeBadge(f.o, yo)}</div>
-      </div>
-      <div class="hero-meta">${z.el} 원소 · ${z.ruler} 지배</div>
-      <div class="hero-trait">${z.desc},<br><strong>${z.trait}</strong> 에너지가 흐르는 하루</div>
-
-      <div class="score-grid">
-        <div class="score-row"><span class="score-label">연애</span><span class="score-val">${f.l}</span><div class="score-bar"><div class="fill love" style="width:${f.l}%"></div></div></div>
-        <div class="score-row"><span class="score-label">재물</span><span class="score-val">${f.m}</span><div class="score-bar"><div class="fill money" style="width:${f.m}%"></div></div></div>
-        <div class="score-row"><span class="score-label">직장</span><span class="score-val">${f.w}</span><div class="score-bar"><div class="fill work" style="width:${f.w}%"></div></div></div>
-        <div class="score-row"><span class="score-label">건강</span><span class="score-val">${f.h}</span><div class="score-bar"><div class="fill health" style="width:${f.h}%"></div></div></div>
-      </div>
-
-      <div class="hero-summary-label">📌 총운</div>
-      <div class="hero-summary-text">${getCustom(z.k,'summary',b)}</div>
-      <div class="hero-quote">"${getOL(f.o,b+45)}"</div>
-    </div>
-
-    <div class="bento">
-      <div class="bento-card"><div class="card-label">💕 연애운</div><div class="card-text">${getCustom(z.k,'love',b)}</div></div>
-      <div class="bento-card"><div class="card-label">💼 직장운</div><div class="card-text">${getCustom(z.k,'work',b)}</div></div>
-      <div class="bento-card wide"><div class="card-label">💰 재물운</div><div class="card-text">${getCustom(z.k,'money',b)}</div></div>
-    </div>
-
-    <div class="keyword-card">
-      <div class="keyword-title">🔮 오늘의 키워드</div>
-      <div class="keyword-grid">
-        <div class="keyword-item"><div class="ki-emoji">🎨</div><div class="ki-label">행운의 색</div><div class="ki-value">${pk(COLORS,b+50)}</div></div>
-        <div class="keyword-item"><div class="ki-emoji">🍽️</div><div class="ki-label">행운의 음식</div><div class="ki-value">${pk(FOODS,b+70)}</div></div>
-        <div class="keyword-item"><div class="ki-emoji">👍</div><div class="ki-label">잘 맞는 별자리</div><div class="ki-value">${bestZ.e} ${bestZ.n}</div></div>
-        <div class="keyword-item"><div class="ki-emoji">⚠️</div><div class="ki-label">피할 별자리</div><div class="ki-value">${avoidZ.e} ${avoidZ.n}</div></div>
-      </div>
-    </div>
-
-
-    <div class="share-row">
-      <button class="share-btn kakao" onclick="shareKakao()">💬 카카오톡 공유</button>
-      <button class="share-btn link" onclick="navigator.clipboard.writeText(location.href).then(()=>alert('링크 복사됨!'))">🔗 링크 복사</button>
-    </div>
-  `;
-  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
-
-}
-</script>
-
-<footer style="text-align:center;padding:32px 20px;font-size:12px;color:#aaa;border-top:1px solid #eee;margin-top:40px;">
-  <p style="margin-bottom:8px;">오늘의 운세 &copy; 2026</p>
-  <p>
-    <a href="about.html" style="color:#888;text-decoration:none;margin:0 12px;">서비스 소개</a>
-    <a href="privacy.html" style="color:#888;text-decoration:none;margin:0 12px;">개인정보처리방침</a>
-  </p>
-</footer>
-
-<!-- 쿠팡 파트너스: 상단에 인라인으로 삽입됨 -->
-
+</section>
+</main>
+<div class="container ad-wrap"><div class="ad-inner"><script src="https://ads-partners.coupang.com/g.js"></script><script>new PartnersCoupang.G({"id":1017186,"template":"carousel","trackingCode":"AF7330023","width":"100%","height":"140","tsource":""});</script></div>
+<p class="disclose">이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p></div>
+<footer class="site-ftr"><div class="container">
+  <div class="ftr-links"><a href="/zodiac/aquarius/">물병자리</a><a href="/zodiac/pisces/">물고기자리</a><a href="/zodiac/aries/">양자리</a><a href="/zodiac/taurus/">황소자리</a><a href="/zodiac/gemini/">쌍둥이자리</a><a href="/zodiac/cancer/">게자리</a><a href="/zodiac/leo/">사자자리</a><a href="/zodiac/virgo/">처녀자리</a><a href="/zodiac/libra/">천칭자리</a><a href="/zodiac/scorpio/">전갈자리</a><a href="/zodiac/sagittarius/">사수자리</a><a href="/zodiac/capricorn/">염소자리</a></div>
+  <div class="ftr-links"><a href="/">홈</a><a href="/compatibility">별자리 궁합</a><a href="/about">사이트 소개</a><a href="/privacy">개인정보처리방침</a></div>
+  <p class="ftr-note">별자리 운세는 서양 점성술의 전통적 해석을 참고해 정리한 읽을거리입니다. 의학·법률·투자 등 중요한 판단의 근거로 삼지 마세요. © 2026 오늘의 운세</p>
+</div></footer>
 
 </body>
 </html>
