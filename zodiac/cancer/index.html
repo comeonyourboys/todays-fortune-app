@@ -389,6 +389,28 @@ body{background:#f5f5f5;}
 .rc-links{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
 .rc-links a{color:#fff;background:rgba(255,255,255,.14);padding:7px 12px;border-radius:999px;text-decoration:none;font-size:13px;font-weight:700;}
 .result-card .share-row .link{background:rgba(255,255,255,.9);}
+
+/* 홈 별자리 선택 그리드 */
+.sign-picker{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+@media(min-width:620px){.sign-picker{grid-template-columns:repeat(6,1fr);}}
+.sp-tile{display:flex;flex-direction:column;align-items:center;gap:2px;background:#fff;border-radius:16px;padding:14px 4px 12px;text-decoration:none;transition:transform .12s,box-shadow .12s;border:2px solid transparent;}
+.sp-tile:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.07);border-color:#e6e2ff;}
+.sp-emoji{font-size:30px;line-height:1.1;}
+.sp-name{font-size:13px;font-weight:800;color:#1a1a1a;}
+.sp-period{font-size:10.5px;color:#aaa;font-weight:600;letter-spacing:-.2px;}
+.home-share{margin-top:14px;}
+.home-share .share-btn.link{background:#eee;}
+/* 오늘의 한 줄 운세 */
+.today-list{display:flex;flex-direction:column;gap:6px;}
+.tl-row{display:flex;align-items:flex-start;gap:12px;background:#fff;border-radius:14px;padding:13px 16px;text-decoration:none;transition:background .12s;}
+.tl-row:hover{background:#f7f5ff;}
+.tl-emoji{font-size:24px;line-height:1.3;flex-shrink:0;}
+.tl-body{display:flex;flex-direction:column;gap:2px;min-width:0;}
+.tl-name{font-size:14.5px;font-weight:800;color:#1a1a1a;}
+.tl-name small{font-size:11px;color:#bbb;font-weight:600;margin-left:4px;}
+.tl-sum{font-size:13.5px;line-height:1.6;color:#666;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.share-btn{white-space:nowrap;}
+@media(max-width:400px){.share-btn{font-size:13px;padding:12px 6px;min-width:92px;}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"게자리 운세와 성격 — 6.22-7.22","description":"게자리는 '안'과 '밖'을 명확히 구분하는 별자리입니다. 단단한 껍데기 안에 부드러운 속살이 있는 게의 형상 그대로, 당신은 처음 만난 사람에게는 예의 바르지만 좀처럼 속을 보이지 않습니다. 그러다 한번 내 사람이라는 판단이 서면 태도가 완전히 달라집니다. 그때부터는 상대의 일을 자기 ","inLanguage":"ko","mainEntityOfPage":"https://todays-fortune-app.vercel.app/zodiac/cancer","image":"https://todays-fortune-app.vercel.app/og-image.png?v=2","datePublished":"2026-08-21","dateModified":"2026-09-21","author":{"@type":"Organization","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app"},"publisher":{"@type":"Organization","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"게자리는 몇 월 며칠생인가요?","acceptedAnswer":{"@type":"Answer","text":"게자리는 6.22-7.22 사이에 태어난 사람입니다. 물 원소에 속하고 지배행성은 달입니다."}},{"@type":"Question","name":"게자리 성격은 어떤가요?","acceptedAnswer":{"@type":"Answer","text":"게자리는 '안'과 '밖'을 명확히 구분하는 별자리입니다. 단단한 껍데기 안에 부드러운 속살이 있는 게의 형상 그대로, 당신은 처음 만난 사람에게는 예의 바르지만 좀처럼 속을 보이지 않습니다. 그러다 한번 내 사람이라는 판단이 서면 태도가 완전히 달라집니다. 그때부터는 상대의 일을 자기 일처럼 떠안습니다."}},{"@type":"Question","name":"게자리와 잘 맞는 별자리는?","acceptedAnswer":{"@type":"Answer","text":"전갈자리: 감정의 깊이를 재는 기준이 비슷해, 겉도는 대화 없이 처음부터 속 이야기를 나눌 수 있습니다. 황소자리: 안정된 생활을 함께 만들어 가려는 방향이 같아, 사소한 일상에서 서로 안심하게 됩니다."}},{"@type":"Question","name":"오늘 게자리 운세는?","acceptedAnswer":{"@type":"Answer","text":"오늘은 새로운 시도를 해볼 용기가 생기는 날이다. 늘 하던 것만 하면 늘 얻던 것만 얻는다."}}]}</script>
@@ -426,7 +448,7 @@ body{background:#f5f5f5;}
     <div class="f-card"><span class="f-label">💰 재물운</span><p id="f-money">소액이라도 새로운 저축 방식을 시작해보는 것이 좋다. 오늘이 시작점이 될 수 있다.</p></div>
   </div>
   <div class="share-row">
-    <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡 공유</button>
+    <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡</button>
     <button class="share-btn x" type="button" onclick="shareX()">𝕏 공유</button>
     <button class="share-btn link" type="button" onclick="copyLink()">🔗 링크 복사</button>
   </div>
@@ -498,9 +520,7 @@ var __S={title:'🦀 게자리 오늘의 운세',url:'https://todays-fortune-app
 function __sum(){var el=document.getElementById('f-summary');return el?el.textContent.slice(0,80):'';}
 function shareKakao(){if(!window.Kakao){alert('잠시 후 다시 시도해 주세요.');return;}try{if(!Kakao.isInitialized())Kakao.init('4dc7d7690ca8b78aec06f64ca1158905');}catch(e){}
   Kakao.Share.sendDefault({objectType:'feed',content:{title:__S.title,description:__sum(),imageUrl:__S.img,imageWidth:1200,imageHeight:630,link:{mobileWebUrl:__S.url,webUrl:__S.url}},buttons:[{title:'내 운세 보기',link:{mobileWebUrl:__S.url,webUrl:__S.url}}]});}
-function shareX(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(__S.title+'
-'+__sum()+'
-'+__S.url),'_blank');}
+function shareX(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(__S.title+'\n'+__sum()+'\n'+__S.url),'_blank');}
 function copyLink(){navigator.clipboard.writeText(__S.url).then(function(){alert('링크를 복사했어요!');});}</script>
 </body>
 </html>

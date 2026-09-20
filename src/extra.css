@@ -175,3 +175,25 @@ body{background:#f5f5f5;}
 .rc-links{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
 .rc-links a{color:#fff;background:rgba(255,255,255,.14);padding:7px 12px;border-radius:999px;text-decoration:none;font-size:13px;font-weight:700;}
 .result-card .share-row .link{background:rgba(255,255,255,.9);}
+
+/* 홈 별자리 선택 그리드 */
+.sign-picker{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+@media(min-width:620px){.sign-picker{grid-template-columns:repeat(6,1fr);}}
+.sp-tile{display:flex;flex-direction:column;align-items:center;gap:2px;background:#fff;border-radius:16px;padding:14px 4px 12px;text-decoration:none;transition:transform .12s,box-shadow .12s;border:2px solid transparent;}
+.sp-tile:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.07);border-color:#e6e2ff;}
+.sp-emoji{font-size:30px;line-height:1.1;}
+.sp-name{font-size:13px;font-weight:800;color:#1a1a1a;}
+.sp-period{font-size:10.5px;color:#aaa;font-weight:600;letter-spacing:-.2px;}
+.home-share{margin-top:14px;}
+.home-share .share-btn.link{background:#eee;}
+/* 오늘의 한 줄 운세 */
+.today-list{display:flex;flex-direction:column;gap:6px;}
+.tl-row{display:flex;align-items:flex-start;gap:12px;background:#fff;border-radius:14px;padding:13px 16px;text-decoration:none;transition:background .12s;}
+.tl-row:hover{background:#f7f5ff;}
+.tl-emoji{font-size:24px;line-height:1.3;flex-shrink:0;}
+.tl-body{display:flex;flex-direction:column;gap:2px;min-width:0;}
+.tl-name{font-size:14.5px;font-weight:800;color:#1a1a1a;}
+.tl-name small{font-size:11px;color:#bbb;font-weight:600;margin-left:4px;}
+.tl-sum{font-size:13.5px;line-height:1.6;color:#666;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.share-btn{white-space:nowrap;}
+@media(max-width:400px){.share-btn{font-size:13px;padding:12px 6px;min-width:92px;}}

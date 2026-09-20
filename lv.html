@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>사이트 소개 | 오늘의 운세</title>
-<meta name="description" content="오늘의 운세가 어떤 사이트인지, 운세와 별자리 설명을 어떻게 만들었는지, 이용할 때 무엇을 주의해야 하는지 정리했습니다.">
-<link rel="canonical" href="https://todays-fortune-app.vercel.app/about">
+<title>오늘의 운세 — 12별자리 오늘의 운세와 별자리별 성격·궁합</title>
+<meta name="description" content="12별자리 운세와 별자리별 성격·궁합·신화를 정리한 별자리 사전. 오늘의 총운, 연애운, 직장운, 재물운을 확인하세요.">
+<link rel="canonical" href="https://todays-fortune-app.vercel.app/">
 <meta name="robots" content="index, follow">
 <meta name="google-site-verification" content="1f373KtNH3atCzIil1snRuWtDwrzIfDYspZs5GWiRT4">
 <meta name="theme-color" content="#1a1a2e">
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:site_name" content="오늘의 운세">
-<meta property="og:title" content="사이트 소개 | 오늘의 운세">
-<meta property="og:description" content="오늘의 운세가 어떤 사이트인지, 운세와 별자리 설명을 어떻게 만들었는지, 이용할 때 무엇을 주의해야 하는지 정리했습니다.">
-<meta property="og:url" content="https://todays-fortune-app.vercel.app/about">
+<meta property="og:title" content="오늘의 운세 — 12별자리 오늘의 운세와 별자리별 성격·궁합">
+<meta property="og:description" content="12별자리 운세와 별자리별 성격·궁합·신화를 정리한 별자리 사전. 오늘의 총운, 연애운, 직장운, 재물운을 확인하세요.">
+<meta property="og:url" content="https://todays-fortune-app.vercel.app/">
 <meta property="og:image" content="https://todays-fortune-app.vercel.app/og-image.png?v=2">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="사이트 소개 | 오늘의 운세">
-<meta name="twitter:description" content="오늘의 운세가 어떤 사이트인지, 운세와 별자리 설명을 어떻게 만들었는지, 이용할 때 무엇을 주의해야 하는지 정리했습니다.">
+<meta name="twitter:title" content="오늘의 운세 — 12별자리 오늘의 운세와 별자리별 성격·궁합">
+<meta name="twitter:description" content="12별자리 운세와 별자리별 성격·궁합·신화를 정리한 별자리 사전. 오늘의 총운, 연애운, 직장운, 재물운을 확인하세요.">
 <meta name="twitter:image" content="https://todays-fortune-app.vercel.app/og-image.png?v=2">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
@@ -389,31 +389,10 @@ body{background:#f5f5f5;}
 .rc-links{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
 .rc-links a{color:#fff;background:rgba(255,255,255,.14);padding:7px 12px;border-radius:999px;text-decoration:none;font-size:13px;font-weight:700;}
 .result-card .share-row .link{background:rgba(255,255,255,.9);}
-
-/* 홈 별자리 선택 그리드 */
-.sign-picker{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
-@media(min-width:620px){.sign-picker{grid-template-columns:repeat(6,1fr);}}
-.sp-tile{display:flex;flex-direction:column;align-items:center;gap:2px;background:#fff;border-radius:16px;padding:14px 4px 12px;text-decoration:none;transition:transform .12s,box-shadow .12s;border:2px solid transparent;}
-.sp-tile:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.07);border-color:#e6e2ff;}
-.sp-emoji{font-size:30px;line-height:1.1;}
-.sp-name{font-size:13px;font-weight:800;color:#1a1a1a;}
-.sp-period{font-size:10.5px;color:#aaa;font-weight:600;letter-spacing:-.2px;}
-.home-share{margin-top:14px;}
-.home-share .share-btn.link{background:#eee;}
-/* 오늘의 한 줄 운세 */
-.today-list{display:flex;flex-direction:column;gap:6px;}
-.tl-row{display:flex;align-items:flex-start;gap:12px;background:#fff;border-radius:14px;padding:13px 16px;text-decoration:none;transition:background .12s;}
-.tl-row:hover{background:#f7f5ff;}
-.tl-emoji{font-size:24px;line-height:1.3;flex-shrink:0;}
-.tl-body{display:flex;flex-direction:column;gap:2px;min-width:0;}
-.tl-name{font-size:14.5px;font-weight:800;color:#1a1a1a;}
-.tl-name small{font-size:11px;color:#bbb;font-weight:600;margin-left:4px;}
-.tl-sum{font-size:13.5px;line-height:1.6;color:#666;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.share-btn{white-space:nowrap;}
-@media(max-width:400px){.share-btn{font-size:13px;padding:12px 6px;min-width:92px;}}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","name":"사이트 소개","url":"https://todays-fortune-app.vercel.app/about","inLanguage":"ko","description":"오늘의 운세 소개와 운세 작성 방식, 이용 시 유의사항"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://todays-fortune-app.vercel.app/"},{"@type":"ListItem","position":2,"name":"사이트 소개","item":"https://todays-fortune-app.vercel.app/about"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app","description":"12별자리 운세와 별자리별 성격·궁합·신화를 정리한 별자리 사전. 오늘의 총운, 연애운, 직장운, 재물운을 확인하세요.","inLanguage":"ko"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"12별자리","itemListElement":[{"@type":"ListItem","position":1,"name":"물병자리","url":"https://todays-fortune-app.vercel.app/zodiac/aquarius"},{"@type":"ListItem","position":2,"name":"물고기자리","url":"https://todays-fortune-app.vercel.app/zodiac/pisces"},{"@type":"ListItem","position":3,"name":"양자리","url":"https://todays-fortune-app.vercel.app/zodiac/aries"},{"@type":"ListItem","position":4,"name":"황소자리","url":"https://todays-fortune-app.vercel.app/zodiac/taurus"},{"@type":"ListItem","position":5,"name":"쌍둥이자리","url":"https://todays-fortune-app.vercel.app/zodiac/gemini"},{"@type":"ListItem","position":6,"name":"게자리","url":"https://todays-fortune-app.vercel.app/zodiac/cancer"},{"@type":"ListItem","position":7,"name":"사자자리","url":"https://todays-fortune-app.vercel.app/zodiac/leo"},{"@type":"ListItem","position":8,"name":"처녀자리","url":"https://todays-fortune-app.vercel.app/zodiac/virgo"},{"@type":"ListItem","position":9,"name":"천칭자리","url":"https://todays-fortune-app.vercel.app/zodiac/libra"},{"@type":"ListItem","position":10,"name":"전갈자리","url":"https://todays-fortune-app.vercel.app/zodiac/scorpio"},{"@type":"ListItem","position":11,"name":"사수자리","url":"https://todays-fortune-app.vercel.app/zodiac/sagittarius"},{"@type":"ListItem","position":12,"name":"염소자리","url":"https://todays-fortune-app.vercel.app/zodiac/capricorn"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"별자리는 어떻게 정해지나요?","acceptedAnswer":{"@type":"Answer","text":"태어난 날짜에 태양이 지나던 황도 12궁 구간으로 정해집니다. 흔히 말하는 별자리는 이 태양 별자리를 가리키며, 생일이 경계에 걸치면 출생 시각에 따라 달라질 수 있습니다."}},{"@type":"Question","name":"별자리 운세는 매일 바뀌나요?","acceptedAnswer":{"@type":"Answer","text":"네, 12별자리 모두 날짜별로 총운·연애운·직장운·재물운이 준비되어 있습니다."}},{"@type":"Question","name":"별자리 궁합은 얼마나 믿을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"점성술의 궁합은 성향 차이를 설명하는 전통적 해석입니다. 과학적 근거가 있는 예측이 아니므로 관계를 이해하는 참고 자료로만 활용하시기 바랍니다."}}]}</script>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5479403345572412" crossorigin="anonymous"></script>
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" defer></script>
@@ -425,48 +404,87 @@ body{background:#f5f5f5;}
 </div></header>
 <main class="container">
 
-<nav class="crumb"><a href="/">홈</a> › <span>사이트 소개</span></nav>
-<article class="sign-page">
-<header class="home-hero" style="padding-top:20px"><h1>사이트 소개</h1>
-  <p class="hero-sub">오늘의 운세는 12별자리의 오늘 운세와 별자리별 성격·궁합·유래를 정리한 무료 읽을거리입니다.</p></header>
+<section class="home-hero">
+  <p class="hero-date">2026년 9월 21일</p>
+  <h1>오늘의 별자리 운세</h1>
+  <p class="hero-sub">12별자리의 오늘 총운·연애운·직장운·재물운과 별자리별 성격·궁합·신화를 정리했습니다. 별자리를 눌러 보세요.</p>
+</section>
 
 <section>
-  <h2 class="sec-title">무엇을 볼 수 있나요</h2>
-  <div class="prose">
-    <p>별자리마다 페이지가 하나씩 있습니다. 각 페이지에는 <b>오늘의 총운·연애운·직장운·재물운</b>, 그 별자리의 성격적 강점과 주의할 점, 연애와 일과 돈을 대하는 방식, 잘 맞는 별자리와 부딪히기 쉬운 별자리, 별자리에 얽힌 그리스 신화, 탄생석과 행운의 색 같은 상징, 그리고 이번 달 운세 흐름이 담겨 있습니다.</p>
-    <p><a href="/compatibility">별자리 궁합표</a>에서는 12별자리 78개 조합의 궁합 점수를 한 표로 볼 수 있습니다. 점수는 두 별자리의 원소 관계와 황도상 각도를 합쳐 계산했습니다. 계산 방식은 궁합 페이지에 그대로 적어 두었습니다.</p>
+  <div class="home-grid">
+    <a class="home-card" href="/zodiac/aquarius">
+      <span class="hc-emoji">🏺</span>
+      <span class="hc-name">물병자리</span>
+      <span class="hc-period">1.20-2.18</span>
+      <span class="hc-sum">예상치 못한 통찰이 찾아오는 날. 평소에 미처 보지 못했던 연결고리나 패턴이 갑자기 보…</span>
+    </a><a class="home-card" href="/zodiac/pisces">
+      <span class="hc-emoji">🐟</span>
+      <span class="hc-name">물고기자리</span>
+      <span class="hc-period">2.19-3.20</span>
+      <span class="hc-sum">자신도 모르게 주변에 긍정적인 영향을 미치는 날이다. 그냥 존재하는 것만으로도 분위기가…</span>
+    </a><a class="home-card" href="/zodiac/aries">
+      <span class="hc-emoji">🐏</span>
+      <span class="hc-name">양자리</span>
+      <span class="hc-period">3.21-4.19</span>
+      <span class="hc-sum">양자리, 오늘 오전과 오후의 운세가 다릅니다. 오전에는 막히는 것들이 오후에 풀리는 패…</span>
+    </a><a class="home-card" href="/zodiac/taurus">
+      <span class="hc-emoji">🐂</span>
+      <span class="hc-name">황소자리</span>
+      <span class="hc-period">4.20-5.20</span>
+      <span class="hc-sum">주말에 몸이 원하는 걸 들어줘라. 먹고 싶은 거 먹고, 자고 싶은 만큼 자라. 황소자리…</span>
+    </a><a class="home-card" href="/zodiac/gemini">
+      <span class="hc-emoji">👯</span>
+      <span class="hc-name">쌍둥이자리</span>
+      <span class="hc-period">5.21-6.21</span>
+      <span class="hc-sum">지식에 대한 갈망이 극에 달하는 날. 책, 강의, 유튜브, 팟캐스트를 동시에 켜두고 아…</span>
+    </a><a class="home-card" href="/zodiac/cancer">
+      <span class="hc-emoji">🦀</span>
+      <span class="hc-name">게자리</span>
+      <span class="hc-period">6.22-7.22</span>
+      <span class="hc-sum">오늘은 새로운 시도를 해볼 용기가 생기는 날이다. 늘 하던 것만 하면 늘 얻던 것만 얻…</span>
+    </a><a class="home-card" href="/zodiac/leo">
+      <span class="hc-emoji">🦁</span>
+      <span class="hc-name">사자자리</span>
+      <span class="hc-period">7.23-8.22</span>
+      <span class="hc-sum">사자자리, 오늘 당신의 판단력이 날카롭게 살아있는 날입니다. 뭔가 이상한 것을 바로 알…</span>
+    </a><a class="home-card" href="/zodiac/virgo">
+      <span class="hc-emoji">👸</span>
+      <span class="hc-name">처녀자리</span>
+      <span class="hc-period">8.23-9.22</span>
+      <span class="hc-sum">청소와 정리가 하고 싶은 날. 처녀자리에게 집 정리는 명상과 같다. 마음껏 정리해라, …</span>
+    </a><a class="home-card" href="/zodiac/libra">
+      <span class="hc-emoji">⚖️</span>
+      <span class="hc-name">천칭자리</span>
+      <span class="hc-period">9.23-10.22</span>
+      <span class="hc-sum">타인에 대한 공감 능력이 최고조인 날. 다른 사람의 감정을 너무 깊이 흡수하지 않도록 …</span>
+    </a><a class="home-card" href="/zodiac/scorpio">
+      <span class="hc-emoji">🦂</span>
+      <span class="hc-name">전갈자리</span>
+      <span class="hc-period">10.23-11.21</span>
+      <span class="hc-sum">숨겨왔던 재능을 드러낼 기회가 온다. 전갈자리의 깊이 있는 능력을 오늘 제대로 보여줘라…</span>
+    </a><a class="home-card" href="/zodiac/sagittarius">
+      <span class="hc-emoji">🏹</span>
+      <span class="hc-name">사수자리</span>
+      <span class="hc-period">11.22-12.21</span>
+      <span class="hc-sum">사수자리, 오늘 누군가에게 도움을 받는 날입니다. 자존심 강하게 혼자 하려 하지 말고,…</span>
+    </a><a class="home-card" href="/zodiac/capricorn">
+      <span class="hc-emoji">🐐</span>
+      <span class="hc-name">염소자리</span>
+      <span class="hc-period">12.22-1.19</span>
+      <span class="hc-sum">주말에 완전히 쉬는 염소자리는 드물다. 하지만 오늘만큼은 진짜로 쉬어봐라. 유익한 휴식…</span>
+    </a>
   </div>
 </section>
 
 <section>
-  <h2 class="sec-title">운세는 어떻게 만들어지나요</h2>
+  <h2 class="sec-title">별자리 운세, 이렇게 보세요</h2>
   <div class="prose">
-    <p>이 사이트의 운세는 날짜와 별자리를 조합해 미리 작성해 둔 글입니다. 무작위로 뽑아낸 문장이 아니라 별자리마다 성향에 맞춰 날짜별로 따로 써 두었고, 매일 자정이 지나면 그날 몫이 표시됩니다. 같은 날 같은 별자리를 여러 번 열어도 내용은 바뀌지 않습니다.</p>
-    <p>별자리별 성격·궁합·신화 설명은 서양 점성술의 전통적 해석과 널리 알려진 그리스 신화를 바탕으로 정리했습니다. 신화는 판본에 따라 세부가 다를 수 있어, 가장 널리 통용되는 줄거리만 실었습니다.</p>
+    <p>별자리는 태어난 날 태양이 지나던 구간으로 정해집니다. 생일이 두 별자리 경계에 걸쳐 있으면 두 쪽을 다 읽어 보세요. 별자리 페이지에는 오늘의 운세와 함께 성격의 강점·약점, 잘 맞는 별자리를 짧게 정리해 두었습니다.</p>
+    <p>점성술은 검증된 예측 도구가 아닙니다. 하루를 돌아보는 계기 정도로 가볍게 보시고, 중요한 결정은 스스로 내리시기 바랍니다.</p>
   </div>
 </section>
 
-<section>
-  <h2 class="sec-title">꼭 알아 두실 것</h2>
-  <div class="prose">
-    <p>점성술은 과학적으로 검증된 예측 방법이 아닙니다. 이 사이트의 모든 내용은 <b>재미로 읽는 글</b>이며, 건강·법률·투자·진로처럼 중요한 판단의 근거로 삼아서는 안 됩니다. 운세가 나쁘게 나왔다고 걱정하거나 좋게 나왔다고 무리한 결정을 내리지 마세요.</p>
-    <p>별자리는 태어난 날 태양이 지나던 황도 구간으로 정합니다. 생일이 두 별자리의 경계에 걸쳐 있으면 출생 연도와 시각에 따라 달라질 수 있으니, 두 별자리 설명을 모두 읽어 보시기 바랍니다.</p>
-  </div>
-</section>
 
-<section>
-  <h2 class="sec-title">운영과 광고</h2>
-  <div class="prose">
-    <p>이 사이트는 회원가입 없이 누구나 무료로 볼 수 있습니다. 운영 비용은 Google AdSense 광고와 쿠팡 파트너스 제휴 링크로 충당합니다. 쿠팡 파트너스 활동으로 일정액의 수수료를 제공받습니다. 수집하는 정보와 쿠키에 관한 내용은 <a href="/privacy">개인정보처리방침</a>에 정리해 두었습니다.</p>
-    <p>잘못된 내용이나 고쳤으면 하는 부분이 있으면 알려 주시기 바랍니다.</p>
-  </div>
-</section>
-
-<section>
-  <h2 class="sec-title">별자리 바로 가기</h2>
-  <div class="sign-links"><a class="sign-chip" href="/zodiac/aquarius"><span>🏺</span>물병자리</a><a class="sign-chip" href="/zodiac/pisces"><span>🐟</span>물고기자리</a><a class="sign-chip" href="/zodiac/aries"><span>🐏</span>양자리</a><a class="sign-chip" href="/zodiac/taurus"><span>🐂</span>황소자리</a><a class="sign-chip" href="/zodiac/gemini"><span>👯</span>쌍둥이자리</a><a class="sign-chip" href="/zodiac/cancer"><span>🦀</span>게자리</a><a class="sign-chip" href="/zodiac/leo"><span>🦁</span>사자자리</a><a class="sign-chip" href="/zodiac/virgo"><span>👸</span>처녀자리</a><a class="sign-chip" href="/zodiac/libra"><span>⚖️</span>천칭자리</a><a class="sign-chip" href="/zodiac/scorpio"><span>🦂</span>전갈자리</a><a class="sign-chip" href="/zodiac/sagittarius"><span>🏹</span>사수자리</a><a class="sign-chip" href="/zodiac/capricorn"><span>🐐</span>염소자리</a></div>
-</section>
-</article>
 </main>
 <div class="container ad-wrap"><div class="ad-inner"><script src="https://ads-partners.coupang.com/g.js"></script><script>new PartnersCoupang.G({"id":1017186,"template":"carousel","trackingCode":"AF7330023","width":"100%","height":"140","tsource":""});</script></div>
 <p class="disclose">이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p></div>

@@ -130,7 +130,7 @@ function pageSign(s) {
     <div class="f-card"><span class="f-label">💰 재물운</span><p id="f-money">${esc(today.money)}</p></div>
   </div>` : '<p class="empty">오늘 운세를 준비 중입니다.</p>'}
   <div class="share-row">
-    <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡 공유</button>
+    <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡</button>
     <button class="share-btn x" type="button" onclick="shareX()">𝕏 공유</button>
     <button class="share-btn link" type="button" onclick="copyLink()">🔗 링크 복사</button>
   </div>
@@ -209,7 +209,7 @@ var __S={title:'${s.e} ${esc(s.n)} 오늘의 운세',url:'${SITE.url}${path}',im
 function __sum(){var el=document.getElementById('f-summary');return el?el.textContent.slice(0,80):'';}
 function shareKakao(){if(!window.Kakao){alert('잠시 후 다시 시도해 주세요.');return;}try{if(!Kakao.isInitialized())Kakao.init('4dc7d7690ca8b78aec06f64ca1158905');}catch(e){}
   Kakao.Share.sendDefault({objectType:'feed',content:{title:__S.title,description:__sum(),imageUrl:__S.img,imageWidth:1200,imageHeight:630,link:{mobileWebUrl:__S.url,webUrl:__S.url}},buttons:[{title:'내 운세 보기',link:{mobileWebUrl:__S.url,webUrl:__S.url}}]});}
-function shareX(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(__S.title+'\n'+__sum()+'\n'+__S.url),'_blank');}
+function shareX(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(__S.title+'\\n'+__sum()+'\\n'+__S.url),'_blank');}
 function copyLink(){navigator.clipboard.writeText(__S.url).then(function(){alert('링크를 복사했어요!');});}</script>`;
 
   return layout({
@@ -229,12 +229,22 @@ function pageHome() {
 </section>
 
 <section>
-  <div class="home-grid">
-    ${signs.map((s) => { const f = fortuneOf(s.k, D); return `<a class="home-card" href="${urlOf(s.k)}">
-      <span class="hc-emoji">${s.e}</span>
-      <span class="hc-name">${esc(s.n)}</span>
-      <span class="hc-period">${esc(s.p)}</span>
-      <span class="hc-sum">${esc(f ? f.summary.slice(0, 48) + (f.summary.length > 48 ? '…' : '') : s.trait + ' 별자리')}</span>
+  <div class="sign-picker">
+    ${signs.map((s) => `<a class="sp-tile" href="${urlOf(s.k)}"><span class="sp-emoji">${s.e}</span><span class="sp-name">${esc(s.n)}</span><span class="sp-period">${esc(s.p)}</span></a>`).join('')}
+  </div>
+  <div class="share-row home-share">
+    <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡</button>
+    <button class="share-btn x" type="button" onclick="shareX()">𝕏 공유</button>
+    <button class="share-btn link" type="button" onclick="copyLink()">🔗 링크 복사</button>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">오늘의 한 줄 운세</h2>
+  <div class="today-list">
+    ${signs.map((s) => { const f = fortuneOf(s.k, D); return `<a class="tl-row" href="${urlOf(s.k)}">
+      <span class="tl-emoji">${s.e}</span>
+      <span class="tl-body"><span class="tl-name">${esc(s.n)} <small>${esc(s.p)}</small></span><span class="tl-sum">${esc(f ? f.summary : s.trait + ' 별자리')}</span></span>
     </a>`; }).join('')}
   </div>
 </section>
@@ -258,7 +268,14 @@ function pageHome() {
       { '@type': 'Question', name: '별자리 궁합은 얼마나 믿을 수 있나요?', acceptedAnswer: { '@type': 'Answer', text: '점성술의 궁합은 성향 차이를 설명하는 전통적 해석입니다. 과학적 근거가 있는 예측이 아니므로 관계를 이해하는 참고 자료로만 활용하시기 바랍니다.' } },
     ] },
   ];
-  return layout({ title: `${SITE.name} — 12별자리 오늘의 운세와 별자리별 성격·궁합`, desc: SITE.desc, path: '/', body, ld });
+  const extraScript = `<script>
+var __S={title:'${SITE.name} — 오늘의 12별자리 운세',url:'${SITE.url}/',img:'${SITE.ogImage}',desc:'오늘의 총운·연애운·직장운·재물운을 별자리별로 확인해 보세요.'};
+function shareKakao(){if(!window.Kakao){alert('잠시 후 다시 시도해 주세요.');return;}try{if(!Kakao.isInitialized())Kakao.init('4dc7d7690ca8b78aec06f64ca1158905');}catch(e){}
+  Kakao.Share.sendDefault({objectType:'feed',content:{title:__S.title,description:__S.desc,imageUrl:__S.img,imageWidth:1200,imageHeight:630,link:{mobileWebUrl:__S.url,webUrl:__S.url}},buttons:[{title:'내 운세 보기',link:{mobileWebUrl:__S.url,webUrl:__S.url}}]});}
+function shareX(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(__S.title+'\\n'+__S.url),'_blank');}
+function copyLink(){navigator.clipboard.writeText(__S.url).then(function(){alert('링크를 복사했어요!');});}
+</script>`;
+  return layout({ title: `${SITE.name} — 12별자리 오늘의 운세와 별자리별 성격·궁합`, desc: SITE.desc, path: '/', body, ld, extraScript });
 }
 
 // ---------- 궁합 ----------
@@ -302,7 +319,7 @@ function pageCompat() {
     <p class="rc-text" id="rcText"></p>
     <div class="rc-links" id="rcLinks"></div>
     <div class="share-row">
-      <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡 공유</button>
+      <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡</button>
       <button class="share-btn x" type="button" onclick="shareX()">𝕏 공유</button>
       <button class="share-btn link" type="button" onclick="copyLink()">🔗 링크 복사</button>
     </div>
@@ -421,6 +438,21 @@ const strip = (h) => h.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style
 let minLen = Infinity, minWho = '';
 for (const s of signs) { const n = strip(readFileSync(join(root, `zodiac/${s.k}/index.html`), 'utf8')).length; if (n < minLen) { minLen = n; minWho = s.k; } }
 const homeLen = strip(readFileSync(join(root, 'index.html'), 'utf8')).length;
+// 생성된 인라인 <script> 문법 검증 — 문법 오류가 나면 공유 버튼이 조용히 죽는다
+{
+  const files = ['index.html', 'compatibility.html', 'about.html', ...signs.map((s) => `zodiac/${s.k}/index.html`)];
+  let checked = 0;
+  for (const f of files) {
+    const html = readFileSync(join(root, f), 'utf8');
+    for (const m of html.matchAll(/<script>([\s\S]*?)<\/script>/g)) {
+      if (!m[1].trim()) continue;
+      try { new Function(m[1]); checked++; }
+      catch (e) { console.error(`✖ ${f} 인라인 스크립트 문법 오류: ${e.message}`); process.exit(1); }
+    }
+  }
+  console.log(`  인라인 스크립트 ${checked}개 문법 검증 통과`);
+}
+
 console.log(`✔ 빌드 완료 — 별자리 ${signs.length}장 + 홈, sitemap ${urls.length}개 (기준일 ${TODAY})`);
 console.log(`  HTML 본문 글자수: 홈 ${homeLen}자, 별자리 최소 ${minLen}자 (${minWho})`);
 if (minLen < 1500 || homeLen < 800) { console.error('✖ 본문이 너무 짧습니다. 애드센스 재심사 전에 확인하세요.'); process.exit(1); }
