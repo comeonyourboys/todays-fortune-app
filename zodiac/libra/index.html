@@ -352,12 +352,50 @@ body{background:#f5f5f5;}
 .pair-score{font-size:19px;font-weight:800;color:#7c6cf0;font-variant-numeric:tabular-nums;}
 .pair-asp{font-size:12px;color:#aaa;font-weight:700;margin-top:3px;}
 .pair-text{font-size:13.5px;line-height:1.7;color:#555;margin-top:7px;}
+
+/* 공유·접기 */
+.share-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.share-btn{flex:1;min-width:110px;padding:12px 10px;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:transform .12s;}
+.share-btn:hover{transform:translateY(-2px);}
+.share-btn.kakao{background:#fee500;color:#1a1a1a;}
+.share-btn.x{background:#111;color:#fff;}
+.share-btn.link{background:rgba(255,255,255,.9);color:#333;}
+.fold{background:#fff;border-radius:16px;margin:16px 0;overflow:hidden;}
+.fold summary{list-style:none;cursor:pointer;padding:16px 20px;font-weight:800;font-size:16px;display:flex;justify-content:space-between;align-items:center;}
+.fold summary::-webkit-details-marker{display:none;}
+.fold summary::after{content:"+";color:#7c6cf0;font-size:22px;font-weight:900;}
+.fold[open] summary::after{content:"−";}
+.fold>*:not(summary){padding:0 20px 18px;}
+.fold .style-grid{padding:0 16px 16px;}
+/* 궁합 선택 UI */
+.pick-label{font-size:13px;font-weight:800;color:#999;letter-spacing:1px;margin:18px 0 8px;}
+.pick-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+@media(max-width:600px){.pick-grid{grid-template-columns:repeat(4,1fr);}}
+.pick-btn{background:#fff;border:2px solid transparent;border-radius:14px;padding:10px 4px;cursor:pointer;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:3px;transition:all .12s;}
+.pick-btn .e{font-size:26px;line-height:1;}
+.pick-btn .n{font-size:12px;font-weight:700;color:#444;}
+.pick-btn:hover{transform:translateY(-2px);}
+.pick-btn.active{border-color:#7c6cf0;background:#f4f2ff;}
+.result-btn{width:100%;margin-top:18px;padding:16px;border:none;border-radius:14px;background:#1a1a2e;color:#fff;font-size:17px;font-weight:800;cursor:pointer;font-family:inherit;}
+.result-btn:disabled{background:#ddd;color:#999;cursor:not-allowed;}
+.result-card{background:linear-gradient(135deg,#1a1a2e,#2d2b55);color:#fff;border-radius:20px;padding:26px 24px;margin-top:20px;display:none;}
+.result-card.on{display:block;animation:pop .3s ease-out;}
+@keyframes pop{from{transform:scale(.97);opacity:0}to{transform:scale(1);opacity:1}}
+.rc-pair{font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
+.rc-score{font-size:64px;font-weight:900;text-align:center;letter-spacing:-2px;line-height:1.1;margin:8px 0 2px;}
+.rc-score small{font-size:22px;font-weight:700;color:rgba(255,255,255,.6);}
+.rc-asp{text-align:center;font-size:13px;color:rgba(255,255,255,.6);font-weight:700;}
+.rc-text{margin-top:14px;font-size:15px;line-height:1.75;color:#eee;}
+.rc-links{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
+.rc-links a{color:#fff;background:rgba(255,255,255,.14);padding:7px 12px;border-radius:999px;text-decoration:none;font-size:13px;font-weight:700;}
+.result-card .share-row .link{background:rgba(255,255,255,.9);}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"천칭자리 운세와 성격 — 9.23-10.22","description":"천칭자리는 12별자리 가운데 유일하게 생물이 아닌 '저울'을 상징으로 삼습니다. 이 사실 하나가 당신의 성향을 거의 다 설명합니다. 당신은 세상을 사람이나 사건이 아니라 균형이 맞는가라는 기준으로 바라봅니다. 대화 중 누군가 일방적으로 몰리면 자동으로 반대편 논리를 꺼내 들고, 그것이 ","inLanguage":"ko","mainEntityOfPage":"https://todays-fortune-app.vercel.app/zodiac/libra","image":"https://todays-fortune-app.vercel.app/og-image.png?v=2","datePublished":"2026-08-21","dateModified":"2026-09-21","author":{"@type":"Organization","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app"},"publisher":{"@type":"Organization","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"천칭자리는 몇 월 며칠생인가요?","acceptedAnswer":{"@type":"Answer","text":"천칭자리는 9.23-10.22 사이에 태어난 사람입니다. 공기 원소에 속하고 지배행성은 금성입니다."}},{"@type":"Question","name":"천칭자리 성격은 어떤가요?","acceptedAnswer":{"@type":"Answer","text":"천칭자리는 12별자리 가운데 유일하게 생물이 아닌 '저울'을 상징으로 삼습니다. 이 사실 하나가 당신의 성향을 거의 다 설명합니다. 당신은 세상을 사람이나 사건이 아니라 균형이 맞는가라는 기준으로 바라봅니다. 대화 중 누군가 일방적으로 몰리면 자동으로 반대편 논리를 꺼내 들고, 그것이 편들기가 아니라 저울을 수평으로 되돌리는 작업이라는 걸 스스로도 잘 압니다."}},{"@type":"Question","name":"천칭자리와 잘 맞는 별자리는?","acceptedAnswer":{"@type":"Answer","text":"쌍둥이자리: 같은 공기 원소라 대화의 속도가 맞습니다. 무겁지 않게 주고받는 리듬 속에서 서로 지치지 않고 오래 즐거울 수 있습니다. 물병자리: 감정보다 생각으로 통하는 사이입니다. 물병자리의 독립적인 태도가 당신의 눈치 보는 습관을 자연스럽게 풀어 줍니다."}},{"@type":"Question","name":"오늘 천칭자리 운세는?","acceptedAnswer":{"@type":"Answer","text":"타인에 대한 공감 능력이 최고조인 날. 다른 사람의 감정을 너무 깊이 흡수하지 않도록 주의하면서 이 능력을 선하게 사용하세요."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://todays-fortune-app.vercel.app/"},{"@type":"ListItem","position":2,"name":"천칭자리","item":"https://todays-fortune-app.vercel.app/zodiac/libra"}]}</script>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5479403345572412" crossorigin="anonymous"></script>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" defer></script>
 </head>
 <body>
 <header class="site-hdr"><div class="container hdr-in">
@@ -387,6 +425,11 @@ body{background:#f5f5f5;}
     <div class="f-card"><span class="f-label">💼 직장운</span><p id="f-work">고객이나 클라이언트를 대하는 일에서 탁월한 성과를 냅니다. 공감에 기반한 서비스가 오늘 빛납니다.</p></div>
     <div class="f-card"><span class="f-label">💰 재물운</span><p id="f-money">타인을 돕기 위한 지출이 생길 수 있습니다. 능력 범위 안에서 돕되, 자신을 희생하는 수준은 아니어야 합니다.</p></div>
   </div>
+  <div class="share-row">
+    <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡 공유</button>
+    <button class="share-btn x" type="button" onclick="shareX()">𝕏 공유</button>
+    <button class="share-btn link" type="button" onclick="copyLink()">🔗 링크 복사</button>
+  </div>
 </section>
 
 <section>
@@ -405,14 +448,13 @@ body{background:#f5f5f5;}
   </div>
 </section>
 
-<section>
-  <h2 class="sec-title">천칭자리의 연애·일·돈</h2>
+<details class="fold"><summary>천칭자리의 연애·일·돈 스타일</summary>
   <div class="style-grid">
-    <div class="style-card"><h3>💕 연애 스타일</h3><p>천칭자리의 연애는 분위기에서 시작됩니다. 고백의 말보다 마주 앉은 자리의 온도, 대화가 오가는 리듬이 맞는지를 먼저 봅니다. 다가갈 때는 직진하지 않고 상대가 편안해질 여백을 만들어 두는 편이라, 호감을 표현했는데도 상대가 눈치채지 못하는 일이 자주 생깁니다. 당신이 약한 지점은 자신을 존중해 주는 태도입니다. 화려한 조건보다 의견을 끝까지 들어주는 사람, 둘 사이의 결정을 함께 내려 주는 사람에게 마음이 열립니다. 반대로 관계가 한쪽으로 기울면 겉으로는 맞춰 주면서 속으로 조용히 마음을 정리합니다.</p></div>
-    <div class="style-card"><h3>💼 일하는 방식</h3><p>천칭자리는 서로 다른 입장이 부딪히는 자리에서 가장 빛납니다. 이해관계가 엇갈린 사람들 사이에 서서 각자의 말을 번역해 주는 역할, 결과물의 균형과 완성도를 마지막으로 다듬는 역할이 잘 맞습니다. 기획, 조율, 디자인, 상담처럼 사람과 감각이 함께 필요한 일에서 강점이 드러납니다. 반대로 즉시 한쪽을 잘라내야 하는 결정이나 누군가를 실망시키는 통보를 혼자 떠맡는 상황에서는 에너지가 급격히 떨어집니다. 판단 기준을 미리 합의해 두면 결정 속도가 눈에 띄게 빨라집니다.</p></div>
-    <div class="style-card"><h3>💰 돈 쓰는 습관</h3><p>천칭자리의 지출은 보기 좋은 것과 관계에 집중됩니다. 필요해서 사기보다 어울려서 사고, 혼자 쓰기보다 함께 있는 자리에서 씁니다. 큰돈은 오래 비교하며 신중하게 다루지만 분위기가 좋은 순간의 작은 지출에는 관대해, 합계가 예상보다 커지곤 합니다. 저축은 목표 금액을 정하는 것보다 자동으로 빠져나가는 구조를 만들어 두는 방식이 잘 맞습니다.</p></div>
+    <div class="style-card"><h3>💕 연애</h3><p>천칭자리의 연애는 분위기에서 시작됩니다. 고백의 말보다 마주 앉은 자리의 온도, 대화가 오가는 리듬이 맞는지를 먼저 봅니다. 다가갈 때는 직진하지 않고 상대가 편안해질 여백을 만들어 두는 편이라, 호감을 표현했는데도 상대가 눈치채지 못하는 일이 자주 생깁니다. 당신이 약한 지점은 자신을 존중해 주는 태도입니다. 화려한 조건보다 의견을 끝까지 들어주는 사람, 둘 사이의 결정을 함께 내려 주는 사람에게 마음이 열립니다. 반대로 관계가 한쪽으로 기울면 겉으로는 맞춰 주면서 속으로 조용히 마음을 정리합니다.</p></div>
+    <div class="style-card"><h3>💼 일</h3><p>천칭자리는 서로 다른 입장이 부딪히는 자리에서 가장 빛납니다. 이해관계가 엇갈린 사람들 사이에 서서 각자의 말을 번역해 주는 역할, 결과물의 균형과 완성도를 마지막으로 다듬는 역할이 잘 맞습니다. 기획, 조율, 디자인, 상담처럼 사람과 감각이 함께 필요한 일에서 강점이 드러납니다. 반대로 즉시 한쪽을 잘라내야 하는 결정이나 누군가를 실망시키는 통보를 혼자 떠맡는 상황에서는 에너지가 급격히 떨어집니다. 판단 기준을 미리 합의해 두면 결정 속도가 눈에 띄게 빨라집니다.</p></div>
+    <div class="style-card"><h3>💰 돈</h3><p>천칭자리의 지출은 보기 좋은 것과 관계에 집중됩니다. 필요해서 사기보다 어울려서 사고, 혼자 쓰기보다 함께 있는 자리에서 씁니다. 큰돈은 오래 비교하며 신중하게 다루지만 분위기가 좋은 순간의 작은 지출에는 관대해, 합계가 예상보다 커지곤 합니다. 저축은 목표 금액을 정하는 것보다 자동으로 빠져나가는 구조를 만들어 두는 방식이 잘 맞습니다.</p></div>
   </div>
-</section>
+</details>
 
 <section>
   <h2 class="sec-title">천칭자리와 잘 맞는 별자리</h2>
@@ -426,26 +468,10 @@ body{background:#f5f5f5;}
   <p class="note">궁합은 성향 차이를 보는 참고일 뿐입니다. 자세한 조합은 <a href="/compatibility">별자리 궁합 페이지</a>에서 볼 수 있습니다.</p>
 </section>
 
-<section>
-  <h2 class="sec-title">천칭자리의 유래</h2>
+<details class="fold"><summary>천칭자리의 유래와 상징</summary>
   <div class="prose"><p>천칭자리는 정의의 여신 아스트라이아가 들고 있던 저울에서 유래했다고 전해집니다. 신들이 인간과 함께 지내던 황금시대가 끝나고 세상이 다툼과 거짓으로 물들자 신들은 차례로 하늘로 떠났습니다. 아스트라이아는 인간에 대한 믿음을 끝까지 버리지 않고 마지막까지 지상에 남았지만, 결국 그마저 단념하고 하늘로 올라가 처녀자리가 되었고 그가 들고 있던 저울은 그 곁에 천칭자리로 걸렸다고 이야기됩니다.</p><p>한편 천문학사에서는 천칭자리의 별들이 오랫동안 전갈자리의 집게발로 불렸다는 기록이 남아 있습니다. 로마 시대에 이 별들을 따로 떼어 독립된 별자리로 삼으면서, 낮과 밤의 길이가 같아지는 추분 무렵의 하늘에 균형의 상징이 자리 잡게 되었습니다.</p></div>
-</section>
-
-<section>
-  <h2 class="sec-title">천칭자리의 상징</h2>
-  <table class="sym-table"><tbody>
-    <tr><th>기간</th><td>9.23-10.22</td><th>원소</th><td>공기</td></tr>
-    <tr><th>지배행성</th><td>금성</td><th>탄생석</th><td>오팔</td></tr>
-    <tr><th>행운의 색</th><td>파스텔 블루</td><th>행운의 숫자</th><td>6</td></tr>
-    <tr><th>요일</th><td>금요일</td><th>꽃</th><td>장미</td></tr>
-  </tbody></table>
-  <p class="prose-sm">천칭자리를 이야기할 때는 흔히 방 안의 공기를 읽는 사람, 미움받지 않으면서 반대하는 법을 아는 사람이라는 표현이 따라붙습니다. 우아함과 공정함을 같은 무게로 놓는 별자리로 소개되곤 합니다.</p>
-</section>
-
-<section>
-  <h2 class="sec-title">9월 천칭자리 운세 흐름</h2>
-  <div class="month-wrap"><table class="month-table"><tbody><tr><th scope="row">9월 1일</th><td>오늘 아침에 뭐 입을지 고민하다 세 번 갈아입었죠. 그게 천칭자리입니다. 9월의 첫날, 결정 장애는 여전히 건재하고 하루는 짧습니다.</td></tr><tr><th scope="row">9월 2일</th><td>조화를 원하는 날. 모든 것이 딱 맞아떨어지기를 바라는 완벽주의적 성향이 오늘 특히 강하게 나타납니다. 현실은 언제나 약간 어긋나 있습니다.</td></tr><tr><th scope="row">9월 3일</th><td>사교성이 빛나는 날. 천칭자리는 원래 사람들 사이에서 빛나지만 오늘은 유독 매력이 넘칩니다. 이 에너지를 활용하세요.</td></tr><tr><th scope="row">9월 4일</th><td>결정을 해야 하는 상황이 연달아 옵니다. 천칭자리에게 가장 무서운 날 중 하나. 그런데 진짜로 중요한 결정은 생각보다 많지 않으니 가벼운 것부터 빠르게 처리하세요.</td></tr><tr><th scope="row">9월 5일</th><td>미적 감각이 폭발하는 날. 주변의 아름다운 것들이 눈에 들어오고 좋은 것을 소비하고 싶은 욕구가 생깁니다. 단, 미적 욕구와 지갑 사정 사이의 균형을.</td></tr><tr><th scope="row">9월 6일</th><td>타인의 시선을 신경 쓰는 날. 천칭자리는 원래 남들의 반응에 민감한데 오늘 그게 극에 달합니다. 내 판단보다 남의 평가에 의지하지 마세요.</td></tr><tr><th scope="row">9월 7일</th><td>공정함에 대한 욕구가 강한 날. 불합리한 것을 보면 참지 못하는 천칭자리의 정의감이 오늘 작동합니다. 싸울 가치 있는 것인지 먼저 판단하세요.</td></tr><tr><th scope="row">9월 8일</th><td>우유부단함이 오늘의 테마. 아무것도 결정 못 하는 날로, 이런 날은 그냥 &#39;오늘은 큰 결정 없는 날&#39;로 정해놓고 평화롭게 지내는 게 최선.</td></tr><tr><th scope="row">9월 9일</th><td>파트너십이 중요한 날. 혼자보다 둘이 더 잘 되는 날입니다. 신뢰할 수 있는 사람과 함께 무언가를 해보세요.</td></tr><tr><th scope="row">9월 10일</th><td>내면의 갈등이 심한 날. A를 원하면서 동시에 B도 원하는 천칭자리의 영원한 딜레마. 오늘은 그냥 인정하세요. &#39;나는 둘 다 원한다&#39;고.</td></tr><tr><th scope="row">9월 11일</th><td>친절함이 넘치는 날. 주변 모든 사람에게 친절하고 싶은 충동이 있는데, 그 친절함이 경계를 허물지 않도록 주의하세요.</td></tr><tr><th scope="row">9월 12일</th><td>아름다운 것들에 둘러싸이고 싶은 날. 환경이 마음에 들지 않으면 성과도 나오지 않는 천칭자리의 특성이 오늘 더 강하게 나타납니다.</td></tr><tr><th scope="row">9월 13일</th><td>외교적 수완이 빛나는 날. 복잡한 인간 관계에서 천칭자리의 중재 능력이 오늘 진가를 발휘합니다.</td></tr><tr><th scope="row">9월 14일</th><td>완벽주의가 발목을 잡는 날. &#39;이 정도면 충분히 좋아&#39;라는 생각을 허용하세요. 완벽함을 추구하다 아무것도 완성하지 못하는 것이 천칭자리의 함정입니다.</td></tr><tr><th scope="row">9월 15일</th><td>관계에 집중하는 날. 천칭자리는 관계 없이는 빛나기 어려운 별자리. 오늘은 소중한 사람들에게 연락하고, 관계를 돌보세요.</td></tr><tr><th scope="row">9월 16일</th><td>우유부단함이 다시 극에 달하는 날. 메뉴를 고르는 것부터 중요한 결정까지 모든 것이 어렵게 느껴집니다. 오늘은 타이머를 활용하세요. 2분 안에 결정.</td></tr><tr><th scope="row">9월 17일</th><td>감사함을 느끼는 날. 현재 내 주변에 있는 사람들과 상황에 감사할 수 있는 마음이 생깁니다. 이 감정을 표현해보세요.</td></tr><tr><th scope="row">9월 18일</th><td>예민함이 높아지는 날. 사소한 것에 상처받기 쉬운 날입니다. 타인의 말을 너무 깊이 받아들이지 말고, 액면가로 받아들이세요.</td></tr><tr><th scope="row">9월 19일</th><td>균형 잡힌 하루. 천칭자리가 가장 좋아하는 상태, 모든 것이 딱 맞는 날. 이 상태를 최대한 즐기세요. 이런 날이 그렇게 많지 않습니다.</td></tr><tr><th scope="row">9월 20일</th><td>갑작스러운 변화에 적응해야 하는 날. 계획이 틀어질 수 있는데, 천칭자리는 변화를 좋아하지 않습니다. 그럼에도 유연하게 대처하세요.</td></tr><tr class="is-today"><th scope="row">9월 21일</th><td>타인에 대한 공감 능력이 최고조인 날. 다른 사람의 감정을 너무 깊이 흡수하지 않도록 주의하면서 이 능력을 선하게 사용하세요.</td></tr><tr><th scope="row">9월 22일</th><td>결단력이 필요한 날. 오늘만큼은 천칭자리의 우유부단함을 내려놓고 빠른 결정을 내려보세요. 연습이 쌓이면 실력이 됩니다.</td></tr><tr><th scope="row">9월 23일</th><td>창의적인 영감이 솟아오르는 날. 미적 감각에 더해 창의적 아이디어가 결합되는 드문 날. 이 영감을 낭비하지 마세요.</td></tr><tr><th scope="row">9월 24일</th><td>소통이 원활한 날. 말하고 싶었던 것을 부드럽게 표현할 수 있는 날입니다. 미뤄뒀던 대화들을 오늘 꺼내보세요.</td></tr><tr><th scope="row">9월 25일</th><td>내면을 돌보는 날. 타인의 필요에 집중하느라 자신을 소홀히 했던 천칭자리가 오늘은 자신에게 집중할 때입니다.</td></tr><tr><th scope="row">9월 26일</th><td>사회적 책임감을 느끼는 날. 내 행동이 주변에 어떤 영향을 미치는지 생각하게 됩니다. 천칭자리의 공정함에 대한 감각이 더 넓은 시야로 발동합니다.</td></tr><tr><th scope="row">9월 27일</th><td>자신감이 높아지는 날. 평소보다 결단력도 높아지고 자신의 판단을 믿을 수 있는 날입니다. 이 상태를 오래 기억해두세요.</td></tr><tr><th scope="row">9월 28일</th><td>관계에서 얻는 에너지가 충만한 날. 소중한 사람들과의 시간이 오늘 특별히 의미 있게 느껴집니다.</td></tr><tr><th scope="row">9월 29일</th><td>마무리의 날. 9월 한 달을 돌아보며 완성하지 못한 것들을 정리하는 시간. 천칭자리는 마무리보다 시작을 좋아하지만 오늘은 마무리에 집중하세요.</td></tr><tr><th scope="row">9월 30일</th><td>9월의 마지막 날. 이번 달 내린 결정들과 내리지 못한 결정들을 모두 안고 10월로 넘어갑니다. 완벽하지 않아도 괜찮습니다. 균형을 찾아가는 과정이 천칭자리의 인생입니다.</td></tr></tbody></table></div>
-</section>
+  <p class="prose-sm">탄생석 오팔 · 행운의 색 파스텔 블루 · 행운의 숫자 6 · 금요일</p>
+</details>
 
 <section>
   <h2 class="sec-title">다른 별자리 보기</h2>
@@ -467,6 +493,14 @@ body{background:#f5f5f5;}
   var set=function(id,v){var el=document.getElementById(id); if(el&&v)el.textContent=v;};
   set('f-summary',f.summary); set('f-love',f.love); set('f-work',f.work); set('f-money',f.money);
   set('todayDate',y+'년 '+mo+'월 '+d+'일');
-})();</script>
+})();
+var __S={title:'⚖️ 천칭자리 오늘의 운세',url:'https://todays-fortune-app.vercel.app/zodiac/libra',img:'https://todays-fortune-app.vercel.app/og-image.png?v=2'};
+function __sum(){var el=document.getElementById('f-summary');return el?el.textContent.slice(0,80):'';}
+function shareKakao(){if(!window.Kakao){alert('잠시 후 다시 시도해 주세요.');return;}try{if(!Kakao.isInitialized())Kakao.init('4dc7d7690ca8b78aec06f64ca1158905');}catch(e){}
+  Kakao.Share.sendDefault({objectType:'feed',content:{title:__S.title,description:__sum(),imageUrl:__S.img,imageWidth:1200,imageHeight:630,link:{mobileWebUrl:__S.url,webUrl:__S.url}},buttons:[{title:'내 운세 보기',link:{mobileWebUrl:__S.url,webUrl:__S.url}}]});}
+function shareX(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(__S.title+'
+'+__sum()+'
+'+__S.url),'_blank');}
+function copyLink(){navigator.clipboard.writeText(__S.url).then(function(){alert('링크를 복사했어요!');});}</script>
 </body>
 </html>

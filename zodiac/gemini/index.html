@@ -352,12 +352,50 @@ body{background:#f5f5f5;}
 .pair-score{font-size:19px;font-weight:800;color:#7c6cf0;font-variant-numeric:tabular-nums;}
 .pair-asp{font-size:12px;color:#aaa;font-weight:700;margin-top:3px;}
 .pair-text{font-size:13.5px;line-height:1.7;color:#555;margin-top:7px;}
+
+/* 공유·접기 */
+.share-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.share-btn{flex:1;min-width:110px;padding:12px 10px;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:transform .12s;}
+.share-btn:hover{transform:translateY(-2px);}
+.share-btn.kakao{background:#fee500;color:#1a1a1a;}
+.share-btn.x{background:#111;color:#fff;}
+.share-btn.link{background:rgba(255,255,255,.9);color:#333;}
+.fold{background:#fff;border-radius:16px;margin:16px 0;overflow:hidden;}
+.fold summary{list-style:none;cursor:pointer;padding:16px 20px;font-weight:800;font-size:16px;display:flex;justify-content:space-between;align-items:center;}
+.fold summary::-webkit-details-marker{display:none;}
+.fold summary::after{content:"+";color:#7c6cf0;font-size:22px;font-weight:900;}
+.fold[open] summary::after{content:"−";}
+.fold>*:not(summary){padding:0 20px 18px;}
+.fold .style-grid{padding:0 16px 16px;}
+/* 궁합 선택 UI */
+.pick-label{font-size:13px;font-weight:800;color:#999;letter-spacing:1px;margin:18px 0 8px;}
+.pick-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+@media(max-width:600px){.pick-grid{grid-template-columns:repeat(4,1fr);}}
+.pick-btn{background:#fff;border:2px solid transparent;border-radius:14px;padding:10px 4px;cursor:pointer;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:3px;transition:all .12s;}
+.pick-btn .e{font-size:26px;line-height:1;}
+.pick-btn .n{font-size:12px;font-weight:700;color:#444;}
+.pick-btn:hover{transform:translateY(-2px);}
+.pick-btn.active{border-color:#7c6cf0;background:#f4f2ff;}
+.result-btn{width:100%;margin-top:18px;padding:16px;border:none;border-radius:14px;background:#1a1a2e;color:#fff;font-size:17px;font-weight:800;cursor:pointer;font-family:inherit;}
+.result-btn:disabled{background:#ddd;color:#999;cursor:not-allowed;}
+.result-card{background:linear-gradient(135deg,#1a1a2e,#2d2b55);color:#fff;border-radius:20px;padding:26px 24px;margin-top:20px;display:none;}
+.result-card.on{display:block;animation:pop .3s ease-out;}
+@keyframes pop{from{transform:scale(.97);opacity:0}to{transform:scale(1);opacity:1}}
+.rc-pair{font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
+.rc-score{font-size:64px;font-weight:900;text-align:center;letter-spacing:-2px;line-height:1.1;margin:8px 0 2px;}
+.rc-score small{font-size:22px;font-weight:700;color:rgba(255,255,255,.6);}
+.rc-asp{text-align:center;font-size:13px;color:rgba(255,255,255,.6);font-weight:700;}
+.rc-text{margin-top:14px;font-size:15px;line-height:1.75;color:#eee;}
+.rc-links{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
+.rc-links a{color:#fff;background:rgba(255,255,255,.14);padding:7px 12px;border-radius:999px;text-decoration:none;font-size:13px;font-weight:700;}
+.result-card .share-row .link{background:rgba(255,255,255,.9);}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"쌍둥이자리 운세와 성격 — 5.21-6.21","description":"쌍둥이자리는 '연결'을 담당하는 별자리입니다. 사람과 사람 사이, 정보와 정보 사이를 오가며 둘을 이어 붙이는 일에 재능이 있습니다. 당신은 처음 만난 사람과도 몇 분 안에 대화의 실마리를 찾아내고, 낯선 분야의 이야기라도 핵심만 빠르게 골라 자기 언어로 바꿔 말할 수 있습니다.\n\n쌍둥","inLanguage":"ko","mainEntityOfPage":"https://todays-fortune-app.vercel.app/zodiac/gemini","image":"https://todays-fortune-app.vercel.app/og-image.png?v=2","datePublished":"2026-08-21","dateModified":"2026-09-21","author":{"@type":"Organization","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app"},"publisher":{"@type":"Organization","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"쌍둥이자리는 몇 월 며칠생인가요?","acceptedAnswer":{"@type":"Answer","text":"쌍둥이자리는 5.21-6.21 사이에 태어난 사람입니다. 공기 원소에 속하고 지배행성은 수성입니다."}},{"@type":"Question","name":"쌍둥이자리 성격은 어떤가요?","acceptedAnswer":{"@type":"Answer","text":"쌍둥이자리는 '연결'을 담당하는 별자리입니다. 사람과 사람 사이, 정보와 정보 사이를 오가며 둘을 이어 붙이는 일에 재능이 있습니다. 당신은 처음 만난 사람과도 몇 분 안에 대화의 실마리를 찾아내고, 낯선 분야의 이야기라도 핵심만 빠르게 골라 자기 언어로 바꿔 말할 수 있습니다."}},{"@type":"Question","name":"쌍둥이자리와 잘 맞는 별자리는?","acceptedAnswer":{"@type":"Answer","text":"물병자리: 생각의 속도와 화제의 폭이 비슷해 대화가 지루해지지 않고, 서로의 자유를 침범하지 않습니다. 천칭자리: 둘 다 사람과 관계를 즐기는 바람 원소라, 함께 있을 때 분위기가 부드럽고 마찰이 적습니다."}},{"@type":"Question","name":"오늘 쌍둥이자리 운세는?","acceptedAnswer":{"@type":"Answer","text":"지식에 대한 갈망이 극에 달하는 날. 책, 강의, 유튜브, 팟캐스트를 동시에 켜두고 아무것도 제대로 안 본 하루가 될 위험이 있습니다."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://todays-fortune-app.vercel.app/"},{"@type":"ListItem","position":2,"name":"쌍둥이자리","item":"https://todays-fortune-app.vercel.app/zodiac/gemini"}]}</script>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5479403345572412" crossorigin="anonymous"></script>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" defer></script>
 </head>
 <body>
 <header class="site-hdr"><div class="container hdr-in">
@@ -387,6 +425,11 @@ body{background:#f5f5f5;}
     <div class="f-card"><span class="f-label">💼 직장운</span><p id="f-work">새로운 기술 습득에 투자하기 좋은 날. 오늘 배운 것이 한 달 후 당신을 한 단계 올려줄 수 있습니다.</p></div>
     <div class="f-card"><span class="f-label">💰 재물운</span><p id="f-money">자기계발 관련 지출은 오늘 OK. 단, 사서 안 볼 책을 사는 건 지출이지 투자가 아닙니다.</p></div>
   </div>
+  <div class="share-row">
+    <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡 공유</button>
+    <button class="share-btn x" type="button" onclick="shareX()">𝕏 공유</button>
+    <button class="share-btn link" type="button" onclick="copyLink()">🔗 링크 복사</button>
+  </div>
 </section>
 
 <section>
@@ -405,14 +448,13 @@ body{background:#f5f5f5;}
   </div>
 </section>
 
-<section>
-  <h2 class="sec-title">쌍둥이자리의 연애·일·돈</h2>
+<details class="fold"><summary>쌍둥이자리의 연애·일·돈 스타일</summary>
   <div class="style-grid">
-    <div class="style-card"><h3>💕 연애 스타일</h3><p>쌍둥이자리는 대화로 사랑에 빠집니다. 외모나 조건보다 &#39;이 사람과 이야기하면 시간이 빨리 간다&#39;는 감각이 결정적입니다. 연애 초반에는 메시지도 만남도 빈도가 높고 화제도 끊이지 않습니다. 당신이 약한 지점은 침묵입니다. 상대가 속을 말해주지 않고 표정으로만 감정을 전할 때 가장 답답해합니다. 반대로 서로 다른 생각을 솔직하게 주고받을 수 있는 상대 앞에서는 오래 머뭅니다. 관계가 무료해지는 순간을 조심하시되, 그때 필요한 것은 새로운 사람이 아니라 새로운 대화 주제인 경우가 많습니다.</p></div>
-    <div class="style-card"><h3>💼 일하는 방식</h3><p>기획, 영업, 홍보, 교육, 중개처럼 말과 정보가 핵심 자산이 되는 일에서 강점이 뚜렷합니다. 여러 프로젝트를 동시에 굴려야 하는 환경에서 오히려 능률이 오르고, 사람을 설득하거나 상황을 정리해 전달하는 역할을 맡으면 존재감이 큽니다. 힘들어하는 상황은 반대편입니다. 하루 종일 같은 화면을 보며 똑같은 작업을 반복해야 하는 자리, 말을 아껴야 하는 경직된 조직 문화에서는 능력이 그대로 묻힙니다. 마감과 우선순위를 외부에서 잡아주면 산만함이 크게 줄어듭니다.</p></div>
-    <div class="style-card"><h3>💰 돈 쓰는 습관</h3><p>쌍둥이자리의 돈은 대체로 &#39;경험&#39;과 &#39;정보&#39;로 흘러갑니다. 새로 나온 기기, 배우고 싶은 강의, 가보고 싶은 장소에 지갑이 쉽게 열립니다. 수입원이 하나로 고정되기보다 여러 갈래로 나뉘는 경우가 많고, 부업이나 겸업에 대한 저항감도 적습니다. 문제는 흐름을 파악하기 어려울 만큼 항목이 많아진다는 점입니다. 관리 항목을 늘리는 대신 과감히 줄이고, 자동으로 기록되는 구조를 만드는 편이 훨씬 잘 맞습니다.</p></div>
+    <div class="style-card"><h3>💕 연애</h3><p>쌍둥이자리는 대화로 사랑에 빠집니다. 외모나 조건보다 &#39;이 사람과 이야기하면 시간이 빨리 간다&#39;는 감각이 결정적입니다. 연애 초반에는 메시지도 만남도 빈도가 높고 화제도 끊이지 않습니다. 당신이 약한 지점은 침묵입니다. 상대가 속을 말해주지 않고 표정으로만 감정을 전할 때 가장 답답해합니다. 반대로 서로 다른 생각을 솔직하게 주고받을 수 있는 상대 앞에서는 오래 머뭅니다. 관계가 무료해지는 순간을 조심하시되, 그때 필요한 것은 새로운 사람이 아니라 새로운 대화 주제인 경우가 많습니다.</p></div>
+    <div class="style-card"><h3>💼 일</h3><p>기획, 영업, 홍보, 교육, 중개처럼 말과 정보가 핵심 자산이 되는 일에서 강점이 뚜렷합니다. 여러 프로젝트를 동시에 굴려야 하는 환경에서 오히려 능률이 오르고, 사람을 설득하거나 상황을 정리해 전달하는 역할을 맡으면 존재감이 큽니다. 힘들어하는 상황은 반대편입니다. 하루 종일 같은 화면을 보며 똑같은 작업을 반복해야 하는 자리, 말을 아껴야 하는 경직된 조직 문화에서는 능력이 그대로 묻힙니다. 마감과 우선순위를 외부에서 잡아주면 산만함이 크게 줄어듭니다.</p></div>
+    <div class="style-card"><h3>💰 돈</h3><p>쌍둥이자리의 돈은 대체로 &#39;경험&#39;과 &#39;정보&#39;로 흘러갑니다. 새로 나온 기기, 배우고 싶은 강의, 가보고 싶은 장소에 지갑이 쉽게 열립니다. 수입원이 하나로 고정되기보다 여러 갈래로 나뉘는 경우가 많고, 부업이나 겸업에 대한 저항감도 적습니다. 문제는 흐름을 파악하기 어려울 만큼 항목이 많아진다는 점입니다. 관리 항목을 늘리는 대신 과감히 줄이고, 자동으로 기록되는 구조를 만드는 편이 훨씬 잘 맞습니다.</p></div>
   </div>
-</section>
+</details>
 
 <section>
   <h2 class="sec-title">쌍둥이자리와 잘 맞는 별자리</h2>
@@ -426,26 +468,10 @@ body{background:#f5f5f5;}
   <p class="note">궁합은 성향 차이를 보는 참고일 뿐입니다. 자세한 조합은 <a href="/compatibility">별자리 궁합 페이지</a>에서 볼 수 있습니다.</p>
 </section>
 
-<section>
-  <h2 class="sec-title">쌍둥이자리의 유래</h2>
+<details class="fold"><summary>쌍둥이자리의 유래와 상징</summary>
   <div class="prose"><p>쌍둥이자리는 카스토르와 폴룩스 형제의 이야기로 전해집니다. 두 사람은 같은 어머니 레다에게서 났지만 아버지가 달라, 폴룩스는 제우스의 피를 받아 죽지 않는 몸이었고 카스토르는 필멸의 인간이었습니다. 형제는 한시도 떨어지지 않을 만큼 가까웠는데, 싸움 중에 카스토르가 목숨을 잃습니다. 홀로 남은 폴룩스는 제우스에게 자신의 불사를 형제와 나누게 해 달라고 청했고, 제우스는 그 청을 받아들여 두 사람을 함께 하늘에 올려 별자리로 만들었다고 합니다. 서로 다른 두 존재가 끝내 떨어지지 않는다는 구도가 쌍둥이자리의 상징으로 자주 인용됩니다.</p></div>
-</section>
-
-<section>
-  <h2 class="sec-title">쌍둥이자리의 상징</h2>
-  <table class="sym-table"><tbody>
-    <tr><th>기간</th><td>5.21-6.21</td><th>원소</th><td>공기</td></tr>
-    <tr><th>지배행성</th><td>수성</td><th>탄생석</th><td>마노(아게이트)</td></tr>
-    <tr><th>행운의 색</th><td>밝은 노란색</td><th>행운의 숫자</th><td>3</td></tr>
-    <tr><th>요일</th><td>수요일</td><th>꽃</th><td>라벤더</td></tr>
-  </tbody></table>
-  <p class="prose-sm">쌍둥이자리를 설명할 때는 &#39;한 사람 안에 두 사람이 산다&#39;는 표현이 가장 흔하게 인용됩니다. 전령의 신 메르쿠리우스가 지키는 자리라 &#39;소식을 옮기는 별자리&#39;라는 별칭도 따라붙습니다.</p>
-</section>
-
-<section>
-  <h2 class="sec-title">9월 쌍둥이자리 운세 흐름</h2>
-  <div class="month-wrap"><table class="month-table"><tbody><tr><th scope="row">9월 1일</th><td>오늘 당신의 말은 총알보다 빠르게 나가지만 뇌는 아직 워밍업 중입니다. TMI를 최소 세 번은 뱉고 나서야 요점에 도달하는 하루.</td></tr><tr><th scope="row">9월 2일</th><td>어제 했던 말이 오늘 맘에 안 들어서 전부 번복하고 싶은 날. 이게 바로 &#39;쌍둥이자리의 업데이트 주기&#39;입니다.</td></tr><tr><th scope="row">9월 3일</th><td>호기심이 폭발하는 날. 관심사가 우주론에서 고양이 영상으로 이동하는 데 걸리는 시간: 0.3초. 이 에너지를 하나에 쏟으면 천재, 분산하면 오늘처럼.</td></tr><tr><th scope="row">9월 4일</th><td>변덕의 날. 오전 계획과 오후 계획이 완전히 다른 것은 당신에게 일상이지만 주변은 일상이 아닙니다. 최소한 공지는 해주세요.</td></tr><tr><th scope="row">9월 5일</th><td>수다가 유독 많은 날. 침묵이 3초 이상 지속되면 본능적으로 무언가를 채워 넣으려는 충동이 발동합니다. 오늘은 그 충동을 한 번쯤 이겨보세요.</td></tr><tr><th scope="row">9월 6일</th><td>생각이 너무 많아서 결론이 없는 하루. 쌍둥이자리의 내면에는 지금 찬반 토론이 다섯 개 동시에 진행 중이며 우승자는 없습니다.</td></tr><tr><th scope="row">9월 7일</th><td>적응력이 무기인 날. 어떤 상황이든 유연하게 대처하는 능력은 진짜 재능인데, 오늘은 그걸 좋은 방향으로 써보세요. 카멜레온도 방향은 있습니다.</td></tr><tr><th scope="row">9월 8일</th><td>오늘 당신의 관심사는 아침 먹고 일어나는 동안 세 번 바뀌었습니다. 이건 비판이 아니라 관찰입니다. 그냥 그게 당신입니다.</td></tr><tr><th scope="row">9월 9일</th><td>커뮤니케이션 능력이 최고조인 날. 원하는 걸 말로 표현하는 재주가 탁월합니다. 단, 말의 양이 아니라 질로 승부를 거세요.</td></tr><tr><th scope="row">9월 10일</th><td>두 가지 선택지 앞에서 둘 다 하려는 욕심이 발동하는 날. 쌍둥이자리의 고전적 딜레마. 오늘만큼은 하나를 버리는 연습을.</td></tr><tr><th scope="row">9월 11일</th><td>정보 수집욕이 폭발하는 날. 모든 걸 알고 싶고 모든 걸 경험해 보고 싶은 욕구. 오늘 하루 배운 것들이 나중에 어딘가에 쓰입니다.</td></tr><tr><th scope="row">9월 12일</th><td>사교성이 넘쳐흐르는 날. 만나는 모든 사람과 대화가 잘 됩니다. 단, 너무 많은 사람에게 너무 많은 말을 하면 나중에 수습이 필요합니다.</td></tr><tr><th scope="row">9월 13일</th><td>영감이 샘솟는 날이지만 그 영감이 실행으로 이어지지 않는 것도 당신의 패턴. 오늘만큼은 아이디어를 메모하고 내일 한 가지라도 실행하세요.</td></tr><tr><th scope="row">9월 14일</th><td>집중력이 바닥을 치는 날. 하나를 시작하면 다른 것이 눈에 들어오고 그걸 시작하면 또 다른 것이... 오늘 마감 있는 일은 오전에 마치세요.</td></tr><tr><th scope="row">9월 15일</th><td>오늘 당신의 두뇌는 고속도로인데 목적지가 없는 상태. 에너지는 있고 방향이 없는 날. 아침에 오늘의 목표 하나만 정하세요.</td></tr><tr><th scope="row">9월 16일</th><td>말실수가 잦은 날. 머릿속에서 완성되지 않은 문장이 입 밖으로 먼저 나오는 쌍둥이자리의 고질병이 오늘 특히 심합니다.</td></tr><tr><th scope="row">9월 17일</th><td>변화와 새로움을 갈구하는 날. 현재 상황이 지루하게 느껴지는 건 당신 탓이 아니라 쌍둥이자리의 DNA입니다. 하지만 충동적인 결정은 오늘 하지 마세요.</td></tr><tr><th scope="row">9월 18일</th><td>논리적 사고력이 빛나는 날. 오늘의 쌍둥이자리는 평소보다 분석적이고 체계적입니다. 이 드문 상태를 낭비하지 마세요.</td></tr><tr><th scope="row">9월 19일</th><td>사회적 에너지가 넘치는 날. 사람들 사이에 있을 때 더 빛나는 오늘. 혼자 방에 있으면 에너지가 썩습니다. 나가세요.</td></tr><tr><th scope="row">9월 20일</th><td>내면의 두 자아가 충돌하는 날. 사교적이고 싶은 나와 혼자 있고 싶은 나 사이의 전쟁. 오늘은 적당한 타협점을 찾으세요.</td></tr><tr class="is-today"><th scope="row">9월 21일</th><td>지식에 대한 갈망이 극에 달하는 날. 책, 강의, 유튜브, 팟캐스트를 동시에 켜두고 아무것도 제대로 안 본 하루가 될 위험이 있습니다.</td></tr><tr><th scope="row">9월 22일</th><td>피로가 쌓이는 날. 너무 많은 것을 동시에 하려 했던 지난 몇 주의 대가를 오늘 조금 치릅니다. 무리하지 말고 충전하는 날로.</td></tr><tr><th scope="row">9월 23일</th><td>직관이 예리하게 살아 있는 날. 논리보다 감각이 앞서가는 하루. 이 감각을 믿어보세요. 당신의 직관은 생각보다 정확합니다.</td></tr><tr><th scope="row">9월 24일</th><td>책임감이 무겁게 느껴지는 날. 동시에 여러 사람에게 여러 약속을 한 쌍둥이자리의 폐해가 오늘 드러납니다. 우선순위를 정하세요.</td></tr><tr><th scope="row">9월 25일</th><td>창의성과 실용성이 균형을 이루는 드문 날. 이 상태를 유지하면서 오늘 하나의 프로젝트를 완성해보세요. 완성이라는 경험이 쌍둥이자리에게 가장 필요한 것.</td></tr><tr><th scope="row">9월 26일</th><td>반성의 날. 이번 달 말고 했던 것들이 떠오르는 날입니다. 자책보다는 분석으로 접근하세요. 쌍둥이자리의 지적 능력은 자기 개선에도 쓸 수 있습니다.</td></tr><tr><th scope="row">9월 27일</th><td>에너지가 폭발적으로 올라오는 날. 어제의 성찰이 오늘의 연료가 됩니다. 이 에너지를 한 방향으로 집중하면 엄청난 하루가 됩니다.</td></tr><tr><th scope="row">9월 28일</th><td>감수성이 풍부해지는 날. 평소보다 감정에 민감해지는데, 이게 쌍둥이자리에게는 낯선 느낌일 수 있습니다. 무시하지 말고 느껴보세요.</td></tr><tr><th scope="row">9월 29일</th><td>9월의 마무리를 준비하는 날. 이번 달에 했던 것과 못 했던 것을 정리하는 시간. 쌍둥이자리는 정리를 싫어하지만 정리가 필요한 때가 있습니다.</td></tr><tr><th scope="row">9월 30일</th><td>9월의 마지막 날. 쌍둥이자리답게 이번 달도 많은 일이 있었고, 많은 생각이 오갔고, 많은 말을 했습니다. 10월에는 그 에너지를 조금 더 집중해서 써보세요.</td></tr></tbody></table></div>
-</section>
+  <p class="prose-sm">탄생석 마노(아게이트) · 행운의 색 밝은 노란색 · 행운의 숫자 3 · 수요일</p>
+</details>
 
 <section>
   <h2 class="sec-title">다른 별자리 보기</h2>
@@ -467,6 +493,14 @@ body{background:#f5f5f5;}
   var set=function(id,v){var el=document.getElementById(id); if(el&&v)el.textContent=v;};
   set('f-summary',f.summary); set('f-love',f.love); set('f-work',f.work); set('f-money',f.money);
   set('todayDate',y+'년 '+mo+'월 '+d+'일');
-})();</script>
+})();
+var __S={title:'👯 쌍둥이자리 오늘의 운세',url:'https://todays-fortune-app.vercel.app/zodiac/gemini',img:'https://todays-fortune-app.vercel.app/og-image.png?v=2'};
+function __sum(){var el=document.getElementById('f-summary');return el?el.textContent.slice(0,80):'';}
+function shareKakao(){if(!window.Kakao){alert('잠시 후 다시 시도해 주세요.');return;}try{if(!Kakao.isInitialized())Kakao.init('4dc7d7690ca8b78aec06f64ca1158905');}catch(e){}
+  Kakao.Share.sendDefault({objectType:'feed',content:{title:__S.title,description:__sum(),imageUrl:__S.img,imageWidth:1200,imageHeight:630,link:{mobileWebUrl:__S.url,webUrl:__S.url}},buttons:[{title:'내 운세 보기',link:{mobileWebUrl:__S.url,webUrl:__S.url}}]});}
+function shareX(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(__S.title+'
+'+__sum()+'
+'+__S.url),'_blank');}
+function copyLink(){navigator.clipboard.writeText(__S.url).then(function(){alert('링크를 복사했어요!');});}</script>
 </body>
 </html>

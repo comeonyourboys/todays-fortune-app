@@ -77,6 +77,7 @@ function layout({ title, desc, path, body, ld = [], extraHead = '', extraScript 
 ${ld.map(jsonld).join('\n')}
 ${extraHead}
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${SITE.adsense}" crossorigin="anonymous"></script>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" defer></script>
 </head>
 <body>
 <header class="site-hdr"><div class="container hdr-in">
@@ -103,11 +104,6 @@ function pageSign(s) {
   const p = profiles[s.k];
   const today = fortuneOf(s.k, D);
   const path = urlOf(s.k);
-  const monthRows = [];
-  for (let d = 1; d <= daysInMonth; d++) {
-    const f = fortuneOf(s.k, d);
-    if (f) monthRows.push(`<tr${d === D ? ' class="is-today"' : ''}><th scope="row">${M}월 ${d}일</th><td>${esc(f.summary)}</td></tr>`);
-  }
   const monthData = {};
   for (let d = 1; d <= daysInMonth; d++) { const f = fortuneOf(s.k, d); if (f) monthData[dayKey(d)] = f; }
 
@@ -133,6 +129,11 @@ function pageSign(s) {
     <div class="f-card"><span class="f-label">💼 직장운</span><p id="f-work">${esc(today.work)}</p></div>
     <div class="f-card"><span class="f-label">💰 재물운</span><p id="f-money">${esc(today.money)}</p></div>
   </div>` : '<p class="empty">오늘 운세를 준비 중입니다.</p>'}
+  <div class="share-row">
+    <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡 공유</button>
+    <button class="share-btn x" type="button" onclick="shareX()">𝕏 공유</button>
+    <button class="share-btn link" type="button" onclick="copyLink()">🔗 링크 복사</button>
+  </div>
 </section>
 
 <section>
@@ -151,14 +152,13 @@ function pageSign(s) {
   </div>
 </section>
 
-<section>
-  <h2 class="sec-title">${esc(s.n)}의 연애·일·돈</h2>
+<details class="fold"><summary>${esc(s.n)}의 연애·일·돈 스타일</summary>
   <div class="style-grid">
-    <div class="style-card"><h3>💕 연애 스타일</h3><p>${esc(p.love)}</p></div>
-    <div class="style-card"><h3>💼 일하는 방식</h3><p>${esc(p.work)}</p></div>
-    <div class="style-card"><h3>💰 돈 쓰는 습관</h3><p>${esc(p.money)}</p></div>
+    <div class="style-card"><h3>💕 연애</h3><p>${esc(p.love)}</p></div>
+    <div class="style-card"><h3>💼 일</h3><p>${esc(p.work)}</p></div>
+    <div class="style-card"><h3>💰 돈</h3><p>${esc(p.money)}</p></div>
   </div>
-</section>
+</details>
 
 <section>
   <h2 class="sec-title">${esc(s.n)}와 잘 맞는 별자리</h2>
@@ -172,26 +172,10 @@ function pageSign(s) {
   <p class="note">궁합은 성향 차이를 보는 참고일 뿐입니다. 자세한 조합은 <a href="/compatibility">별자리 궁합 페이지</a>에서 볼 수 있습니다.</p>
 </section>
 
-<section>
-  <h2 class="sec-title">${esc(s.n)}의 유래</h2>
+<details class="fold"><summary>${esc(s.n)}의 유래와 상징</summary>
   <div class="prose">${paras(p.myth)}</div>
-</section>
-
-<section>
-  <h2 class="sec-title">${esc(s.n)}의 상징</h2>
-  <table class="sym-table"><tbody>
-    <tr><th>기간</th><td>${esc(s.p)}</td><th>원소</th><td>${esc(s.el)}</td></tr>
-    <tr><th>지배행성</th><td>${esc(s.ruler)}</td><th>탄생석</th><td>${esc(p.symbols.stone)}</td></tr>
-    <tr><th>행운의 색</th><td>${esc(p.symbols.color)}</td><th>행운의 숫자</th><td>${esc(p.symbols.number)}</td></tr>
-    <tr><th>요일</th><td>${esc(p.symbols.day)}</td><th>꽃</th><td>${esc(p.symbols.flower)}</td></tr>
-  </tbody></table>
-  <p class="prose-sm">${esc(p.famous)}</p>
-</section>
-
-<section>
-  <h2 class="sec-title">${M}월 ${esc(s.n)} 운세 흐름</h2>
-  <div class="month-wrap"><table class="month-table"><tbody>${monthRows.join('')}</tbody></table></div>
-</section>
+  <p class="prose-sm">탄생석 ${esc(p.symbols.stone)} · 행운의 색 ${esc(p.symbols.color)} · 행운의 숫자 ${esc(p.symbols.number)} · ${esc(p.symbols.day)}</p>
+</details>
 
 <section>
   <h2 class="sec-title">다른 별자리 보기</h2>
@@ -220,7 +204,13 @@ function pageSign(s) {
   var set=function(id,v){var el=document.getElementById(id); if(el&&v)el.textContent=v;};
   set('f-summary',f.summary); set('f-love',f.love); set('f-work',f.work); set('f-money',f.money);
   set('todayDate',y+'년 '+mo+'월 '+d+'일');
-})();</script>`;
+})();
+var __S={title:'${s.e} ${esc(s.n)} 오늘의 운세',url:'${SITE.url}${path}',img:'${SITE.ogImage}'};
+function __sum(){var el=document.getElementById('f-summary');return el?el.textContent.slice(0,80):'';}
+function shareKakao(){if(!window.Kakao){alert('잠시 후 다시 시도해 주세요.');return;}try{if(!Kakao.isInitialized())Kakao.init('4dc7d7690ca8b78aec06f64ca1158905');}catch(e){}
+  Kakao.Share.sendDefault({objectType:'feed',content:{title:__S.title,description:__sum(),imageUrl:__S.img,imageWidth:1200,imageHeight:630,link:{mobileWebUrl:__S.url,webUrl:__S.url}},buttons:[{title:'내 운세 보기',link:{mobileWebUrl:__S.url,webUrl:__S.url}}]});}
+function shareX(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(__S.title+'\n'+__sum()+'\n'+__S.url),'_blank');}
+function copyLink(){navigator.clipboard.writeText(__S.url).then(function(){alert('링크를 복사했어요!');});}</script>`;
 
   return layout({
     title: `${s.n} 오늘의 운세와 성격·궁합 (${s.p}) | ${SITE.name}`,
@@ -252,22 +242,12 @@ function pageHome() {
 <section>
   <h2 class="sec-title">별자리 운세, 이렇게 보세요</h2>
   <div class="prose">
-    <p>별자리 운세는 태어난 날짜를 기준으로 태양이 어느 별자리 구간에 있었는지를 따지는 서양 점성술의 해석입니다. 흔히 말하는 "무슨 자리"는 이 태양 별자리를 가리킵니다. 생일이 두 별자리의 경계에 걸쳐 있다면 출생 연도와 시각에 따라 달라질 수 있어, 두 별자리 설명을 모두 읽어 보는 편이 낫습니다.</p>
-    <p>이 사이트는 별자리마다 오늘의 운세와 함께 <b>성격의 강점과 약점, 연애·일·돈을 대하는 방식, 잘 맞는 별자리와 부딪히기 쉬운 별자리, 별자리에 얽힌 신화</b>를 정리해 두었습니다. 운세만 확인하고 닫기보다 자기 별자리 페이지를 한 번 읽어 보시면 왜 그런 해석이 나오는지 이해하는 데 도움이 됩니다.</p>
-    <p>점성술은 과학적으로 검증된 예측 도구가 아닙니다. 오늘 하루를 돌아보는 계기 정도로 가볍게 보시고, 중요한 결정은 스스로의 판단으로 내리시기 바랍니다.</p>
+    <p>별자리는 태어난 날 태양이 지나던 구간으로 정해집니다. 생일이 두 별자리 경계에 걸쳐 있으면 두 쪽을 다 읽어 보세요. 별자리 페이지에는 오늘의 운세와 함께 성격의 강점·약점, 잘 맞는 별자리를 짧게 정리해 두었습니다.</p>
+    <p>점성술은 검증된 예측 도구가 아닙니다. 하루를 돌아보는 계기 정도로 가볍게 보시고, 중요한 결정은 스스로 내리시기 바랍니다.</p>
   </div>
 </section>
 
-<section>
-  <h2 class="sec-title">원소별로 묶어 보기</h2>
-  <div class="elem-grid">
-    ${['불', '땅', '공기', '물'].map((el) => `<div class="elem-box">
-      <h3>${el}의 별자리</h3>
-      <div class="elem-signs">${signs.filter((s) => s.el === el).map((s) => `<a href="${urlOf(s.k)}">${s.e} ${esc(s.n)}</a>`).join('')}</div>
-      <p>${{ 불: '행동이 앞서고 에너지가 밖으로 향합니다. 시작하는 힘이 강한 대신 지구력에서 아쉬울 때가 있습니다.', 땅: '현실 감각과 꾸준함이 강점입니다. 안정을 중시해 변화 앞에서는 속도가 느려집니다.', 공기: '생각과 말이 빠르고 사람을 잇는 데 능합니다. 감정보다 논리를 앞세우는 편입니다.', 물: '감정과 직관으로 상황을 읽습니다. 공감 능력이 뛰어난 만큼 주변 분위기에 쉽게 물듭니다.' }[el]}</p>
-    </div>`).join('')}
-  </div>
-</section>`;
+`;
 
   const ld = [
     { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url, description: SITE.desc, inLanguage: 'ko' },
@@ -304,60 +284,71 @@ const pairScore = (a, b) => {
   return { asp, score: Math.max(45, Math.min(97, asp.score + ELEM_PAIR(a.el, b.el))) };
 };
 function pageCompat() {
-  const rows = signs.map((a) => `<tr><th scope="row"><a href="${urlOf(a.k)}">${a.e} ${esc(a.n)}</a></th>${signs.map((b) => { const { score } = pairScore(a, b); const cls = score >= 88 ? 'c-best' : score >= 78 ? 'c-good' : score >= 65 ? 'c-mid' : 'c-low'; return `<td class="${cls}" title="${esc(a.n)} × ${esc(b.n)}">${score}</td>`; }).join('')}</tr>`).join('');
-  const seen = new Set(); const details = [];
-  for (const a of signs) for (const b of signs) {
-    const key = [a.k, b.k].sort().join('|'); if (seen.has(key)) continue; seen.add(key);
-    const { asp, score } = pairScore(a, b);
-    details.push({ a, b, asp, score });
-  }
-  details.sort((x, y) => y.score - x.score);
-  const card = (d) => `<div class="pair-card"><div class="pair-head"><span class="pair-name">${d.a.e} ${esc(d.a.n)} × ${d.b.e} ${esc(d.b.n)}</span><span class="pair-score">${d.score}</span></div><p class="pair-asp">${esc(d.asp.name)} · ${esc(d.a.el)}과 ${esc(d.b.el)}</p><p class="pair-text">${esc(d.asp.text)}</p></div>`;
+  const matrix = signs.map((a) => signs.map((b) => { const { asp, score } = pairScore(a, b); return [score, asp.name, asp.text]; }));
+  const rows = signs.map((a, i) => `<tr><th scope="row"><a href="${urlOf(a.k)}">${a.e} ${esc(a.n)}</a></th>${signs.map((b, j) => { const score = matrix[i][j][0]; const cls = score >= 88 ? 'c-best' : score >= 78 ? 'c-good' : score >= 65 ? 'c-mid' : 'c-low'; return `<td class="${cls}" title="${esc(a.n)} × ${esc(b.n)}">${score}</td>`; }).join('')}</tr>`).join('');
+  const pickGrid = (id) => `<div class="pick-grid" id="${id}">${signs.map((x, i) => `<button class="pick-btn" type="button" data-i="${i}"><span class="e">${x.e}</span><span class="n">${esc(x.n)}</span></button>`).join('')}</div>`;
   const body = `
 <nav class="crumb"><a href="/">홈</a> › <span>별자리 궁합</span></nav>
 <article class="sign-page">
-<header class="home-hero" style="padding-top:20px">
-  <h1>별자리 궁합표</h1>
-  <p class="hero-sub">12별자리 78개 조합의 궁합을 원소와 각도로 정리했습니다. 표에서 두 별자리가 만나는 칸의 숫자가 궁합 점수입니다.</p>
-</header>
-
+<header class="home-hero" style="padding-top:20px"><h1>별자리 궁합</h1><p class="hero-sub">내 별자리와 상대 별자리를 고르면 궁합 점수와 해설을 바로 보여 드립니다.</p></header>
 <section>
-  <h2 class="sec-title">12 × 12 궁합표</h2>
-  <div class="month-wrap" style="overflow-x:auto"><table class="compat-table"><thead><tr><th></th>${signs.map((s) => `<th title="${esc(s.n)}">${s.e}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>
-  <p class="note">세로줄이 나, 가로줄이 상대입니다. 색이 진할수록 전통적으로 조화롭다고 보는 조합입니다.</p>
+  <div class="pick-label">내 별자리</div>${pickGrid('myGrid')}
+  <div class="pick-label">상대 별자리</div>${pickGrid('yourGrid')}
+  <button class="result-btn" id="goBtn" type="button" disabled>궁합 보기</button>
+  <div class="result-card" id="rc">
+    <div class="rc-pair" id="rcPair"></div>
+    <div class="rc-score" id="rcScore"></div>
+    <div class="rc-asp" id="rcAsp"></div>
+    <p class="rc-text" id="rcText"></p>
+    <div class="rc-links" id="rcLinks"></div>
+    <div class="share-row">
+      <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡 공유</button>
+      <button class="share-btn x" type="button" onclick="shareX()">𝕏 공유</button>
+      <button class="share-btn link" type="button" onclick="copyLink()">🔗 링크 복사</button>
+    </div>
+  </div>
 </section>
-
-<section>
-  <h2 class="sec-title">궁합은 무엇으로 정해지나요</h2>
+<details class="fold"><summary>12 × 12 궁합표 전체 보기</summary>
+  <div class="month-wrap" style="overflow-x:auto;border-radius:0"><table class="compat-table"><thead><tr><th></th>${signs.map((s) => `<th title="${esc(s.n)}">${s.e}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>
+  <p class="note">세로줄이 나, 가로줄이 상대입니다. 점수는 두 별자리의 원소 관계와 황도상 각도를 합쳐 계산했습니다.</p>
+</details>
+<details class="fold"><summary>궁합은 무엇으로 정해지나요</summary>
   <div class="prose">
-    <p>점성술에서 두 별자리의 궁합은 크게 두 가지로 봅니다. 하나는 <b>원소</b>입니다. 12별자리는 불·땅·공기·물 네 원소로 나뉘고, 같은 원소끼리는 세상을 보는 방식이 비슷해 말이 잘 통합니다. 불과 공기, 땅과 물은 서로를 북돋우는 짝으로 봅니다. 반대로 불과 물, 공기와 땅은 속도와 관심사가 어긋나 조율이 필요합니다.</p>
-    <p>다른 하나는 <b>각도</b>입니다. 황도 12궁을 원으로 놓았을 때 두 별자리가 몇 칸 떨어져 있는지를 따집니다. 네 칸 떨어진 트라인은 가장 편안하고, 세 칸 떨어진 스퀘어는 긴장이 크며, 정반대인 어포지션은 강하게 끌리면서도 부딪힙니다. 이 표의 점수는 두 기준을 합쳐 계산한 값입니다.</p>
-    <p>점수가 낮다고 맞지 않는 관계라는 뜻은 아닙니다. 점성술에서도 긴장이 큰 조합이 서로를 가장 많이 성장시킨다고 봅니다. 잘 맞는 조합은 편안한 대신 자극이 적습니다. 어느 쪽이 좋은지는 두 사람이 관계에서 무엇을 원하는지에 달려 있습니다.</p>
+    <p>점성술에서 두 별자리의 궁합은 두 가지로 봅니다. 하나는 <b>원소</b>입니다. 불·땅·공기·물 네 원소 중 같은 원소끼리는 세상을 보는 방식이 비슷해 말이 잘 통하고, 불과 공기, 땅과 물은 서로를 북돋우는 짝으로 봅니다. 다른 하나는 <b>각도</b>입니다. 황도 12궁을 원으로 놓았을 때 몇 칸 떨어져 있는지에 따라 트라인(4칸, 가장 편안), 스퀘어(3칸, 긴장), 어포지션(정반대, 끌림과 충돌)으로 나눕니다.</p>
+    <p>점수가 낮다고 맞지 않는 관계라는 뜻은 아닙니다. 긴장이 큰 조합이 서로를 가장 많이 성장시킨다고도 봅니다. 재미로 보시고 관계를 이해하는 참고 자료로만 쓰시기 바랍니다.</p>
   </div>
-</section>
-
-<section>
-  <h2 class="sec-title">각도별 의미</h2>
-  <div class="style-grid" style="grid-template-columns:repeat(2,1fr)">
-    ${Object.values(ASPECT).map((a) => `<div class="style-card"><h3>${esc(a.name)}</h3><p>${esc(a.text)}</p></div>`).join('')}
-  </div>
-</section>
-
-<section>
-  <h2 class="sec-title">조합 78개 전체</h2>
-  <div class="pair-grid">${details.map(card).join('')}</div>
-</section>
-
+</details>
 <section>
   <h2 class="sec-title">별자리별 페이지</h2>
   <div class="sign-links">${signs.map((x) => `<a class="sign-chip" href="${urlOf(x.k)}"><span>${x.e}</span>${esc(x.n)}</a>`).join('')}</div>
 </section>
 </article>`;
+  const extraScript = `<script>
+var __Z=${JSON.stringify(signs.map((x) => ({ e: x.e, n: x.n, k: x.k })))}, __M=${JSON.stringify(matrix)};
+var my=-1, you=-1, __S={title:'별자리 궁합',url:'${SITE.url}/compatibility',img:'${SITE.ogImage}',desc:'내 별자리와 상대 별자리 궁합을 바로 확인해 보세요.'};
+function pick(grid,i){ if(grid==='myGrid')my=i; else you=i; document.querySelectorAll('#'+grid+' .pick-btn').forEach(function(b,j){b.classList.toggle('active',j===i);}); document.getElementById('goBtn').disabled=!(my>=0&&you>=0); }
+['myGrid','yourGrid'].forEach(function(g){ document.querySelectorAll('#'+g+' .pick-btn').forEach(function(b){ b.addEventListener('click',function(){pick(g,Number(b.dataset.i));}); }); });
+function show(){ if(my<0||you<0)return; var a=__Z[my],b=__Z[you],m=__M[my][you];
+  document.getElementById('rcPair').innerHTML=a.e+' '+a.n+' <span style="opacity:.5">×</span> '+b.e+' '+b.n;
+  document.getElementById('rcScore').innerHTML=m[0]+'<small>점</small>';
+  document.getElementById('rcAsp').textContent=m[1]+' · '+(m[0]>=88?'최상의 조합':m[0]>=78?'잘 맞는 조합':m[0]>=65?'노력하면 좋아지는 조합':'서로를 배우는 조합');
+  document.getElementById('rcText').textContent=m[2];
+  document.getElementById('rcLinks').innerHTML='<a href="/zodiac/'+a.k+'">'+a.n+' 자세히</a><a href="/zodiac/'+b.k+'">'+b.n+' 자세히</a>';
+  __S.title=a.e+' '+a.n+' × '+b.e+' '+b.n+' 궁합 '+m[0]+'점'; __S.desc=m[2].slice(0,80); __S.url='${SITE.url}/compatibility?a='+a.k+'&b='+b.k;
+  var rc=document.getElementById('rc'); rc.classList.add('on'); rc.scrollIntoView({behavior:'smooth',block:'start'});
+  try{history.replaceState(null,'','?a='+a.k+'&b='+b.k);}catch(e){} }
+document.getElementById('goBtn').addEventListener('click',show);
+try{ var q=new URLSearchParams(location.search); var ai=__Z.findIndex(function(z){return z.k===q.get('a');}), bi=__Z.findIndex(function(z){return z.k===q.get('b');}); if(ai>=0&&bi>=0){pick('myGrid',ai);pick('yourGrid',bi);show();} }catch(e){}
+function shareKakao(){if(!window.Kakao){alert('잠시 후 다시 시도해 주세요.');return;}try{if(!Kakao.isInitialized())Kakao.init('4dc7d7690ca8b78aec06f64ca1158905');}catch(e){}
+  Kakao.Share.sendDefault({objectType:'feed',content:{title:__S.title,description:__S.desc,imageUrl:__S.img,imageWidth:1200,imageHeight:630,link:{mobileWebUrl:__S.url,webUrl:__S.url}},buttons:[{title:'우리 궁합 보기',link:{mobileWebUrl:__S.url,webUrl:__S.url}}]});}
+function shareX(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(__S.title+'\\n'+__S.url),'_blank');}
+function copyLink(){navigator.clipboard.writeText(__S.url).then(function(){alert('링크를 복사했어요!');});}
+</script>`;
   const ld = [
-    { '@context': 'https://schema.org', '@type': 'Article', headline: '별자리 궁합표 — 12별자리 78개 조합', description: '원소와 각도로 계산한 12별자리 궁합 점수와 해석', inLanguage: 'ko', mainEntityOfPage: SITE.url + '/compatibility', image: SITE.ogImage, datePublished: '2026-09-01', dateModified: TODAY, author: { '@type': 'Organization', name: SITE.name, url: SITE.url }, publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url } },
+    { '@context': 'https://schema.org', '@type': 'WebApplication', name: '별자리 궁합', url: SITE.url + '/compatibility', applicationCategory: 'LifestyleApplication', operatingSystem: 'Web Browser', inLanguage: 'ko', description: '내 별자리와 상대 별자리를 골라 궁합 점수와 해설을 확인하는 도구', offers: { '@type': 'Offer', price: '0', priceCurrency: 'KRW' } },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: '홈', item: SITE.url + '/' }, { '@type': 'ListItem', position: 2, name: '별자리 궁합', item: SITE.url + '/compatibility' }] },
   ];
-  return layout({ title: `별자리 궁합표 — 12별자리 78개 조합 점수 | ${SITE.name}`, desc: '12별자리 궁합을 원소와 각도로 계산한 표와 조합별 해석. 어떤 별자리끼리 잘 맞고 왜 부딪히는지 정리했습니다.', path: '/compatibility', body, ld });
+  return layout({ title: `별자리 궁합 — 내 별자리 × 상대 별자리 점수 바로 보기 | ${SITE.name}`, desc: '내 별자리와 상대 별자리를 고르면 원소와 각도로 계산한 궁합 점수와 해설을 바로 보여 드립니다. 12별자리 78개 조합.', path: '/compatibility', body, ld, extraScript });
 }
 
 // ---------- 소개 ----------

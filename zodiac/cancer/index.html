@@ -352,12 +352,50 @@ body{background:#f5f5f5;}
 .pair-score{font-size:19px;font-weight:800;color:#7c6cf0;font-variant-numeric:tabular-nums;}
 .pair-asp{font-size:12px;color:#aaa;font-weight:700;margin-top:3px;}
 .pair-text{font-size:13.5px;line-height:1.7;color:#555;margin-top:7px;}
+
+/* 공유·접기 */
+.share-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.share-btn{flex:1;min-width:110px;padding:12px 10px;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:transform .12s;}
+.share-btn:hover{transform:translateY(-2px);}
+.share-btn.kakao{background:#fee500;color:#1a1a1a;}
+.share-btn.x{background:#111;color:#fff;}
+.share-btn.link{background:rgba(255,255,255,.9);color:#333;}
+.fold{background:#fff;border-radius:16px;margin:16px 0;overflow:hidden;}
+.fold summary{list-style:none;cursor:pointer;padding:16px 20px;font-weight:800;font-size:16px;display:flex;justify-content:space-between;align-items:center;}
+.fold summary::-webkit-details-marker{display:none;}
+.fold summary::after{content:"+";color:#7c6cf0;font-size:22px;font-weight:900;}
+.fold[open] summary::after{content:"−";}
+.fold>*:not(summary){padding:0 20px 18px;}
+.fold .style-grid{padding:0 16px 16px;}
+/* 궁합 선택 UI */
+.pick-label{font-size:13px;font-weight:800;color:#999;letter-spacing:1px;margin:18px 0 8px;}
+.pick-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+@media(max-width:600px){.pick-grid{grid-template-columns:repeat(4,1fr);}}
+.pick-btn{background:#fff;border:2px solid transparent;border-radius:14px;padding:10px 4px;cursor:pointer;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:3px;transition:all .12s;}
+.pick-btn .e{font-size:26px;line-height:1;}
+.pick-btn .n{font-size:12px;font-weight:700;color:#444;}
+.pick-btn:hover{transform:translateY(-2px);}
+.pick-btn.active{border-color:#7c6cf0;background:#f4f2ff;}
+.result-btn{width:100%;margin-top:18px;padding:16px;border:none;border-radius:14px;background:#1a1a2e;color:#fff;font-size:17px;font-weight:800;cursor:pointer;font-family:inherit;}
+.result-btn:disabled{background:#ddd;color:#999;cursor:not-allowed;}
+.result-card{background:linear-gradient(135deg,#1a1a2e,#2d2b55);color:#fff;border-radius:20px;padding:26px 24px;margin-top:20px;display:none;}
+.result-card.on{display:block;animation:pop .3s ease-out;}
+@keyframes pop{from{transform:scale(.97);opacity:0}to{transform:scale(1);opacity:1}}
+.rc-pair{font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
+.rc-score{font-size:64px;font-weight:900;text-align:center;letter-spacing:-2px;line-height:1.1;margin:8px 0 2px;}
+.rc-score small{font-size:22px;font-weight:700;color:rgba(255,255,255,.6);}
+.rc-asp{text-align:center;font-size:13px;color:rgba(255,255,255,.6);font-weight:700;}
+.rc-text{margin-top:14px;font-size:15px;line-height:1.75;color:#eee;}
+.rc-links{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
+.rc-links a{color:#fff;background:rgba(255,255,255,.14);padding:7px 12px;border-radius:999px;text-decoration:none;font-size:13px;font-weight:700;}
+.result-card .share-row .link{background:rgba(255,255,255,.9);}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"게자리 운세와 성격 — 6.22-7.22","description":"게자리는 '안'과 '밖'을 명확히 구분하는 별자리입니다. 단단한 껍데기 안에 부드러운 속살이 있는 게의 형상 그대로, 당신은 처음 만난 사람에게는 예의 바르지만 좀처럼 속을 보이지 않습니다. 그러다 한번 내 사람이라는 판단이 서면 태도가 완전히 달라집니다. 그때부터는 상대의 일을 자기 ","inLanguage":"ko","mainEntityOfPage":"https://todays-fortune-app.vercel.app/zodiac/cancer","image":"https://todays-fortune-app.vercel.app/og-image.png?v=2","datePublished":"2026-08-21","dateModified":"2026-09-21","author":{"@type":"Organization","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app"},"publisher":{"@type":"Organization","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"게자리는 몇 월 며칠생인가요?","acceptedAnswer":{"@type":"Answer","text":"게자리는 6.22-7.22 사이에 태어난 사람입니다. 물 원소에 속하고 지배행성은 달입니다."}},{"@type":"Question","name":"게자리 성격은 어떤가요?","acceptedAnswer":{"@type":"Answer","text":"게자리는 '안'과 '밖'을 명확히 구분하는 별자리입니다. 단단한 껍데기 안에 부드러운 속살이 있는 게의 형상 그대로, 당신은 처음 만난 사람에게는 예의 바르지만 좀처럼 속을 보이지 않습니다. 그러다 한번 내 사람이라는 판단이 서면 태도가 완전히 달라집니다. 그때부터는 상대의 일을 자기 일처럼 떠안습니다."}},{"@type":"Question","name":"게자리와 잘 맞는 별자리는?","acceptedAnswer":{"@type":"Answer","text":"전갈자리: 감정의 깊이를 재는 기준이 비슷해, 겉도는 대화 없이 처음부터 속 이야기를 나눌 수 있습니다. 황소자리: 안정된 생활을 함께 만들어 가려는 방향이 같아, 사소한 일상에서 서로 안심하게 됩니다."}},{"@type":"Question","name":"오늘 게자리 운세는?","acceptedAnswer":{"@type":"Answer","text":"오늘은 새로운 시도를 해볼 용기가 생기는 날이다. 늘 하던 것만 하면 늘 얻던 것만 얻는다."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://todays-fortune-app.vercel.app/"},{"@type":"ListItem","position":2,"name":"게자리","item":"https://todays-fortune-app.vercel.app/zodiac/cancer"}]}</script>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5479403345572412" crossorigin="anonymous"></script>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" defer></script>
 </head>
 <body>
 <header class="site-hdr"><div class="container hdr-in">
@@ -387,6 +425,11 @@ body{background:#f5f5f5;}
     <div class="f-card"><span class="f-label">💼 직장운</span><p id="f-work">그동안 도전하지 못했던 업무 영역에 손을 뻗어라. 생각보다 잘 된다는 걸 알게 된다.</p></div>
     <div class="f-card"><span class="f-label">💰 재물운</span><p id="f-money">소액이라도 새로운 저축 방식을 시작해보는 것이 좋다. 오늘이 시작점이 될 수 있다.</p></div>
   </div>
+  <div class="share-row">
+    <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡 공유</button>
+    <button class="share-btn x" type="button" onclick="shareX()">𝕏 공유</button>
+    <button class="share-btn link" type="button" onclick="copyLink()">🔗 링크 복사</button>
+  </div>
 </section>
 
 <section>
@@ -405,14 +448,13 @@ body{background:#f5f5f5;}
   </div>
 </section>
 
-<section>
-  <h2 class="sec-title">게자리의 연애·일·돈</h2>
+<details class="fold"><summary>게자리의 연애·일·돈 스타일</summary>
   <div class="style-grid">
-    <div class="style-card"><h3>💕 연애 스타일</h3><p>게자리에게 연애는 취미가 아니라 삶의 기반입니다. 먼저 고백하기보다 상대의 온도를 오래 살피고, 확신이 서기 전에는 마음을 쉽게 드러내지 않습니다. 대신 관계가 시작되면 상대의 일상 전체를 챙기는 방식으로 사랑합니다. 당신이 약한 지점은 애매한 태도입니다. 좋다 싫다를 분명히 말해주지 않는 상대 앞에서 가장 크게 불안해지고, 그 불안을 확인 질문 대신 침묵으로 표현하는 경우가 많습니다. 서운함을 쌓아두기 전에 말로 꺼내는 연습이 관계를 오래 가게 합니다.</p></div>
-    <div class="style-card"><h3>💼 일하는 방식</h3><p>게자리는 사람을 돌보고 조직을 지키는 자리에서 강합니다. 인사, 교육, 돌봄, 고객 응대, 팀 내 조율처럼 신뢰가 곧 실력이 되는 일과 잘 맞습니다. 구성원 각자의 상태를 읽어내는 감각 덕분에 실무형 관리자로도 평가가 좋습니다. 반대로 성과가 숫자로만 평가되고 사람이 소모품처럼 오가는 환경에서는 소진이 빠릅니다. 공개적으로 질책받는 상황에도 특히 취약합니다. 안정된 소속감이 확보되면 놀라울 만큼 오래, 그리고 성실하게 일합니다.</p></div>
-    <div class="style-card"><h3>💰 돈 쓰는 습관</h3><p>게자리의 재물 습관은 &#39;대비&#39;라는 한 단어로 설명됩니다. 만일의 사태를 상정하고 비상금을 따로 두는 성향이 뚜렷해, 12별자리 가운데 저축 습관이 잘 잡히는 편에 속합니다. 지출은 주로 집과 가족을 향합니다. 주거 환경을 갖추는 일이나 가까운 사람을 챙기는 데는 예산을 아끼지 않습니다. 주의할 점은 불안이 커질 때 지출도 함께 늘어난다는 것입니다. 불안해서 사둔 물건이 쌓이지 않도록 구매 전에 하루를 두는 습관이 도움이 됩니다.</p></div>
+    <div class="style-card"><h3>💕 연애</h3><p>게자리에게 연애는 취미가 아니라 삶의 기반입니다. 먼저 고백하기보다 상대의 온도를 오래 살피고, 확신이 서기 전에는 마음을 쉽게 드러내지 않습니다. 대신 관계가 시작되면 상대의 일상 전체를 챙기는 방식으로 사랑합니다. 당신이 약한 지점은 애매한 태도입니다. 좋다 싫다를 분명히 말해주지 않는 상대 앞에서 가장 크게 불안해지고, 그 불안을 확인 질문 대신 침묵으로 표현하는 경우가 많습니다. 서운함을 쌓아두기 전에 말로 꺼내는 연습이 관계를 오래 가게 합니다.</p></div>
+    <div class="style-card"><h3>💼 일</h3><p>게자리는 사람을 돌보고 조직을 지키는 자리에서 강합니다. 인사, 교육, 돌봄, 고객 응대, 팀 내 조율처럼 신뢰가 곧 실력이 되는 일과 잘 맞습니다. 구성원 각자의 상태를 읽어내는 감각 덕분에 실무형 관리자로도 평가가 좋습니다. 반대로 성과가 숫자로만 평가되고 사람이 소모품처럼 오가는 환경에서는 소진이 빠릅니다. 공개적으로 질책받는 상황에도 특히 취약합니다. 안정된 소속감이 확보되면 놀라울 만큼 오래, 그리고 성실하게 일합니다.</p></div>
+    <div class="style-card"><h3>💰 돈</h3><p>게자리의 재물 습관은 &#39;대비&#39;라는 한 단어로 설명됩니다. 만일의 사태를 상정하고 비상금을 따로 두는 성향이 뚜렷해, 12별자리 가운데 저축 습관이 잘 잡히는 편에 속합니다. 지출은 주로 집과 가족을 향합니다. 주거 환경을 갖추는 일이나 가까운 사람을 챙기는 데는 예산을 아끼지 않습니다. 주의할 점은 불안이 커질 때 지출도 함께 늘어난다는 것입니다. 불안해서 사둔 물건이 쌓이지 않도록 구매 전에 하루를 두는 습관이 도움이 됩니다.</p></div>
   </div>
-</section>
+</details>
 
 <section>
   <h2 class="sec-title">게자리와 잘 맞는 별자리</h2>
@@ -426,26 +468,10 @@ body{background:#f5f5f5;}
   <p class="note">궁합은 성향 차이를 보는 참고일 뿐입니다. 자세한 조합은 <a href="/compatibility">별자리 궁합 페이지</a>에서 볼 수 있습니다.</p>
 </section>
 
-<section>
-  <h2 class="sec-title">게자리의 유래</h2>
+<details class="fold"><summary>게자리의 유래와 상징</summary>
   <div class="prose"><p>게자리는 헤라클레스의 열두 과업 가운데 물뱀 히드라와의 싸움에서 유래한 것으로 전해집니다. 헤라클레스를 미워하던 여신 헤라는 싸움을 방해하기 위해 거대한 게 카르키노스를 보냈습니다. 게는 늪에서 나와 헤라클레스의 발을 집게로 물었지만, 곧 짓밟혀 목숨을 잃고 맙니다. 헤라는 자신의 명을 끝까지 수행한 이 작은 존재를 가엾게 여겨 하늘로 올려 별자리로 삼았다고 합니다. 이길 수 없는 상대 앞에서도 자기 자리를 지켰다는 점 때문에, 게자리의 충직함을 설명할 때 이 이야기가 자주 함께 언급됩니다.</p></div>
-</section>
-
-<section>
-  <h2 class="sec-title">게자리의 상징</h2>
-  <table class="sym-table"><tbody>
-    <tr><th>기간</th><td>6.22-7.22</td><th>원소</th><td>물</td></tr>
-    <tr><th>지배행성</th><td>달</td><th>탄생석</th><td>진주</td></tr>
-    <tr><th>행운의 색</th><td>은백색</td><th>행운의 숫자</th><td>2</td></tr>
-    <tr><th>요일</th><td>월요일</td><th>꽃</th><td>백합</td></tr>
-  </tbody></table>
-  <p class="prose-sm">게자리를 설명할 때는 &#39;집이 곧 세계인 사람&#39;이라는 표현이 흔히 쓰입니다. 달이 지키는 자리라 &#39;조수처럼 감정이 드나드는 별자리&#39;, &#39;껍데기는 단단하고 속은 부드러운 별자리&#39;라는 비유도 오래 인용되어 왔습니다.</p>
-</section>
-
-<section>
-  <h2 class="sec-title">9월 게자리 운세 흐름</h2>
-  <div class="month-wrap"><table class="month-table"><tbody><tr><th scope="row">9월 1일</th><td>오늘은 집 밖으로 나가야 할 것 같은 예감이 강하게 드는데, 그 예감이 맞다. 억지로라도 움직여라.</td></tr><tr><th scope="row">9월 2일</th><td>감정 기복이 심한 하루다. 주변 사람의 말 한마디에 과반응하지 말고 일단 숨부터 크게 쉬어라.</td></tr><tr><th scope="row">9월 3일</th><td>직감이 유독 예리한 날이다. 이상하다는 느낌이 들면 그게 맞다. 눈치 능력을 제대로 써라.</td></tr><tr><th scope="row">9월 4일</th><td>오늘은 집에서 혼자 있고 싶은 마음이 강한데 어쩔 수 없이 약속이 있다. 일찍 빠져나오는 전략을 세워라.</td></tr><tr><th scope="row">9월 5일</th><td>에너지가 평소보다 높다. 이럴 때 미뤄둔 일을 처리해야 다음 주를 편하게 시작할 수 있다.</td></tr><tr><th scope="row">9월 6일</th><td>주말이라고 방전된 배터리를 충전할 기회다. 누군가와 있으면 피로해지는 타입이니 오늘만큼은 혼자 쉬어라.</td></tr><tr><th scope="row">9월 7일</th><td>감수성이 폭발하는 일요일이다. 슬픈 영화나 음악을 보고 듣다가 갑자기 인생이 허무해질 수 있으니 주의하라.</td></tr><tr><th scope="row">9월 8일</th><td>월요일 특유의 무거움이 있지만, 오전을 버티면 오후가 의외로 술술 풀린다. 오전에 포기하지 마라.</td></tr><tr><th scope="row">9월 9일</th><td>주변 분위기를 너무 빠르게 읽는 탓에 오늘은 피로감이 이른 오후부터 몰려올 수 있다. 혼자 있는 시간을 의도적으로 확보해라.</td></tr><tr><th scope="row">9월 10일</th><td>기분이 롤러코스터처럼 움직이는 하루다. 감정에 따라 중요한 결정을 내리면 후회한다.</td></tr><tr><th scope="row">9월 11일</th><td>오늘은 이상하게 모든 게 잘 풀리는 날이다. 이럴 때 쭈뼛거리지 말고 적극적으로 움직여라.</td></tr><tr><th scope="row">9월 12일</th><td>집에 있고 싶어서 이런저런 핑계를 만들고 있다면, 그냥 솔직하게 집에 있겠다고 말해라. 핑계는 나중에 들통난다.</td></tr><tr><th scope="row">9월 13일</th><td>오늘은 감정적으로 민감한 하루다. 별거 아닌 일에 상처받을 수 있으니 마음의 방패를 하나 더 장착해라.</td></tr><tr><th scope="row">9월 14일</th><td>마음이 따뜻해지는 하루다. 오랜만에 가족이나 친한 친구에게 연락하면 서로에게 좋은 일이 생긴다.</td></tr><tr><th scope="row">9월 15일</th><td>9월 중반, 지금까지의 흐름을 점검할 시점이다. 잘 되고 있는 건 더 밀고, 안 되는 건 빨리 포기해라.</td></tr><tr><th scope="row">9월 16일</th><td>오늘 에너지가 유독 낮다면 억지로 활발하게 굴지 마라. 조용하게 버티는 것도 전략이다.</td></tr><tr><th scope="row">9월 17일</th><td>어제보다 확실히 기운이 돌아왔다. 어제 못 한 것들을 오늘 처리하면 딱 맞아떨어진다.</td></tr><tr><th scope="row">9월 18일</th><td>오늘은 집순이 본능을 발휘해도 되는 날이다. 집에서 혼자 정리하고 쉬는 것이 최고의 자기관리다.</td></tr><tr><th scope="row">9월 19일</th><td>사람들 사이에서 균형을 잡는 능력이 빛나는 하루다. 갈등 중재자 역할이 돌아올 수 있다.</td></tr><tr><th scope="row">9월 20일</th><td>직감이 유독 강하게 작동하는 날이다. 이상하다는 느낌이 든다면 그 자리를 피하는 것이 정답이다.</td></tr><tr class="is-today"><th scope="row">9월 21일</th><td>오늘은 새로운 시도를 해볼 용기가 생기는 날이다. 늘 하던 것만 하면 늘 얻던 것만 얻는다.</td></tr><tr><th scope="row">9월 22일</th><td>감정 에너지가 넘쳐서 오히려 산만해질 수 있다. 오늘은 한 가지에 집중하는 연습이 필요하다.</td></tr><tr><th scope="row">9월 23일</th><td>가을 기운이 감성을 자극하는 날이다. 예민한 감수성을 예술적으로 표현해보면 기분이 한결 나아진다.</td></tr><tr><th scope="row">9월 24일</th><td>오늘은 현실적인 문제에 집중해야 하는 날이다. 감정보다 이성을 앞세우는 연습을 해봐라.</td></tr><tr><th scope="row">9월 25일</th><td>피로가 누적된 것이 몸으로 느껴지는 날이다. 억지로 버티지 말고 오늘은 일찍 쉬어라.</td></tr><tr><th scope="row">9월 26일</th><td>충전이 됐다. 오늘은 사람들과 함께하는 자리에서 에너지를 얻을 수 있다. 어제의 게자리와 다른 사람이 됐다.</td></tr><tr><th scope="row">9월 27일</th><td>오늘은 넘치는 에너지를 좋은 방향으로 써야 할 날이다. 잘못 쓰면 괜한 곳에서 구설수가 생긴다.</td></tr><tr><th scope="row">9월 28일</th><td>주말이 다가오면서 기대감이 올라온다. 이번 주말 계획을 오늘 미리 짜두면 더 알차게 보낼 수 있다.</td></tr><tr><th scope="row">9월 29일</th><td>기분 좋은 주말이다. 오늘은 좋아하는 사람들과 함께하는 시간이 최고의 힐링이다.</td></tr><tr><th scope="row">9월 30일</th><td>9월의 마지막 날, 한 달을 돌아보는 시간을 가져라. 잘 살았다면 칭찬해주고, 아쉬웠다면 10월의 계획을 세워라.</td></tr></tbody></table></div>
-</section>
+  <p class="prose-sm">탄생석 진주 · 행운의 색 은백색 · 행운의 숫자 2 · 월요일</p>
+</details>
 
 <section>
   <h2 class="sec-title">다른 별자리 보기</h2>
@@ -467,6 +493,14 @@ body{background:#f5f5f5;}
   var set=function(id,v){var el=document.getElementById(id); if(el&&v)el.textContent=v;};
   set('f-summary',f.summary); set('f-love',f.love); set('f-work',f.work); set('f-money',f.money);
   set('todayDate',y+'년 '+mo+'월 '+d+'일');
-})();</script>
+})();
+var __S={title:'🦀 게자리 오늘의 운세',url:'https://todays-fortune-app.vercel.app/zodiac/cancer',img:'https://todays-fortune-app.vercel.app/og-image.png?v=2'};
+function __sum(){var el=document.getElementById('f-summary');return el?el.textContent.slice(0,80):'';}
+function shareKakao(){if(!window.Kakao){alert('잠시 후 다시 시도해 주세요.');return;}try{if(!Kakao.isInitialized())Kakao.init('4dc7d7690ca8b78aec06f64ca1158905');}catch(e){}
+  Kakao.Share.sendDefault({objectType:'feed',content:{title:__S.title,description:__sum(),imageUrl:__S.img,imageWidth:1200,imageHeight:630,link:{mobileWebUrl:__S.url,webUrl:__S.url}},buttons:[{title:'내 운세 보기',link:{mobileWebUrl:__S.url,webUrl:__S.url}}]});}
+function shareX(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(__S.title+'
+'+__sum()+'
+'+__S.url),'_blank');}
+function copyLink(){navigator.clipboard.writeText(__S.url).then(function(){alert('링크를 복사했어요!');});}</script>
 </body>
 </html>

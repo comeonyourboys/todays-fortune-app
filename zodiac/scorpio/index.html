@@ -352,12 +352,50 @@ body{background:#f5f5f5;}
 .pair-score{font-size:19px;font-weight:800;color:#7c6cf0;font-variant-numeric:tabular-nums;}
 .pair-asp{font-size:12px;color:#aaa;font-weight:700;margin-top:3px;}
 .pair-text{font-size:13.5px;line-height:1.7;color:#555;margin-top:7px;}
+
+/* 공유·접기 */
+.share-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.share-btn{flex:1;min-width:110px;padding:12px 10px;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:transform .12s;}
+.share-btn:hover{transform:translateY(-2px);}
+.share-btn.kakao{background:#fee500;color:#1a1a1a;}
+.share-btn.x{background:#111;color:#fff;}
+.share-btn.link{background:rgba(255,255,255,.9);color:#333;}
+.fold{background:#fff;border-radius:16px;margin:16px 0;overflow:hidden;}
+.fold summary{list-style:none;cursor:pointer;padding:16px 20px;font-weight:800;font-size:16px;display:flex;justify-content:space-between;align-items:center;}
+.fold summary::-webkit-details-marker{display:none;}
+.fold summary::after{content:"+";color:#7c6cf0;font-size:22px;font-weight:900;}
+.fold[open] summary::after{content:"−";}
+.fold>*:not(summary){padding:0 20px 18px;}
+.fold .style-grid{padding:0 16px 16px;}
+/* 궁합 선택 UI */
+.pick-label{font-size:13px;font-weight:800;color:#999;letter-spacing:1px;margin:18px 0 8px;}
+.pick-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+@media(max-width:600px){.pick-grid{grid-template-columns:repeat(4,1fr);}}
+.pick-btn{background:#fff;border:2px solid transparent;border-radius:14px;padding:10px 4px;cursor:pointer;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:3px;transition:all .12s;}
+.pick-btn .e{font-size:26px;line-height:1;}
+.pick-btn .n{font-size:12px;font-weight:700;color:#444;}
+.pick-btn:hover{transform:translateY(-2px);}
+.pick-btn.active{border-color:#7c6cf0;background:#f4f2ff;}
+.result-btn{width:100%;margin-top:18px;padding:16px;border:none;border-radius:14px;background:#1a1a2e;color:#fff;font-size:17px;font-weight:800;cursor:pointer;font-family:inherit;}
+.result-btn:disabled{background:#ddd;color:#999;cursor:not-allowed;}
+.result-card{background:linear-gradient(135deg,#1a1a2e,#2d2b55);color:#fff;border-radius:20px;padding:26px 24px;margin-top:20px;display:none;}
+.result-card.on{display:block;animation:pop .3s ease-out;}
+@keyframes pop{from{transform:scale(.97);opacity:0}to{transform:scale(1);opacity:1}}
+.rc-pair{font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
+.rc-score{font-size:64px;font-weight:900;text-align:center;letter-spacing:-2px;line-height:1.1;margin:8px 0 2px;}
+.rc-score small{font-size:22px;font-weight:700;color:rgba(255,255,255,.6);}
+.rc-asp{text-align:center;font-size:13px;color:rgba(255,255,255,.6);font-weight:700;}
+.rc-text{margin-top:14px;font-size:15px;line-height:1.75;color:#eee;}
+.rc-links{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
+.rc-links a{color:#fff;background:rgba(255,255,255,.14);padding:7px 12px;border-radius:999px;text-decoration:none;font-size:13px;font-weight:700;}
+.result-card .share-row .link{background:rgba(255,255,255,.9);}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"전갈자리 운세와 성격 — 10.23-11.21","description":"전갈자리는 12별자리 중 감정의 수심이 가장 깊은 자리로 이야기됩니다. 당신은 상대가 괜찮다고 말할 때 그 말이 진심인지 아닌지를 거의 자동으로 감지합니다. 표정과 말 사이의 미세한 틈, 어제와 달라진 말투의 온도 같은 것이 그냥 보입니다. 이 감지력은 의심이 아니라 오랜 관찰에서 나옵","inLanguage":"ko","mainEntityOfPage":"https://todays-fortune-app.vercel.app/zodiac/scorpio","image":"https://todays-fortune-app.vercel.app/og-image.png?v=2","datePublished":"2026-08-21","dateModified":"2026-09-21","author":{"@type":"Organization","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app"},"publisher":{"@type":"Organization","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"전갈자리는 몇 월 며칠생인가요?","acceptedAnswer":{"@type":"Answer","text":"전갈자리는 10.23-11.21 사이에 태어난 사람입니다. 물 원소에 속하고 지배행성은 명왕성입니다."}},{"@type":"Question","name":"전갈자리 성격은 어떤가요?","acceptedAnswer":{"@type":"Answer","text":"전갈자리는 12별자리 중 감정의 수심이 가장 깊은 자리로 이야기됩니다. 당신은 상대가 괜찮다고 말할 때 그 말이 진심인지 아닌지를 거의 자동으로 감지합니다. 표정과 말 사이의 미세한 틈, 어제와 달라진 말투의 온도 같은 것이 그냥 보입니다. 이 감지력은 의심이 아니라 오랜 관찰에서 나옵니다."}},{"@type":"Question","name":"전갈자리와 잘 맞는 별자리는?","acceptedAnswer":{"@type":"Answer","text":"게자리: 같은 물 원소라 감정의 깊이가 비슷합니다. 말없이 오가는 신호를 서로 알아채 안전하다는 느낌을 빠르게 나눕니다. 물고기자리: 경계를 풀어도 다치지 않는 상대입니다. 당신의 강한 온도를 겁내지 않고 품어 주어 관계가 오래 이어집니다."}},{"@type":"Question","name":"오늘 전갈자리 운세는?","acceptedAnswer":{"@type":"Answer","text":"숨겨왔던 재능을 드러낼 기회가 온다. 전갈자리의 깊이 있는 능력을 오늘 제대로 보여줘라."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://todays-fortune-app.vercel.app/"},{"@type":"ListItem","position":2,"name":"전갈자리","item":"https://todays-fortune-app.vercel.app/zodiac/scorpio"}]}</script>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5479403345572412" crossorigin="anonymous"></script>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" defer></script>
 </head>
 <body>
 <header class="site-hdr"><div class="container hdr-in">
@@ -387,6 +425,11 @@ body{background:#f5f5f5;}
     <div class="f-card"><span class="f-label">💼 직장운</span><p id="f-work">그동안 혼자 쌓아온 능력을 선보일 시간이다. 자신감을 갖고 전면에 나서라.</p></div>
     <div class="f-card"><span class="f-label">💰 재물운</span><p id="f-money">숨겨둔 자산이나 재원을 활용할 수 있는 기회가 온다. 적절히 써라.</p></div>
   </div>
+  <div class="share-row">
+    <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡 공유</button>
+    <button class="share-btn x" type="button" onclick="shareX()">𝕏 공유</button>
+    <button class="share-btn link" type="button" onclick="copyLink()">🔗 링크 복사</button>
+  </div>
 </section>
 
 <section>
@@ -405,14 +448,13 @@ body{background:#f5f5f5;}
   </div>
 </section>
 
-<section>
-  <h2 class="sec-title">전갈자리의 연애·일·돈</h2>
+<details class="fold"><summary>전갈자리의 연애·일·돈 스타일</summary>
   <div class="style-grid">
-    <div class="style-card"><h3>💕 연애 스타일</h3><p>전갈자리의 연애에는 얕은 단계가 없습니다. 호감을 느끼면 겉으로는 거리를 두면서 상대를 오래 관찰하고, 확신이 서는 순간 태도가 완전히 달라집니다. 다가갈 때도 많은 말을 하지 않습니다. 대신 상대가 지나가듯 흘린 이야기를 기억해 두었다가 조용히 챙깁니다. 당신이 약한 지점은 솔직함입니다. 자신을 포장하지 않고 약한 부분까지 보여 주는 사람 앞에서 방어가 풀립니다. 반대로 애매한 태도나 여러 갈래로 열어 둔 관계는 견디지 못하고, 확인하기보다 먼저 물러서는 쪽을 택합니다.</p></div>
-    <div class="style-card"><h3>💼 일하는 방식</h3><p>전갈자리는 깊이 들어가야 답이 나오는 일에 강합니다. 원인 분석, 조사, 연구, 데이터 검증처럼 표면 아래를 뒤집어야 하는 영역이나 한 분야를 오래 파서 전문성을 쌓는 자리가 잘 맞습니다. 사고가 터졌을 때의 위기 관리에서도 침착함이 돋보입니다. 반대로 매일 주제가 바뀌는 업무, 결과보다 사교가 중요한 자리, 신뢰하지 못하는 사람과 성과를 나눠야 하는 구조에서는 의욕이 빠르게 식습니다. 통제권이 어느 정도 주어질 때 성과가 가장 커집니다.</p></div>
-    <div class="style-card"><h3>💰 돈 쓰는 습관</h3><p>전갈자리는 돈에 대해 말을 아낍니다. 수입도 지출도 남에게 공개하지 않고 자기만의 계산으로 관리합니다. 평소 소비는 적은 편이지만 한번 결정하면 오래 쓸 물건에 크게 씁니다. 위기에 대비하는 본능이 강해 비상금과 보험에 신경을 쓰고, 승부처라고 판단한 투자에는 과감하게 들어갑니다. 다만 확신이 강할수록 분산을 잊기 쉬운 점은 주의할 만합니다.</p></div>
+    <div class="style-card"><h3>💕 연애</h3><p>전갈자리의 연애에는 얕은 단계가 없습니다. 호감을 느끼면 겉으로는 거리를 두면서 상대를 오래 관찰하고, 확신이 서는 순간 태도가 완전히 달라집니다. 다가갈 때도 많은 말을 하지 않습니다. 대신 상대가 지나가듯 흘린 이야기를 기억해 두었다가 조용히 챙깁니다. 당신이 약한 지점은 솔직함입니다. 자신을 포장하지 않고 약한 부분까지 보여 주는 사람 앞에서 방어가 풀립니다. 반대로 애매한 태도나 여러 갈래로 열어 둔 관계는 견디지 못하고, 확인하기보다 먼저 물러서는 쪽을 택합니다.</p></div>
+    <div class="style-card"><h3>💼 일</h3><p>전갈자리는 깊이 들어가야 답이 나오는 일에 강합니다. 원인 분석, 조사, 연구, 데이터 검증처럼 표면 아래를 뒤집어야 하는 영역이나 한 분야를 오래 파서 전문성을 쌓는 자리가 잘 맞습니다. 사고가 터졌을 때의 위기 관리에서도 침착함이 돋보입니다. 반대로 매일 주제가 바뀌는 업무, 결과보다 사교가 중요한 자리, 신뢰하지 못하는 사람과 성과를 나눠야 하는 구조에서는 의욕이 빠르게 식습니다. 통제권이 어느 정도 주어질 때 성과가 가장 커집니다.</p></div>
+    <div class="style-card"><h3>💰 돈</h3><p>전갈자리는 돈에 대해 말을 아낍니다. 수입도 지출도 남에게 공개하지 않고 자기만의 계산으로 관리합니다. 평소 소비는 적은 편이지만 한번 결정하면 오래 쓸 물건에 크게 씁니다. 위기에 대비하는 본능이 강해 비상금과 보험에 신경을 쓰고, 승부처라고 판단한 투자에는 과감하게 들어갑니다. 다만 확신이 강할수록 분산을 잊기 쉬운 점은 주의할 만합니다.</p></div>
   </div>
-</section>
+</details>
 
 <section>
   <h2 class="sec-title">전갈자리와 잘 맞는 별자리</h2>
@@ -426,26 +468,10 @@ body{background:#f5f5f5;}
   <p class="note">궁합은 성향 차이를 보는 참고일 뿐입니다. 자세한 조합은 <a href="/compatibility">별자리 궁합 페이지</a>에서 볼 수 있습니다.</p>
 </section>
 
-<section>
-  <h2 class="sec-title">전갈자리의 유래</h2>
+<details class="fold"><summary>전갈자리의 유래와 상징</summary>
   <div class="prose"><p>전갈자리는 사냥꾼 오리온의 이야기와 짝을 이룹니다. 오리온은 세상의 모든 짐승을 사냥할 수 있다고 호언했고, 그 오만함에 노한 대지의 여신 가이아가 거대한 전갈을 보냈다고 전해집니다. 아르테미스가 전갈을 보냈다는 전승도 함께 남아 있습니다. 몸집도 무기도 비교가 되지 않았지만 전갈은 오리온의 발뒤꿈치를 찔러 그를 쓰러뜨렸습니다.</p><p>싸움이 끝난 뒤 두 존재는 모두 별자리가 되었는데, 하늘에서도 다시 마주치지 않도록 서로 정반대 편에 놓였다고 이야기됩니다. 실제로 전갈자리가 동쪽 하늘에 떠오를 무렵 오리온자리는 서쪽으로 지기 때문에, 두 별자리를 같은 밤하늘에서 나란히 보기는 어렵습니다.</p></div>
-</section>
-
-<section>
-  <h2 class="sec-title">전갈자리의 상징</h2>
-  <table class="sym-table"><tbody>
-    <tr><th>기간</th><td>10.23-11.21</td><th>원소</th><td>물</td></tr>
-    <tr><th>지배행성</th><td>명왕성</td><th>탄생석</th><td>토파즈</td></tr>
-    <tr><th>행운의 색</th><td>진홍색</td><th>행운의 숫자</th><td>9</td></tr>
-    <tr><th>요일</th><td>화요일</td><th>꽃</th><td>국화</td></tr>
-  </tbody></table>
-  <p class="prose-sm">전갈자리는 흔히 조용한데 존재감이 큰 사람, 한번 적으로 돌리면 되돌리기 어려운 사람으로 묘사됩니다. 비밀을 가장 잘 지키는 별자리이자 무너진 자리에서 다시 일어서는 재생과 부활의 별자리라는 표현도 자주 따라붙습니다.</p>
-</section>
-
-<section>
-  <h2 class="sec-title">9월 전갈자리 운세 흐름</h2>
-  <div class="month-wrap"><table class="month-table"><tbody><tr><th scope="row">9월 1일</th><td>9월의 시작, 전갈자리는 이미 이번 달의 결말을 머릿속에서 세 가지 시나리오로 시뮬레이션해놨을 것이다. 과잉 분석 잠깐 멈추고 지금 이 순간에 집중해라.</td></tr><tr><th scope="row">9월 2일</th><td>오늘은 남들이 보지 못하는 것을 혼자 다 보고 있어서 속이 터지는 하루가 될 수 있다. 말해줘도 안 들으면 그냥 지켜보면 된다.</td></tr><tr><th scope="row">9월 3일</th><td>전갈자리 특유의 집중력이 최고조인 날이다. 이럴 때 아무도 방해하지 못하게 혼자 파고들어라. 결과물이 달라진다.</td></tr><tr><th scope="row">9월 4일</th><td>오늘은 누군가의 속마음을 읽고 싶은 욕구가 강한데, 읽히는 대로 다 믿지 마라. 추측이 사실인 척 행동하면 관계가 망가진다.</td></tr><tr><th scope="row">9월 5일</th><td>카리스마가 폭발하는 날이다. 원하는 것을 얻기 위해 말 한마디만 잘 골라서 해라. 오늘은 말발이 특히 잘 먹힌다.</td></tr><tr><th scope="row">9월 6일</th><td>혼자서 깊은 생각에 빠지고 싶은 날이다. 전갈자리는 이런 시간이 필요하다. 사람들의 연락을 하루쯤 미뤄도 된다.</td></tr><tr><th scope="row">9월 7일</th><td>뭔가 예감이 이상한 일요일이다. 전갈자리의 직감은 정확하니 그 느낌을 무시하지 마라. 내일 대비해 준비해두어라.</td></tr><tr><th scope="row">9월 8일</th><td>전갈자리는 월요일도 전략적으로 시작한다. 이번 주에 처리해야 할 것들의 우선순위를 명확히 해라.</td></tr><tr><th scope="row">9월 9일</th><td>남들이 모르는 정보를 가지고 있는 날이다. 그것을 언제 어떻게 활용할지 전략적으로 생각해라.</td></tr><tr><th scope="row">9월 10일</th><td>집착적으로 한 가지에만 몰입하고 있다면 오늘은 그 초점을 살짝 넓혀봐라. 나무만 보다 숲을 놓칠 수 있다.</td></tr><tr><th scope="row">9월 11일</th><td>변화를 감지하는 능력이 탁월한 날이다. 주변에서 일어나는 변화의 흐름을 읽고 그에 맞게 포지셔닝해라.</td></tr><tr><th scope="row">9월 12일</th><td>복수를 생각하고 있다면 잠깐 멈춰라. 지금 그 에너지를 자기 발전에 쓰면 훨씬 효과적인 복수가 된다.</td></tr><tr><th scope="row">9월 13일</th><td>감추고 있는 것이 있다면 오늘 어느 정도 드러낼 준비를 해라. 계속 숨기면 상대방의 의심만 커진다.</td></tr><tr><th scope="row">9월 14일</th><td>깊은 감정적 연결을 원하는 날이다. 표면적인 관계가 아닌 진짜 대화를 나눌 준비가 되어있다.</td></tr><tr><th scope="row">9월 15일</th><td>9월 중반, 전갈자리는 이미 남은 보름의 계획이 세워져 있을 것이다. 계획대로 진행되고 있는지 점검하고 수정해라.</td></tr><tr><th scope="row">9월 16일</th><td>오늘은 다른 사람의 숨겨진 동기를 명확하게 파악할 수 있다. 그 정보를 올바른 방향으로 써라.</td></tr><tr><th scope="row">9월 17일</th><td>변환과 재생의 에너지가 강한 날이다. 낡은 것을 버리고 새로운 것을 받아들이는 용기가 필요하다.</td></tr><tr><th scope="row">9월 18일</th><td>권력욕이 올라오는 날이다. 통제력을 갖고 싶은 욕구가 강하지만, 모든 것을 통제할 수는 없다는 것을 인정해라.</td></tr><tr><th scope="row">9월 19일</th><td>신비로운 매력이 최고조에 달하는 날이다. 말을 많이 하지 않아도 존재감이 느껴진다.</td></tr><tr><th scope="row">9월 20일</th><td>오늘은 내면의 심리적 균형을 맞추는 날이다. 강렬한 감정 상태보다 평정심이 더 좋은 결과를 만든다.</td></tr><tr class="is-today"><th scope="row">9월 21일</th><td>숨겨왔던 재능을 드러낼 기회가 온다. 전갈자리의 깊이 있는 능력을 오늘 제대로 보여줘라.</td></tr><tr><th scope="row">9월 22일</th><td>직감과 이성이 충돌하는 날이다. 오늘은 직감에 70%, 이성에 30%를 줘라. 전갈자리의 직감은 보통 맞다.</td></tr><tr><th scope="row">9월 23일</th><td>가을이 깊어지면서 전갈자리 에너지가 점점 강해지는 시기다. 이 에너지를 긍정적인 방향으로 잘 써라.</td></tr><tr><th scope="row">9월 24일</th><td>진실을 파헤치고 싶은 욕구가 강한 날이다. 겉으로 보이는 것에 속지 않는 것이 오늘의 강점이다.</td></tr><tr><th scope="row">9월 25일</th><td>감정적으로 강렬한 상황에 처할 수 있다. 그 강렬함을 파괴적이 아닌 창조적으로 쓰는 것이 오늘의 과제다.</td></tr><tr><th scope="row">9월 26일</th><td>오늘은 전갈자리답게 깊이 있는 대화를 나눌 기회가 생긴다. 표면적인 이야기에 만족하지 말고 본질을 파고들어라.</td></tr><tr><th scope="row">9월 27일</th><td>변화의 에너지가 강하게 몰려온다. 저항하지 말고 그 흐름을 타라. 전갈자리는 변화에서 가장 강하다.</td></tr><tr><th scope="row">9월 28일</th><td>오늘은 말보다 행동이 필요한 날이다. 계획한 것이 있다면 지금 실행해라.</td></tr><tr><th scope="row">9월 29일</th><td>9월 막바지, 이번 달을 통해 배운 것들을 정리해라. 전갈자리는 경험에서 깊이 있는 교훈을 뽑아내는 달인이다.</td></tr><tr><th scope="row">9월 30일</th><td>9월의 마지막 날, 전갈자리는 이미 10월 계획을 세 단계로 나누어 준비해놨겠지. 그 계획을 실행할 의지도 같이 충전해라.</td></tr></tbody></table></div>
-</section>
+  <p class="prose-sm">탄생석 토파즈 · 행운의 색 진홍색 · 행운의 숫자 9 · 화요일</p>
+</details>
 
 <section>
   <h2 class="sec-title">다른 별자리 보기</h2>
@@ -467,6 +493,14 @@ body{background:#f5f5f5;}
   var set=function(id,v){var el=document.getElementById(id); if(el&&v)el.textContent=v;};
   set('f-summary',f.summary); set('f-love',f.love); set('f-work',f.work); set('f-money',f.money);
   set('todayDate',y+'년 '+mo+'월 '+d+'일');
-})();</script>
+})();
+var __S={title:'🦂 전갈자리 오늘의 운세',url:'https://todays-fortune-app.vercel.app/zodiac/scorpio',img:'https://todays-fortune-app.vercel.app/og-image.png?v=2'};
+function __sum(){var el=document.getElementById('f-summary');return el?el.textContent.slice(0,80):'';}
+function shareKakao(){if(!window.Kakao){alert('잠시 후 다시 시도해 주세요.');return;}try{if(!Kakao.isInitialized())Kakao.init('4dc7d7690ca8b78aec06f64ca1158905');}catch(e){}
+  Kakao.Share.sendDefault({objectType:'feed',content:{title:__S.title,description:__sum(),imageUrl:__S.img,imageWidth:1200,imageHeight:630,link:{mobileWebUrl:__S.url,webUrl:__S.url}},buttons:[{title:'내 운세 보기',link:{mobileWebUrl:__S.url,webUrl:__S.url}}]});}
+function shareX(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(__S.title+'
+'+__sum()+'
+'+__S.url),'_blank');}
+function copyLink(){navigator.clipboard.writeText(__S.url).then(function(){alert('링크를 복사했어요!');});}</script>
 </body>
 </html>

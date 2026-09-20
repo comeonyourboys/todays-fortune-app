@@ -352,12 +352,50 @@ body{background:#f5f5f5;}
 .pair-score{font-size:19px;font-weight:800;color:#7c6cf0;font-variant-numeric:tabular-nums;}
 .pair-asp{font-size:12px;color:#aaa;font-weight:700;margin-top:3px;}
 .pair-text{font-size:13.5px;line-height:1.7;color:#555;margin-top:7px;}
+
+/* 공유·접기 */
+.share-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.share-btn{flex:1;min-width:110px;padding:12px 10px;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:transform .12s;}
+.share-btn:hover{transform:translateY(-2px);}
+.share-btn.kakao{background:#fee500;color:#1a1a1a;}
+.share-btn.x{background:#111;color:#fff;}
+.share-btn.link{background:rgba(255,255,255,.9);color:#333;}
+.fold{background:#fff;border-radius:16px;margin:16px 0;overflow:hidden;}
+.fold summary{list-style:none;cursor:pointer;padding:16px 20px;font-weight:800;font-size:16px;display:flex;justify-content:space-between;align-items:center;}
+.fold summary::-webkit-details-marker{display:none;}
+.fold summary::after{content:"+";color:#7c6cf0;font-size:22px;font-weight:900;}
+.fold[open] summary::after{content:"−";}
+.fold>*:not(summary){padding:0 20px 18px;}
+.fold .style-grid{padding:0 16px 16px;}
+/* 궁합 선택 UI */
+.pick-label{font-size:13px;font-weight:800;color:#999;letter-spacing:1px;margin:18px 0 8px;}
+.pick-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+@media(max-width:600px){.pick-grid{grid-template-columns:repeat(4,1fr);}}
+.pick-btn{background:#fff;border:2px solid transparent;border-radius:14px;padding:10px 4px;cursor:pointer;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:3px;transition:all .12s;}
+.pick-btn .e{font-size:26px;line-height:1;}
+.pick-btn .n{font-size:12px;font-weight:700;color:#444;}
+.pick-btn:hover{transform:translateY(-2px);}
+.pick-btn.active{border-color:#7c6cf0;background:#f4f2ff;}
+.result-btn{width:100%;margin-top:18px;padding:16px;border:none;border-radius:14px;background:#1a1a2e;color:#fff;font-size:17px;font-weight:800;cursor:pointer;font-family:inherit;}
+.result-btn:disabled{background:#ddd;color:#999;cursor:not-allowed;}
+.result-card{background:linear-gradient(135deg,#1a1a2e,#2d2b55);color:#fff;border-radius:20px;padding:26px 24px;margin-top:20px;display:none;}
+.result-card.on{display:block;animation:pop .3s ease-out;}
+@keyframes pop{from{transform:scale(.97);opacity:0}to{transform:scale(1);opacity:1}}
+.rc-pair{font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
+.rc-score{font-size:64px;font-weight:900;text-align:center;letter-spacing:-2px;line-height:1.1;margin:8px 0 2px;}
+.rc-score small{font-size:22px;font-weight:700;color:rgba(255,255,255,.6);}
+.rc-asp{text-align:center;font-size:13px;color:rgba(255,255,255,.6);font-weight:700;}
+.rc-text{margin-top:14px;font-size:15px;line-height:1.75;color:#eee;}
+.rc-links{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
+.rc-links a{color:#fff;background:rgba(255,255,255,.14);padding:7px 12px;border-radius:999px;text-decoration:none;font-size:13px;font-weight:700;}
+.result-card .share-row .link{background:rgba(255,255,255,.9);}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"물병자리 운세와 성격 — 1.20-2.18","description":"물병자리는 이름과 달리 물이 아니라 공기 원소입니다. 물병에서 쏟아지는 것은 물이 아니라 지식이라는 설명이 오래 따라붙었습니다. 실제로 당신의 관심은 감정의 온도보다 생각의 구조 쪽으로 기웁니다. 사람을 좋아하면서도 한 발 떨어져 관찰하는 이 묘한 거리감이 물병자리의 핵심입니다.\n\n당신","inLanguage":"ko","mainEntityOfPage":"https://todays-fortune-app.vercel.app/zodiac/aquarius","image":"https://todays-fortune-app.vercel.app/og-image.png?v=2","datePublished":"2026-08-21","dateModified":"2026-09-21","author":{"@type":"Organization","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app"},"publisher":{"@type":"Organization","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"물병자리는 몇 월 며칠생인가요?","acceptedAnswer":{"@type":"Answer","text":"물병자리는 1.20-2.18 사이에 태어난 사람입니다. 공기 원소에 속하고 지배행성은 천왕성입니다."}},{"@type":"Question","name":"물병자리 성격은 어떤가요?","acceptedAnswer":{"@type":"Answer","text":"물병자리는 이름과 달리 물이 아니라 공기 원소입니다. 물병에서 쏟아지는 것은 물이 아니라 지식이라는 설명이 오래 따라붙었습니다. 실제로 당신의 관심은 감정의 온도보다 생각의 구조 쪽으로 기웁니다. 사람을 좋아하면서도 한 발 떨어져 관찰하는 이 묘한 거리감이 물병자리의 핵심입니다."}},{"@type":"Question","name":"물병자리와 잘 맞는 별자리는?","acceptedAnswer":{"@type":"Answer","text":"쌍둥이자리: 생각의 속도가 맞아 대화가 끊기지 않습니다. 서로에게 답을 강요하지 않아 관계가 가볍고 오래 이어집니다. 천칭자리: 같은 공기 원소로 공정함을 중요하게 여깁니다. 천칭자리의 부드러움이 당신의 서늘한 표현을 잘 번역해 줍니다."}},{"@type":"Question","name":"오늘 물병자리 운세는?","acceptedAnswer":{"@type":"Answer","text":"예상치 못한 통찰이 찾아오는 날. 평소에 미처 보지 못했던 연결고리나 패턴이 갑자기 보이는 날입니다. 이 통찰을 기록해두세요."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://todays-fortune-app.vercel.app/"},{"@type":"ListItem","position":2,"name":"물병자리","item":"https://todays-fortune-app.vercel.app/zodiac/aquarius"}]}</script>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5479403345572412" crossorigin="anonymous"></script>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" defer></script>
 </head>
 <body>
 <header class="site-hdr"><div class="container hdr-in">
@@ -387,6 +425,11 @@ body{background:#f5f5f5;}
     <div class="f-card"><span class="f-label">💼 직장운</span><p id="f-work">업계 트렌드에서 아무도 보지 못한 기회를 발견하는 날. 이 아이디어를 즉시 문서화하세요.</p></div>
     <div class="f-card"><span class="f-label">💰 재물운</span><p id="f-money">재정 패턴에서 숨겨진 새로운 기회를 발견하는 날. 발견한 것을 즉시 실행에 옮기세요.</p></div>
   </div>
+  <div class="share-row">
+    <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡 공유</button>
+    <button class="share-btn x" type="button" onclick="shareX()">𝕏 공유</button>
+    <button class="share-btn link" type="button" onclick="copyLink()">🔗 링크 복사</button>
+  </div>
 </section>
 
 <section>
@@ -405,14 +448,13 @@ body{background:#f5f5f5;}
   </div>
 </section>
 
-<section>
-  <h2 class="sec-title">물병자리의 연애·일·돈</h2>
+<details class="fold"><summary>물병자리의 연애·일·돈 스타일</summary>
   <div class="style-grid">
-    <div class="style-card"><h3>💕 연애 스타일</h3><p>물병자리의 연애는 대화에서 시작됩니다. 외모나 조건보다 말이 통하는지, 세상을 보는 각도가 흥미로운지를 먼저 봅니다. 다가가는 방식도 독특해서 고백 대신 자기가 좋아하는 세계를 보여 주며 상대를 초대합니다. 당신이 약한 지점은 당신을 고치려 들지 않는 사람입니다. 이상한 취향과 갑작스러운 몰두를 그대로 두고 지켜봐 주는 상대에게 오래 마음을 둡니다. 반대로 매 순간 감정을 확인하려는 관계에서는 애정이 아니라 압박을 먼저 느낍니다.</p></div>
-    <div class="style-card"><h3>💼 일하는 방식</h3><p>물병자리는 기존 방식이 한계에 부딪힌 자리에서 강합니다. 틀을 다시 짜고 아무도 시도하지 않은 방법을 제안하는 역할이 잘 맞습니다. 기술, 연구, 기획, 데이터, 사회적 가치가 걸린 프로젝트처럼 논리와 명분이 함께 필요한 영역에서 힘이 납니다. 반대로 이유를 설명해 주지 않는 지시, 연공서열로 굴러가는 위계, 매일 같은 순서를 반복하는 업무에서는 의욕이 급격히 사라집니다. 자율과 명분이 주어질 때 생산성이 크게 달라집니다.</p></div>
-    <div class="style-card"><h3>💰 돈 쓰는 습관</h3><p>물병자리의 지출은 예측하기 어렵습니다. 평소에는 돈에 무심하다가 관심 분야의 장비나 새로운 기술에는 망설임 없이 씁니다. 남들이 아직 모르는 것에 먼저 들어가는 감각이 있지만, 유행이 지난 뒤 처분 시점을 놓치는 일도 잦습니다. 돈 자체에 집착이 적어 관리가 느슨해지기 쉬우니 자동 이체와 자동 투자처럼 손이 가지 않는 구조를 만들어 두는 방식이 잘 맞습니다.</p></div>
+    <div class="style-card"><h3>💕 연애</h3><p>물병자리의 연애는 대화에서 시작됩니다. 외모나 조건보다 말이 통하는지, 세상을 보는 각도가 흥미로운지를 먼저 봅니다. 다가가는 방식도 독특해서 고백 대신 자기가 좋아하는 세계를 보여 주며 상대를 초대합니다. 당신이 약한 지점은 당신을 고치려 들지 않는 사람입니다. 이상한 취향과 갑작스러운 몰두를 그대로 두고 지켜봐 주는 상대에게 오래 마음을 둡니다. 반대로 매 순간 감정을 확인하려는 관계에서는 애정이 아니라 압박을 먼저 느낍니다.</p></div>
+    <div class="style-card"><h3>💼 일</h3><p>물병자리는 기존 방식이 한계에 부딪힌 자리에서 강합니다. 틀을 다시 짜고 아무도 시도하지 않은 방법을 제안하는 역할이 잘 맞습니다. 기술, 연구, 기획, 데이터, 사회적 가치가 걸린 프로젝트처럼 논리와 명분이 함께 필요한 영역에서 힘이 납니다. 반대로 이유를 설명해 주지 않는 지시, 연공서열로 굴러가는 위계, 매일 같은 순서를 반복하는 업무에서는 의욕이 급격히 사라집니다. 자율과 명분이 주어질 때 생산성이 크게 달라집니다.</p></div>
+    <div class="style-card"><h3>💰 돈</h3><p>물병자리의 지출은 예측하기 어렵습니다. 평소에는 돈에 무심하다가 관심 분야의 장비나 새로운 기술에는 망설임 없이 씁니다. 남들이 아직 모르는 것에 먼저 들어가는 감각이 있지만, 유행이 지난 뒤 처분 시점을 놓치는 일도 잦습니다. 돈 자체에 집착이 적어 관리가 느슨해지기 쉬우니 자동 이체와 자동 투자처럼 손이 가지 않는 구조를 만들어 두는 방식이 잘 맞습니다.</p></div>
   </div>
-</section>
+</details>
 
 <section>
   <h2 class="sec-title">물병자리와 잘 맞는 별자리</h2>
@@ -426,26 +468,10 @@ body{background:#f5f5f5;}
   <p class="note">궁합은 성향 차이를 보는 참고일 뿐입니다. 자세한 조합은 <a href="/compatibility">별자리 궁합 페이지</a>에서 볼 수 있습니다.</p>
 </section>
 
-<section>
-  <h2 class="sec-title">물병자리의 유래</h2>
+<details class="fold"><summary>물병자리의 유래와 상징</summary>
   <div class="prose"><p>물병자리는 물병을 기울여 물을 쏟는 사람의 모습입니다. 가장 널리 알려진 유래는 트로이의 왕자 가니메데스입니다. 인간 가운데 가장 아름다운 소년으로 불린 그는 독수리로 변한 제우스에게 이끌려 올림포스로 올라갔고, 신들의 잔을 채우는 시종이 되었다고 전해집니다. 제우스는 아들을 잃은 왕에게 보상을 내리고 가니메데스를 하늘의 별자리로 올렸다고 이야기됩니다.</p><p>한편 이 별자리는 대홍수 전설과 연결되어 이야기되기도 합니다. 물병에서 쏟아지는 물줄기는 남쪽물고기자리의 입으로 흘러드는 모습으로 그려지며, 예로부터 이 하늘 구역은 강과 바다와 물을 뜻하는 별자리들이 모인 자리로 불렸습니다.</p></div>
-</section>
-
-<section>
-  <h2 class="sec-title">물병자리의 상징</h2>
-  <table class="sym-table"><tbody>
-    <tr><th>기간</th><td>1.20-2.18</td><th>원소</th><td>공기</td></tr>
-    <tr><th>지배행성</th><td>천왕성</td><th>탄생석</th><td>자수정</td></tr>
-    <tr><th>행운의 색</th><td>청록색</td><th>행운의 숫자</th><td>4</td></tr>
-    <tr><th>요일</th><td>토요일</td><th>꽃</th><td>수선화</td></tr>
-  </tbody></table>
-  <p class="prose-sm">물병자리는 흔히 무리에 있으면서 무리에 속하지 않는 사람, 10년 뒤 이야기를 지금 하는 사람으로 묘사됩니다. 괴짜와 인도주의자를 한 몸에 담은 별자리라는 표현도 자주 인용됩니다.</p>
-</section>
-
-<section>
-  <h2 class="sec-title">9월 물병자리 운세 흐름</h2>
-  <div class="month-wrap"><table class="month-table"><tbody><tr><th scope="row">9월 1일</th><td>오늘 당신의 머릿속에는 아무도 이해 못 할 이론이 세 개쯤 완성되었습니다. 설명하려고 하면 듣는 사람 눈이 풀립니다. 그게 물병자리의 일상입니다.</td></tr><tr><th scope="row">9월 2일</th><td>자유를 갈망하는 날. 어떤 규칙이나 틀에도 갇히기 싫은 물병자리의 본능이 오늘 극에 달합니다. 단, 자유와 무책임은 다릅니다.</td></tr><tr><th scope="row">9월 3일</th><td>인류애가 넘치는 날. 개인보다 집단, 집단보다 인류 전체의 이익을 생각하는 물병자리의 철학이 오늘 작동합니다. 너무 거시적으로 생각하느라 오늘 점심은 챙겨 드세요.</td></tr><tr><th scope="row">9월 4일</th><td>반항심이 솟구치는 날. 왜 이 규칙을 따라야 하는지 이해할 수 없는 것들이 눈에 들어옵니다. 문제 제기 자체는 건전한 일이지만 타이밍을 잘 고르세요.</td></tr><tr><th scope="row">9월 5일</th><td>기술과 혁신에 끌리는 날. 최신 트렌드와 미래 기술에 대한 감각이 특히 날카로운 날입니다. 이 감각을 현실적인 도구로 전환해보세요.</td></tr><tr><th scope="row">9월 6일</th><td>독창적인 아이디어가 쏟아지는 날. 주변 사람들이 &#39;그게 말이 돼?&#39;라고 할 만한 아이디어들인데, 그게 결국 혁신의 씨앗이 됩니다.</td></tr><tr><th scope="row">9월 7일</th><td>군중과 다르고 싶은 욕구가 강한 날. 유행을 따르는 것이 불편하게 느껴지고 나만의 방식을 고집하고 싶습니다. 당신이 옳습니다. 다만 완전한 고립은 조심하세요.</td></tr><tr><th scope="row">9월 8일</th><td>미래를 꿈꾸는 날. 10년 후의 세상이 어떻게 될지 구체적으로 그릴 수 있는 날입니다. 그 꿈에서 당신은 어디에 있고 싶은지 생각해보세요.</td></tr><tr><th scope="row">9월 9일</th><td>사회 변화에 관심이 쏠리는 날. 물병자리는 시대를 앞서가는 별자리. 오늘 당신이 보는 것이 5년 후 현실이 될 수 있습니다.</td></tr><tr><th scope="row">9월 10일</th><td>인간 관계에서 피로를 느끼는 날. 사람들이 왜 이렇게 비논리적인지 이해하기 어려운 날입니다. 물병자리는 인류를 사랑하지만 개별 인간은 지칩니다.</td></tr><tr><th scope="row">9월 11일</th><td>네트워크의 힘이 작동하는 날. 물병자리는 폭넓은 인맥의 별자리. 오늘 연결되는 사람이 예상치 못한 기회를 가져올 수 있습니다.</td></tr><tr><th scope="row">9월 12일</th><td>실험 정신이 폭발하는 날. 해본 적 없는 것을 해보고 싶은 충동이 강합니다. 오늘 하나 시도해보세요. 결과와 상관없이 경험 자체가 값집니다.</td></tr><tr><th scope="row">9월 13일</th><td>철학적 사유가 깊어지는 날. 삶의 의미, 존재의 이유 같은 거대한 질문들이 떠오릅니다. 이 질문들이 불안을 주는 게 아니라 방향을 주는 날입니다.</td></tr><tr><th scope="row">9월 14일</th><td>고집이 세지는 날. 내 방식이 옳다는 확신이 강한데, 가끔은 그 확신이 틀릴 수도 있다는 여지를 두세요. 물병자리의 최대 약점은 다른 관점을 무시하는 것.</td></tr><tr><th scope="row">9월 15일</th><td>공동체에 기여하고 싶은 욕구가 강한 날. 나보다 더 큰 무언가의 일부가 되고 싶은 물병자리의 본질적 욕구. 오늘 그 욕구를 채울 방법을 찾아보세요.</td></tr><tr><th scope="row">9월 16일</th><td>감정 표현이 어려운 날. 물병자리는 원래 감정보다 이성이 앞서는데, 오늘은 그게 더 심합니다. 주변 사람들이 당신이 어떻게 느끼는지 모를 수 있습니다.</td></tr><tr><th scope="row">9월 17일</th><td>직관과 분석이 완벽하게 결합하는 날. 물병자리의 최고 상태. 이성적 분석과 직관적 통찰이 동시에 작동할 때 당신은 거의 모든 문제를 풀 수 있습니다.</td></tr><tr><th scope="row">9월 18일</th><td>에너지가 고갈되는 날. 인류를 위해 일하는 것은 좋지만 에너지는 유한합니다. 오늘은 충전이 필요한 날입니다. 혼자만의 시간을 가지세요.</td></tr><tr><th scope="row">9월 19일</th><td>아이디어를 현실로 만드는 날. 평소에 생각만 했던 프로젝트를 실제로 시작하기 좋은 날입니다. 첫 번째 단계만 오늘 실행하면 됩니다.</td></tr><tr><th scope="row">9월 20일</th><td>변화에 앞장서고 싶은 날. 현 상태를 바꾸고 싶은 충동이 강합니다. 물병자리는 혁명가의 기질이 있는데, 오늘은 그게 특히 강합니다.</td></tr><tr class="is-today"><th scope="row">9월 21일</th><td>예상치 못한 통찰이 찾아오는 날. 평소에 미처 보지 못했던 연결고리나 패턴이 갑자기 보이는 날입니다. 이 통찰을 기록해두세요.</td></tr><tr><th scope="row">9월 22일</th><td>사람들과 연결되고 싶지만 혼자 있고 싶기도 한 날. 물병자리의 영원한 모순. 오늘은 양쪽 욕구를 모두 채울 수 있는 방식을 찾아보세요.</td></tr><tr><th scope="row">9월 23일</th><td>세상을 더 나은 곳으로 만들고 싶은 욕구가 불타오르는 날. 물병자리에게 가장 에너지가 넘치는 상태. 이 에너지로 실제로 변화를 만들어보세요.</td></tr><tr><th scope="row">9월 24일</th><td>내면 탐구의 날. 물병자리는 외부 세계를 분석하는 데 익숙하지만, 오늘은 내면을 들여다볼 필요가 있습니다. 자신이 진짜 원하는 것이 무엇인지.</td></tr><tr><th scope="row">9월 25일</th><td>소통의 새로운 방식을 시도하는 날. 말로 전달이 어렵던 것들을 다른 방식으로 표현해보세요. 글, 그림, 행동으로.</td></tr><tr><th scope="row">9월 26일</th><td>친밀함이 불편하게 느껴지는 날. 너무 가까워지는 것이 자유를 잃는 것처럼 느껴지는 물병자리의 근원적 두려움이 오늘 작동합니다.</td></tr><tr><th scope="row">9월 27일</th><td>전례 없는 아이디어로 주변을 놀라게 하는 날. 오늘 당신의 생각은 한 발자국이 아니라 열 발자국 앞서 있습니다. 표현할 때 상대방 속도에 맞추세요.</td></tr><tr><th scope="row">9월 28일</th><td>우정과 연대의 날. 물병자리는 연인보다 친구를 소중히 여기는 경향이 있는데, 오늘 그 우정의 가치를 재확인합니다.</td></tr><tr><th scope="row">9월 29일</th><td>9월의 마무리를 혼자만의 방식으로 하는 날. 일반적인 결산 방식이 아닌 물병자리만의 독특한 회고 방법을 찾아보세요. 예를 들면 마인드맵이나 개념도로.</td></tr><tr><th scope="row">9월 30일</th><td>9월의 마지막 날. 물병자리답게 이번 달도 남들이 이해 못 할 몇 가지 일이 있었고, 그게 당신에게는 완벽하게 논리적이었습니다. 10월도 그렇게 살아가세요. 그게 당신입니다.</td></tr></tbody></table></div>
-</section>
+  <p class="prose-sm">탄생석 자수정 · 행운의 색 청록색 · 행운의 숫자 4 · 토요일</p>
+</details>
 
 <section>
   <h2 class="sec-title">다른 별자리 보기</h2>
@@ -467,6 +493,14 @@ body{background:#f5f5f5;}
   var set=function(id,v){var el=document.getElementById(id); if(el&&v)el.textContent=v;};
   set('f-summary',f.summary); set('f-love',f.love); set('f-work',f.work); set('f-money',f.money);
   set('todayDate',y+'년 '+mo+'월 '+d+'일');
-})();</script>
+})();
+var __S={title:'🏺 물병자리 오늘의 운세',url:'https://todays-fortune-app.vercel.app/zodiac/aquarius',img:'https://todays-fortune-app.vercel.app/og-image.png?v=2'};
+function __sum(){var el=document.getElementById('f-summary');return el?el.textContent.slice(0,80):'';}
+function shareKakao(){if(!window.Kakao){alert('잠시 후 다시 시도해 주세요.');return;}try{if(!Kakao.isInitialized())Kakao.init('4dc7d7690ca8b78aec06f64ca1158905');}catch(e){}
+  Kakao.Share.sendDefault({objectType:'feed',content:{title:__S.title,description:__sum(),imageUrl:__S.img,imageWidth:1200,imageHeight:630,link:{mobileWebUrl:__S.url,webUrl:__S.url}},buttons:[{title:'내 운세 보기',link:{mobileWebUrl:__S.url,webUrl:__S.url}}]});}
+function shareX(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(__S.title+'
+'+__sum()+'
+'+__S.url),'_blank');}
+function copyLink(){navigator.clipboard.writeText(__S.url).then(function(){alert('링크를 복사했어요!');});}</script>
 </body>
 </html>
