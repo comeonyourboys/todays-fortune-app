@@ -66,6 +66,9 @@ function layout({ title, desc, path, body, ld = [], extraHead = '', extraScript 
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${SITE.url}${path}">
 <meta property="og:image" content="${SITE.ogImage}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="오늘의 운세 — 12별자리">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
