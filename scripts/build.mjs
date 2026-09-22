@@ -54,6 +54,9 @@ function layout({ title, desc, path, body, ld = [], extraHead = '', extraScript 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon.png" sizes="512x512">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${SITE.url}${path}">
