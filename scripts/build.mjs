@@ -219,8 +219,8 @@ function shareX(){window.open('https://twitter.com/intent/tweet?text='+encodeURI
 function copyLink(){navigator.clipboard.writeText(__S.url).then(function(){alert('링크를 복사했어요!');});}</script>`;
 
   return layout({
-    title: `${s.n} 오늘의 운세와 성격·궁합 (${s.p}) | ${SITE.name}`,
-    desc: `${s.n}(${s.p}) 오늘의 총운·연애운·직장운·재물운과 성격, 강점과 약점, 잘 맞는 별자리, 신화 유래까지 한 페이지에 정리했습니다.`,
+    title: `${s.n} 오늘의 운세 — 성격·궁합·${s.p}`,
+    desc: `${s.n}(${s.p}) 오늘의 총운·연애운·직장운·재물운. 성격과 강점·약점, 잘 맞는 별자리까지 한 페이지에 정리했습니다.`,
     path, body, ld, extraScript,
   });
 }
@@ -372,7 +372,7 @@ function copyLink(){navigator.clipboard.writeText(__S.url).then(function(){alert
     { '@context': 'https://schema.org', '@type': 'WebApplication', name: '별자리 궁합', url: SITE.url + '/compatibility', applicationCategory: 'LifestyleApplication', operatingSystem: 'Web Browser', inLanguage: 'ko', description: '내 별자리와 상대 별자리를 골라 궁합 점수와 해설을 확인하는 도구', offers: { '@type': 'Offer', price: '0', priceCurrency: 'KRW' } },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: '홈', item: SITE.url + '/' }, { '@type': 'ListItem', position: 2, name: '별자리 궁합', item: SITE.url + '/compatibility' }] },
   ];
-  return layout({ title: `별자리 궁합 — 내 별자리 × 상대 별자리 점수 바로 보기 | ${SITE.name}`, desc: '내 별자리와 상대 별자리를 고르면 원소와 각도로 계산한 궁합 점수와 해설을 바로 보여 드립니다. 12별자리 78개 조합.', path: '/compatibility', body, ld, extraScript });
+  return layout({ title: `별자리 궁합 — 내 별자리 × 상대 별자리 점수 바로 보기`, desc: '내 별자리와 상대 별자리를 고르면 원소와 각도로 계산한 궁합 점수와 해설을 바로 보여 드립니다. 12별자리 78개 조합.', path: '/compatibility', body, ld, extraScript });
 }
 
 // ---------- 소개 ----------
@@ -422,7 +422,7 @@ function pageAbout() {
 </article>`;
   const ld = [{ '@context': 'https://schema.org', '@type': 'AboutPage', name: '사이트 소개', url: SITE.url + '/about', inLanguage: 'ko', description: `${SITE.name} 소개와 운세 작성 방식, 이용 시 유의사항` },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: '홈', item: SITE.url + '/' }, { '@type': 'ListItem', position: 2, name: '사이트 소개', item: SITE.url + '/about' }] }];
-  return layout({ title: `사이트 소개 | ${SITE.name}`, desc: `${SITE.name}가 어떤 사이트인지, 운세와 별자리 설명을 어떻게 만들었는지, 이용할 때 무엇을 주의해야 하는지 정리했습니다.`, path: '/about', body, ld });
+  return layout({ title: `사이트 소개`, desc: `${SITE.name}가 어떤 사이트인지, 운세와 별자리 설명을 어떻게 만들었는지, 이용할 때 무엇을 주의해야 하는지 정리했습니다.`, path: '/about', body, ld });
 }
 
 // ---------- 실행 ----------
