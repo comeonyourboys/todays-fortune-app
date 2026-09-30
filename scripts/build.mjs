@@ -97,7 +97,7 @@ ${body}
 <p class="disclose">이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p></div>
 <footer class="site-ftr"><div class="container">
   <div class="ftr-links">${signs.map((s) => `<a href="${urlOf(s.k)}">${esc(s.n)}</a>`).join('')}</div>
-  <div class="ftr-links"><a href="/">홈</a><a href="/compatibility">별자리 궁합</a><a href="/about">사이트 소개</a><a href="/privacy">개인정보처리방침</a></div>
+  <div class="ftr-links"><a href="/">홈</a><a href="/compatibility">별자리 궁합</a><a href="/about">사이트 소개</a><a href="/contact">문의하기</a><a href="/privacy">개인정보처리방침</a></div>
   <p class="ftr-note">별자리 운세는 서양 점성술의 전통적 해석을 참고해 정리한 읽을거리입니다. 의학·법률·투자 등 중요한 판단의 근거로 삼지 마세요. © ${Y} ${SITE.name}</p>
 </div></footer>
 ${extraScript}
@@ -376,6 +376,53 @@ function copyLink(){navigator.clipboard.writeText(__S.url).then(function(){alert
 }
 
 // ---------- 소개 ----------
+function pageContact() {
+  const body = `
+<nav class="crumb"><a href="/">홈</a> › <span>문의하기</span></nav>
+<article class="sign-page">
+<header class="home-hero" style="padding-top:20px"><h1>문의하기</h1>
+  <p class="hero-sub">${SITE.name}는 개인이 혼자 만들고 운영하는 사이트입니다. 답변이 며칠 걸릴 수 있습니다.</p></header>
+
+<section>
+  <h2 class="sec-title">이메일</h2>
+  <div class="info-box">
+    <p style="font-size:18px;font-weight:800;margin:0 0 8px"><a href="mailto:comeonyourboyz@gmail.com">comeonyourboyz@gmail.com</a></p>
+    <p style="margin:0;color:#555">운세 내용이 이상하거나, 오탈자를 찾으셨거나, 화면이 깨질 때 편하게 보내주세요.</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">이런 연락이 특히 도움이 됩니다</h2>
+  <div class="prose">
+    <p><b>오탈자·문장 오류</b> — 어느 별자리의 며칠 자 운세인지 알려주시면 바로 고칠 수 있습니다. 운세는 날짜별로 따로 작성해 두기 때문에 특정 날짜만 이상한 경우가 있습니다.</p>
+    <p><b>날짜·요일이 안 맞을 때</b> — 본문의 요일이 실제 달력과 다르면 알려주세요. 작성 시점의 착오로 어긋나 있을 수 있습니다.</p>
+    <p><b>별자리 정보 오류</b> — 성격 설명이나 신화 유래, 탄생석 같은 상징이 일반적으로 알려진 것과 다르면 알려주세요.</p>
+    <p><b>화면 문제</b> — 레이아웃이 깨지거나 공유 버튼이 동작하지 않으면 쓰시는 기기와 브라우저를 함께 알려주시면 빠르게 확인할 수 있습니다.</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">답변이 어려운 것</h2>
+  <div class="prose">
+    <p>개인 운세 상담이나 사주·궁합 풀이는 해 드리지 않습니다. 이 사이트의 운세는 서양 점성술의 전통적 해석을 참고해 미리 작성해 둔 읽을거리이고, 운영자는 점성술 전문가가 아닙니다.</p>
+    <p>건강·투자·진로처럼 중요한 결정의 근거로 삼지 마시고, 하루를 시작하며 가볍게 읽는 정도로 봐 주세요.</p>
+    <p>광고·제휴 제안은 확인은 하지만 대부분 답장을 드리지 못합니다.</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">운영자 정보</h2>
+  <div class="prose">
+    <p>서울에서 일하는 소프트웨어 개발자가 업무 외 시간에 만들고 있습니다. 사업자 등록을 한 상업 사이트가 아니며, 운영 비용은 광고 수익으로 충당합니다.</p>
+    <p>운세와 별자리 설명을 어떻게 만들었는지는 <a href="/about">사이트 소개</a>에, 수집하는 정보는 <a href="/privacy">개인정보처리방침</a>에 정리해 두었습니다.</p>
+  </div>
+</section>
+</article>`;
+  const ld = [{ '@context': 'https://schema.org', '@type': 'ContactPage', name: '문의하기', url: SITE.url + '/contact', inLanguage: 'ko', description: `${SITE.name} 운영자에게 오류 제보나 문의를 보내는 방법` },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: '홈', item: SITE.url + '/' }, { '@type': 'ListItem', position: 2, name: '문의하기', item: SITE.url + '/contact' }] }];
+  return layout({ title: `문의하기`, desc: `${SITE.name} 운영자에게 오류 제보나 문의를 보내는 방법입니다. 운세 오탈자나 화면 문제를 알려주시면 확인 후 고치겠습니다.`, path: '/contact', body, ld });
+}
+
 function pageAbout() {
   const body = `
 <nav class="crumb"><a href="/">홈</a> › <span>사이트 소개</span></nav>
@@ -430,12 +477,14 @@ for (const s of signs) write(`zodiac/${s.k}/index.html`, pageSign(s));
 write('index.html', pageHome());
 write('compatibility.html', pageCompat());
 write('about.html', pageAbout());
+write('contact.html', pageContact());
 
 const urls = [
   { loc: '/', p: '1.0', f: 'daily' },
   ...signs.map((s) => ({ loc: urlOf(s.k), p: '0.9', f: 'daily' })),
   { loc: '/compatibility', p: '0.8', f: 'monthly' },
   { loc: '/about', p: '0.3', f: 'yearly' },
+  { loc: '/contact', p: '0.3', f: 'yearly' },
   { loc: '/privacy', p: '0.2', f: 'yearly' },
 ];
 writeFileSync(join(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${SITE.url}${u.loc}</loc><lastmod>${TODAY}</lastmod><changefreq>${u.f}</changefreq><priority>${u.p}</priority></url>`).join('\n')}\n</urlset>\n`);
