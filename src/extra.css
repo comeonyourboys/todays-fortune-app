@@ -210,3 +210,9 @@ main.container > section.home-hero{margin:0;}
 .info-box p b{color:#1a1a1a;font-weight:700;}
 .info-note{background:#f7f5ff;border-radius:12px;padding:13px 15px;margin-top:14px!important;font-size:14px!important;color:#555!important;display:flex;gap:8px;align-items:flex-start;line-height:1.7!important;}
 .info-note .info-ic{font-size:15px;flex-shrink:0;margin-top:1px;}
+
+/* 카카오 애드핏: 하단 320x50, 넓은 화면 양옆 160x600 */
+.adfit-bottom{display:flex;justify-content:center;margin:28px auto 8px;}
+.adfit-side{position:fixed;top:50%;transform:translateY(-50%);width:160px;z-index:5;}
+.adfit-left{left:16px;}
+.adfit-right{right:16px;}

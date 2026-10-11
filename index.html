@@ -432,12 +432,17 @@ main.container > section.home-hero{margin:0;}
 .info-box p b{color:#1a1a1a;font-weight:700;}
 .info-note{background:#f7f5ff;border-radius:12px;padding:13px 15px;margin-top:14px!important;font-size:14px!important;color:#555!important;display:flex;gap:8px;align-items:flex-start;line-height:1.7!important;}
 .info-note .info-ic{font-size:15px;flex-shrink:0;margin-top:1px;}
+
+/* 카카오 애드핏: 하단 320x50, 넓은 화면 양옆 160x600 */
+.adfit-bottom{display:flex;justify-content:center;margin:28px auto 8px;}
+.adfit-side{position:fixed;top:50%;transform:translateY(-50%);width:160px;z-index:5;}
+.adfit-left{left:16px;}
+.adfit-right{right:16px;}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app","description":"12별자리 운세와 별자리별 성격·궁합·신화를 정리한 별자리 사전. 오늘의 총운, 연애운, 직장운, 재물운을 확인하세요.","inLanguage":"ko"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"12별자리","itemListElement":[{"@type":"ListItem","position":1,"name":"물병자리","url":"https://todays-fortune-app.vercel.app/zodiac/aquarius"},{"@type":"ListItem","position":2,"name":"물고기자리","url":"https://todays-fortune-app.vercel.app/zodiac/pisces"},{"@type":"ListItem","position":3,"name":"양자리","url":"https://todays-fortune-app.vercel.app/zodiac/aries"},{"@type":"ListItem","position":4,"name":"황소자리","url":"https://todays-fortune-app.vercel.app/zodiac/taurus"},{"@type":"ListItem","position":5,"name":"쌍둥이자리","url":"https://todays-fortune-app.vercel.app/zodiac/gemini"},{"@type":"ListItem","position":6,"name":"게자리","url":"https://todays-fortune-app.vercel.app/zodiac/cancer"},{"@type":"ListItem","position":7,"name":"사자자리","url":"https://todays-fortune-app.vercel.app/zodiac/leo"},{"@type":"ListItem","position":8,"name":"처녀자리","url":"https://todays-fortune-app.vercel.app/zodiac/virgo"},{"@type":"ListItem","position":9,"name":"천칭자리","url":"https://todays-fortune-app.vercel.app/zodiac/libra"},{"@type":"ListItem","position":10,"name":"전갈자리","url":"https://todays-fortune-app.vercel.app/zodiac/scorpio"},{"@type":"ListItem","position":11,"name":"사수자리","url":"https://todays-fortune-app.vercel.app/zodiac/sagittarius"},{"@type":"ListItem","position":12,"name":"염소자리","url":"https://todays-fortune-app.vercel.app/zodiac/capricorn"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"별자리는 어떻게 정해지나요?","acceptedAnswer":{"@type":"Answer","text":"태어난 날짜에 태양이 지나던 황도 12궁 구간으로 정해집니다. 흔히 말하는 별자리는 이 태양 별자리를 가리키며, 생일이 경계에 걸치면 출생 시각에 따라 달라질 수 있습니다."}},{"@type":"Question","name":"별자리 운세는 매일 바뀌나요?","acceptedAnswer":{"@type":"Answer","text":"네, 12별자리 모두 날짜별로 총운·연애운·직장운·재물운이 준비되어 있습니다."}},{"@type":"Question","name":"별자리 궁합은 얼마나 믿을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"점성술의 궁합은 성향 차이를 설명하는 전통적 해석입니다. 과학적 근거가 있는 예측이 아니므로 관계를 이해하는 참고 자료로만 활용하시기 바랍니다."}}]}</script>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5479403345572412" crossorigin="anonymous"></script>
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" defer></script>
 </head>
 <body>
@@ -518,8 +523,9 @@ main.container > section.home-hero{margin:0;}
 
 
 </main>
-<div class="container ad-wrap"><div class="ad-inner"><script src="https://ads-partners.coupang.com/g.js"></script><script>new PartnersCoupang.G({"id":1017186,"template":"carousel","trackingCode":"AF7330023","width":"100%","height":"140","tsource":""});</script></div>
-<p class="disclose">이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p></div>
+<div class="adfit-bottom"><ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-XKdPIuDkSo3uxN1l" data-ad-width="320" data-ad-height="50"></ins></div>
+<script>(function(){if(window.innerWidth<1320)return;["DAN-PJDk9Ix8QSZwmho2","DAN-oPwQwRMLYEcXD02F"].forEach(function(id,i){var d=document.createElement('div');d.className='adfit-side '+(i?'adfit-right':'adfit-left');d.innerHTML='<ins class="kakao_ad_area" style="display:none;" data-ad-unit="'+id+'" data-ad-width="160" data-ad-height="600"></ins>';document.body.appendChild(d);});})();</script>
+<script async src="https://t1.kakaocdn.net/kas/static/ba.min.js"></script>
 <footer class="site-ftr"><div class="container">
   <div class="ftr-links"><a href="/zodiac/aquarius">물병자리</a><a href="/zodiac/pisces">물고기자리</a><a href="/zodiac/aries">양자리</a><a href="/zodiac/taurus">황소자리</a><a href="/zodiac/gemini">쌍둥이자리</a><a href="/zodiac/cancer">게자리</a><a href="/zodiac/leo">사자자리</a><a href="/zodiac/virgo">처녀자리</a><a href="/zodiac/libra">천칭자리</a><a href="/zodiac/scorpio">전갈자리</a><a href="/zodiac/sagittarius">사수자리</a><a href="/zodiac/capricorn">염소자리</a></div>
   <div class="ftr-links"><a href="/">홈</a><a href="/compatibility">별자리 궁합</a><a href="/about">사이트 소개</a><a href="/contact">문의하기</a><a href="/privacy">개인정보처리방침</a></div>

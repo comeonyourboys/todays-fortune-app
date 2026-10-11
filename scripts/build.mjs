@@ -13,11 +13,16 @@ const SITE = {
   name: '오늘의 운세',
   desc: '12별자리 운세와 별자리별 성격·궁합·신화를 정리한 별자리 사전. 오늘의 총운, 연애운, 직장운, 재물운을 확인하세요.',
   ogImage: 'https://todays-fortune-app.vercel.app/og-image.png?v=2',
-  adsense: 'ca-pub-5479403345572412',
-  coupang: { tracking: 'AF7330023', id: 1017186 },
+  // 카카오 애드핏 — 2026-08 에 이 사이트 매체로 등록해 둔 기존 광고 단위
+  adfit: { bottom: 'DAN-XKdPIuDkSo3uxN1l', side: ['DAN-PJDk9Ix8QSZwmho2', 'DAN-oPwQwRMLYEcXD02F'] },
   gsv: ['1f373KtNH3atCzIil1snRuWtDwrzIfDYspZs5GWiRT4', 'WjzFs7iu4kDSzcJKM5QyAqGDAqx9J1P0uj-Ry4z1_NU'], // Search Console 인증 토큰(계정별). 어느 계정으로도 인증되게 모두 둔다
 };
 
+// 하단 320x50 은 모든 화면에 둔다. 양옆 160x600 은 본문(최대 920px) 밖에 자리가 남는
+// 넓은 화면에서만 스크립트로 만들어 붙인다 — 좁은 화면에 숨긴 광고를 두지 않기 위해서다.
+const adfitHtml = () => `<div class="adfit-bottom"><ins class="kakao_ad_area" style="display:none;" data-ad-unit="${SITE.adfit.bottom}" data-ad-width="320" data-ad-height="50"></ins></div>
+<script>(function(){if(window.innerWidth<1320)return;${JSON.stringify(SITE.adfit.side)}.forEach(function(id,i){var d=document.createElement('div');d.className='adfit-side '+(i?'adfit-right':'adfit-left');d.innerHTML='<ins class="kakao_ad_area" style="display:none;" data-ad-unit="'+id+'" data-ad-width="160" data-ad-height="600"></ins>';document.body.appendChild(d);});})();</script>
+<script async src="https://t1.kakaocdn.net/kas/static/ba.min.js"></script>`;
 const signs = JSON.parse(readFileSync(join(root, 'data/signs.json'), 'utf8'));
 const profiles = ['profiles-a.json', 'profiles-b.json'].reduce((acc, f) => {
   const p = join(root, 'data', f);
@@ -83,7 +88,6 @@ ${SITE.gsv.map((t) => `<meta name="google-site-verification" content="${t}">`).j
 <style>${style}</style>
 ${ld.map(jsonld).join('\n')}
 ${extraHead}
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${SITE.adsense}" crossorigin="anonymous"></script>
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" defer></script>
 </head>
 <body>
@@ -94,8 +98,7 @@ ${extraHead}
 <main class="container">
 ${body}
 </main>
-<div class="container ad-wrap"><div class="ad-inner"><script src="https://ads-partners.coupang.com/g.js"></script><script>new PartnersCoupang.G({"id":${SITE.coupang.id},"template":"carousel","trackingCode":"${SITE.coupang.tracking}","width":"100%","height":"140","tsource":""});</script></div>
-<p class="disclose">이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p></div>
+${adfitHtml()}
 <footer class="site-ftr"><div class="container">
   <div class="ftr-links">${signs.map((s) => `<a href="${urlOf(s.k)}">${esc(s.n)}</a>`).join('')}</div>
   <div class="ftr-links"><a href="/">홈</a><a href="/compatibility">별자리 궁합</a><a href="/about">사이트 소개</a><a href="/contact">문의하기</a><a href="/privacy">개인정보처리방침</a></div>
@@ -458,7 +461,7 @@ function pageAbout() {
 <section>
   <h2 class="sec-title">운영과 광고</h2>
   <div class="prose">
-    <p>이 사이트는 회원가입 없이 누구나 무료로 볼 수 있습니다. 운영 비용은 Google AdSense 광고와 쿠팡 파트너스 제휴 링크로 충당합니다. 쿠팡 파트너스 활동으로 일정액의 수수료를 제공받습니다. 수집하는 정보와 쿠키에 관한 내용은 <a href="/privacy">개인정보처리방침</a>에 정리해 두었습니다.</p>
+    <p>이 사이트는 회원가입 없이 누구나 무료로 볼 수 있습니다. 운영 비용은 카카오 애드핏 광고로 충당합니다. 수집하는 정보와 쿠키에 관한 내용은 <a href="/privacy">개인정보처리방침</a>에 정리해 두었습니다.</p>
     <p>잘못된 내용이나 고쳤으면 하는 부분이 있으면 알려 주시기 바랍니다.</p>
   </div>
 </section>
