@@ -15,7 +15,7 @@ const SITE = {
   ogImage: 'https://todays-fortune-app.vercel.app/og-image.png?v=2',
   adsense: 'ca-pub-5479403345572412',
   coupang: { tracking: 'AF7330023', id: 1017186 },
-  gsv: '1f373KtNH3atCzIil1snRuWtDwrzIfDYspZs5GWiRT4',
+  gsv: ['1f373KtNH3atCzIil1snRuWtDwrzIfDYspZs5GWiRT4', 'WjzFs7iu4kDSzcJKM5QyAqGDAqx9J1P0uj-Ry4z1_NU'], // Search Console 인증 토큰(계정별). 어느 계정으로도 인증되게 모두 둔다
 };
 
 const signs = JSON.parse(readFileSync(join(root, 'data/signs.json'), 'utf8'));
@@ -57,11 +57,12 @@ function layout({ title, desc, path, body, ld = [], extraHead = '', extraScript 
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/favicon.png" sizes="512x512">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${SITE.url}${path}">
 <meta name="robots" content="index, follow">
-<meta name="google-site-verification" content="${SITE.gsv}">
+${SITE.gsv.map((t) => `<meta name="google-site-verification" content="${t}">`).join('\n')}
 <meta name="theme-color" content="#1a1a2e">
 <meta property="og:type" content="${path === '/' ? 'website' : 'article'}">
 <meta property="og:site_name" content="${SITE.name}">
