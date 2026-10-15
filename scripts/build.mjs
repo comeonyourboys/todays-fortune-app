@@ -68,6 +68,7 @@ function layout({ title, desc, path, body, ld = [], extraHead = '', extraScript 
 <link rel="canonical" href="${SITE.url}${path}">
 <meta name="robots" content="index, follow">
 ${SITE.gsv.map((t) => `<meta name="google-site-verification" content="${t}">`).join('\n')}
+<meta name="google-adsense-account" content="ca-pub-5479403345572412">
 <meta name="theme-color" content="#1a1a2e">
 <meta property="og:type" content="${path === '/' ? 'website' : 'article'}">
 <meta property="og:site_name" content="${SITE.name}">
