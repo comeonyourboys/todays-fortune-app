@@ -451,7 +451,7 @@ const today=new Date();
 // 월별 운세 데이터 로드
 (function() {
   var m = String(today.getMonth() + 1).padStart(2, '0');
-  fetch('data/fortune-' + m + '.json')
+  fetch('data/fortune-' + today.getFullYear() + '-' + m + '.json')
     .then(function(r) { return r.json(); })
     .then(function(d) { CUSTOM_FORTUNE = d; console.log('✅ ' + m + '월 운세 로드 완료'); })
     .catch(function() { console.log('⚠️ ' + m + '월 운세 파일 없음'); });

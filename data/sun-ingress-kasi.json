@@ -1,0 +1,605 @@
+{
+ "_comment": "태양이 황경 30° 배수(12중기)를 지나는 시각. 별자리 계산기가 경계일 판정에 쓴다. 해마다 직접 추가하려면 같은 형식으로 years 에 넣는다.",
+ "source": {
+  "label": "한국천문연구원 천문우주정보 — 연도별 달력자료(24절기)",
+  "url": "https://astro.kasi.re.kr/kor/life/post/calendarData?year=2026",
+  "note": "한국천문연구원 페이지는 이 달력자료가 공식 발표 자료가 아니며 공식 자료는 월력요항이라고 밝히고 있습니다. 2027·2028년은 월력요항 공식 발표 전 자료입니다.",
+  "almanac": "https://astro.kasi.re.kr/kor/life/post/almanac"
+ },
+ "timezone": "KST(UTC+9)",
+ "retrieved": "2026-10-19",
+ "years": {
+  "2021": [
+   {
+    "term": "대한",
+    "deg": 300,
+    "starts": "aquarius",
+    "kst": "2021-01-20T05:40"
+   },
+   {
+    "term": "우수",
+    "deg": 330,
+    "starts": "pisces",
+    "kst": "2021-02-18T19:44"
+   },
+   {
+    "term": "춘분",
+    "deg": 0,
+    "starts": "aries",
+    "kst": "2021-03-20T18:37"
+   },
+   {
+    "term": "곡우",
+    "deg": 30,
+    "starts": "taurus",
+    "kst": "2021-04-20T05:33"
+   },
+   {
+    "term": "소만",
+    "deg": 60,
+    "starts": "gemini",
+    "kst": "2021-05-21T04:37"
+   },
+   {
+    "term": "하지",
+    "deg": 90,
+    "starts": "cancer",
+    "kst": "2021-06-21T12:32"
+   },
+   {
+    "term": "대서",
+    "deg": 120,
+    "starts": "leo",
+    "kst": "2021-07-22T23:26"
+   },
+   {
+    "term": "처서",
+    "deg": 150,
+    "starts": "virgo",
+    "kst": "2021-08-23T06:35"
+   },
+   {
+    "term": "추분",
+    "deg": 180,
+    "starts": "libra",
+    "kst": "2021-09-23T04:21"
+   },
+   {
+    "term": "상강",
+    "deg": 210,
+    "starts": "scorpio",
+    "kst": "2021-10-23T13:51"
+   },
+   {
+    "term": "소설",
+    "deg": 240,
+    "starts": "sagittarius",
+    "kst": "2021-11-22T11:34"
+   },
+   {
+    "term": "동지",
+    "deg": 270,
+    "starts": "capricorn",
+    "kst": "2021-12-22T00:59"
+   }
+  ],
+  "2022": [
+   {
+    "term": "대한",
+    "deg": 300,
+    "starts": "aquarius",
+    "kst": "2022-01-20T11:39"
+   },
+   {
+    "term": "우수",
+    "deg": 330,
+    "starts": "pisces",
+    "kst": "2022-02-19T01:43"
+   },
+   {
+    "term": "춘분",
+    "deg": 0,
+    "starts": "aries",
+    "kst": "2022-03-21T00:33"
+   },
+   {
+    "term": "곡우",
+    "deg": 30,
+    "starts": "taurus",
+    "kst": "2022-04-20T11:24"
+   },
+   {
+    "term": "소만",
+    "deg": 60,
+    "starts": "gemini",
+    "kst": "2022-05-21T10:23"
+   },
+   {
+    "term": "하지",
+    "deg": 90,
+    "starts": "cancer",
+    "kst": "2022-06-21T18:14"
+   },
+   {
+    "term": "대서",
+    "deg": 120,
+    "starts": "leo",
+    "kst": "2022-07-23T05:07"
+   },
+   {
+    "term": "처서",
+    "deg": 150,
+    "starts": "virgo",
+    "kst": "2022-08-23T12:16"
+   },
+   {
+    "term": "추분",
+    "deg": 180,
+    "starts": "libra",
+    "kst": "2022-09-23T10:04"
+   },
+   {
+    "term": "상강",
+    "deg": 210,
+    "starts": "scorpio",
+    "kst": "2022-10-23T19:36"
+   },
+   {
+    "term": "소설",
+    "deg": 240,
+    "starts": "sagittarius",
+    "kst": "2022-11-22T17:20"
+   },
+   {
+    "term": "동지",
+    "deg": 270,
+    "starts": "capricorn",
+    "kst": "2022-12-22T06:48"
+   }
+  ],
+  "2023": [
+   {
+    "term": "대한",
+    "deg": 300,
+    "starts": "aquarius",
+    "kst": "2023-01-20T17:30"
+   },
+   {
+    "term": "우수",
+    "deg": 330,
+    "starts": "pisces",
+    "kst": "2023-02-19T07:34"
+   },
+   {
+    "term": "춘분",
+    "deg": 0,
+    "starts": "aries",
+    "kst": "2023-03-21T06:24"
+   },
+   {
+    "term": "곡우",
+    "deg": 30,
+    "starts": "taurus",
+    "kst": "2023-04-20T17:14"
+   },
+   {
+    "term": "소만",
+    "deg": 60,
+    "starts": "gemini",
+    "kst": "2023-05-21T16:09"
+   },
+   {
+    "term": "하지",
+    "deg": 90,
+    "starts": "cancer",
+    "kst": "2023-06-21T23:58"
+   },
+   {
+    "term": "대서",
+    "deg": 120,
+    "starts": "leo",
+    "kst": "2023-07-23T10:50"
+   },
+   {
+    "term": "처서",
+    "deg": 150,
+    "starts": "virgo",
+    "kst": "2023-08-23T18:01"
+   },
+   {
+    "term": "추분",
+    "deg": 180,
+    "starts": "libra",
+    "kst": "2023-09-23T15:50"
+   },
+   {
+    "term": "상강",
+    "deg": 210,
+    "starts": "scorpio",
+    "kst": "2023-10-24T01:21"
+   },
+   {
+    "term": "소설",
+    "deg": 240,
+    "starts": "sagittarius",
+    "kst": "2023-11-22T23:03"
+   },
+   {
+    "term": "동지",
+    "deg": 270,
+    "starts": "capricorn",
+    "kst": "2023-12-22T12:27"
+   }
+  ],
+  "2024": [
+   {
+    "term": "대한",
+    "deg": 300,
+    "starts": "aquarius",
+    "kst": "2024-01-20T23:07"
+   },
+   {
+    "term": "우수",
+    "deg": 330,
+    "starts": "pisces",
+    "kst": "2024-02-19T13:13"
+   },
+   {
+    "term": "춘분",
+    "deg": 0,
+    "starts": "aries",
+    "kst": "2024-03-20T12:06"
+   },
+   {
+    "term": "곡우",
+    "deg": 30,
+    "starts": "taurus",
+    "kst": "2024-04-19T23:00"
+   },
+   {
+    "term": "소만",
+    "deg": 60,
+    "starts": "gemini",
+    "kst": "2024-05-20T22:00"
+   },
+   {
+    "term": "하지",
+    "deg": 90,
+    "starts": "cancer",
+    "kst": "2024-06-21T05:51"
+   },
+   {
+    "term": "대서",
+    "deg": 120,
+    "starts": "leo",
+    "kst": "2024-07-22T16:44"
+   },
+   {
+    "term": "처서",
+    "deg": 150,
+    "starts": "virgo",
+    "kst": "2024-08-22T23:55"
+   },
+   {
+    "term": "추분",
+    "deg": 180,
+    "starts": "libra",
+    "kst": "2024-09-22T21:44"
+   },
+   {
+    "term": "상강",
+    "deg": 210,
+    "starts": "scorpio",
+    "kst": "2024-10-23T07:15"
+   },
+   {
+    "term": "소설",
+    "deg": 240,
+    "starts": "sagittarius",
+    "kst": "2024-11-22T04:56"
+   },
+   {
+    "term": "동지",
+    "deg": 270,
+    "starts": "capricorn",
+    "kst": "2024-12-21T18:21"
+   }
+  ],
+  "2025": [
+   {
+    "term": "대한",
+    "deg": 300,
+    "starts": "aquarius",
+    "kst": "2025-01-20T05:00"
+   },
+   {
+    "term": "우수",
+    "deg": 330,
+    "starts": "pisces",
+    "kst": "2025-02-18T19:07"
+   },
+   {
+    "term": "춘분",
+    "deg": 0,
+    "starts": "aries",
+    "kst": "2025-03-20T18:01"
+   },
+   {
+    "term": "곡우",
+    "deg": 30,
+    "starts": "taurus",
+    "kst": "2025-04-20T04:56"
+   },
+   {
+    "term": "소만",
+    "deg": 60,
+    "starts": "gemini",
+    "kst": "2025-05-21T03:55"
+   },
+   {
+    "term": "하지",
+    "deg": 90,
+    "starts": "cancer",
+    "kst": "2025-06-21T11:42"
+   },
+   {
+    "term": "대서",
+    "deg": 120,
+    "starts": "leo",
+    "kst": "2025-07-22T22:29"
+   },
+   {
+    "term": "처서",
+    "deg": 150,
+    "starts": "virgo",
+    "kst": "2025-08-23T05:34"
+   },
+   {
+    "term": "추분",
+    "deg": 180,
+    "starts": "libra",
+    "kst": "2025-09-23T03:19"
+   },
+   {
+    "term": "상강",
+    "deg": 210,
+    "starts": "scorpio",
+    "kst": "2025-10-23T12:51"
+   },
+   {
+    "term": "소설",
+    "deg": 240,
+    "starts": "sagittarius",
+    "kst": "2025-11-22T10:36"
+   },
+   {
+    "term": "동지",
+    "deg": 270,
+    "starts": "capricorn",
+    "kst": "2025-12-22T00:03"
+   }
+  ],
+  "2026": [
+   {
+    "term": "대한",
+    "deg": 300,
+    "starts": "aquarius",
+    "kst": "2026-01-20T10:45"
+   },
+   {
+    "term": "우수",
+    "deg": 330,
+    "starts": "pisces",
+    "kst": "2026-02-19T00:52"
+   },
+   {
+    "term": "춘분",
+    "deg": 0,
+    "starts": "aries",
+    "kst": "2026-03-20T23:46"
+   },
+   {
+    "term": "곡우",
+    "deg": 30,
+    "starts": "taurus",
+    "kst": "2026-04-20T10:39"
+   },
+   {
+    "term": "소만",
+    "deg": 60,
+    "starts": "gemini",
+    "kst": "2026-05-21T09:37"
+   },
+   {
+    "term": "하지",
+    "deg": 90,
+    "starts": "cancer",
+    "kst": "2026-06-21T17:25"
+   },
+   {
+    "term": "대서",
+    "deg": 120,
+    "starts": "leo",
+    "kst": "2026-07-23T04:13"
+   },
+   {
+    "term": "처서",
+    "deg": 150,
+    "starts": "virgo",
+    "kst": "2026-08-23T11:19"
+   },
+   {
+    "term": "추분",
+    "deg": 180,
+    "starts": "libra",
+    "kst": "2026-09-23T09:05"
+   },
+   {
+    "term": "상강",
+    "deg": 210,
+    "starts": "scorpio",
+    "kst": "2026-10-23T18:38"
+   },
+   {
+    "term": "소설",
+    "deg": 240,
+    "starts": "sagittarius",
+    "kst": "2026-11-22T16:23"
+   },
+   {
+    "term": "동지",
+    "deg": 270,
+    "starts": "capricorn",
+    "kst": "2026-12-22T05:50"
+   }
+  ],
+  "2027": [
+   {
+    "term": "대한",
+    "deg": 300,
+    "starts": "aquarius",
+    "kst": "2027-01-20T16:30"
+   },
+   {
+    "term": "우수",
+    "deg": 330,
+    "starts": "pisces",
+    "kst": "2027-02-19T06:33"
+   },
+   {
+    "term": "춘분",
+    "deg": 0,
+    "starts": "aries",
+    "kst": "2027-03-21T05:25"
+   },
+   {
+    "term": "곡우",
+    "deg": 30,
+    "starts": "taurus",
+    "kst": "2027-04-20T16:18"
+   },
+   {
+    "term": "소만",
+    "deg": 60,
+    "starts": "gemini",
+    "kst": "2027-05-21T15:18"
+   },
+   {
+    "term": "하지",
+    "deg": 90,
+    "starts": "cancer",
+    "kst": "2027-06-21T23:11"
+   },
+   {
+    "term": "대서",
+    "deg": 120,
+    "starts": "leo",
+    "kst": "2027-07-23T10:05"
+   },
+   {
+    "term": "처서",
+    "deg": 150,
+    "starts": "virgo",
+    "kst": "2027-08-23T17:14"
+   },
+   {
+    "term": "추분",
+    "deg": 180,
+    "starts": "libra",
+    "kst": "2027-09-23T15:02"
+   },
+   {
+    "term": "상강",
+    "deg": 210,
+    "starts": "scorpio",
+    "kst": "2027-10-24T00:33"
+   },
+   {
+    "term": "소설",
+    "deg": 240,
+    "starts": "sagittarius",
+    "kst": "2027-11-22T22:16"
+   },
+   {
+    "term": "동지",
+    "deg": 270,
+    "starts": "capricorn",
+    "kst": "2027-12-22T11:42"
+   }
+  ],
+  "2028": [
+   {
+    "term": "대한",
+    "deg": 300,
+    "starts": "aquarius",
+    "kst": "2028-01-20T22:22"
+   },
+   {
+    "term": "우수",
+    "deg": 330,
+    "starts": "pisces",
+    "kst": "2028-02-19T12:26"
+   },
+   {
+    "term": "춘분",
+    "deg": 0,
+    "starts": "aries",
+    "kst": "2028-03-20T11:17"
+   },
+   {
+    "term": "곡우",
+    "deg": 30,
+    "starts": "taurus",
+    "kst": "2028-04-19T22:09"
+   },
+   {
+    "term": "소만",
+    "deg": 60,
+    "starts": "gemini",
+    "kst": "2028-05-20T21:10"
+   },
+   {
+    "term": "하지",
+    "deg": 90,
+    "starts": "cancer",
+    "kst": "2028-06-21T05:02"
+   },
+   {
+    "term": "대서",
+    "deg": 120,
+    "starts": "leo",
+    "kst": "2028-07-22T15:54"
+   },
+   {
+    "term": "처서",
+    "deg": 150,
+    "starts": "virgo",
+    "kst": "2028-08-22T23:01"
+   },
+   {
+    "term": "추분",
+    "deg": 180,
+    "starts": "libra",
+    "kst": "2028-09-22T20:45"
+   },
+   {
+    "term": "상강",
+    "deg": 210,
+    "starts": "scorpio",
+    "kst": "2028-10-23T06:13"
+   },
+   {
+    "term": "소설",
+    "deg": 240,
+    "starts": "sagittarius",
+    "kst": "2028-11-22T03:54"
+   },
+   {
+    "term": "동지",
+    "deg": 270,
+    "starts": "capricorn",
+    "kst": "2028-12-21T17:20"
+   }
+  ]
+ }
+}

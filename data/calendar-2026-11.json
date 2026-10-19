@@ -1,0 +1,41 @@
+{
+ "_comment": "2026년 11월 운세 데이터를 작성할 때 반영한 일정만 적는다. 출처가 확인된 항목만 넣는다.",
+ "month": "2026-11",
+ "events": [
+  {
+   "date": "2026-11-07",
+   "name": "입동",
+   "desc": "24절기의 열아홉 번째 절기로, 태양 황경이 225°가 되는 때입니다. 한국천문연구원 달력자료 기준 18시 52분입니다.",
+   "sources": [
+    { "label": "한국천문연구원 2026년 달력자료(24절기)", "url": "https://astro.kasi.re.kr/kor/life/post/calendarData?year=2026" },
+    { "label": "위키백과 — 입동", "url": "https://ko.wikipedia.org/wiki/입동" }
+   ]
+  },
+  {
+   "date": "2026-11-11",
+   "name": "빼빼로데이",
+   "desc": "11월 11일에 막대 모양 과자를 주고받는 국내 기념일입니다. 법정 기념일은 아닙니다.",
+   "sources": [
+    { "label": "위키백과 — 빼빼로 데이", "url": "https://ko.wikipedia.org/wiki/빼빼로_데이" }
+   ]
+  },
+  {
+   "date": "2026-11-19",
+   "name": "2027학년도 대학수학능력시험",
+   "desc": "교육부·한국교육과정평가원이 발표한 2027학년도 수능 시행일입니다. 성적 통지일은 12월 11일로 발표됐습니다.",
+   "sources": [
+    { "label": "한국교육과정평가원 대학수학능력시험", "url": "https://www.suneung.re.kr/" },
+    { "label": "이투데이 — 2027학년도 수능 11월 19일 시행(교육부 발표 보도)", "url": "https://www.etoday.co.kr/news/view/2390974" }
+   ]
+  },
+  {
+   "date": "2026-11-22",
+   "name": "소설",
+   "desc": "24절기의 스무 번째 절기로, 태양 황경이 240°가 되는 때입니다. 한국천문연구원 달력자료 기준 16시 23분이며, 서양 점성술에서 사수자리가 시작되는 지점(황경 240°)과 같습니다.",
+   "sources": [
+    { "label": "한국천문연구원 2026년 달력자료(24절기)", "url": "https://astro.kasi.re.kr/kor/life/post/calendarData?year=2026" },
+    { "label": "위키백과 — 소설(절기)", "url": "https://ko.wikipedia.org/wiki/소설_(절기)" }
+   ]
+  }
+ ]
+}

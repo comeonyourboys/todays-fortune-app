@@ -439,6 +439,86 @@ main.container > section.home-hero{margin:0;}
 .adfit-side{position:fixed;top:50%;transform:translateY(-50%);width:160px;z-index:5;}
 .adfit-left{left:16px;}
 .adfit-right{right:16px;}
+
+/* ===== 월별 운세·궁합 상세·계산기·가이드 ===== */
+@media(max-width:480px){.hdr-in{height:auto;min-height:52px;padding-top:8px;padding-bottom:8px;flex-wrap:wrap;gap:4px 10px;}.brand{font-size:16px;}.hdr-nav{gap:0;}.hdr-nav a{font-size:12.5px;padding:5px 7px;}}
+.sec-lead{font-size:14px;color:#777;line-height:1.7;margin:-4px 0 14px;}
+.month-cta{display:flex;flex-direction:column;gap:4px;background:#fff;border-radius:16px;padding:16px 18px;text-decoration:none;border-left:4px solid #7c6cf0;margin-bottom:12px;}
+.month-cta b{font-size:16px;color:#1a1a1a;}
+.month-cta span{font-size:13.5px;color:#777;line-height:1.6;}
+.month-quote{background:#fff;border-radius:16px;padding:18px 20px;margin:14px 0 0;border-left:4px solid #7c6cf0;}
+.month-quote p{font-size:16px;line-height:1.8;color:#333;}
+.month-quote cite{display:block;font-size:12.5px;color:#999;font-style:normal;margin-top:8px;}
+.wk{background:#fff;border-radius:16px;padding:18px 20px;margin-bottom:12px;}
+.wk h3{font-size:16px;font-weight:800;margin-bottom:10px;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline;}
+.wk h3 small{font-size:12.5px;color:#999;font-weight:600;}
+.wk-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.wk-list li{display:flex;gap:10px;font-size:14.5px;line-height:1.7;color:#444;}
+.wk-cat{flex-shrink:0;width:34px;font-size:12px;font-weight:800;color:#7c6cf0;padding-top:3px;}
+.wk-txt{min-width:0;}
+.wk-d{font-size:12px;color:#999;text-decoration:none;white-space:nowrap;margin-left:2px;}
+.wk-ev{font-size:13px;color:#5b4ce0;background:#f7f5ff;border-radius:10px;padding:8px 12px;margin-top:12px;line-height:1.6;}
+.ev-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.ev-list li{background:#fff;border-radius:14px;padding:14px 16px;}
+.ev-list b{font-size:15px;}
+.ev-list p{font-size:14px;line-height:1.7;color:#555;margin-top:6px;}
+.ev-list .ev-src{font-size:12.5px;color:#999;}
+.ev-src a,.sources a{color:#7c6cf0;word-break:break-all;}
+.day-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.day-list li{display:flex;gap:12px;background:#fff;border-radius:14px;padding:14px 16px;scroll-margin-top:70px;}
+.day-list li:target{outline:2px solid #7c6cf0;}
+.dl-date{flex-shrink:0;width:34px;text-align:center;display:flex;flex-direction:column;}
+.dl-date b{font-size:20px;font-weight:800;line-height:1.2;color:#1a1a1a;}
+.dl-date small{font-size:12px;color:#999;font-weight:700;}
+.dl-body{min-width:0;}
+.dl-ev{display:inline-block;font-size:11.5px;font-weight:800;color:#5b4ce0;background:#f0eefe;border-radius:999px;padding:2px 9px;margin:0 4px 6px 0;}
+.dl-sum{font-size:15px;line-height:1.75;color:#222;margin-bottom:6px;}
+.dl-sub{font-size:13.5px;line-height:1.65;color:#666;margin-top:3px;}
+.dl-sub b{color:#7c6cf0;font-size:12px;margin-right:4px;}
+.month-nav{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:6px;}
+.month-nav a{background:#fff;border-radius:999px;padding:9px 14px;font-size:13.5px;font-weight:700;color:#444;text-decoration:none;}
+.pair-hero{background:linear-gradient(135deg,#1a1a2e,#2d2b55);color:#fff;border-radius:20px;padding:24px 20px;margin-top:10px;text-align:center;}
+.ph-signs{display:flex;justify-content:center;align-items:center;gap:12px;font-size:44px;line-height:1;}
+.ph-signs a{text-decoration:none;}
+.ph-signs span{font-size:22px;color:rgba(255,255,255,.5);}
+.pair-hero h1{font-size:clamp(22px,5.5vw,28px);font-weight:800;margin-top:12px;letter-spacing:-.4px;}
+.ph-score{font-size:56px;font-weight:900;line-height:1.1;margin-top:6px;letter-spacing:-2px;}
+.ph-score small{font-size:20px;color:rgba(255,255,255,.6);letter-spacing:0;}
+.ph-asp{font-size:13.5px;color:rgba(255,255,255,.65);font-weight:700;}
+.tbl-wrap{background:#fff;border-radius:16px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.data-table{width:100%;border-collapse:collapse;font-size:14px;}
+.data-table th,.data-table td{padding:11px 12px;text-align:left;border-bottom:1px solid #f2f2f2;line-height:1.55;vertical-align:top;}
+.data-table thead th{background:#fafafa;font-size:12.5px;color:#777;font-weight:700;}
+.data-table tbody th{font-weight:700;color:#333;white-space:nowrap;}
+.data-table small{color:#999;font-weight:600;}
+.data-table a{color:#5b4ce0;text-decoration:none;}
+.data-table tr:last-child th,.data-table tr:last-child td{border-bottom:none;}
+.data-table.nowrap td{white-space:nowrap;font-variant-numeric:tabular-nums;}
+@media(max-width:480px){.data-table th,.data-table td{padding:9px 9px;font-size:13px;}}
+.fact-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.fact-list li{background:#fff;border-radius:14px;padding:13px 16px;font-size:14.5px;line-height:1.75;color:#444;}
+.fact-list a{color:#5b4ce0;}
+.sources ul{list-style:none;display:flex;flex-direction:column;gap:6px;font-size:13.5px;line-height:1.6;}
+.guide-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+@media(max-width:600px){.guide-cards{grid-template-columns:1fr;}}
+.guide-card{display:flex;flex-direction:column;gap:4px;background:#fff;border-radius:14px;padding:15px 17px;text-decoration:none;}
+.guide-card b{font-size:15px;color:#1a1a1a;}
+.guide-card span{font-size:13px;color:#777;line-height:1.55;}
+.calc-box{background:#fff;border-radius:18px;padding:18px;}
+.calc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+@media(max-width:640px){.calc-row{grid-template-columns:1fr 1fr;}}
+.calc-row label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700;color:#555;}
+.calc-row small{color:#aaa;font-weight:600;}
+.calc-row input,.calc-row select{font:inherit;font-size:16px;padding:10px 10px;border:1.5px solid #e4e4ea;border-radius:10px;background:#fafafa;width:100%;min-width:0;}
+.calc-box .rc-text{font-size:15px;}
+.calc-box .rc-text b{color:#fff;}
+.compat-table td a{color:inherit;text-decoration:none;display:block;}
+.prose a{color:#5b4ce0;}
+.tip-box{background:#f7f5ff;border-radius:14px;padding:15px 17px;}
+.tip-box p{font-size:15px;line-height:1.8;color:#333;}
+.ov-title{font-size:16px;font-weight:800;margin-bottom:8px;}
+.ov-note{font-size:12.5px!important;color:#999!important;margin-top:8px;line-height:1.6!important;}
+.wk-none{color:#999;font-size:13.5px;}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"오늘의 운세","url":"https://todays-fortune-app.vercel.app","description":"12별자리 운세와 별자리별 성격·궁합·신화를 정리한 별자리 사전. 오늘의 총운, 연애운, 직장운, 재물운을 확인하세요.","inLanguage":"ko"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"12별자리","itemListElement":[{"@type":"ListItem","position":1,"name":"물병자리","url":"https://todays-fortune-app.vercel.app/zodiac/aquarius"},{"@type":"ListItem","position":2,"name":"물고기자리","url":"https://todays-fortune-app.vercel.app/zodiac/pisces"},{"@type":"ListItem","position":3,"name":"양자리","url":"https://todays-fortune-app.vercel.app/zodiac/aries"},{"@type":"ListItem","position":4,"name":"황소자리","url":"https://todays-fortune-app.vercel.app/zodiac/taurus"},{"@type":"ListItem","position":5,"name":"쌍둥이자리","url":"https://todays-fortune-app.vercel.app/zodiac/gemini"},{"@type":"ListItem","position":6,"name":"게자리","url":"https://todays-fortune-app.vercel.app/zodiac/cancer"},{"@type":"ListItem","position":7,"name":"사자자리","url":"https://todays-fortune-app.vercel.app/zodiac/leo"},{"@type":"ListItem","position":8,"name":"처녀자리","url":"https://todays-fortune-app.vercel.app/zodiac/virgo"},{"@type":"ListItem","position":9,"name":"천칭자리","url":"https://todays-fortune-app.vercel.app/zodiac/libra"},{"@type":"ListItem","position":10,"name":"전갈자리","url":"https://todays-fortune-app.vercel.app/zodiac/scorpio"},{"@type":"ListItem","position":11,"name":"사수자리","url":"https://todays-fortune-app.vercel.app/zodiac/sagittarius"},{"@type":"ListItem","position":12,"name":"염소자리","url":"https://todays-fortune-app.vercel.app/zodiac/capricorn"}]}</script>
@@ -449,7 +529,7 @@ main.container > section.home-hero{margin:0;}
 <body>
 <header class="site-hdr"><div class="container hdr-in">
   <a class="brand" href="/"><span class="brand-star">✦</span> 오늘의 운세</a>
-  <nav class="hdr-nav"><a href="/">별자리 12</a><a href="/compatibility">궁합</a><a href="/about">소개</a></nav>
+  <nav class="hdr-nav"><a href="/">별자리 12</a><a href="/compatibility">궁합</a><a href="/zodiac-calculator">계산기</a><a href="/guide">기초</a><a href="/about">소개</a></nav>
 </div></header>
 <main class="container">
 
@@ -484,13 +564,13 @@ main.container > section.home-hero{margin:0;}
       <span class="tl-body"><span class="tl-name">양자리 <small>3.21-4.19</small></span><span class="tl-sum">한 주의 시작부터 속도가 붙는 월요일입니다. 오전에 가장 어려운 일을 배치하면 오후가 통째로 편해집니다. 미루는 순간 하루 전체가 밀린다는 점만 기억하세요.</span></span>
     </a><a class="tl-row" href="/zodiac/taurus">
       <span class="tl-emoji">🐂</span>
-      <span class="tl-body"><span class="tl-name">황소자리 <small>4.20-5.20</small></span><span class="tl-sum">월요일부터 요구가 몰려듭니다. 다 받아들이지 말고 우선순위를 소리 내어 정리해 보세요. 황소자리의 저력은 선택과 집중에서 나옵니다.</span></span>
+      <span class="tl-body"><span class="tl-name">황소자리 <small>4.20-5.20</small></span><span class="tl-sum">황소자리 책상 위로 이것저것 해 달라는 요청이 쌓이기 시작합니다. 다 받아들이지 말고 우선순위를 소리 내어 정리해 보세요. 황소자리의 저력은 선택과 집중에서 나옵니다.</span></span>
     </a><a class="tl-row" href="/zodiac/gemini">
       <span class="tl-emoji">👯</span>
       <span class="tl-body"><span class="tl-name">쌍둥이자리 <small>5.21-6.21</small></span><span class="tl-sum">월요일부터 연락과 요청이 쏟아집니다. 모두에게 즉답하려 들면 정작 중요한 것을 놓칩니다. 답장은 오전과 오후 두 번으로 묶어 보세요.</span></span>
     </a><a class="tl-row" href="/zodiac/cancer">
       <span class="tl-emoji">🦀</span>
-      <span class="tl-body"><span class="tl-name">게자리 <small>6.22-7.22</small></span><span class="tl-sum">사람 사이의 경계를 다시 그어야 하는 월요일입니다. 다 받아 주는 사람보다 지킬 것을 지키는 사람으로 보이는 편이 훨씬 유리합니다.</span></span>
+      <span class="tl-body"><span class="tl-name">게자리 <small>6.22-7.22</small></span><span class="tl-sum">누구의 부탁까지 들어줄지 선을 다시 정하게 되는 하루입니다. 다 받아 주는 사람보다 지킬 것을 지키는 사람으로 보이는 편이 훨씬 유리합니다.</span></span>
     </a><a class="tl-row" href="/zodiac/leo">
       <span class="tl-emoji">🦁</span>
       <span class="tl-body"><span class="tl-name">사자자리 <small>7.23-8.22</small></span><span class="tl-sum">월요일부터 일이 몰리지만 추진력이 살아납니다. 어려워 보이는 일을 가장 먼저 잡고, 말은 한 톤 낮추세요.</span></span>
@@ -502,10 +582,10 @@ main.container > section.home-hero{margin:0;}
       <span class="tl-body"><span class="tl-name">천칭자리 <small>9.23-10.22</small></span><span class="tl-sum">월요일부터 선택지가 세 개쯤 놓입니다. 천칭자리는 다 좋아 보여서 괴로운 유형이지만, 오늘은 버릴 것부터 고르면 쉬워집니다. 가장 마음이 덜 가는 하나를 먼저 지워 보세요.</span></span>
     </a><a class="tl-row" href="/zodiac/scorpio">
       <span class="tl-emoji">🦂</span>
-      <span class="tl-body"><span class="tl-name">전갈자리 <small>10.23-11.21</small></span><span class="tl-sum">경계를 다시 긋게 되는 월요일입니다. 다 받아 주는 사람보다 지킬 선을 지키는 사람으로 보이는 편이 앞으로의 관계에 훨씬 유리합니다.</span></span>
+      <span class="tl-body"><span class="tl-name">전갈자리 <small>10.23-11.21</small></span><span class="tl-sum">전갈자리의 직감이 누가 선을 넘고 있는지 먼저 알아채는 월요일입니다. 불편한 부탁은 이유를 길게 설명하지 말고 짧고 분명하게 거절해 보세요. 단호한 한마디가 앞으로의 관계를 오히려 편하게 만듭니다.</span></span>
     </a><a class="tl-row" href="/zodiac/sagittarius">
       <span class="tl-emoji">🏹</span>
-      <span class="tl-body"><span class="tl-name">사수자리 <small>11.22-12.21</small></span><span class="tl-sum">월요일부터 속도가 붙습니다. 다만 세부 사항을 건너뛰기 쉬우니 보내기 전에 숫자와 날짜만 두 번 확인하는 습관을 오늘부터 들여 보세요.</span></span>
+      <span class="tl-body"><span class="tl-name">사수자리 <small>11.22-12.21</small></span><span class="tl-sum">한 주가 열리자마자 사수자리의 발걸음이 빨라집니다. 다만 세부 사항을 건너뛰기 쉬우니 보내기 전에 숫자와 날짜만 두 번 확인하는 습관을 오늘부터 들여 보세요.</span></span>
     </a><a class="tl-row" href="/zodiac/capricorn">
       <span class="tl-emoji">🐐</span>
       <span class="tl-body"><span class="tl-name">염소자리 <small>12.22-1.19</small></span><span class="tl-sum">새로운 제안이나 역할이 들어올 기운입니다. 즉답하기보다 조건과 기한을 적어 하루만 재 보세요. 신중함은 염소자리의 무기이지 단점이 아닙니다.</span></span>
@@ -513,11 +593,17 @@ main.container > section.home-hero{margin:0;}
   </div>
 </section>
 
+<section>
+  <h2 class="sec-title">이번 달 운세 <span class="today-date">2026년 10월</span></h2>
+  <p class="sec-lead">별자리마다 10월 한 달의 주차별 흐름과 날짜별 운세를 모아 두었습니다.</p>
+  <div class="sign-links"><a class="sign-chip" href="/zodiac/aquarius/2026-10"><span>🏺</span>물병자리 10월</a><a class="sign-chip" href="/zodiac/pisces/2026-10"><span>🐟</span>물고기자리 10월</a><a class="sign-chip" href="/zodiac/aries/2026-10"><span>🐏</span>양자리 10월</a><a class="sign-chip" href="/zodiac/taurus/2026-10"><span>🐂</span>황소자리 10월</a><a class="sign-chip" href="/zodiac/gemini/2026-10"><span>👯</span>쌍둥이자리 10월</a><a class="sign-chip" href="/zodiac/cancer/2026-10"><span>🦀</span>게자리 10월</a><a class="sign-chip" href="/zodiac/leo/2026-10"><span>🦁</span>사자자리 10월</a><a class="sign-chip" href="/zodiac/virgo/2026-10"><span>👸</span>처녀자리 10월</a><a class="sign-chip" href="/zodiac/libra/2026-10"><span>⚖️</span>천칭자리 10월</a><a class="sign-chip" href="/zodiac/scorpio/2026-10"><span>🦂</span>전갈자리 10월</a><a class="sign-chip" href="/zodiac/sagittarius/2026-10"><span>🏹</span>사수자리 10월</a><a class="sign-chip" href="/zodiac/capricorn/2026-10"><span>🐐</span>염소자리 10월</a></div>
+</section>
+
 <section class="info-sec">
   <div class="info-box">
     <h2 class="info-title"><span class="info-ic">💡</span> 별자리 운세, 이렇게 보세요</h2>
     <p>별자리는 <b>태어난 날 태양이 지나던 구간</b>으로 정해집니다. 생일이 두 별자리 경계에 걸쳐 있다면 양쪽을 다 읽어 보세요.</p>
-    <p>별자리 페이지에는 오늘의 운세와 함께 성격의 강점·약점, 잘 맞는 별자리를 정리해 두었습니다.</p>
+    <p>별자리 페이지에는 오늘의 운세와 함께 성격의 강점·약점, 잘 맞는 별자리를 정리해 두었습니다. 내 별자리가 헷갈리면 <a href="/zodiac-calculator">별자리 계산기</a>를, 원소나 지배 행성 같은 말이 궁금하면 <a href="/guide">별자리 기초</a>를 보세요.</p>
     <p class="info-note"><span class="info-ic">⚠️</span> 점성술은 검증된 예측 도구가 아닙니다. 하루를 돌아보는 계기 정도로 가볍게 보시고, 중요한 결정은 스스로 내리시기 바랍니다.</p>
   </div>
 </section>
@@ -529,7 +615,7 @@ main.container > section.home-hero{margin:0;}
 <script async src="https://t1.kakaocdn.net/kas/static/ba.min.js"></script>
 <footer class="site-ftr"><div class="container">
   <div class="ftr-links"><a href="/zodiac/aquarius">물병자리</a><a href="/zodiac/pisces">물고기자리</a><a href="/zodiac/aries">양자리</a><a href="/zodiac/taurus">황소자리</a><a href="/zodiac/gemini">쌍둥이자리</a><a href="/zodiac/cancer">게자리</a><a href="/zodiac/leo">사자자리</a><a href="/zodiac/virgo">처녀자리</a><a href="/zodiac/libra">천칭자리</a><a href="/zodiac/scorpio">전갈자리</a><a href="/zodiac/sagittarius">사수자리</a><a href="/zodiac/capricorn">염소자리</a></div>
-  <div class="ftr-links"><a href="/">홈</a><a href="/compatibility">별자리 궁합</a><a href="/about">사이트 소개</a><a href="/contact">문의하기</a><a href="/privacy">개인정보처리방침</a></div>
+  <div class="ftr-links"><a href="/">홈</a><a href="/compatibility">별자리 궁합</a><a href="/zodiac-calculator">별자리 계산기</a><a href="/guide">별자리 기초</a><a href="/about">사이트 소개</a><a href="/contact">문의하기</a><a href="/privacy">개인정보처리방침</a></div>
   <p class="ftr-note">별자리 운세는 서양 점성술의 전통적 해석을 참고해 정리한 읽을거리입니다. 의학·법률·투자 등 중요한 판단의 근거로 삼지 마세요. © 2026 오늘의 운세</p>
 </div></footer>
 <script>

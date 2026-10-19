@@ -7,8 +7,8 @@
 <link rel="icon" type="image/png" href="/favicon.png" sizes="512x512">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<title>사이트 소개</title>
-<meta name="description" content="오늘의 운세가 어떤 사이트인지, 운세와 별자리 설명을 어떻게 만들었는지, 이용할 때 무엇을 주의해야 하는지 정리했습니다.">
+<title>사이트 소개 — 운세 작성 방식과 출처</title>
+<meta name="description" content="오늘의 운세가 어떤 사이트인지, 운세를 어떤 규칙과 검사를 거쳐 작성하는지(AI 도움·운영자 검토), 일정과 사실 정보의 출처, 문의처를 정리했습니다.">
 <link rel="canonical" href="https://todays-fortune-app.vercel.app/about">
 <meta name="robots" content="index, follow">
 <meta name="google-site-verification" content="1f373KtNH3atCzIil1snRuWtDwrzIfDYspZs5GWiRT4">
@@ -17,8 +17,8 @@
 <meta name="theme-color" content="#1a1a2e">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="오늘의 운세">
-<meta property="og:title" content="사이트 소개">
-<meta property="og:description" content="오늘의 운세가 어떤 사이트인지, 운세와 별자리 설명을 어떻게 만들었는지, 이용할 때 무엇을 주의해야 하는지 정리했습니다.">
+<meta property="og:title" content="사이트 소개 — 운세 작성 방식과 출처">
+<meta property="og:description" content="오늘의 운세가 어떤 사이트인지, 운세를 어떤 규칙과 검사를 거쳐 작성하는지(AI 도움·운영자 검토), 일정과 사실 정보의 출처, 문의처를 정리했습니다.">
 <meta property="og:url" content="https://todays-fortune-app.vercel.app/about">
 <meta property="og:image" content="https://todays-fortune-app.vercel.app/og-image.png?v=2">
 <meta property="og:image:width" content="1200">
@@ -26,8 +26,8 @@
 <meta property="og:image:alt" content="오늘의 운세 — 12별자리">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="사이트 소개">
-<meta name="twitter:description" content="오늘의 운세가 어떤 사이트인지, 운세와 별자리 설명을 어떻게 만들었는지, 이용할 때 무엇을 주의해야 하는지 정리했습니다.">
+<meta name="twitter:title" content="사이트 소개 — 운세 작성 방식과 출처">
+<meta name="twitter:description" content="오늘의 운세가 어떤 사이트인지, 운세를 어떤 규칙과 검사를 거쳐 작성하는지(AI 도움·운영자 검토), 일정과 사실 정보의 출처, 문의처를 정리했습니다.">
 <meta name="twitter:image" content="https://todays-fortune-app.vercel.app/og-image.png?v=2">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
@@ -439,6 +439,86 @@ main.container > section.home-hero{margin:0;}
 .adfit-side{position:fixed;top:50%;transform:translateY(-50%);width:160px;z-index:5;}
 .adfit-left{left:16px;}
 .adfit-right{right:16px;}
+
+/* ===== 월별 운세·궁합 상세·계산기·가이드 ===== */
+@media(max-width:480px){.hdr-in{height:auto;min-height:52px;padding-top:8px;padding-bottom:8px;flex-wrap:wrap;gap:4px 10px;}.brand{font-size:16px;}.hdr-nav{gap:0;}.hdr-nav a{font-size:12.5px;padding:5px 7px;}}
+.sec-lead{font-size:14px;color:#777;line-height:1.7;margin:-4px 0 14px;}
+.month-cta{display:flex;flex-direction:column;gap:4px;background:#fff;border-radius:16px;padding:16px 18px;text-decoration:none;border-left:4px solid #7c6cf0;margin-bottom:12px;}
+.month-cta b{font-size:16px;color:#1a1a1a;}
+.month-cta span{font-size:13.5px;color:#777;line-height:1.6;}
+.month-quote{background:#fff;border-radius:16px;padding:18px 20px;margin:14px 0 0;border-left:4px solid #7c6cf0;}
+.month-quote p{font-size:16px;line-height:1.8;color:#333;}
+.month-quote cite{display:block;font-size:12.5px;color:#999;font-style:normal;margin-top:8px;}
+.wk{background:#fff;border-radius:16px;padding:18px 20px;margin-bottom:12px;}
+.wk h3{font-size:16px;font-weight:800;margin-bottom:10px;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline;}
+.wk h3 small{font-size:12.5px;color:#999;font-weight:600;}
+.wk-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.wk-list li{display:flex;gap:10px;font-size:14.5px;line-height:1.7;color:#444;}
+.wk-cat{flex-shrink:0;width:34px;font-size:12px;font-weight:800;color:#7c6cf0;padding-top:3px;}
+.wk-txt{min-width:0;}
+.wk-d{font-size:12px;color:#999;text-decoration:none;white-space:nowrap;margin-left:2px;}
+.wk-ev{font-size:13px;color:#5b4ce0;background:#f7f5ff;border-radius:10px;padding:8px 12px;margin-top:12px;line-height:1.6;}
+.ev-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.ev-list li{background:#fff;border-radius:14px;padding:14px 16px;}
+.ev-list b{font-size:15px;}
+.ev-list p{font-size:14px;line-height:1.7;color:#555;margin-top:6px;}
+.ev-list .ev-src{font-size:12.5px;color:#999;}
+.ev-src a,.sources a{color:#7c6cf0;word-break:break-all;}
+.day-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.day-list li{display:flex;gap:12px;background:#fff;border-radius:14px;padding:14px 16px;scroll-margin-top:70px;}
+.day-list li:target{outline:2px solid #7c6cf0;}
+.dl-date{flex-shrink:0;width:34px;text-align:center;display:flex;flex-direction:column;}
+.dl-date b{font-size:20px;font-weight:800;line-height:1.2;color:#1a1a1a;}
+.dl-date small{font-size:12px;color:#999;font-weight:700;}
+.dl-body{min-width:0;}
+.dl-ev{display:inline-block;font-size:11.5px;font-weight:800;color:#5b4ce0;background:#f0eefe;border-radius:999px;padding:2px 9px;margin:0 4px 6px 0;}
+.dl-sum{font-size:15px;line-height:1.75;color:#222;margin-bottom:6px;}
+.dl-sub{font-size:13.5px;line-height:1.65;color:#666;margin-top:3px;}
+.dl-sub b{color:#7c6cf0;font-size:12px;margin-right:4px;}
+.month-nav{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:6px;}
+.month-nav a{background:#fff;border-radius:999px;padding:9px 14px;font-size:13.5px;font-weight:700;color:#444;text-decoration:none;}
+.pair-hero{background:linear-gradient(135deg,#1a1a2e,#2d2b55);color:#fff;border-radius:20px;padding:24px 20px;margin-top:10px;text-align:center;}
+.ph-signs{display:flex;justify-content:center;align-items:center;gap:12px;font-size:44px;line-height:1;}
+.ph-signs a{text-decoration:none;}
+.ph-signs span{font-size:22px;color:rgba(255,255,255,.5);}
+.pair-hero h1{font-size:clamp(22px,5.5vw,28px);font-weight:800;margin-top:12px;letter-spacing:-.4px;}
+.ph-score{font-size:56px;font-weight:900;line-height:1.1;margin-top:6px;letter-spacing:-2px;}
+.ph-score small{font-size:20px;color:rgba(255,255,255,.6);letter-spacing:0;}
+.ph-asp{font-size:13.5px;color:rgba(255,255,255,.65);font-weight:700;}
+.tbl-wrap{background:#fff;border-radius:16px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.data-table{width:100%;border-collapse:collapse;font-size:14px;}
+.data-table th,.data-table td{padding:11px 12px;text-align:left;border-bottom:1px solid #f2f2f2;line-height:1.55;vertical-align:top;}
+.data-table thead th{background:#fafafa;font-size:12.5px;color:#777;font-weight:700;}
+.data-table tbody th{font-weight:700;color:#333;white-space:nowrap;}
+.data-table small{color:#999;font-weight:600;}
+.data-table a{color:#5b4ce0;text-decoration:none;}
+.data-table tr:last-child th,.data-table tr:last-child td{border-bottom:none;}
+.data-table.nowrap td{white-space:nowrap;font-variant-numeric:tabular-nums;}
+@media(max-width:480px){.data-table th,.data-table td{padding:9px 9px;font-size:13px;}}
+.fact-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.fact-list li{background:#fff;border-radius:14px;padding:13px 16px;font-size:14.5px;line-height:1.75;color:#444;}
+.fact-list a{color:#5b4ce0;}
+.sources ul{list-style:none;display:flex;flex-direction:column;gap:6px;font-size:13.5px;line-height:1.6;}
+.guide-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+@media(max-width:600px){.guide-cards{grid-template-columns:1fr;}}
+.guide-card{display:flex;flex-direction:column;gap:4px;background:#fff;border-radius:14px;padding:15px 17px;text-decoration:none;}
+.guide-card b{font-size:15px;color:#1a1a1a;}
+.guide-card span{font-size:13px;color:#777;line-height:1.55;}
+.calc-box{background:#fff;border-radius:18px;padding:18px;}
+.calc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+@media(max-width:640px){.calc-row{grid-template-columns:1fr 1fr;}}
+.calc-row label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700;color:#555;}
+.calc-row small{color:#aaa;font-weight:600;}
+.calc-row input,.calc-row select{font:inherit;font-size:16px;padding:10px 10px;border:1.5px solid #e4e4ea;border-radius:10px;background:#fafafa;width:100%;min-width:0;}
+.calc-box .rc-text{font-size:15px;}
+.calc-box .rc-text b{color:#fff;}
+.compat-table td a{color:inherit;text-decoration:none;display:block;}
+.prose a{color:#5b4ce0;}
+.tip-box{background:#f7f5ff;border-radius:14px;padding:15px 17px;}
+.tip-box p{font-size:15px;line-height:1.8;color:#333;}
+.ov-title{font-size:16px;font-weight:800;margin-bottom:8px;}
+.ov-note{font-size:12.5px!important;color:#999!important;margin-top:8px;line-height:1.6!important;}
+.wk-none{color:#999;font-size:13.5px;}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","name":"사이트 소개","url":"https://todays-fortune-app.vercel.app/about","inLanguage":"ko","description":"오늘의 운세 소개와 운세 작성 방식, 이용 시 유의사항"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://todays-fortune-app.vercel.app/"},{"@type":"ListItem","position":2,"name":"사이트 소개","item":"https://todays-fortune-app.vercel.app/about"}]}</script>
@@ -448,7 +528,7 @@ main.container > section.home-hero{margin:0;}
 <body>
 <header class="site-hdr"><div class="container hdr-in">
   <a class="brand" href="/"><span class="brand-star">✦</span> 오늘의 운세</a>
-  <nav class="hdr-nav"><a href="/">별자리 12</a><a href="/compatibility">궁합</a><a href="/about">소개</a></nav>
+  <nav class="hdr-nav"><a href="/">별자리 12</a><a href="/compatibility">궁합</a><a href="/zodiac-calculator">계산기</a><a href="/guide">기초</a><a href="/about">소개</a></nav>
 </div></header>
 <main class="container">
 
@@ -458,34 +538,63 @@ main.container > section.home-hero{margin:0;}
   <p class="hero-sub">오늘의 운세는 12별자리의 오늘 운세와 별자리별 성격·궁합·유래를 정리한 무료 읽을거리입니다.</p></header>
 
 <section>
+  <h2 class="sec-title">먼저 알아 두실 것 — 운세는 재미로 읽는 글입니다</h2>
+  <div class="prose">
+    <p>점성술은 과학적으로 검증된 예측 방법이 아닙니다. 이 사이트의 운세와 궁합은 모두 <b>재미와 참고를 위한 글</b>이며, 건강·법률·투자·진로처럼 중요한 판단의 근거로 삼아서는 안 됩니다. 운세가 나쁘게 나왔다고 걱정하거나 좋게 나왔다고 무리한 결정을 내리지 마세요.</p>
+  </div>
+</section>
+
+<section>
   <h2 class="sec-title">무엇을 볼 수 있나요</h2>
   <div class="prose">
-    <p>별자리마다 페이지가 하나씩 있습니다. 각 페이지에는 <b>오늘의 총운·연애운·직장운·재물운</b>, 그 별자리의 성격적 강점과 주의할 점, 연애와 일과 돈을 대하는 방식, 잘 맞는 별자리와 부딪히기 쉬운 별자리, 별자리에 얽힌 그리스 신화, 탄생석과 행운의 색 같은 상징, 그리고 이번 달 운세 흐름이 담겨 있습니다.</p>
-    <p><a href="/compatibility">별자리 궁합표</a>에서는 12별자리 78개 조합의 궁합 점수를 한 표로 볼 수 있습니다. 점수는 두 별자리의 원소 관계와 황도상 각도를 합쳐 계산했습니다. 계산 방식은 궁합 페이지에 그대로 적어 두었습니다.</p>
+    <p><b>별자리 페이지</b>(12장)에는 오늘의 총운·연애운·직장운·재물운, 성격의 강점과 주의할 점, 연애·일·돈을 대하는 방식, 잘 맞는 별자리와 부딪히기 쉬운 별자리, 그리스 신화 속 유래와 상징을 담았습니다.</p>
+    <p><b>월별 운세</b>는 별자리마다 한 달 치 날짜별 운세를 모은 페이지입니다. 맨 위에는 그달 문장에 자주 나온 내용을 묶은 흐름 요약을, 그 아래에는 주마다 다른 날들과 내용이 가장 많이 겹치는 문장을 그대로 옮긴 주차별 대표 문장을 둡니다. 지난달 운세도 그대로 남겨 둡니다.</p>
+    <p><b><a href="/compatibility">별자리 궁합</a></b>에서는 78개 조합의 점수와 조합별 상세 해설을, <b><a href="/zodiac-calculator">별자리 계산기</a></b>에서는 생년월일로 별자리를 찾을 수 있습니다. 원소·모달리티·지배 행성 같은 기본 개념은 <b><a href="/guide">별자리 기초</a></b>에 출처와 함께 정리했습니다.</p>
   </div>
 </section>
 
 <section>
-  <h2 class="sec-title">운세는 어떻게 만들어지나요</h2>
+  <h2 class="sec-title">운세는 어떻게 작성하나요</h2>
   <div class="prose">
-    <p>이 사이트의 운세는 날짜와 별자리를 조합해 미리 작성해 둔 글입니다. 무작위로 뽑아낸 문장이 아니라 별자리마다 성향에 맞춰 날짜별로 따로 써 두었고, 매일 자정이 지나면 그날 몫이 표시됩니다. 같은 날 같은 별자리를 여러 번 열어도 내용은 바뀌지 않습니다.</p>
-    <p>별자리별 성격·궁합·신화 설명은 서양 점성술의 전통적 해석과 널리 알려진 그리스 신화를 바탕으로 정리했습니다. 신화는 판본에 따라 세부가 다를 수 있어, 가장 널리 통용되는 줄거리만 실었습니다.</p>
+    <p>운세는 날짜와 별자리마다 미리 써 둔 글입니다. 무작위로 문장을 뽑는 방식이 아니라, 한 달 단위로 12별자리 × 날짜만큼의 총운·연애·일·돈 문장을 따로 작성해 날짜별 파일로 보관하고, 매일 자정이 지나면 그날 몫이 표시됩니다. 같은 날 같은 별자리를 여러 번 열어도 내용은 바뀌지 않습니다.</p>
+    <p>작성할 때는 몇 가지 규칙을 지킵니다. 별자리마다 정리해 둔 성향(원소·지배 행성·강점과 약점)에 맞춰 쓰고, 그날의 실제 요일과 절기·기념일 같은 확인된 일정을 반영하며, 존댓말로 씁니다. 불안을 부추기는 문장, 병원 진료·검진이나 투자처럼 건강과 돈에 관한 구체적인 결정을 권하는 문장은 쓰지 않는 것을 원칙으로 하고, 지출 점검이나 휴식 같은 생활 습관 수준의 제안만 담습니다. 예전 운세에 이 원칙에 맞지 않는 표현이 남아 있다면 알려 주세요. 확인하는 대로 고치겠습니다.</p>
+    <p><b>날짜별 운세, 별자리 설명, 궁합 해설, 월별 흐름 요약, 별자리 기초 가이드는 모두 AI의 도움을 받아 초안을 만들고, 운영자가 직접 읽고 고친 뒤 올립니다.</b> 가이드의 사실 정보는 각 페이지에 단 공개 출처와 대조했습니다. 운영자는 점성술 전문가가 아니며, 이 사이트의 글은 서양 점성술의 전통적 해석을 참고한 읽을거리입니다.</p>
   </div>
 </section>
 
 <section>
-  <h2 class="sec-title">꼭 알아 두실 것</h2>
+  <h2 class="sec-title">올리기 전에 거치는 검사</h2>
   <div class="prose">
-    <p>점성술은 과학적으로 검증된 예측 방법이 아닙니다. 이 사이트의 모든 내용은 <b>재미로 읽는 글</b>이며, 건강·법률·투자·진로처럼 중요한 판단의 근거로 삼아서는 안 됩니다. 운세가 나쁘게 나왔다고 걱정하거나 좋게 나왔다고 무리한 결정을 내리지 마세요.</p>
-    <p>별자리는 태어난 날 태양이 지나던 황도 구간으로 정합니다. 생일이 두 별자리의 경계에 걸쳐 있으면 출생 연도와 시각에 따라 달라질 수 있으니, 두 별자리 설명을 모두 읽어 보시기 바랍니다.</p>
+    <p>사이트는 매일 자정 직후 자동으로 다시 만들어지며, 그때마다 아래 검사를 거칩니다.</p>
+  </div>
+  <ul class="fact-list">
+    <li>12별자리 × 그달 모든 날짜에 총운·연애·일·돈 네 항목이 빠짐없이 있는지</li>
+    <li>문장에 적힌 요일이 실제 달력의 요일과 맞는지, 반말 문장이 섞이지 않았는지 — 기준을 넘는 달은 월별 페이지를 검색에 노출하지 않습니다</li>
+    <li>페이지마다 본문 분량이 충분한지, 화면에 채워지지 않은 빈 값이 그대로 드러나지 않는지, 사이트 안의 링크가 모두 열리는지</li>
+    <li>공유 버튼 등에 쓰는 스크립트에 문법 오류가 없는지</li>
+  </ul>
+</section>
+
+<section>
+  <h2 class="sec-title">일정과 사실 정보의 출처</h2>
+  <div class="prose">
+    <p>운세에 반영한 절기·기념일·시험 일정은 달마다 따로 정리해 두고, 월별 운세 페이지에 날짜와 출처 링크를 함께 실었습니다. 절기 날짜와 시각은 <a href="https://astro.kasi.re.kr/kor/life/post/calendarData?year=2026" target="_blank" rel="noopener">한국천문연구원 천문우주정보</a>를, 시험 일정은 교육부·한국교육과정평가원 발표를 따랐습니다. 지금 정리된 달: 2026년 11월.</p>
+    <p>황도 12궁의 유래, 원소·모달리티·지배 행성 같은 분류는 위키백과 등 공개 자료에 있는 내용만 옮기고, 각 페이지 아래에 출처를 달았습니다. 별자리 신화는 판본에 따라 세부가 다를 수 있어 가장 널리 알려진 줄거리만 실었습니다.</p>
   </div>
 </section>
 
 <section>
-  <h2 class="sec-title">운영과 광고</h2>
+  <h2 class="sec-title">운영자와 문의</h2>
   <div class="prose">
-    <p>이 사이트는 회원가입 없이 누구나 무료로 볼 수 있습니다. 운영 비용은 카카오 애드핏 광고로 충당합니다. 수집하는 정보와 쿠키에 관한 내용은 <a href="/privacy">개인정보처리방침</a>에 정리해 두었습니다.</p>
-    <p>잘못된 내용이나 고쳤으면 하는 부분이 있으면 알려 주시기 바랍니다.</p>
+    <p>서울에서 일하는 소프트웨어 개발자가 개인적으로 만들고 운영합니다. 사업자 등록을 한 상업 사이트가 아니며, 운영 비용은 광고로 충당합니다.</p>
+    <p>잘못된 내용이나 오탈자, 고쳤으면 하는 부분은 <a href="mailto:comeonyourboyz@gmail.com">comeonyourboyz@gmail.com</a>으로 알려 주세요. 자세한 안내는 <a href="/contact">문의하기</a>에 있습니다.</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">광고와 개인정보</h2>
+  <div class="prose">
+    <p>이 사이트는 회원가입 없이 누구나 무료로 볼 수 있습니다. 광고는 본문이 끝난 뒤 페이지 아래쪽과, 넓은 화면의 양옆 여백에만 둡니다. 수집하는 정보와 쿠키에 관한 내용은 <a href="/privacy">개인정보처리방침</a>에 정리해 두었습니다. 별자리 계산기에 넣은 생년월일은 브라우저 안에서만 계산하고 저장하지 않습니다.</p>
   </div>
 </section>
 
@@ -500,7 +609,7 @@ main.container > section.home-hero{margin:0;}
 <script async src="https://t1.kakaocdn.net/kas/static/ba.min.js"></script>
 <footer class="site-ftr"><div class="container">
   <div class="ftr-links"><a href="/zodiac/aquarius">물병자리</a><a href="/zodiac/pisces">물고기자리</a><a href="/zodiac/aries">양자리</a><a href="/zodiac/taurus">황소자리</a><a href="/zodiac/gemini">쌍둥이자리</a><a href="/zodiac/cancer">게자리</a><a href="/zodiac/leo">사자자리</a><a href="/zodiac/virgo">처녀자리</a><a href="/zodiac/libra">천칭자리</a><a href="/zodiac/scorpio">전갈자리</a><a href="/zodiac/sagittarius">사수자리</a><a href="/zodiac/capricorn">염소자리</a></div>
-  <div class="ftr-links"><a href="/">홈</a><a href="/compatibility">별자리 궁합</a><a href="/about">사이트 소개</a><a href="/contact">문의하기</a><a href="/privacy">개인정보처리방침</a></div>
+  <div class="ftr-links"><a href="/">홈</a><a href="/compatibility">별자리 궁합</a><a href="/zodiac-calculator">별자리 계산기</a><a href="/guide">별자리 기초</a><a href="/about">사이트 소개</a><a href="/contact">문의하기</a><a href="/privacy">개인정보처리방침</a></div>
   <p class="ftr-note">별자리 운세는 서양 점성술의 전통적 해석을 참고해 정리한 읽을거리입니다. 의학·법률·투자 등 중요한 판단의 근거로 삼지 마세요. © 2026 오늘의 운세</p>
 </div></footer>
 
