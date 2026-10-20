@@ -16,7 +16,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = {
   url: 'https://todays-fortune-app.vercel.app',
   name: '오늘의 운세',
-  desc: '12별자리 운세와 별자리별 성격·궁합·신화를 정리한 별자리 사전. 오늘의 총운, 연애운, 직장운, 재물운을 확인하세요.',
+  desc: '12별자리 오늘의 운세와 이달의 운세, 별자리 궁합 78가지, 생일로 찾는 별자리 계산기를 한곳에서 확인하세요.',
   ogImage: 'https://todays-fortune-app.vercel.app/og-image.png?v=2',
   // 카카오 애드핏 — 2026-08 에 이 사이트 매체로 등록해 둔 기존 광고 단위
   adfit: { bottom: 'DAN-XKdPIuDkSo3uxN1l', side: ['DAN-PJDk9Ix8QSZwmho2', 'DAN-oPwQwRMLYEcXD02F'] },
@@ -343,7 +343,7 @@ function pageHome() {
 `;
 
   const ld = [
-    { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url, description: SITE.desc, inLanguage: 'ko' },
+    { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, alternateName: ['오늘의운세', '별자리 운세'], url: `${SITE.url}/`, description: SITE.desc, inLanguage: 'ko' },
     { '@context': 'https://schema.org', '@type': 'ItemList', name: '12별자리', itemListElement: signs.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.n, url: SITE.url + urlOf(s.k) })) },
     { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
       { '@type': 'Question', name: '별자리는 어떻게 정해지나요?', acceptedAnswer: { '@type': 'Answer', text: '태어난 날짜에 태양이 지나던 황도 12궁 구간으로 정해집니다. 흔히 말하는 별자리는 이 태양 별자리를 가리키며, 생일이 경계에 걸치면 출생 시각에 따라 달라질 수 있습니다.' } },
