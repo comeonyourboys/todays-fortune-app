@@ -50,7 +50,7 @@ export function makeGuides({ signs, esc, urlOf, ingress, ELEM_PAIR, pairUrl }) {
 <section>
   <h2 class="sec-title">이 사이트는 이 분류를 어디에 쓰나요</h2>
   <div class="prose">
-    <p><a href="/compatibility">별자리 궁합</a> 점수는 두 별자리가 황도에서 몇 칸 떨어져 있는지(각도)와 원소 조합으로 계산합니다. 각 <a href="/compatibility/aries-leo">궁합 상세 페이지</a>에서는 여기에 모달리티와 지배 행성의 조합을 더해 두 별자리가 어디서 잘 맞고 어디서 부딪히는지 설명합니다.</p>
+    <p><a href="/compatibility">별자리 궁합</a> 점수는 두 별자리가 황도에서 몇 칸 떨어져 있는지(각도)와 원소 조합으로 계산합니다. <a href="${pairUrl('aries', 'leo')}">별자리별 궁합 해설</a>에서는 여기에 모달리티와 지배 행성의 조합을 더해 두 별자리가 어디서 잘 맞고 어디서 부딪히는지 설명합니다.</p>
     <p>별자리별 페이지의 성격 설명과 날짜별 운세도 이 분류를 바탕으로 썼습니다. 예를 들어 불의 원소이면서 활동궁인 양자리의 운세에는 시작과 추진에 관한 문장이 자주 나옵니다.</p>
   </div>
 </section>

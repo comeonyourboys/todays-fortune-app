@@ -30,8 +30,8 @@
 ```
 ├── index.html, about.html, compatibility.html, contact.html   # 빌드 산출물
 ├── zodiac/<별자리>/index.html              # 별자리 페이지 (매일 재생성)
-├── zodiac/<별자리>/<YYYY-MM>/index.html    # 월별 운세 (fortune-YYYY-MM.json 이 있는 달마다)
-├── compatibility/<a>-<b>/index.html        # 궁합 상세 78장
+├── zodiac/<별자리>/<YYYY-MM>/index.html    # 월별 운세 (이번 달·다음 달만, noindex)
+├── compatibility/<a>/index.html            # 별자리별 궁합 12장 (상대 별자리 섹션 id=<b>)
 ├── zodiac-calculator/, guide/...           # 별자리 계산기·기초 설명
 ├── data/
 │   ├── fortune-YYYY-MM.json   # 월별 운세 (별자리 × 날짜 × 총운·연애·일·돈)
@@ -49,8 +49,8 @@
 
 `node scripts/build.mjs [YYYY-MM-DD]` — GitHub Action 이 매일 00:10 KST 에 실행합니다.
 
-- 운세 데이터 파일은 `data/fortune-YYYY-MM.json` 입니다. 빌드는 기준일(KST)의 연·월 파일을 반드시 찾고, 있는 파일마다 월별 페이지를 만듭니다.
-- 달마다 데이터 품질(빈 항목, 실제 요일과 다른 요일 문장, 반말 문장)을 검사해 기준을 넘으면 그 달 월별 페이지는 noindex + sitemap 제외.
+- 운세 데이터 파일은 `data/fortune-YYYY-MM.json` 입니다. 빌드는 기준일(KST)의 연·월 파일을 반드시 찾고, 이번 달·다음 달 파일로만 월별 페이지를 만듭니다. 지난달 파일은 남겨 두되 페이지는 지우고, 그 주소는 vercel.json redirects(빌드가 매번 다시 씀)로 별자리 페이지에 301 합니다.
+- 달마다 데이터 품질(빈 항목, 실제 요일과 다른 요일 문장, 반말 문장)을 검사해 기준을 넘으면 경고를 남깁니다. 월별 페이지는 품질과 관계없이 noindex + sitemap 제외.
 - 깨진 값(undefined 등) 누출, 깨진 내부 링크, 인라인 스크립트 문법, 본문 분량이 기준에 못 미치면 빌드가 실패합니다.
 - 그달 `fortune-YYYY-MM.json` 이 없으면 빌드가 실패하므로 다음 달 데이터는 월말 전에 추가해야 합니다. `monthly-overview-YYYY-MM.json` 이 없으면 경고만 내고 요약 없이 만듭니다.
 

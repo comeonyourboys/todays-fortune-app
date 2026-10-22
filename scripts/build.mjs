@@ -1,12 +1,13 @@
 // data/*.json → 정적 HTML 생성
 //  - zodiac/<key>/index.html           12장 (본문이 HTML에 직접 들어감)
-//  - zodiac/<key>/<YYYY-MM>/index.html 월별 운세 (data/fortune-YYYY-MM.json 이 있는 달마다)
-//  - compatibility/<a>-<b>/index.html  궁합 상세 78장
+//  - zodiac/<key>/<YYYY-MM>/index.html 월별 운세 (이번 달·다음 달만, noindex)
+//  - compatibility/<a>/index.html      별자리별 궁합 12장 (조합 78개를 상대 별자리 섹션으로)
+//  - vercel.json redirects             지난달 월별·예전 조합별 궁합 주소 → 301
 //  - zodiac-calculator/, guide/...     별자리 계산기·기초 설명
 //  - index.html                        홈 (별자리 카드 + 소개 본문)
 //  - sitemap.xml
 // 실행: node scripts/build.mjs [YYYY-MM-DD]
-import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, rmSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SRC, MOD_OF, MOD_NAME, CLASSIC_RULER, QUAL } from './content.mjs';
@@ -45,7 +46,7 @@ const fortunePath = join(root, `data/fortune-${Y}-${MM}.json`);
 if (!existsSync(fortunePath)) { console.error(`✖ ${fortunePath} 없음 — 그달 운세 데이터(data/fortune-YYYY-MM.json)를 먼저 추가하세요`); process.exit(1); }
 const fortune = JSON.parse(readFileSync(fortunePath, 'utf8'));
 // 새 페이지(궁합 상세·가이드·계산기)의 본문을 마지막으로 고친 날. 본문을 고치면 함께 올린다 — sitemap lastmod 에 쓴다
-const CONTENT_UPDATED = '2026-10-19';
+const CONTENT_UPDATED = '2026-10-22';
 
 // ---------- 월별 운세 데이터 ----------
 // data/fortune-YYYY-MM.json 마다 월별 페이지를 만든다. 빌드 기준일(KST)의 달 파일은 반드시 있어야 한다.
@@ -64,10 +65,18 @@ const todayWeekdays = (text) => {
   }
   return out;
 };
-const months = readdirSync(join(root, 'data'))
+// 월별 페이지는 빌드 기준일의 이번 달과 다음 달(데이터가 있으면)만 만든다. 지난달 데이터 파일은 기록으로 남겨 두되
+// 페이지는 만들지 않고, 그 주소는 별자리 페이지로 301 한다(아래 vercel.json redirects 생성). 월이 바뀌면 자동으로 빠진다.
+const ymOf = (y, m) => `${y}-${String(m).padStart(2, '0')}`;
+const NEXT_YM = M === 12 ? ymOf(Y + 1, 1) : ymOf(Y, M + 1);
+const allMonthFiles = readdirSync(join(root, 'data'))
   .map((f) => f.match(/^fortune-(\d{4})-(\d{2})\.json$/)).filter(Boolean)
-  .map((m) => { const y = Number(m[1]), mm = Number(m[2]); return { y, m: mm, ym: `${m[1]}-${m[2]}`, data: y === Y && mm === M ? fortune : JSON.parse(readFileSync(join(root, 'data', m[0]), 'utf8')) }; })
+  .map((m) => ({ f: m[0], y: Number(m[1]), m: Number(m[2]), ym: `${m[1]}-${m[2]}` }))
   .sort((a, b) => a.y * 12 + a.m - (b.y * 12 + b.m));
+const pastMonths = allMonthFiles.filter((mo) => mo.y * 12 + mo.m < Y * 12 + M).map((mo) => mo.ym);
+const months = allMonthFiles
+  .filter((mo) => mo.ym === ymOf(Y, M) || mo.ym === NEXT_YM)
+  .map((mo) => ({ y: mo.y, m: mo.m, ym: mo.ym, data: mo.y === Y && mo.m === M ? fortune : JSON.parse(readFileSync(join(root, 'data', mo.f), 'utf8')) }));
 for (const mo of months) {
   mo.days = new Date(Date.UTC(mo.y, mo.m, 0)).getUTCDate();
   mo.wd = (d) => WD[new Date(Date.UTC(mo.y, mo.m - 1, d)).getUTCDay()];
@@ -207,7 +216,7 @@ function pageSign(s) {
 <section>
   <h2 class="sec-title">월별 ${esc(s.n)} 운세</h2>
   <a class="month-cta" href="${monthUrl(s.k, curMonth)}"><b>${M}월 운세 전체 보기</b><span>주차별 흐름과 ${curMonth.days}일치 날짜별 운세를 한 페이지에 모았습니다</span></a>
-  ${months.length > 1 ? `<div class="sign-links">${months.filter((mo) => mo !== curMonth).map((mo) => `<a class="sign-chip" href="${monthUrl(s.k, mo)}">${mo.y}년 ${mo.m}월</a>`).join('')}</div>` : ''}
+  ${months.length > 1 ? `<p class="note">${months.filter((mo) => mo !== curMonth).map((mo) => `<a href="${monthUrl(s.k, mo)}">${mo.y}년 ${mo.m}월 운세</a>`).join(' · ')}도 미리 볼 수 있습니다. 지난달 운세는 달이 바뀌면 내립니다.</p>` : ''}
 </section>
 
 <section>
@@ -226,32 +235,32 @@ function pageSign(s) {
   </div>
 </section>
 
-<details class="fold"><summary>${esc(s.n)}의 연애·일·돈 스타일</summary>
+<section>
+  <h2 class="sec-title">${esc(s.n)}의 연애·일·돈 스타일</h2>
   <div class="style-grid">
     <div class="style-card"><h3>💕 연애</h3><p>${esc(p.love)}</p></div>
     <div class="style-card"><h3>💼 일</h3><p>${esc(p.work)}</p></div>
     <div class="style-card"><h3>💰 돈</h3><p>${esc(p.money)}</p></div>
   </div>
-</details>
+</section>
 
 <section>
   <h2 class="sec-title">${esc(s.n)}와 잘 맞는 별자리</h2>
   <div class="match-grid">
-    ${p.match.map((m) => { const t = byKey.get(m.key); return `<a class="match-card good" href="${urlOf(m.key)}"><span class="m-emoji">${t ? t.e : '✦'}</span><span class="m-name">${esc(m.sign)}</span><span class="m-why">${esc(m.why)}</span></a>`; }).join('')}
+    ${p.match.map((m) => { const t = byKey.get(m.key); return `<a class="match-card good" href="${pairUrl(s.k, m.key)}"><span class="m-emoji">${t ? t.e : '✦'}</span><span class="m-name">${esc(m.sign)}</span><span class="m-why">${esc(m.why)}</span></a>`; }).join('')}
   </div>
   <h3 class="sub-title">부딪히기 쉬운 별자리</h3>
   <div class="match-grid">
-    ${p.clash.map((m) => { const t = byKey.get(m.key); return `<a class="match-card bad" href="${urlOf(m.key)}"><span class="m-emoji">${t ? t.e : '✦'}</span><span class="m-name">${esc(m.sign)}</span><span class="m-why">${esc(m.why)}</span></a>`; }).join('')}
+    ${p.clash.map((m) => { const t = byKey.get(m.key); return `<a class="match-card bad" href="${pairUrl(s.k, m.key)}"><span class="m-emoji">${t ? t.e : '✦'}</span><span class="m-name">${esc(m.sign)}</span><span class="m-why">${esc(m.why)}</span></a>`; }).join('')}
   </div>
-  <p class="note">궁합은 성향 차이를 보는 참고일 뿐입니다. 자세한 조합은 <a href="/compatibility">별자리 궁합 페이지</a>에서 볼 수 있습니다.</p>
-  <h3 class="sub-title">${esc(s.n)}의 궁합 상세</h3>
-  <div class="sign-links">${signs.map((x) => `<a class="sign-chip" href="${pairUrl(s.k, x.k)}"><span>${x.e}</span>${esc(x.n)}</a>`).join('')}</div>
+  <p class="note">궁합은 성향 차이를 보는 참고일 뿐입니다. 열두 별자리와의 조합별 해설은 <a href="${signCompatUrl(s.k)}">${esc(s.n)} 궁합 12가지</a>에 모아 두었습니다.</p>
 </section>
 
-<details class="fold"><summary>${esc(s.n)}의 유래와 상징</summary>
+<section>
+  <h2 class="sec-title">${esc(s.n)}의 유래와 상징</h2>
   <div class="prose">${paras(p.myth)}</div>
   <p class="prose-sm">탄생석 ${esc(p.symbols.stone)} · 행운의 색 ${esc(p.symbols.color)} · 행운의 숫자 ${esc(p.symbols.number)} · ${esc(p.symbols.day)}</p>
-</details>
+</section>
 
 <section>
   <h2 class="sec-title">다른 별자리 보기</h2>
@@ -385,7 +394,7 @@ const pairScore = (a, b) => {
 };
 function pageCompat() {
   const matrix = signs.map((a) => signs.map((b) => { const { asp, score } = pairScore(a, b); return [score, asp.name, asp.text]; }));
-  const rows = signs.map((a, i) => `<tr><th scope="row"><a href="${urlOf(a.k)}">${a.e} ${esc(a.n)}</a></th>${signs.map((b, j) => { const score = matrix[i][j][0]; const cls = score >= 88 ? 'c-best' : score >= 78 ? 'c-good' : score >= 65 ? 'c-mid' : 'c-low'; return `<td class="${cls}"><a href="${pairUrl(a.k, b.k)}" title="${esc(a.n)} × ${esc(b.n)} 궁합 자세히">${score}</a></td>`; }).join('')}</tr>`).join('');
+  const rows = signs.map((a, i) => `<tr><th scope="row"><a href="${signCompatUrl(a.k)}">${a.e} ${esc(a.n)}</a></th>${signs.map((b, j) => { const score = matrix[i][j][0]; const cls = score >= 88 ? 'c-best' : score >= 78 ? 'c-good' : score >= 65 ? 'c-mid' : 'c-low'; return `<td class="${cls}" title="${esc(a.n)} × ${esc(b.n)}">${score}</td>`; }).join('')}</tr>`).join('');
   const pickGrid = (id) => `<div class="pick-grid" id="${id}">${signs.map((x, i) => `<button class="pick-btn" type="button" data-i="${i}"><span class="e">${x.e}</span><span class="n">${esc(x.n)}</span></button>`).join('')}</div>`;
   const body = `
 <nav class="crumb"><a href="/">홈</a> › <span>별자리 궁합</span></nav>
@@ -408,25 +417,23 @@ function pageCompat() {
     </div>
   </div>
 </section>
-<details class="fold"><summary>12 × 12 궁합표 전체 보기</summary>
+<section>
+  <h2 class="sec-title">12 × 12 궁합표</h2>
   <div class="month-wrap" style="overflow-x:auto;border-radius:0"><table class="compat-table"><thead><tr><th></th>${signs.map((s) => `<th title="${esc(s.n)}">${s.e}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>
-  <p class="note">세로줄이 나, 가로줄이 상대입니다. 점수를 누르면 그 조합의 상세 설명으로 이동합니다. 점수는 두 별자리의 원소 관계와 황도상 각도를 합쳐 계산했습니다.</p>
-</details>
-<details class="fold"><summary>궁합은 무엇으로 정해지나요</summary>
+  <p class="note">세로줄이 나, 가로줄이 상대입니다. 왼쪽 별자리 이름을 누르면 그 별자리의 궁합 12가지 해설로 이동합니다. 점수는 두 별자리의 원소 관계와 황도상 각도를 합쳐 계산했습니다.</p>
+</section>
+<section>
+  <h2 class="sec-title">궁합은 무엇으로 정해지나요</h2>
   <div class="prose">
     <p>점성술에서 두 별자리의 궁합은 두 가지로 봅니다. 하나는 <b>원소</b>입니다. 불·땅·공기·물 네 원소 중 같은 원소끼리는 세상을 보는 방식이 비슷해 말이 잘 통하고, 불과 공기, 땅과 물은 서로를 북돋우는 짝으로 봅니다. 다른 하나는 <b>각도</b>입니다. 황도 12궁을 원으로 놓았을 때 몇 칸 떨어져 있는지에 따라 트라인(4칸, 가장 편안), 스퀘어(3칸, 긴장), 어포지션(정반대, 끌림과 충돌)으로 나눕니다.</p>
     <p>점수가 낮다고 맞지 않는 관계라는 뜻은 아닙니다. 긴장이 큰 조합이 서로를 가장 많이 성장시킨다고도 봅니다. 재미로 보시고 관계를 이해하는 참고 자료로만 쓰시기 바랍니다.</p>
     <p>원소와 모달리티, 지배 행성이 무엇인지는 <a href="/guide">별자리 기초</a>에 출처와 함께 정리해 두었습니다.</p>
   </div>
-</details>
-<section>
-  <h2 class="sec-title">78개 조합 상세 해설</h2>
-  <p class="sec-lead">조합마다 원소·모달리티·지배 행성 관계와 부딪히기 쉬운 지점, 대화 요령을 따로 정리했습니다.</p>
-  ${ORDER.map((ka) => { const a = byKey.get(ka); return `<details class="fold"><summary>${a.e} ${esc(a.n)}의 궁합 ${12 - idxOf(ka)}개</summary><div class="sign-links">${ORDER.slice(idxOf(ka)).map((kb) => { const b = byKey.get(kb); return `<a class="sign-chip" href="${pairUrl(ka, kb)}"><span>${b.e}</span>${esc(a.n)} × ${esc(b.n)} ${pairScore(a, b).score}</a>`; }).join('')}</div></details>`; }).join('\n  ')}
 </section>
 <section>
-  <h2 class="sec-title">별자리별 페이지</h2>
-  <div class="sign-links">${signs.map((x) => `<a class="sign-chip" href="${urlOf(x.k)}"><span>${x.e}</span>${esc(x.n)}</a>`).join('')}</div>
+  <h2 class="sec-title">별자리별 궁합 해설</h2>
+  <p class="sec-lead">별자리마다 열두 별자리와의 조합을 한 페이지에 모았습니다. 조합마다 원소·모달리티·지배 행성 관계와 연애·친구일 때, 다툰 뒤 회복하는 법, 대화 요령을 정리했습니다.</p>
+  <div class="sign-links">${ORDER.map((k) => { const x = byKey.get(k); return `<a class="sign-chip" href="${signCompatUrl(k)}"><span>${x.e}</span>${esc(x.n)} 궁합</a>`; }).join('')}</div>
 </section>
 </article>`;
   const extraScript = `<script>
@@ -439,8 +446,7 @@ function show(){ if(my<0||you<0)return; var a=__Z[my],b=__Z[you],m=__M[my][you];
   document.getElementById('rcScore').innerHTML=m[0]+'<small>점</small>';
   document.getElementById('rcAsp').textContent=m[1]+' · '+(m[0]>=88?'최상의 조합':m[0]>=78?'잘 맞는 조합':m[0]>=65?'노력하면 좋아지는 조합':'서로를 배우는 조합');
   document.getElementById('rcText').textContent=m[2];
-  var o=['aries','taurus','gemini','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces'], p=o.indexOf(a.k)<=o.indexOf(b.k)?a.k+'-'+b.k:b.k+'-'+a.k;
-  document.getElementById('rcLinks').innerHTML='<a href="/compatibility/'+p+'">궁합 상세 해설</a><a href="/zodiac/'+a.k+'">'+a.n+' 자세히</a><a href="/zodiac/'+b.k+'">'+b.n+' 자세히</a>';
+  document.getElementById('rcLinks').innerHTML='<a href="/compatibility/'+a.k+'#'+b.k+'">궁합 상세 해설</a><a href="/zodiac/'+a.k+'">'+a.n+' 자세히</a><a href="/zodiac/'+b.k+'">'+b.n+' 자세히</a>';
   __S.title=a.e+' '+a.n+' × '+b.e+' '+b.n+' 궁합 '+m[0]+'점'; __S.desc=m[2].slice(0,80); __S.url='${SITE.url}/compatibility?a='+a.k+'&b='+b.k;
   var rc=document.getElementById('rc'); rc.classList.add('on'); rc.scrollIntoView({behavior:'smooth',block:'start'});
   try{history.replaceState(null,'','?a='+a.k+'&b='+b.k);}catch(e){} }
@@ -508,7 +514,9 @@ function pageContact() {
 
 // ---------- 공통 도우미 (새 페이지) ----------
 function pairKey(a, b) { return idxOf(a) <= idxOf(b) ? `${a}-${b}` : `${b}-${a}`; }
-function pairUrl(a, b) { return `/compatibility/${pairKey(a, b)}`; }
+// 궁합 상세는 별자리별 12페이지(/compatibility/<a>)에 상대 별자리 섹션(id=<b>)으로 모았다
+function signCompatUrl(a) { return `/compatibility/${a}`; }
+function pairUrl(a, b) { return `/compatibility/${a}#${b}`; }
 const crumbLd = (items) => ({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items.map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: SITE.url + path })) });
 const crumbHtml = (items) => `<nav class="crumb">${items.map(([name, path], i) => (i === items.length - 1 ? `<span>${esc(name)}</span>` : `<a href="${path}">${esc(name)}</a>`)).join(' › ')}</nav>`;
 const fmtP = (p) => { const [s, e] = p.split('-').map((x) => x.split('.').map(Number)); return `${s[0]}월 ${s[1]}일 ~ ${e[0]}월 ${e[1]}일`; };
@@ -518,88 +526,76 @@ const PAIRS = JSON.parse(readFileSync(join(root, 'data/compat-pairs.json'), 'utf
 const ingressHko = (() => { const p = join(root, 'data/sun-ingress-hko.json'); return existsSync(p) ? JSON.parse(readFileSync(p, 'utf8')) : { years: {} }; })();
 const ingress = (() => { const p = join(root, 'data/sun-ingress-kasi.json'); return existsSync(p) ? JSON.parse(readFileSync(p, 'utf8')) : { years: {} }; })();
 
-// ---------- 궁합 상세 ----------
-function pagePair(a, b) {
+// ---------- 궁합 상세 (별자리별 12페이지) ----------
+// 예전에는 조합마다 한 페이지(78장)였다. 지금은 별자리 a 의 페이지에 상대 b 12개를 섹션(id=b)으로 모으고,
+// 예전 주소 /compatibility/<a>-<b> 와 /compatibility/<b>-<a> 는 vercel.json 에서 /compatibility/<a>#<b> 로 301 한다.
+function pairInfo(a, b) {
   const same = a.k === b.k;
   const { asp, score } = pairScore(a, b);
   const d0 = Math.abs(idxOf(a.k) - idxOf(b.k)), dist = Math.min(d0, 12 - d0);
   const bonus = ELEM_PAIR(a.el, b.el);
-  const path = pairUrl(a.k, b.k);
   const P = PAIRS[pairKey(a.k, b.k)];
   if (!P || !['love', 'friend', 'repair', 'tip'].every((x) => P[x])) { console.error(`✖ data/compat-pairs.json 에 ${pairKey(a.k, b.k)} 의 love·friend·repair·tip 이 없습니다`); process.exit(1); }
-  const nm = same ? `${a.n}끼리` : `${a.n}와 ${b.n}`;
-  const row = (label, f) => `<tr><th scope="row">${label}</th><td>${f(a)}</td>${same ? '' : `<td>${f(b)}</td>`}</tr>`;
   const shared = QUAL[a.el].filter((q) => QUAL[b.el].includes(q));
   const combo = [
     a.el === b.el ? `같은 ${a.el}` : `${a.el} × ${b.el}${shared.length ? ` (공유 성질: ${shared.join(', ')})` : ' (공유 성질 없음)'}`,
     MOD_OF[a.k] === MOD_OF[b.k] ? `같은 ${MOD_OF[a.k]}궁` : `${MOD_OF[a.k]}궁 × ${MOD_OF[b.k]}궁`,
     a.ruler === b.ruler ? `같은 ${a.ruler}` : `${a.ruler} × ${b.ruler}`,
   ];
+  return { same, asp, score, dist, bonus, P, combo };
+}
 
+function pageSignCompat(a) {
+  const path = signCompatUrl(a.k);
+  const list = ORDER.map((k) => ({ b: byKey.get(k), ...pairInfo(a, byKey.get(k)) }));
+  const ranked = [...list].sort((p, q) => q.score - p.score || idxOf(p.b.k) - idxOf(q.b.k));
+  const info = (s) => `${esc(fmtP(s.p))} · ${esc(s.el)} · ${esc(MOD_NAME[MOD_OF[s.k]])} · 지배 행성 ${esc(s.ruler)}${CLASSIC_RULER[s.k] ? ` (전통: ${esc(CLASSIC_RULER[s.k])})` : ''}`;
+  const sec = ({ b, same, asp, score, dist, bonus, P, combo }) => `
+<section class="pair-sec" id="${b.k}">
+  <h2 class="sec-title">${a.e} ${esc(a.n)} × ${b.e} ${esc(b.n)} <span class="today-date">${score}점 · ${esc(asp.name)} · ${esc(verdict(score))}</span></h2>
+  <p class="pair-meta">${same ? `같은 별자리끼리의 조합입니다. ${esc(a.n)}: ${info(a)}` : `상대 ${esc(b.n)}: ${info(b)}`}<br>조합: ${esc(combo.join(' · '))}</p>
+  <p class="note">점수: ${same ? '같은 별자리(0°)' : `황도에서 ${dist * 30}° 떨어진`} ${esc(asp.name)}의 기본 점수 ${asp.score}점에 원소 보정 ${bonus > 0 ? '+' : ''}${bonus}점을 더하면 ${asp.score + bonus}점${asp.score + bonus > score ? `이고, 점수는 최대 ${score}점으로 표시합니다` : asp.score + bonus < score ? `이고, 점수는 최소 ${score}점으로 표시합니다` : '입니다'}.</p>
+  <h3 class="sub-title">연애할 때</h3>
+  <div class="prose"><p>${esc(P.love)}</p></div>
+  <h3 class="sub-title">친구·동료일 때</h3>
+  <div class="prose"><p>${esc(P.friend)}</p></div>
+  <h3 class="sub-title">다툰 뒤 회복하는 법</h3>
+  <div class="prose"><p>${esc(P.repair)}</p></div>
+  <h3 class="sub-title">대화 팁</h3>
+  <div class="tip-box"><p>${esc(P.tip)}</p></div>
+</section>`;
   const body = `
-${crumbHtml([['홈', '/'], ['별자리 궁합', '/compatibility'], [same ? `${a.n} × ${a.n}` : `${a.n} × ${b.n}`, path]])}
+${crumbHtml([['홈', '/'], ['별자리 궁합', '/compatibility'], [`${a.n} 궁합`, path]])}
 <article class="sign-page">
 <header class="pair-hero">
-  <div class="ph-signs"><a href="${urlOf(a.k)}">${a.e}</a>${same ? '' : `<span>×</span><a href="${urlOf(b.k)}">${b.e}</a>`}</div>
-  <h1>${esc(nm)} 궁합</h1>
-  <div class="ph-score">${score}<small>점</small></div>
-  <p class="ph-asp">${esc(asp.name)} · ${esc(verdict(score))}</p>
+  <div class="ph-signs"><a href="${urlOf(a.k)}">${a.e}</a></div>
+  <h1>${esc(a.n)} 궁합 12가지</h1>
+  <p class="ph-asp">${info(a)}</p>
 </header>
 
 <section>
-  <h2 class="sec-title">한눈에 보기</h2>
+  <h2 class="sec-title">점수 순으로 보기</h2>
+  <p class="sec-lead">${esc(a.n)}와 열두 별자리의 궁합 점수입니다. 별자리를 누르면 아래 해당 조합 해설로 이동합니다. 점수는 두 별자리의 황도상 각도(합·섹스타일·스퀘어·트라인·어포지션 등)의 기본 점수에 원소 조합 보정을 더해 계산했고, 계산 방식은 <a href="/compatibility">궁합표</a>와 같습니다.</p>
   <div class="tbl-wrap"><table class="data-table">
-  <thead><tr><th></th><th>${a.e} ${esc(a.n)}</th>${same ? '' : `<th>${b.e} ${esc(b.n)}</th>`}</tr></thead>
-  <tbody>
-  ${row('날짜', (s) => esc(fmtP(s.p)))}
-  ${row('원소', (s) => esc(s.el))}
-  ${row('모달리티', (s) => esc(MOD_NAME[MOD_OF[s.k]]))}
-  ${row('지배 행성', (s) => esc(s.ruler) + (CLASSIC_RULER[s.k] ? ` <small>(전통: ${esc(CLASSIC_RULER[s.k])})</small>` : ''))}
-  <tr><th scope="row">조합</th><td${same ? '' : ' colspan="2"'}>${esc(combo.join(' · '))} — <a href="/guide/elements#combos">원소</a>·<a href="/guide/modalities#combos">모달리티</a>·<a href="/guide/ruling-planets">지배 행성</a> 해석 보기</td></tr>
-  </tbody></table></div>
-  <p class="note">점수: ${same ? '같은 별자리(0°)' : `황도에서 ${dist * 30}° 떨어진`} ${esc(asp.name)}의 기본 점수 ${asp.score}점에 원소 보정 ${bonus > 0 ? '+' : ''}${bonus}점을 더하면 ${asp.score + bonus}점${asp.score + bonus > score ? `이고, 점수는 최대 ${score}점으로 표시합니다` : asp.score + bonus < score ? `이고, 점수는 최소 ${score}점으로 표시합니다` : '입니다'}. 계산 방식은 <a href="/compatibility">궁합표</a>와 같습니다.</p>
+  <thead><tr><th>상대</th><th>점수</th><th>각도</th><th>원소 조합</th></tr></thead>
+  <tbody>${ranked.map(({ b, score, asp, combo }) => `<tr><th scope="row"><a href="#${b.k}">${b.e} ${esc(b.n)}</a></th><td>${score}</td><td>${esc(asp.name)}</td><td>${esc(combo[0])}</td></tr>`).join('')}</tbody>
+  </table></div>
 </section>
+${list.map(sec).join('\n')}
 
 <section>
-  <h2 class="sec-title">연애할 때</h2>
-  <div class="prose"><p>${esc(P.love)}</p></div>
-</section>
-
-<section>
-  <h2 class="sec-title">친구·동료일 때</h2>
-  <div class="prose"><p>${esc(P.friend)}</p></div>
-</section>
-
-<section>
-  <h2 class="sec-title">다툰 뒤 회복하는 법</h2>
-  <div class="prose"><p>${esc(P.repair)}</p></div>
-</section>
-
-<section>
-  <h2 class="sec-title">대화 팁</h2>
-  <div class="tip-box"><p>${esc(P.tip)}</p></div>
-</section>
-${same ? (() => { const others = ORDER.filter((k) => k !== a.k).map((k) => ({ x: byKey.get(k), ...pairScore(a, byKey.get(k)) })).sort((p, q) => q.score - p.score); const li = (o) => `<li><a href="${pairUrl(a.k, o.x.k)}">${o.x.e} ${esc(o.x.n)}</a> ${o.score}점 · ${esc(o.asp.name)}</li>`; return `
-<section>
-  <h2 class="sec-title">${esc(a.n)}의 다른 조합과 비교</h2>
-  <div class="two-col"><div class="list-box good"><h3>점수가 높은 조합</h3><ul>${others.slice(0, 3).map(li).join('')}</ul></div><div class="list-box bad"><h3>점수가 낮은 조합</h3><ul>${others.slice(-3).reverse().map(li).join('')}</ul></div></div>
-</section>`; })() : ''}
-
-<section>
-  <h2 class="sec-title">${esc(a.n)}의 다른 궁합</h2>
-  <div class="sign-links">${ORDER.filter((k) => k !== b.k || same).filter((k) => !(same && k === a.k)).map((k) => { const x = byKey.get(k); return `<a class="sign-chip" href="${pairUrl(a.k, k)}"><span>${x.e}</span>${esc(x.n)} ${pairScore(a, x).score}</a>`; }).join('')}</div>
-  ${same ? '' : `<h3 class="sub-title">${esc(b.n)}의 다른 궁합</h3>
-  <div class="sign-links">${ORDER.filter((k) => k !== a.k).map((k) => { const x = byKey.get(k); return `<a class="sign-chip" href="${pairUrl(b.k, k)}"><span>${x.e}</span>${esc(x.n)} ${pairScore(b, x).score}</a>`; }).join('')}</div>`}
+  <h2 class="sec-title">다른 별자리의 궁합</h2>
+  <div class="sign-links">${ORDER.filter((k) => k !== a.k).map((k) => { const x = byKey.get(k); return `<a class="sign-chip" href="${signCompatUrl(k)}"><span>${x.e}</span>${esc(x.n)}</a>`; }).join('')}</div>
+  <p class="note">${esc(a.n)}의 성격과 오늘의 운세는 <a href="${urlOf(a.k)}">${esc(a.n)} 페이지</a>에 있습니다.</p>
 </section>
 <p class="note">궁합은 재미로 읽는 점성술 해석입니다. 분류 출처: ${srcLinks(['sign', 'element', 'domicile', 'aspect'])}</p>
 </article>`;
 
-  const title = same ? `${a.n}끼리 궁합 — ${score}점, 연애·친구·다툰 뒤` : `${a.n} ${b.n} 궁합 — ${score}점, 연애·친구·다툰 뒤`;
-  const lead = String(P.love).split(/(?<=[.!?])\s+/)[0];
-  const desc = `${same ? `${a.n}끼리` : `${a.n}와 ${b.n}`} 별자리 궁합 ${score}점(${asp.name}). ${lead}`.slice(0, 160);
+  const title = `${a.n} 궁합 12가지 — 별자리별 점수와 연애·친구·다툰 뒤`;
+  const desc = `${a.n}(${fmtP(a.p)})와 열두 별자리의 궁합. 가장 높은 조합은 ${ranked[0].b.n} ${ranked[0].score}점(${ranked[0].asp.name})입니다. 조합마다 연애·친구일 때, 다툰 뒤 회복하는 법, 대화 팁을 정리했습니다.`.slice(0, 160);
   const ld = [
     { '@context': 'https://schema.org', '@type': 'Article', headline: title, description: desc, inLanguage: 'ko', mainEntityOfPage: SITE.url + path, image: SITE.ogImage, dateModified: CONTENT_UPDATED, author: { '@type': 'Organization', name: SITE.name, url: SITE.url }, publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url } },
-    crumbLd([['홈', '/'], ['별자리 궁합', '/compatibility'], [same ? `${a.n} × ${a.n}` : `${a.n} × ${b.n}`, path]]),
+    crumbLd([['홈', '/'], ['별자리 궁합', '/compatibility'], [`${a.n} 궁합`, path]]),
   ];
   return layout({ title, desc, path, body, ld });
 }
@@ -692,7 +688,8 @@ ${mo.events.length ? `
     { '@context': 'https://schema.org', '@type': 'Article', headline: title, description: desc, inLanguage: 'ko', mainEntityOfPage: SITE.url + path, image: SITE.ogImage, author: { '@type': 'Organization', name: SITE.name, url: SITE.url }, publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url } },
     crumbLd([['홈', '/'], [s.n, urlOf(s.k)], [`${mo.y}년 ${mo.m}월`, path]]),
   ];
-  return layout({ title, desc, path, body, ld, robots: mo.indexable ? 'index, follow' : 'noindex, follow' });
+  // 월별 페이지는 한 달 남짓만 걸려 있다 내려가는 페이지라 검색에는 내보내지 않는다(sitemap 에서도 뺀다)
+  return layout({ title, desc, path, body, ld, robots: 'noindex, follow' });
 }
 
 // ---------- 별자리 계산기 ----------
@@ -837,8 +834,8 @@ function pageAbout() {
   <h2 class="sec-title">무엇을 볼 수 있나요</h2>
   <div class="prose">
     <p><b>별자리 페이지</b>(12장)에는 오늘의 총운·연애운·직장운·재물운, 성격의 강점과 주의할 점, 연애·일·돈을 대하는 방식, 잘 맞는 별자리와 부딪히기 쉬운 별자리, 그리스 신화 속 유래와 상징을 담았습니다.</p>
-    <p><b>월별 운세</b>는 별자리마다 한 달 치 날짜별 운세를 모은 페이지입니다. 맨 위에는 그달 문장에 자주 나온 내용을 묶은 흐름 요약을, 그 아래에는 주마다 다른 날들과 내용이 가장 많이 겹치는 문장을 그대로 옮긴 주차별 대표 문장을 둡니다. 지난달 운세도 그대로 남겨 둡니다.</p>
-    <p><b><a href="/compatibility">별자리 궁합</a></b>에서는 78개 조합의 점수와 조합별 상세 해설을, <b><a href="/zodiac-calculator">별자리 계산기</a></b>에서는 생년월일로 별자리를 찾을 수 있습니다. 원소·모달리티·지배 행성 같은 기본 개념은 <b><a href="/guide">별자리 기초</a></b>에 출처와 함께 정리했습니다.</p>
+    <p><b>월별 운세</b>는 별자리마다 한 달 치 날짜별 운세를 모은 페이지입니다. 맨 위에는 그달 문장에 자주 나온 내용을 묶은 흐름 요약을, 그 아래에는 주마다 다른 날들과 내용이 가장 많이 겹치는 문장을 그대로 옮긴 주차별 대표 문장을 둡니다. 월별 운세는 이번 달과 다음 달 것만 두고, 달이 바뀌면 지난달 페이지는 내리고 그 주소는 별자리 페이지로 연결합니다. 한 달 남짓만 걸리는 페이지라 검색 결과에는 내보내지 않습니다.</p>
+    <p><b><a href="/compatibility">별자리 궁합</a></b>에서는 12 × 12 궁합표와 별자리별 궁합 해설(별자리마다 한 페이지에 열두 조합, 모두 78개 조합)을, <b><a href="/zodiac-calculator">별자리 계산기</a></b>에서는 생년월일로 별자리를 찾을 수 있습니다. 원소·모달리티·지배 행성 같은 기본 개념은 <b><a href="/guide">별자리 기초</a></b>에 출처와 함께 정리했습니다.</p>
   </div>
 </section>
 
@@ -858,8 +855,8 @@ function pageAbout() {
   </div>
   <ul class="fact-list">
     <li>12별자리 × 그달 모든 날짜에 총운·연애·일·돈 네 항목이 빠짐없이 있는지</li>
-    <li>문장에 적힌 요일이 실제 달력의 요일과 맞는지, 반말 문장이 섞이지 않았는지 — 기준을 넘는 달은 월별 페이지를 검색에 노출하지 않습니다</li>
-    <li>페이지마다 본문 분량이 충분한지, 화면에 채워지지 않은 빈 값이 그대로 드러나지 않는지, 사이트 안의 링크가 모두 열리는지</li>
+    <li>문장에 적힌 요일이 실제 달력의 요일과 맞는지, 반말 문장이 섞이지 않았는지 — 기준을 넘으면 빌드 기록에 경고를 남겨 고칩니다</li>
+    <li>페이지마다 본문 분량이 충분한지, 화면에 채워지지 않은 빈 값이 그대로 드러나지 않는지, 사이트 안의 링크와 페이지 안 이동 위치(#)가 모두 있는지</li>
     <li>공유 버튼 등에 쓰는 스크립트에 문법 오류가 없는지</li>
   </ul>
 </section>
@@ -904,17 +901,41 @@ write('compatibility.html', pageCompat());
 write('about.html', pageAbout());
 write('contact.html', pageContact());
 months.forEach((mo, i) => { for (const s of signs) write(`zodiac/${s.k}/${mo.ym}/index.html`, pageMonth(s, mo, i)); });
-for (let i = 0; i < 12; i++) for (let j = i; j < 12; j++) write(`compatibility/${ORDER[i]}-${ORDER[j]}/index.html`, pagePair(byKey.get(ORDER[i]), byKey.get(ORDER[j])));
+for (const k of ORDER) write(`compatibility/${k}/index.html`, pageSignCompat(byKey.get(k)));
 write('zodiac-calculator/index.html', pageCalculator());
 const guides = makeGuides({ signs, esc, urlOf, ingress, ELEM_PAIR, pairUrl });
 for (const g of guides) write(`${g.path.slice(1)}/index.html`, pageGuide(g));
 
+// 지금 만들지 않는 예전 산출물 정리 — 지난달 월별 페이지, 예전 조합별 궁합 페이지(<a>-<b>)
+// 매일 빌드(GitHub Action)가 git add -A 로 커밋하므로 여기서 지우면 저장소에서도 빠진다
+const removed = [];
+for (const s of signs) {
+  const dir = join(root, 'zodiac', s.k);
+  for (const d of readdirSync(dir)) if (/^\d{4}-\d{2}$/.test(d) && !months.some((mo) => mo.ym === d)) { rmSync(join(dir, d), { recursive: true, force: true }); removed.push(`zodiac/${s.k}/${d}`); }
+}
+for (const d of readdirSync(join(root, 'compatibility'))) if (!ORDER.includes(d)) { rmSync(join(root, 'compatibility', d), { recursive: true, force: true }); removed.push(`compatibility/${d}`); }
+if (removed.length) console.log(`  예전 산출물 ${removed.length}개 정리 (${removed.slice(0, 3).join(', ')}${removed.length > 3 ? ' …' : ''})`);
+
+// vercel.json redirects — 빌드가 매번 다시 쓴다(직접 고치지 말 것)
+//  1) 지난달 월별 페이지 /zodiac/<sign>/<YYYY-MM> → /zodiac/<sign>  (data/fortune-YYYY-MM.json 이 있는 지난달 전부)
+//  2) 예전 궁합 상세 /compatibility/<a>-<b>, /compatibility/<b>-<a> → /compatibility/<a>#<b>
+const signAlt = ORDER.join('|');
+const redirects = [
+  ...pastMonths.map((ym) => ({ source: `/zodiac/:sign(${signAlt})/${ym}`, destination: '/zodiac/:sign', statusCode: 301 })),
+  ...ORDER.flatMap((a) => ORDER.map((b) => ({ source: `/compatibility/${a}-${b}`, destination: `/compatibility/${a}#${b}`, statusCode: 301 }))),
+];
+{
+  const vp = join(root, 'vercel.json');
+  const vj = JSON.parse(readFileSync(vp, 'utf8'));
+  vj.redirects = redirects;
+  writeFileSync(vp, JSON.stringify(vj, null, 2) + '\n');
+}
+
 const urls = [
   { loc: '/', p: '1.0', f: 'daily', lm: TODAY },
   ...signs.map((s) => ({ loc: urlOf(s.k), p: '0.9', f: 'daily', lm: TODAY })),
-  ...months.filter((mo) => mo.indexable).flatMap((mo) => signs.map((s) => ({ loc: monthUrl(s.k, mo), p: '0.6', f: 'monthly' }))),
-  { loc: '/compatibility', p: '0.8', f: 'monthly', lm: TODAY },
-  ...ORDER.flatMap((a, i) => ORDER.slice(i).map((b) => ({ loc: pairUrl(a, b), p: '0.5', f: 'yearly', lm: CONTENT_UPDATED }))),
+  { loc: '/compatibility', p: '0.8', f: 'monthly', lm: CONTENT_UPDATED },
+  ...ORDER.map((a) => ({ loc: signCompatUrl(a), p: '0.7', f: 'yearly', lm: CONTENT_UPDATED })),
   { loc: '/zodiac-calculator', p: '0.7', f: 'yearly', lm: CONTENT_UPDATED },
   ...guides.map((g) => ({ loc: g.path, p: '0.6', f: 'yearly', lm: CONTENT_UPDATED })),
   { loc: '/about', p: '0.3', f: 'yearly' },
@@ -948,11 +969,16 @@ for (const f of written.filter((f) => /^(compatibility\/|zodiac-calculator|guide
     const leak = visible.match(/undefined|NaN|\[object |\$\{|\{\{|\}\}/);
     if (leak) fail(`${f} 깨진 값 누출: "${leak[0]}" — ${visible.slice(Math.max(0, leak.index - 60), leak.index + 40).replace(/\s+/g, ' ')}`);
     for (const m of visible.matchAll(/href="(\/[^"#?]*)/g)) if (!exists(m[1])) broken.add(`${f} → ${m[1]}`);
+    // 같은 사이트 안 #앵커 — 대상 페이지에 그 id 가 있어야 한다
+    for (const m of visible.matchAll(/href="(\/[^"#?]*)?#([^"]+)"/g)) {
+      const target = m[1] ? written.find((w) => w === `${m[1].slice(1)}.html` || w === `${m[1].slice(1)}/index.html` || (m[1] === '/' && w === 'index.html')) : f;
+      if (target && !readFileSync(join(root, target), 'utf8').includes(`id="${m[2]}"`)) broken.add(`${f} → ${m[1] || ''}#${m[2]} (앵커 없음)`);
+    }
   }
   if (broken.size) fail(`깨진 내부 링크 ${broken.size}개:\n  ${[...broken].slice(0, 20).join('\n  ')}`);
   console.log(`  인라인 스크립트 ${checked}개 문법 검증 통과, 깨진 값·내부 링크 검사 통과 (${written.length}개 파일)`);
 }
 
-console.log(`✔ 빌드 완료 — 별자리 ${signs.length}장 + 홈, 월별 ${months.length * signs.length}장(${months.map((mo) => mo.ym + (mo.indexable ? '' : ' noindex')).join(', ')}), 궁합 상세 78장, 계산기 1장, 가이드 ${guides.length}장, sitemap ${urls.length}개 (기준일 ${TODAY})`);
+console.log(`✔ 빌드 완료 — 별자리 ${signs.length}장 + 홈, 월별 ${months.length * signs.length}장(${months.map((mo) => mo.ym).join(', ')} · noindex), 별자리별 궁합 12장(조합 78개), 리다이렉트 ${redirects.length}개(지난달 ${pastMonths.join(', ') || '없음'}), 계산기 1장, 가이드 ${guides.length}장, sitemap ${urls.length}개 (기준일 ${TODAY})`);
 console.log(`  HTML 본문 글자수: 홈 ${homeLen}자, 별자리 최소 ${minLen}자 (${minWho}), 새 페이지 최소 ${newMin}자 (${newMinWho})`);
 if (minLen < 1500 || homeLen < 800 || newMin < 1500) { console.error('✖ 본문이 너무 짧습니다. 애드센스 재심사 전에 확인하세요.'); process.exit(1); }
