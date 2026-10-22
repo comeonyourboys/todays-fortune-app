@@ -692,11 +692,46 @@ ${mo.events.length ? `
   return layout({ title, desc, path, body, ld, robots: 'noindex, follow' });
 }
 
+// ---------- 별자리 경계 시각 (계산기·경계 시각표 공용) ----------
+// 1950~2030년은 Astronomy Engine 계산값(data/sun-ingress-calc.json, tools/sun-ingress/gen.mjs 생성), 한국천문연구원 자료가 있는 해는 그 값을 우선 쓴다.
+const ingressCalc = JSON.parse(readFileSync(join(root, 'data/sun-ingress-calc.json'), 'utf8'));
+const ING_YEARS = Object.keys(ingressCalc.years).sort();
+const ING = Object.fromEntries(ING_YEARS.map((y) => {
+  const k = ingress.years?.[y];
+  return [y, { src: k ? 'kasi' : 'calc', list: (k || ingressCalc.years[y]).map((r) => [r.starts, r.kst]) }];
+}));
+// 계산값을 공개 자료와 대조 — 한국천문연구원 분 단위 시각, 홍콩천문대 날짜(홍콩 시각 UTC+8)
+const ING_CHECK = (() => {
+  const diffs = [];
+  for (const [y, list] of Object.entries(ingress.years || {})) for (const r of list) {
+    const c = ingressCalc.years[y]?.find((x) => x.deg === r.deg);
+    if (c) diffs.push((Date.parse(c.kst + ':00Z') - Date.parse(r.kst + ':00Z')) / 60000);
+  }
+  let hkoN = 0, hkoSame = 0;
+  for (const [y, list] of Object.entries(ingressHko.years || {})) {
+    const H = Object.fromEntries(list);
+    for (const r of ingressCalc.years[y] || []) {
+      if (!H[r.starts]) continue;
+      hkoN++;
+      const d = new Date(Date.parse(r.kst + ':00Z') - 3600e3);
+      if (`${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}` === H[r.starts]) hkoSame++;
+    }
+  }
+  const abs = diffs.map(Math.abs);
+  return { n: diffs.length, max: Math.max(...abs), mean: abs.reduce((a, b) => a + b, 0) / abs.length, exact: abs.filter((x) => x === 0).length, one: abs.filter((x) => x === 1).length, hkoN, hkoSame };
+})();
+if (!ING_CHECK.n || ING_CHECK.max > 2) { console.error(`✖ 계산 경계 시각이 한국천문연구원 값과 최대 ${ING_CHECK.max}분 어긋납니다(기준 2분) — tools/sun-ingress 확인`); process.exit(1); }
+const KASI_YEARS = Object.keys(ingress.years || {}).sort();
+const KASI_RANGE = `${KASI_YEARS[0]}~${KASI_YEARS[KASI_YEARS.length - 1]}`;
+const CALC_RANGE = `${ING_YEARS[0]}~${ING_YEARS[ING_YEARS.length - 1]}`;
+// 표준시가 UTC+9 가 아니었거나 일광절약시간을 쓴 해(위키백과 영어판 Time in South Korea — 연 단위로만 확인됨)
+const TZ_ODD_YEARS = [1948, 1949, 1950, 1951, 1954, 1955, 1956, 1957, 1958, 1959, 1960, 1961, 1987, 1988];
+const fmtMean = (x) => x.toFixed(2).replace(/0$/, '');
+
 // ---------- 별자리 계산기 ----------
 function pageCalculator() {
   const path = '/zodiac-calculator';
-  const years = Object.keys(ingress.years || {}).sort();
-  const I = Object.fromEntries(years.map((y) => [y, ingress.years[y].map((r) => [r.starts, r.kst])]));
+  const years = KASI_YEARS;
   const ordered = ORDER.map((k) => byKey.get(k));
   const startTerm = (k) => (ingress.years?.[years[years.length - 1]] || []).find((r) => r.starts === k)?.term || '';
   const cell = (y, k) => { const r = (ingress.years[y] || []).find((x) => x.starts === k); return r ? `${Number(r.kst.slice(5, 7))}/${Number(r.kst.slice(8, 10))} ${r.kst.slice(11)}` : '—'; };
@@ -704,7 +739,7 @@ function pageCalculator() {
 ${crumbHtml([['홈', '/'], ['별자리 계산기', path]])}
 <article class="sign-page">
 <header class="home-hero" style="padding-top:20px"><h1>별자리 계산기</h1>
-<p class="hero-sub">생년월일을 넣으면 태양 별자리를 알려 드립니다. 경계일에 태어났다면 태어난 해와 시각에 따라 달라지는지도 함께 안내합니다.</p></header>
+<p class="hero-sub">생년월일을 넣으면 태양 별자리를 알려 드립니다. ${CALC_RANGE}년생은 태양이 별자리 경계를 지나는 시각을 분 단위로 비교해 판정합니다.</p></header>
 <section class="calc-box">
   <div class="calc-row">
     <label>태어난 해 <small>(선택)</small><input id="cy" type="number" inputmode="numeric" min="1900" max="2100" placeholder="예: 1995"></label>
@@ -728,68 +763,69 @@ ${crumbHtml([['홈', '/'], ['별자리 계산기', path]])}
   <tbody>${ordered.map((s) => `<tr><th scope="row">${s.e} <a href="${urlOf(s.k)}">${esc(s.n)}</a></th><td>${esc(fmtP(s.p))}</td><td>${esc(startTerm(s.k))}</td><td>${esc(s.el)}</td></tr>`).join('')}</tbody>
   </table></div>
 </section>
-${years.length ? `
+
 <section>
-  <h2 class="sec-title">경계 시각 자료 (${years[0]}~${years[years.length - 1]}년)</h2>
-  <div class="prose"><p>한국천문연구원이 공개한 연도별 24절기 시각 가운데, 태양이 황경 30°의 배수를 지나는 12개 중기의 시각입니다. 이 기간에 태어났다면 계산기가 이 시각으로 경계일을 판정합니다. 표에서 같은 별자리의 시작일이 해마다 하루씩 앞뒤로 움직이는 것을 볼 수 있습니다.</p></div>
+  <h2 class="sec-title">계산기가 쓰는 경계 시각</h2>
+  <div class="prose">
+    <p><b>${KASI_RANGE}년</b>은 한국천문연구원이 공개한 연도별 24절기 시각 가운데 태양이 황경 30°의 배수를 지나는 12개 중기의 시각을 씁니다. <b>그 밖의 ${CALC_RANGE}년</b>은 공개 천문 계산 라이브러리 Astronomy Engine으로 같은 순간을 직접 계산한 값을 씁니다. 두 값을 겹치는 ${KASI_RANGE}년 ${ING_CHECK.n}개 시각에서 비교하면 ${ING_CHECK.exact}개는 분까지 같고 나머지 ${ING_CHECK.n - ING_CHECK.exact}개는 ${ING_CHECK.max}분 차이였습니다(평균 ${fmtMean(ING_CHECK.mean)}분). 결과 화면에는 어느 쪽 값으로 판정했는지 함께 적습니다.</p>
+    <p>태어난 날이 경계일이거나 그 앞뒤 하루라면 태어난 시각을 넣어 주세요. 경계일에 시각 없이 계산하면 두 별자리를 함께 안내합니다. 연도별 시각 전체와 비교 방법은 <a href="/zodiac-calculator/boundaries">연도별 별자리 경계 시각표</a>에 정리했습니다.</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">한국천문연구원 경계 시각 (${KASI_RANGE}년)</h2>
   <div class="tbl-wrap"><table class="data-table nowrap">
   <thead><tr><th>시작하는 별자리</th>${years.map((y) => `<th>${y}</th>`).join('')}</tr></thead>
   <tbody>${ordered.map((s) => `<tr><th scope="row">${esc(s.n)}</th>${years.map((y) => `<td>${cell(y, s.k)}</td>`).join('')}</tr>`).join('')}</tbody>
   </table></div>
   <p class="note">시각은 한국 표준시(KST)입니다. ${esc(ingress.source?.note || '')} 해외에서 태어났다면 출생 시각을 한국 시각으로 바꿔 입력해 주세요.</p>
 </section>
-${Object.keys(ingressHko.years || {}).length ? (() => { const hy = Object.keys(ingressHko.years); return `
-<section>
-  <h2 class="sec-title">${hy[0]}~${hy[hy.length - 1]}년은 절기 날짜로 판정합니다</h2>
-  <div class="prose"><p>분 단위 시각 자료가 없는 해는 <a href="${esc(ingressHko.source.url)}" target="_blank" rel="noopener">홍콩천문대의 양력-음력 대조표</a>에 실린 절기 날짜를 씁니다. 이 날짜는 홍콩 시각 기준이라 한국 시각으로는 같은 날이거나 다음 날입니다. 2021~2028년 구간에서 한국천문연구원 시각과 비교해 보면 96개 절기 가운데 91개는 날짜가 같고, 한국 시각 0시대에 든 5개는 한국 날짜가 하루 늦었습니다. 그래서 그 해의 절기 날짜와 다음 날, 이 두 날에 태어났다면 바뀌기 전과 후의 두 별자리 가운데 하나이며 어느 쪽인지는 태어난 시각에 따라 달라진다고 안내합니다. 그 밖의 날짜는 별자리 하나로 알려 드립니다. ${hy[0]}년보다 이른 해나 ${hy[hy.length - 1]}년보다 늦은 해는 일반 날짜 범위로 계산하고, 별자리 시작일 앞뒤 하루씩은 경계일로 안내합니다.</p></div>`; })() : ''}
-</section>` : ''}
 
 <section>
   <h2 class="sec-title">경계일에 태어났다면</h2>
   <div class="prose">
     <p>생일이 두 별자리의 경계에 걸쳐 있다면 계산 결과의 두 별자리 설명을 모두 읽어 보세요. 점성술에서는 이런 경우를 “커스프(cusp)”라고 부르기도 합니다. 정확한 판정에는 태어난 해와 시각, 그리고 태어난 곳의 시간대가 필요합니다.</p>
+    <p>한국의 표준시는 늘 지금과 같지 않았습니다. 1954년부터 1961년 다시 바꾸기 전까지는 UTC+8:30을 썼고, 1948~1951년·1955~1960년·1987~1988년에는 여름철 일광절약시간을 썼습니다(<a href="${SRC.tzKorea.url}" target="_blank" rel="noopener">Wikipedia — Time in South Korea</a>). 계산기의 시각은 모두 UTC+9 기준이므로, 이 시기에 경계일 무렵 태어났다면 출생 기록의 시각이 어느 기준인지 확인해 보세요.</p>
     <p>별자리를 알았다면 <a href="/guide/elements">원소</a>와 <a href="/guide/modalities">모달리티</a>, <a href="/guide/ruling-planets">지배 행성</a>으로 그 별자리가 어떻게 분류되는지 볼 수 있고, <a href="/compatibility">궁합</a>에서 다른 별자리와의 관계도 확인할 수 있습니다.</p>
   </div>
 </section>
-<p class="note">출처: ${srcLinks(['kasi', 'almanac', 'hko', 'terms24', 'sign'])}</p>
+<p class="note">출처: ${srcLinks(['kasi', 'almanac', 'astroEngine', 'hko', 'tzKorea', 'terms24', 'sign'])}</p>
 </article>`;
   const extraScript = `<script>
-var Z=${JSON.stringify(signs.map((x) => ({ k: x.k, n: x.n, e: x.e, p: x.p, el: x.el, r: x.ruler })))}, I=${JSON.stringify(I)}, H=${JSON.stringify(ingressHko.years || {})}, MU='${curMonth.ym}', MM=${M};
+var Z=${JSON.stringify(signs.map((x) => ({ k: x.k, n: x.n, e: x.e, p: x.p, el: x.el, r: x.ruler })))}, I=${JSON.stringify(Object.fromEntries(ING_YEARS.map((y) => [y, ING[y].list])))}, S=${JSON.stringify(Object.fromEntries(ING_YEARS.map((y) => [y, ING[y].src === 'kasi' ? 1 : 0])))}, TZ=${JSON.stringify(TZ_ODD_YEARS)}, MU='${curMonth.ym}', MM=${M}, YR='${CALC_RANGE}';
 function rng(p){var a=p.split('-'),s=a[0].split('.'),e=a[1].split('.');return {s:(+s[0])*100+(+s[1]),e:(+e[0])*100+(+e[1])};}
 function byDate(m,d){var v=m*100+d;for(var i=0;i<Z.length;i++){var r=rng(Z[i].p);if(r.s<=r.e?(v>=r.s&&v<=r.e):(v>=r.s||v<=r.e))return Z[i];}return null;}
 function byKey(k){for(var i=0;i<Z.length;i++)if(Z[i].k===k)return Z[i];return null;}
 function pad(n){return (n<10?'0':'')+n;}
 function card(z){return '<div class="rc-pair">'+z.e+' '+z.n+'</div><p class="rc-asp">'+z.p.replace('-',' ~ ')+' · '+z.el+'의 별자리 · 지배 행성 '+z.r+'</p>';}
-function links(z){return '<div class="rc-links"><a href="/zodiac/'+z.k+'">'+z.n+' 페이지</a><a href="/zodiac/'+z.k+'/'+MU+'">'+MM+'월 운세</a><a href="/compatibility">궁합 보기</a></div>';}
+function links(z){return '<div class="rc-links"><a href="/zodiac/'+z.k+'">'+z.n+' 페이지</a><a href="/zodiac/'+z.k+'/'+MU+'">'+MM+'월 운세</a><a href="/compatibility/'+z.k+'">'+z.n+' 궁합</a></div>';}
+function hm(s){return (+s.slice(5,7))+'월 '+(+s.slice(8,10))+'일 '+s.slice(11);}
+function dayNo(s){return Date.UTC(+s.slice(0,4),+s.slice(5,7)-1,+s.slice(8,10))/864e5;}
 function calc(){
   var y=parseInt(document.getElementById('cy').value,10), m=+document.getElementById('cm').value, d=+document.getElementById('cd').value, t=document.getElementById('ct').value, out=document.getElementById('calcOut');
   var maxD=[31,(!y||(y%4===0&&y%100!==0)||y%400===0)?29:28,31,30,31,30,31,31,30,31,30,31][m-1];
   if(d>maxD){out.innerHTML='<p class="rc-text">'+m+'월에는 '+d+'일이 없습니다. 날짜를 다시 확인해 주세요.</p>';out.classList.add('on');return;}
-  var html='', z=byDate(m,d), list=y&&I[y];
-  if(list){
-    var ds=y+'-'+pad(m)+'-'+pad(d), cur=byKey('capricorn'), edge=null;
-    for(var i=0;i<list.length;i++){var day=list[i][1].slice(0,10);if(day<ds)cur=byKey(list[i][0]);else if(day===ds){edge=list[i];break;}else break;}
-    if(edge){var nz=byKey(edge[0]), hm=edge[1].slice(11);
-      if(t){var after=t>=hm;z=after?nz:cur;html=card(z)+'<p class="rc-text">'+y+'년 '+m+'월 '+d+'일은 '+cur.n+'에서 '+nz.n+'로 바뀌는 날입니다. 한국천문연구원 자료로 이날 '+hm+'(한국 시각)에 바뀌므로, '+t+' 출생은 <b>'+z.n+'</b>입니다.</p>'+links(z);}
-      else{html='<div class="rc-pair">'+cur.e+' '+cur.n+' 또는 '+nz.e+' '+nz.n+'</div><p class="rc-text">'+y+'년 '+m+'월 '+d+'일은 별자리가 바뀌는 날입니다. 한국천문연구원 자료로 이날 '+hm+'(한국 시각) 이전에 태어났다면 '+cur.n+', 이후라면 '+nz.n+'입니다. 태어난 시각을 넣으면 하나로 알려 드립니다.</p><div class="rc-links"><a href="/zodiac/'+cur.k+'">'+cur.n+' 페이지</a><a href="/zodiac/'+nz.k+'">'+nz.n+' 페이지</a></div>';}
-    } else {z=cur;html=card(z)+'<p class="rc-text">'+y+'년 '+m+'월 '+d+'일에 태양은 '+z.n+' 구간에 있었습니다. 한국천문연구원의 '+y+'년 절기 시각으로 확인했습니다.</p>'+links(z);}
-  } else if(y&&H[y]){
-    // 홍콩천문대 절기 날짜(홍콩 시각, 날짜만). 한국 날짜로는 그날 또는 다음 날 바뀐다
-    var birthMD=pad(m)+'-'+pad(d), cz=byKey('capricorn'), hit=null;
-    for(var k=0;k<H[y].length;k++){var D=H[y][k][1], nextDate=new Date(y,+D.slice(0,2)-1,+D.slice(3)+1), D1=pad(nextDate.getMonth()+1)+'-'+pad(nextDate.getDate());
-      if(birthMD<D)break; if(birthMD===D||birthMD===D1){hit=H[y][k];break;} cz=byKey(H[y][k][0]);}
-    if(hit){var hz=byKey(hit[0]), hm=+hit[1].slice(0,2), hd=+hit[1].slice(3);
-      html='<div class="rc-pair">'+cz.e+' '+cz.n+' 또는 '+hz.e+' '+hz.n+'</div><p class="rc-text">홍콩천문대 자료로 '+y+'년에는 '+hm+'월 '+hd+'일(홍콩 시각)에 '+cz.n+'에서 '+hz.n+'로 바뀝니다. 한국 시각으로는 그날이나 다음 날 바뀌므로, '+m+'월 '+d+'일에 태어났다면 태어난 시각에 따라 '+cz.n+' 또는 '+hz.n+'입니다. 분 단위 시각 자료는 '+Object.keys(I).join(', ')+'년만 있습니다.</p><div class="rc-links"><a href="/zodiac/'+cz.k+'">'+cz.n+' 페이지</a><a href="/zodiac/'+hz.k+'">'+hz.n+' 페이지</a></div>';}
-    else{html=card(cz)+'<p class="rc-text">'+y+'년 '+m+'월 '+d+'일에 태양은 '+cz.n+' 구간에 있었습니다. 홍콩천문대의 '+y+'년 절기 날짜로 확인했습니다.</p>'+links(cz);}
+  var html='', z=byDate(m,d), L=y&&I[y];
+  if(L){
+    var ds=y+'-'+pad(m)+'-'+pad(d), src=S[y]?'한국천문연구원 '+y+'년 절기 시각':'Astronomy Engine으로 계산한 '+y+'년 경계 시각', near=null, prev=byKey('capricorn'), cur=byKey('capricorn');
+    for(var i=0;i<L.length;i++){var bd=L[i][1].slice(0,10);if(Math.abs(dayNo(bd)-dayNo(ds))<=1&&!near){near=L[i];prev=cur;}if(bd<ds)cur=byKey(L[i][0]);}
+    var tzNote=TZ.indexOf(y)>=0?' '+y+'년에는 한국 표준시가 UTC+9가 아니었거나 일광절약시간을 쓴 기간이 있어, 출생 기록의 시각 기준을 확인해 보세요.':'';
+    if(t){var full=ds+'T'+t;z=byKey('capricorn');for(var j=0;j<L.length;j++)if(L[j][1]<=full)z=byKey(L[j][0]);
+      html=card(z)+'<p class="rc-text">'+y+'년 '+m+'월 '+d+'일 '+t+'(한국 시각)에 태양은 <b>'+z.n+'</b> 구간에 있었습니다.'+(near?' 가장 가까운 경계는 '+hm(near[1])+'에 '+byKey(near[0]).n+'로 바뀌는 시각입니다.'+tzNote:'')+' 판정 근거: '+src+'.</p>'+links(z);}
+    else if(near&&near[1].slice(0,10)===ds){var nz=byKey(near[0]);
+      html='<div class="rc-pair">'+prev.e+' '+prev.n+' 또는 '+nz.e+' '+nz.n+'</div><p class="rc-text">'+y+'년 '+m+'월 '+d+'일은 별자리가 바뀌는 날입니다. '+src+'으로 이날 '+near[1].slice(11)+'(한국 시각) 전에 태어났다면 '+prev.n+', 그 뒤라면 '+nz.n+'입니다. <b>태어난 시각을 넣으면 하나로 알려 드립니다.</b>'+tzNote+'</p><div class="rc-links"><a href="/zodiac/'+prev.k+'">'+prev.n+' 페이지</a><a href="/zodiac/'+nz.k+'">'+nz.n+' 페이지</a></div>';}
+    else{z=cur;html=card(z)+'<p class="rc-text">'+y+'년 '+m+'월 '+d+'일에 태양은 '+z.n+' 구간에 있었습니다. 판정 근거: '+src+'.</p>';
+      if(near)html+='<p class="rc-text"><b>경계일 바로 옆입니다</b> — '+hm(near[1])+'(한국 시각)에 '+byKey(near[0]).n+'로 바뀝니다. 해외에서 태어났거나 출생 시각 기준이 다르면 결과가 달라질 수 있으니, 태어난 시각을 넣어 분 단위로 확인해 보세요.'+tzNote+'</p>';
+      html+=links(z);}
   } else if(z){
     // Z 는 물병자리부터 황도 순서. 별자리 시작일 ±1일이면 경계 안내 — 시작일·다음날은 앞 별자리, 전날은 그 별자리와 경계
     var v=m*100+d, other=null;
     function shiftMD(base,off){var dt=new Date(2000,Math.floor(base/100)-1,base%100+off);return (dt.getMonth()+1)*100+dt.getDate();}
-    for(var j=0;j<Z.length;j++){var s=rng(Z[j].p).s;
-      if(v===s||v===shiftMD(s,1))other=Z[(j+11)%12]; else if(v===shiftMD(s,-1))other=Z[j];}
+    for(var k=0;k<Z.length;k++){var s=rng(Z[k].p).s;
+      if(v===s||v===shiftMD(s,1))other=Z[(k+11)%12]; else if(v===shiftMD(s,-1))other=Z[k];}
     html=card(z)+'<p class="rc-text">'+m+'월 '+d+'일은 일반 날짜 범위로 '+z.n+'입니다.</p>';
     if(other){
-      html+='<p class="rc-text"><b>경계일 안내</b> — 이 날짜는 '+z.n+'와 '+other.n+'의 경계에 가깝습니다. 태어난 해와 시각에 따라 '+other.n+'일 수 있습니다.'+(y?' 입력하신 '+y+'년은 계산기에 절기 자료가 없어 일반 범위로 계산했습니다.':' 태어난 해를 넣으면 '+Object.keys(H)[0]+'~'+Object.keys(H).slice(-1)[0]+'년은 절기 날짜로 판정합니다.')+'</p>';}
+      html+='<p class="rc-text"><b>경계일 안내</b> — 이 날짜는 '+z.n+'와 '+other.n+'의 경계에 가깝습니다. 태어난 해와 시각에 따라 '+other.n+'일 수 있습니다.'+(y?' 입력하신 '+y+'년은 경계 시각 자료('+YR+'년) 범위 밖이라 일반 범위로 계산했습니다.':' 태어난 해와 시각을 넣으면 '+YR+'년생은 분 단위로 판정합니다.')+'</p>';}
     html+=links(z);
   }
   out.innerHTML=html; out.classList.add('on');
@@ -797,10 +833,78 @@ function calc(){
 document.getElementById('calcBtn').addEventListener('click',calc);
 </script>`;
   const ld = [
-    { '@context': 'https://schema.org', '@type': 'WebApplication', name: '별자리 계산기', url: SITE.url + path, applicationCategory: 'LifestyleApplication', operatingSystem: 'Web Browser', inLanguage: 'ko', description: '생년월일로 태양 별자리를 찾고 경계일이면 절기 날짜·시각 자료로 판정하는 도구', offers: { '@type': 'Offer', price: '0', priceCurrency: 'KRW' } },
+    { '@context': 'https://schema.org', '@type': 'WebApplication', name: '별자리 계산기', url: SITE.url + path, applicationCategory: 'LifestyleApplication', operatingSystem: 'Web Browser', inLanguage: 'ko', description: '생년월일과 시각으로 태양 별자리를 찾고 경계일이면 분 단위 경계 시각으로 판정하는 도구', offers: { '@type': 'Offer', price: '0', priceCurrency: 'KRW' } },
     crumbLd([['홈', '/'], ['별자리 계산기', path]]),
   ];
-  return layout({ title: '별자리 계산기 — 생년월일로 내 별자리 찾기 (경계일 판정)', desc: `생년월일을 넣으면 태양 별자리를 알려 드립니다. 1950~2030년생은 홍콩천문대 절기 날짜로, ${years[0] || ''}~${years[years.length - 1] || ''}년생은 한국천문연구원 절기 시각으로 경계일까지 판정합니다.`, path, body, ld, extraScript });
+  return layout({ title: '별자리 계산기 — 생년월일로 내 별자리 찾기 (경계일 판정)', desc: `생년월일을 넣으면 태양 별자리를 알려 드립니다. ${CALC_RANGE}년생은 경계 시각을 분 단위로 비교해 판정합니다(${KASI_RANGE}년은 한국천문연구원 시각, 그 밖은 천문 계산값).`, path, body, ld, extraScript });
+}
+
+// ---------- 연도별 별자리 경계 시각표 ----------
+function pageBoundaries() {
+  const path = '/zodiac-calculator/boundaries';
+  const cols = ['aquarius', 'pisces', 'aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sagittarius', 'capricorn'].map((k) => byKey.get(k));
+  const termOf = Object.fromEntries(ingressCalc.years[ING_YEARS[0]].map((r) => [r.starts, r.term]));
+  const fmt = (kst) => `${Number(kst.slice(5, 7))}/${Number(kst.slice(8, 10))} ${kst.slice(11)}`;
+  const rows = ING_YEARS.map((y) => { const L = Object.fromEntries(ING[y].list); return `<tr data-y="${y}"><th scope="row">${y}<small> ${ING[y].src === 'kasi' ? '천문연' : '계산'}</small></th>${cols.map((c) => `<td>${fmt(L[c.k])}</td>`).join('')}</tr>`; }).join('');
+  const body = `
+${crumbHtml([['홈', '/'], ['별자리 계산기', '/zodiac-calculator'], ['연도별 경계 시각표', path]])}
+<article class="sign-page">
+<header class="home-hero" style="padding-top:20px"><h1>연도별 별자리 경계 시각표</h1>
+<p class="hero-sub">${CALC_RANGE}년, 태양이 황경 30°의 배수를 지나 별자리가 바뀌는 순간을 한국 시각(UTC+9) 분 단위로 정리했습니다.</p></header>
+
+<section>
+  <h2 class="sec-title">표 보는 법</h2>
+  <div class="prose">
+    <p>각 칸은 그 별자리가 시작되는 순간입니다. 예를 들어 양자리 칸의 시각은 태양이 황경 0°(춘분점)를 지나는 춘분 시각이고, 이 순간부터 양자리, 그 직전까지는 물고기자리입니다. 같은 별자리의 시작 시각이 해마다 약 6시간씩 늦어지다가 윤년이 지나면 다시 당겨지는 것을 볼 수 있습니다.</p>
+    <p>연도 옆에 <b>천문연</b>이라고 적힌 ${KASI_RANGE}년은 한국천문연구원이 공개한 절기 시각이고, <b>계산</b>이라고 적힌 해는 아래 방법으로 직접 계산한 값입니다. <a href="/zodiac-calculator">별자리 계산기</a>도 같은 값으로 판정합니다.</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">경계 시각표</h2>
+  <div class="calc-row" style="margin-bottom:12px"><label>연도 선택<select id="yf"><option value="">전체 (${ING_YEARS.length}년)</option>${ING_YEARS.map((y) => `<option value="${y}">${y}년</option>`).join('')}</select></label></div>
+  <div class="tbl-wrap"><table class="data-table nowrap" id="bt">
+  <thead><tr><th>연도</th>${cols.map((c) => `<th title="${esc(termOf[c.k] || '')}">${c.e} ${esc(c.n)}<br><small>${esc(termOf[c.k] || '')}</small></th>`).join('')}</tr></thead>
+  <tbody>${rows}</tbody>
+  </table></div>
+  <p class="note">시각은 모두 UTC+9 기준 “월/일 시:분”입니다. 1954~1961년의 UTC+8:30 표준시나 일광절약시간(1948~1951·1955~1960·1987~1988년)은 반영하지 않았습니다(<a href="${SRC.tzKorea.url}" target="_blank" rel="noopener">Wikipedia — Time in South Korea</a>).</p>
+</section>
+
+<section>
+  <h2 class="sec-title">계산 방법</h2>
+  <div class="prose">
+    <p>공개 천문 계산 라이브러리 <a href="${SRC.astroEngine.url}" target="_blank" rel="noopener">Astronomy Engine</a>(${esc(ingressCalc.method.library)})의 SearchSunLongitude 함수로, 지구 중심에서 본 태양의 겉보기 황경이 0°, 30°, 60° … 330°가 되는 순간을 해마다 12개씩 찾았습니다. 이 함수의 황경은 그날의 춘분점을 기준으로 하며 세차와 장동, 태양빛이 지구까지 오는 시간을 반영합니다. 결과(세계시)에 9시간을 더해 한국 시각으로 바꾸고 초는 반올림해 분 단위로 적었습니다.</p>
+    <p>계산 스크립트와 결과 파일은 사이트 저장소의 tools/sun-ingress/gen.mjs와 data/sun-ingress-calc.json입니다. 라이브러리 버전은 ${esc(ingressCalc.method.library.split(' (')[0])}로 고정했습니다.</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">공개 자료와 비교한 오차</h2>
+  <div class="tbl-wrap"><table class="data-table">
+  <thead><tr><th>비교 대상</th><th>비교 개수</th><th>결과</th></tr></thead>
+  <tbody>
+  <tr><th scope="row"><a href="${SRC.kasi.url}" target="_blank" rel="noopener">한국천문연구원</a> 절기 시각 (${KASI_RANGE}년, 분 단위)</th><td>${ING_CHECK.n}개</td><td>분까지 같음 ${ING_CHECK.exact}개 · 1분 차이 ${ING_CHECK.one}개${ING_CHECK.max > 1 ? ` · 최대 ${ING_CHECK.max}분` : ''}<br>최대 오차 ${ING_CHECK.max}분, 평균 절대 오차 ${fmtMean(ING_CHECK.mean)}분</td></tr>
+  <tr><th scope="row"><a href="${SRC.hko.url}" target="_blank" rel="noopener">홍콩천문대</a> 절기 날짜 (${CALC_RANGE}년, 홍콩 시각 날짜)</th><td>${ING_CHECK.hkoN}개</td><td>계산 시각을 홍콩 시각(UTC+8)으로 바꾼 날짜가 같은 것 ${ING_CHECK.hkoSame}개</td></tr>
+  </tbody></table></div>
+  <div class="prose" style="margin-top:14px">
+    <p>1분 차이는 두 자료가 초 단위 값을 분으로 줄이는 방식이나 계산에 쓴 천체력이 조금씩 다르기 때문으로 보입니다. 분 단위 판정에서는 경계 시각과 같은 분에 태어난 경우만 결과가 갈릴 수 있습니다. 이 비교는 사이트를 빌드할 때마다 두 자료 파일로 다시 계산해 표시하며, 한국천문연구원 값과 2분 넘게 어긋나면 빌드가 멈추도록 해 두었습니다.</p>
+  </div>
+</section>
+<p class="note">출처: ${srcLinks(['kasi', 'almanac', 'astroEngine', 'hko', 'tzKorea', 'terms24'])}</p>
+</article>`;
+  const extraScript = `<script>
+(function(){var s=document.getElementById('yf'),rows=document.querySelectorAll('#bt tbody tr');
+function apply(){var v=s.value;rows.forEach(function(r){r.style.display=!v||r.getAttribute('data-y')===v?'':'none';});try{history.replaceState(null,'',v?'?y='+v:location.pathname);}catch(e){}}
+s.addEventListener('change',apply);
+try{var q=new URLSearchParams(location.search).get('y');if(q&&s.querySelector('option[value="'+q+'"]')){s.value=q;apply();}}catch(e){}})();
+</script>`;
+  const title = `연도별 별자리 경계 시각표 (${CALC_RANGE}) — 별자리가 바뀌는 시각`;
+  const desc = `${CALC_RANGE}년 태양이 별자리 경계(황경 30° 배수)를 지나는 시각을 한국 시각 분 단위로 정리했습니다. ${KASI_RANGE}년은 한국천문연구원 자료, 그 밖은 Astronomy Engine 계산값이며 오차를 공개합니다.`;
+  const ld = [
+    { '@context': 'https://schema.org', '@type': 'Dataset', name: '연도별 별자리 경계 시각표', description: desc, url: SITE.url + path, inLanguage: 'ko', temporalCoverage: `${ING_YEARS[0]}/${ING_YEARS[ING_YEARS.length - 1]}`, creator: { '@type': 'Organization', name: SITE.name, url: SITE.url } },
+    crumbLd([['홈', '/'], ['별자리 계산기', '/zodiac-calculator'], ['연도별 경계 시각표', path]]),
+  ];
+  return layout({ title, desc, path, body, ld, extraScript });
 }
 
 // ---------- 가이드 ----------
@@ -835,7 +939,7 @@ function pageAbout() {
   <div class="prose">
     <p><b>별자리 페이지</b>(12장)에는 오늘의 총운·연애운·직장운·재물운, 성격의 강점과 주의할 점, 연애·일·돈을 대하는 방식, 잘 맞는 별자리와 부딪히기 쉬운 별자리, 그리스 신화 속 유래와 상징을 담았습니다.</p>
     <p><b>월별 운세</b>는 별자리마다 한 달 치 날짜별 운세를 모은 페이지입니다. 맨 위에는 그달 문장에 자주 나온 내용을 묶은 흐름 요약을, 그 아래에는 주마다 다른 날들과 내용이 가장 많이 겹치는 문장을 그대로 옮긴 주차별 대표 문장을 둡니다. 월별 운세는 이번 달과 다음 달 것만 두고, 달이 바뀌면 지난달 페이지는 내리고 그 주소는 별자리 페이지로 연결합니다. 한 달 남짓만 걸리는 페이지라 검색 결과에는 내보내지 않습니다.</p>
-    <p><b><a href="/compatibility">별자리 궁합</a></b>에서는 12 × 12 궁합표와 별자리별 궁합 해설(별자리마다 한 페이지에 열두 조합, 모두 78개 조합)을, <b><a href="/zodiac-calculator">별자리 계산기</a></b>에서는 생년월일로 별자리를 찾을 수 있습니다. 원소·모달리티·지배 행성 같은 기본 개념은 <b><a href="/guide">별자리 기초</a></b>에 출처와 함께 정리했습니다.</p>
+    <p><b><a href="/compatibility">별자리 궁합</a></b>에서는 12 × 12 궁합표와 별자리별 궁합 해설(별자리마다 한 페이지에 열두 조합, 모두 78개 조합)을, <b><a href="/zodiac-calculator">별자리 계산기</a></b>에서는 생년월일로 별자리를 찾을 수 있습니다. 계산기는 ${CALC_RANGE}년생을 태양이 별자리 경계를 지나는 시각과 분 단위로 비교해 판정하며(${KASI_RANGE}년은 한국천문연구원 시각, 그 밖은 Astronomy Engine 계산값), 그 시각 전체와 공개 자료 대비 오차는 <a href="/zodiac-calculator/boundaries">연도별 별자리 경계 시각표</a>에 공개했습니다. 원소·모달리티·지배 행성 같은 기본 개념은 <b><a href="/guide">별자리 기초</a></b>에 출처와 함께 정리했습니다.</p>
   </div>
 </section>
 
@@ -903,6 +1007,7 @@ write('contact.html', pageContact());
 months.forEach((mo, i) => { for (const s of signs) write(`zodiac/${s.k}/${mo.ym}/index.html`, pageMonth(s, mo, i)); });
 for (const k of ORDER) write(`compatibility/${k}/index.html`, pageSignCompat(byKey.get(k)));
 write('zodiac-calculator/index.html', pageCalculator());
+write('zodiac-calculator/boundaries/index.html', pageBoundaries());
 const guides = makeGuides({ signs, esc, urlOf, ingress, ELEM_PAIR, pairUrl });
 for (const g of guides) write(`${g.path.slice(1)}/index.html`, pageGuide(g));
 
@@ -937,6 +1042,7 @@ const urls = [
   { loc: '/compatibility', p: '0.8', f: 'monthly', lm: CONTENT_UPDATED },
   ...ORDER.map((a) => ({ loc: signCompatUrl(a), p: '0.7', f: 'yearly', lm: CONTENT_UPDATED })),
   { loc: '/zodiac-calculator', p: '0.7', f: 'yearly', lm: CONTENT_UPDATED },
+  { loc: '/zodiac-calculator/boundaries', p: '0.6', f: 'yearly', lm: CONTENT_UPDATED },
   ...guides.map((g) => ({ loc: g.path, p: '0.6', f: 'yearly', lm: CONTENT_UPDATED })),
   { loc: '/about', p: '0.3', f: 'yearly' },
   { loc: '/contact', p: '0.3', f: 'yearly' },
@@ -979,6 +1085,6 @@ for (const f of written.filter((f) => /^(compatibility\/|zodiac-calculator|guide
   console.log(`  인라인 스크립트 ${checked}개 문법 검증 통과, 깨진 값·내부 링크 검사 통과 (${written.length}개 파일)`);
 }
 
-console.log(`✔ 빌드 완료 — 별자리 ${signs.length}장 + 홈, 월별 ${months.length * signs.length}장(${months.map((mo) => mo.ym).join(', ')} · noindex), 별자리별 궁합 12장(조합 78개), 리다이렉트 ${redirects.length}개(지난달 ${pastMonths.join(', ') || '없음'}), 계산기 1장, 가이드 ${guides.length}장, sitemap ${urls.length}개 (기준일 ${TODAY})`);
+console.log(`✔ 빌드 완료 — 별자리 ${signs.length}장 + 홈, 월별 ${months.length * signs.length}장(${months.map((mo) => mo.ym).join(', ')} · noindex), 별자리별 궁합 12장(조합 78개), 리다이렉트 ${redirects.length}개(지난달 ${pastMonths.join(', ') || '없음'}), 계산기 1장 + 경계 시각표 1장(KASI 대조 최대 ${ING_CHECK.max}분·평균 ${fmtMean(ING_CHECK.mean)}분), 가이드 ${guides.length}장, sitemap ${urls.length}개 (기준일 ${TODAY})`);
 console.log(`  HTML 본문 글자수: 홈 ${homeLen}자, 별자리 최소 ${minLen}자 (${minWho}), 새 페이지 최소 ${newMin}자 (${newMinWho})`);
 if (minLen < 1500 || homeLen < 800 || newMin < 1500) { console.error('✖ 본문이 너무 짧습니다. 애드센스 재심사 전에 확인하세요.'); process.exit(1); }

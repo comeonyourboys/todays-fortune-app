@@ -24,6 +24,8 @@ export const SRC = {
   kasi: { label: '한국천문연구원 — 연도별 달력자료(24절기)', url: 'https://astro.kasi.re.kr/kor/life/post/calendarData?year=2026' },
   almanac: { label: '한국천문연구원 — 월력요항', url: 'https://astro.kasi.re.kr/kor/life/post/almanac' },
   hko: { label: '홍콩천문대 — 양력-음력 대조표(절기 날짜)', url: 'https://www.hko.gov.hk/en/gts/time/conversion.htm' },
+  astroEngine: { label: 'Astronomy Engine (MIT, cosinekitty)', url: 'https://github.com/cosinekitty/astronomy' },
+  tzKorea: { label: 'Wikipedia — Time in South Korea', url: 'https://en.wikipedia.org/wiki/Time_in_South_Korea' },
 };
 
 // 모달리티(Quadruplicity) — Wikipedia "Astrological sign" 의 분류

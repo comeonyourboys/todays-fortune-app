@@ -33,6 +33,8 @@
 ├── zodiac/<별자리>/<YYYY-MM>/index.html    # 월별 운세 (이번 달·다음 달만, noindex)
 ├── compatibility/<a>/index.html            # 별자리별 궁합 12장 (상대 별자리 섹션 id=<b>)
 ├── zodiac-calculator/, guide/...           # 별자리 계산기·기초 설명
+├── zodiac-calculator/boundaries/          # 연도별 별자리 경계 시각표 (1950~2030)
+├── tools/sun-ingress/                      # 경계 시각 생성기 (astronomy-engine 2.1.19 고정) → data/sun-ingress-calc.json
 ├── data/
 │   ├── fortune-YYYY-MM.json   # 월별 운세 (별자리 × 날짜 × 총운·연애·일·돈)
 │   ├── monthly-overview-YYYY-MM.json # 월별 페이지 상단 흐름 요약 (그달 문장 근거)
@@ -61,3 +63,7 @@ Vercel에 GitHub 레포 연결 → 자동 배포.
 ## 라이선스
 
 MIT
+
+## 별자리 경계 시각 다시 만들기
+
+`cd tools/sun-ingress && npm ci && node gen.mjs` — 결과 `data/sun-ingress-calc.json` 을 커밋합니다. 사이트 빌드는 이 JSON 만 읽으므로 매일 빌드에는 npm 설치가 필요 없습니다. 빌드는 한국천문연구원 값(data/sun-ingress-kasi.json)과 2분 넘게 어긋나면 멈춥니다.

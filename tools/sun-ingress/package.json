@@ -1,0 +1,12 @@
+{
+  "name": "sun-ingress-generator",
+  "private": true,
+  "type": "module",
+  "description": "태양 황경 30° 배수 통과 시각(1950~2030, KST 분 단위) 생성 — 결과는 data/sun-ingress-calc.json 으로 커밋하고 사이트 빌드는 그 JSON 만 읽는다",
+  "scripts": {
+    "gen": "node gen.mjs"
+  },
+  "dependencies": {
+    "astronomy-engine": "2.1.19"
+  }
+}

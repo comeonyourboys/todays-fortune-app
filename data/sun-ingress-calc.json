@@ -1,0 +1,6010 @@
+{
+ "_comment": "태양이 황경 30° 배수(12중기)를 지나는 시각을 astronomy-engine 으로 계산한 값. tools/sun-ingress/gen.mjs 가 생성한다 — 직접 고치지 말 것.",
+ "method": {
+  "library": "astronomy-engine 2.1.19 (MIT)",
+  "url": "https://github.com/cosinekitty/astronomy",
+  "function": "SearchSunLongitude — 지구 중심에서 본 태양의 겉보기 황경(그날의 춘분점 기준, 세차·장동 반영, 빛이 오는 시간 보정)이 목표 각도가 되는 순간",
+  "rounding": "UTC 결과에 9시간을 더해 KST 로 바꾸고 초는 반올림해 분 단위로 저장"
+ },
+ "timezone": "KST(UTC+9) 고정 — 과거 한국 표준시 변경·일광절약시간은 반영하지 않음",
+ "range": [
+  1950,
+  2030
+ ],
+ "years": {
+  "1950": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1950-01-21T00:00"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1950-02-19T14:17"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1950-03-21T13:35"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1950-04-21T00:59"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1950-05-22T00:27"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1950-06-22T08:36"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1950-07-23T19:30"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1950-08-24T02:23"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1950-09-23T23:44"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1950-10-24T08:45"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1950-11-23T06:02"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1950-12-22T19:13"
+   }
+  ],
+  "1951": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1951-01-21T05:52"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1951-02-19T20:10"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1951-03-21T19:26"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1951-04-21T06:48"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1951-05-22T06:15"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1951-06-22T14:25"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1951-07-24T01:21"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1951-08-24T08:16"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1951-09-24T05:37"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1951-10-24T14:36"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1951-11-23T11:51"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1951-12-23T01:00"
+   }
+  ],
+  "1952": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1952-01-21T11:38"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1952-02-20T01:56"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1952-03-21T01:13"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1952-04-20T12:36"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1952-05-21T12:04"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1952-06-21T20:13"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1952-07-23T07:08"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1952-08-23T14:03"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1952-09-23T11:24"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1952-10-23T20:22"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1952-11-22T17:36"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1952-12-22T06:43"
+   }
+  ],
+  "1953": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1953-01-20T17:21"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1953-02-19T07:41"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1953-03-21T07:01"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1953-04-20T18:26"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1953-05-21T17:53"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1953-06-22T02:00"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1953-07-23T12:52"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1953-08-23T19:45"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1953-09-23T17:06"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1953-10-24T02:06"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1953-11-22T23:22"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1953-12-22T12:32"
+   }
+  ],
+  "1954": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1954-01-20T23:11"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1954-02-19T13:32"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1954-03-21T12:53"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1954-04-21T00:20"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1954-05-21T23:48"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1954-06-22T07:54"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1954-07-23T18:45"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1954-08-24T01:36"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1954-09-23T22:56"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1954-10-24T07:57"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1954-11-23T05:14"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1954-12-22T18:24"
+   }
+  ],
+  "1955": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1955-01-21T05:02"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1955-02-19T19:19"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1955-03-21T18:35"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1955-04-21T05:58"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1955-05-22T05:25"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1955-06-22T13:32"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1955-07-24T00:25"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1955-08-24T07:19"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1955-09-24T04:41"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1955-10-24T13:43"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1955-11-23T11:01"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1955-12-23T00:11"
+   }
+  ],
+  "1956": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1956-01-21T10:49"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1956-02-20T01:05"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1956-03-21T00:21"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1956-04-20T11:44"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1956-05-21T11:13"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1956-06-21T19:24"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1956-07-23T06:20"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1956-08-23T13:15"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1956-09-23T10:35"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1956-10-23T19:35"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1956-11-22T16:50"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1956-12-22T06:00"
+   }
+  ],
+  "1957": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1957-01-20T16:39"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1957-02-19T06:58"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1957-03-21T06:16"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1957-04-20T17:41"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1957-05-21T17:10"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1957-06-22T01:21"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1957-07-23T12:15"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1957-08-23T19:08"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1957-09-23T16:26"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1957-10-24T01:24"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1957-11-22T22:39"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1957-12-22T11:49"
+   }
+  ],
+  "1958": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1958-01-20T22:29"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1958-02-19T12:48"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1958-03-21T12:05"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1958-04-20T23:27"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1958-05-21T22:51"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1958-06-22T06:57"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1958-07-23T17:50"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1958-08-24T00:46"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1958-09-23T22:09"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1958-10-24T07:11"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1958-11-23T04:29"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1958-12-22T17:40"
+   }
+  ],
+  "1959": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1959-01-21T04:19"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1959-02-19T18:38"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1959-03-21T17:55"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1959-04-21T05:16"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1959-05-22T04:42"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1959-06-22T12:50"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1959-07-23T23:45"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1959-08-24T06:44"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1959-09-24T04:08"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1959-10-24T13:11"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1959-11-23T10:27"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1959-12-22T23:34"
+   }
+  ],
+  "1960": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1960-01-21T10:10"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1960-02-20T00:26"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1960-03-20T23:42"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1960-04-20T11:06"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1960-05-21T10:33"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1960-06-21T18:42"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1960-07-23T05:37"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1960-08-23T12:34"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1960-09-23T09:59"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1960-10-23T19:02"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1960-11-22T16:18"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1960-12-22T05:26"
+   }
+  ],
+  "1961": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1961-01-20T16:01"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1961-02-19T06:17"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1961-03-21T05:32"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1961-04-20T16:55"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1961-05-21T16:22"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1961-06-22T00:30"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1961-07-23T11:24"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1961-08-23T18:19"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1961-09-23T15:42"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1961-10-24T00:47"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1961-11-22T22:08"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1961-12-22T11:20"
+   }
+  ],
+  "1962": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1962-01-20T21:58"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1962-02-19T12:15"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1962-03-21T11:30"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1962-04-20T22:51"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1962-05-21T22:17"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1962-06-22T06:25"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1962-07-23T17:18"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1962-08-24T00:13"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1962-09-23T21:36"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1962-10-24T06:41"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1962-11-23T04:02"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1962-12-22T17:15"
+   }
+  ],
+  "1963": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1963-01-21T03:54"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1963-02-19T18:09"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1963-03-21T17:20"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1963-04-21T04:36"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1963-05-22T03:58"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1963-06-22T12:04"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1963-07-23T22:59"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1963-08-24T05:58"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1963-09-24T03:23"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1963-10-24T12:29"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1963-11-23T09:50"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1963-12-22T23:02"
+   }
+  ],
+  "1964": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1964-01-21T09:41"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1964-02-19T23:57"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1964-03-20T23:10"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1964-04-20T10:27"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1964-05-21T09:50"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1964-06-21T17:57"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1964-07-23T04:53"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1964-08-23T11:51"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1964-09-23T09:17"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1964-10-23T18:21"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1964-11-22T15:39"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1964-12-22T04:50"
+   }
+  ],
+  "1965": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1965-01-20T15:29"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1965-02-19T05:48"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1965-03-21T05:05"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1965-04-20T16:26"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1965-05-21T15:50"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1965-06-21T23:55"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1965-07-23T10:48"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1965-08-23T17:42"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1965-09-23T15:06"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1965-10-24T00:10"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1965-11-22T21:29"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1965-12-22T10:40"
+   }
+  ],
+  "1966": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1966-01-20T21:20"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1966-02-19T11:37"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1966-03-21T10:52"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1966-04-20T22:11"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1966-05-21T21:32"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1966-06-22T05:33"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1966-07-23T16:23"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1966-08-23T23:18"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1966-09-23T20:43"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1966-10-24T05:51"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1966-11-23T03:14"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1966-12-22T16:28"
+   }
+  ],
+  "1967": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1967-01-21T03:07"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1967-02-19T17:24"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1967-03-21T16:37"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1967-04-21T03:55"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1967-05-22T03:18"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1967-06-22T11:23"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1967-07-23T22:16"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1967-08-24T05:12"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1967-09-24T02:38"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1967-10-24T11:44"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1967-11-23T09:05"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1967-12-22T22:16"
+   }
+  ],
+  "1968": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1968-01-21T08:54"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1968-02-19T23:09"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1968-03-20T22:22"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1968-04-20T09:41"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1968-05-21T09:06"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1968-06-21T17:13"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1968-07-23T04:07"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1968-08-23T11:03"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1968-09-23T08:26"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1968-10-23T17:30"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1968-11-22T14:49"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1968-12-22T04:00"
+   }
+  ],
+  "1969": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1969-01-20T14:38"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1969-02-19T04:55"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1969-03-21T04:08"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1969-04-20T15:27"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1969-05-21T14:50"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1969-06-21T22:55"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1969-07-23T09:48"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1969-08-23T16:43"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1969-09-23T14:07"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1969-10-23T23:11"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1969-11-22T20:31"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1969-12-22T09:44"
+   }
+  ],
+  "1970": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1970-01-20T20:24"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1970-02-19T10:42"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1970-03-21T09:56"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1970-04-20T21:15"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1970-05-21T20:38"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1970-06-22T04:43"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1970-07-23T15:37"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1970-08-23T22:34"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1970-09-23T19:59"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1970-10-24T05:05"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1970-11-23T02:25"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1970-12-22T15:36"
+   }
+  ],
+  "1971": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1971-01-21T02:13"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1971-02-19T16:27"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1971-03-21T15:38"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1971-04-21T02:54"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1971-05-22T02:15"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1971-06-22T10:19"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1971-07-23T21:15"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1971-08-24T04:15"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1971-09-24T01:45"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1971-10-24T10:53"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1971-11-23T08:14"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1971-12-22T21:24"
+   }
+  ],
+  "1972": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1972-01-21T07:59"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1972-02-19T22:11"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1972-03-20T21:21"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1972-04-20T08:37"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1972-05-21T07:59"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1972-06-21T16:06"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1972-07-23T03:02"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1972-08-23T10:03"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1972-09-23T07:33"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1972-10-23T16:41"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1972-11-22T14:03"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1972-12-22T03:13"
+   }
+  ],
+  "1973": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1973-01-20T13:49"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1973-02-19T04:02"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1973-03-21T03:13"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1973-04-20T14:31"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1973-05-21T13:54"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1973-06-21T22:01"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1973-07-23T08:56"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1973-08-23T15:53"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1973-09-23T13:21"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1973-10-23T22:30"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1973-11-22T19:54"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1973-12-22T09:08"
+   }
+  ],
+  "1974": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1974-01-20T19:46"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1974-02-19T09:58"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1974-03-21T09:06"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1974-04-20T20:18"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1974-05-21T19:36"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1974-06-22T03:37"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1974-07-23T14:30"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1974-08-23T21:29"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1974-09-23T18:59"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1974-10-24T04:11"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1974-11-23T01:38"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1974-12-22T14:56"
+   }
+  ],
+  "1975": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1975-01-21T01:36"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1975-02-19T15:50"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1975-03-21T14:57"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1975-04-21T02:07"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1975-05-22T01:23"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1975-06-22T09:26"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1975-07-23T20:22"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1975-08-24T03:23"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1975-09-24T00:55"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1975-10-24T10:06"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1975-11-23T07:31"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1975-12-22T20:45"
+   }
+  ],
+  "1976": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1976-01-21T07:25"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1976-02-19T21:40"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1976-03-20T20:49"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1976-04-20T08:03"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1976-05-21T07:21"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1976-06-21T15:24"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1976-07-23T02:18"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1976-08-23T09:18"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1976-09-23T06:48"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1976-10-23T15:58"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1976-11-22T13:22"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1976-12-22T02:35"
+   }
+  ],
+  "1977": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1977-01-20T13:14"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1977-02-19T03:31"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1977-03-21T02:43"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1977-04-20T13:57"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1977-05-21T13:14"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1977-06-21T21:14"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1977-07-23T08:04"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1977-08-23T15:00"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1977-09-23T12:29"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1977-10-23T21:41"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1977-11-22T19:07"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1977-12-22T08:23"
+   }
+  ],
+  "1978": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1978-01-20T19:04"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1978-02-19T09:21"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1978-03-21T08:33"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1978-04-20T19:50"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1978-05-21T19:09"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1978-06-22T03:10"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1978-07-23T14:00"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1978-08-23T20:57"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1978-09-23T18:26"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1978-10-24T03:38"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1978-11-23T01:05"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1978-12-22T14:21"
+   }
+  ],
+  "1979": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1979-01-21T01:00"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1979-02-19T15:13"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1979-03-21T14:22"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1979-04-21T01:35"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1979-05-22T00:54"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1979-06-22T08:57"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1979-07-23T19:49"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1979-08-24T02:47"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1979-09-24T00:17"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1979-10-24T09:28"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1979-11-23T06:54"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1979-12-22T20:10"
+   }
+  ],
+  "1980": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1980-01-21T06:49"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1980-02-19T21:02"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1980-03-20T20:10"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1980-04-20T07:23"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1980-05-21T06:42"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1980-06-21T14:47"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1980-07-23T01:42"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1980-08-23T08:40"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1980-09-23T06:08"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1980-10-23T15:17"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1980-11-22T12:41"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1980-12-22T01:56"
+   }
+  ],
+  "1981": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1981-01-20T12:36"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1981-02-19T02:52"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1981-03-21T02:03"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1981-04-20T13:19"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1981-05-21T12:40"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1981-06-21T20:45"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1981-07-23T07:40"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1981-08-23T14:38"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1981-09-23T12:05"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1981-10-23T21:13"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1981-11-22T18:36"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1981-12-22T07:51"
+   }
+  ],
+  "1982": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1982-01-20T18:31"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1982-02-19T08:46"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1982-03-21T07:55"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1982-04-20T19:07"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1982-05-21T18:23"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1982-06-22T02:23"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1982-07-23T13:15"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1982-08-23T20:15"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1982-09-23T17:46"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1982-10-24T02:58"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1982-11-23T00:23"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1982-12-22T13:38"
+   }
+  ],
+  "1983": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1983-01-21T00:17"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1983-02-19T14:31"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1983-03-21T13:39"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1983-04-21T00:50"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1983-05-22T00:06"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1983-06-22T08:09"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1983-07-23T19:04"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1983-08-24T02:07"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1983-09-23T23:42"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1983-10-24T08:54"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1983-11-23T06:19"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1983-12-22T19:30"
+   }
+  ],
+  "1984": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1984-01-21T06:05"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1984-02-19T20:16"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1984-03-20T19:24"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1984-04-20T06:38"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1984-05-21T05:57"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1984-06-21T14:02"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1984-07-23T00:58"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1984-08-23T08:00"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1984-09-23T05:33"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1984-10-23T14:46"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1984-11-22T12:11"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1984-12-22T01:23"
+   }
+  ],
+  "1985": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1985-01-20T11:58"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1985-02-19T02:08"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1985-03-21T01:14"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1985-04-20T12:26"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1985-05-21T11:43"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1985-06-21T19:44"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1985-07-23T06:37"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1985-08-23T13:36"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1985-09-23T11:08"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1985-10-23T20:22"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1985-11-22T17:51"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1985-12-22T07:08"
+   }
+  ],
+  "1986": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1986-01-20T17:47"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1986-02-19T07:58"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1986-03-21T07:03"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1986-04-20T18:12"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1986-05-21T17:28"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1986-06-22T01:30"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1986-07-23T12:24"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1986-08-23T19:26"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1986-09-23T16:59"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1986-10-24T02:14"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1986-11-22T23:44"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1986-12-22T13:02"
+   }
+  ],
+  "1987": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1987-01-20T23:40"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1987-02-19T13:50"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1987-03-21T12:52"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1987-04-20T23:57"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1987-05-21T23:10"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1987-06-22T07:11"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1987-07-23T18:06"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1987-08-24T01:10"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1987-09-23T22:45"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1987-10-24T08:01"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1987-11-23T05:30"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1987-12-22T18:46"
+   }
+  ],
+  "1988": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1988-01-21T05:25"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1988-02-19T19:36"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1988-03-20T18:39"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1988-04-20T05:45"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1988-05-21T04:57"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1988-06-21T12:56"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1988-07-22T23:51"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1988-08-23T06:54"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1988-09-23T04:29"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1988-10-23T13:44"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1988-11-22T11:12"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1988-12-22T00:28"
+   }
+  ],
+  "1989": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1989-01-20T11:07"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1989-02-19T01:21"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1989-03-21T00:28"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1989-04-20T11:39"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1989-05-21T10:54"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1989-06-21T18:53"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1989-07-23T05:45"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1989-08-23T12:46"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1989-09-23T10:20"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1989-10-23T19:35"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1989-11-22T17:05"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1989-12-22T06:22"
+   }
+  ],
+  "1990": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1990-01-20T17:02"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1990-02-19T07:14"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1990-03-21T06:19"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1990-04-20T17:27"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1990-05-21T16:37"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1990-06-22T00:33"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1990-07-23T11:22"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1990-08-23T18:21"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1990-09-23T15:56"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1990-10-24T01:14"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1990-11-22T22:47"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1990-12-22T12:07"
+   }
+  ],
+  "1991": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1991-01-20T22:47"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1991-02-19T12:58"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1991-03-21T12:02"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1991-04-20T23:08"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1991-05-21T22:20"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1991-06-22T06:19"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1991-07-23T17:11"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1991-08-24T00:13"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1991-09-23T21:48"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1991-10-24T07:05"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1991-11-23T04:36"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1991-12-22T17:54"
+   }
+  ],
+  "1992": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1992-01-21T04:33"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1992-02-19T18:44"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1992-03-20T17:48"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1992-04-20T04:57"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1992-05-21T04:12"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1992-06-21T12:14"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1992-07-22T23:09"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1992-08-23T06:10"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1992-09-23T03:43"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1992-10-23T12:57"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1992-11-22T10:26"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1992-12-21T23:43"
+   }
+  ],
+  "1993": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1993-01-20T10:23"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1993-02-19T00:35"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1993-03-20T23:41"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1993-04-20T10:49"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1993-05-21T10:02"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1993-06-21T18:00"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1993-07-23T04:51"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1993-08-23T11:50"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1993-09-23T09:22"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1993-10-23T18:37"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1993-11-22T16:07"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1993-12-22T05:26"
+   }
+  ],
+  "1994": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1994-01-20T16:08"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1994-02-19T06:22"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1994-03-21T05:28"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1994-04-20T16:36"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1994-05-21T15:49"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1994-06-21T23:48"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1994-07-23T10:41"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1994-08-23T17:44"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1994-09-23T15:20"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1994-10-24T00:36"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1994-11-22T22:06"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1994-12-22T11:23"
+   }
+  ],
+  "1995": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1995-01-20T22:01"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1995-02-19T12:11"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1995-03-21T11:15"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1995-04-20T22:21"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1995-05-21T21:34"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1995-06-22T05:34"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1995-07-23T16:30"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1995-08-23T23:35"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1995-09-23T21:13"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1995-10-24T06:32"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1995-11-23T04:02"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1995-12-22T17:17"
+   }
+  ],
+  "1996": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1996-01-21T03:53"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1996-02-19T18:01"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1996-03-20T17:03"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1996-04-20T04:10"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1996-05-21T03:23"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1996-06-21T11:24"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1996-07-22T22:19"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1996-08-23T05:23"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1996-09-23T03:00"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1996-10-23T12:19"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1996-11-22T09:50"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1996-12-21T23:06"
+   }
+  ],
+  "1997": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1997-01-20T09:43"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1997-02-18T23:52"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1997-03-20T22:55"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1997-04-20T10:03"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1997-05-21T09:18"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1997-06-21T17:20"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1997-07-23T04:15"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1997-08-23T11:19"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1997-09-23T08:56"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1997-10-23T18:15"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1997-11-22T15:48"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1997-12-22T05:07"
+   }
+  ],
+  "1998": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1998-01-20T15:46"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1998-02-19T05:55"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1998-03-21T04:54"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1998-04-20T15:57"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1998-05-21T15:05"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1998-06-21T23:03"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1998-07-23T09:56"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1998-08-23T16:59"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1998-09-23T14:38"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1998-10-23T23:59"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1998-11-22T21:35"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1998-12-22T10:57"
+   }
+  ],
+  "1999": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "1999-01-20T21:37"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "1999-02-19T11:47"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "1999-03-21T10:46"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "1999-04-20T21:46"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "1999-05-21T20:52"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "1999-06-22T04:49"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "1999-07-23T15:44"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "1999-08-23T22:51"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "1999-09-23T20:32"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "1999-10-24T05:53"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "1999-11-23T03:25"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "1999-12-22T16:44"
+   }
+  ],
+  "2000": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2000-01-21T03:23"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2000-02-19T17:33"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2000-03-20T16:35"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2000-04-20T03:40"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2000-05-21T02:49"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2000-06-21T10:48"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2000-07-22T21:43"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2000-08-23T04:49"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2000-09-23T02:28"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2000-10-23T11:48"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2000-11-22T09:20"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2000-12-21T22:38"
+   }
+  ],
+  "2001": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2001-01-20T09:17"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2001-02-18T23:28"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2001-03-20T22:31"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2001-04-20T09:36"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2001-05-21T08:44"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2001-06-21T16:38"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2001-07-23T03:26"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2001-08-23T10:27"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2001-09-23T08:05"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2001-10-23T17:26"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2001-11-22T15:00"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2001-12-22T04:22"
+   }
+  ],
+  "2002": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2002-01-20T15:02"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2002-02-19T05:13"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2002-03-21T04:16"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2002-04-20T15:21"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2002-05-21T14:30"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2002-06-21T22:25"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2002-07-23T09:15"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2002-08-23T16:17"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2002-09-23T13:56"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2002-10-23T23:18"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2002-11-22T20:54"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2002-12-22T10:15"
+   }
+  ],
+  "2003": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2003-01-20T20:53"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2003-02-19T11:01"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2003-03-21T10:00"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2003-04-20T21:03"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2003-05-21T20:13"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2003-06-22T04:11"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2003-07-23T15:04"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2003-08-23T22:08"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2003-09-23T19:47"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2003-10-24T05:09"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2003-11-23T02:43"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2003-12-22T16:04"
+   }
+  ],
+  "2004": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2004-01-21T02:42"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2004-02-19T16:50"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2004-03-20T15:48"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2004-04-20T02:50"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2004-05-21T01:59"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2004-06-21T09:57"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2004-07-22T20:50"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2004-08-23T03:53"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2004-09-23T01:30"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2004-10-23T10:49"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2004-11-22T08:22"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2004-12-21T21:42"
+   }
+  ],
+  "2005": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2005-01-20T08:22"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2005-02-18T22:32"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2005-03-20T21:34"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2005-04-20T08:37"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2005-05-21T07:48"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2005-06-21T15:46"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2005-07-23T02:41"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2005-08-23T09:45"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2005-09-23T07:23"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2005-10-23T16:42"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2005-11-22T14:15"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2005-12-22T03:35"
+   }
+  ],
+  "2006": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2006-01-20T14:15"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2006-02-19T04:25"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2006-03-21T03:25"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2006-04-20T14:26"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2006-05-21T13:31"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2006-06-21T21:26"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2006-07-23T08:18"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2006-08-23T15:23"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2006-09-23T13:04"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2006-10-23T22:27"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2006-11-22T20:02"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2006-12-22T09:22"
+   }
+  ],
+  "2007": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2007-01-20T20:01"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2007-02-19T10:09"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2007-03-21T09:07"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2007-04-20T20:07"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2007-05-21T19:12"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2007-06-22T03:06"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2007-07-23T14:00"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2007-08-23T21:08"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2007-09-23T18:51"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2007-10-24T04:15"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2007-11-23T01:50"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2007-12-22T15:08"
+   }
+  ],
+  "2008": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2008-01-21T01:44"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2008-02-19T15:50"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2008-03-20T14:48"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2008-04-20T01:51"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2008-05-21T01:01"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2008-06-21T08:59"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2008-07-22T19:55"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2008-08-23T03:02"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2008-09-23T00:45"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2008-10-23T10:09"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2008-11-22T07:44"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2008-12-21T21:04"
+   }
+  ],
+  "2009": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2009-01-20T07:41"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2009-02-18T21:47"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2009-03-20T20:44"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2009-04-20T07:45"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2009-05-21T06:51"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2009-06-21T14:46"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2009-07-23T01:36"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2009-08-23T08:39"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2009-09-23T06:19"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2009-10-23T15:44"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2009-11-22T13:23"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2009-12-22T02:47"
+   }
+  ],
+  "2010": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2010-01-20T13:28"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2010-02-19T03:35"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2010-03-21T02:32"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2010-04-20T13:30"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2010-05-21T12:34"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2010-06-21T20:28"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2010-07-23T07:21"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2010-08-23T14:27"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2010-09-23T12:09"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2010-10-23T21:35"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2010-11-22T19:15"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2010-12-22T08:38"
+   }
+  ],
+  "2011": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2011-01-20T19:19"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2011-02-19T09:25"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2011-03-21T08:21"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2011-04-20T19:17"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2011-05-21T18:21"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2011-06-22T02:16"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2011-07-23T13:12"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2011-08-23T20:21"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2011-09-23T18:05"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2011-10-24T03:31"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2011-11-23T01:08"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2011-12-22T14:30"
+   }
+  ],
+  "2012": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2012-01-21T01:10"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2012-02-19T15:17"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2012-03-20T14:14"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2012-04-20T01:12"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2012-05-21T00:15"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2012-06-21T08:08"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2012-07-22T19:00"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2012-08-23T02:07"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2012-09-22T23:49"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2012-10-23T09:13"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2012-11-22T06:50"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2012-12-21T20:12"
+   }
+  ],
+  "2013": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2013-01-20T06:52"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2013-02-18T21:02"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2013-03-20T20:02"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2013-04-20T07:03"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2013-05-21T06:10"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2013-06-21T14:04"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2013-07-23T00:56"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2013-08-23T08:01"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2013-09-23T05:44"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2013-10-23T15:10"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2013-11-22T12:48"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2013-12-22T02:11"
+   }
+  ],
+  "2014": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2014-01-20T12:51"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2014-02-19T02:59"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2014-03-21T01:57"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2014-04-20T12:55"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2014-05-21T11:59"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2014-06-21T19:51"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2014-07-23T06:42"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2014-08-23T13:46"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2014-09-23T11:29"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2014-10-23T20:57"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2014-11-22T18:38"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2014-12-22T08:03"
+   }
+  ],
+  "2015": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2015-01-20T18:43"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2015-02-19T08:50"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2015-03-21T07:45"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2015-04-20T18:42"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2015-05-21T17:45"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2015-06-22T01:38"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2015-07-23T12:31"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2015-08-23T19:37"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2015-09-23T17:21"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2015-10-24T02:47"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2015-11-23T00:26"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2015-12-22T13:48"
+   }
+  ],
+  "2016": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2016-01-21T00:27"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2016-02-19T14:34"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2016-03-20T13:30"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2016-04-20T00:29"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2016-05-20T23:36"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2016-06-21T07:34"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2016-07-22T18:30"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2016-08-23T01:39"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2016-09-22T23:21"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2016-10-23T08:45"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2016-11-22T06:22"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2016-12-21T19:44"
+   }
+  ],
+  "2017": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2017-01-20T06:24"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2017-02-18T20:32"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2017-03-20T19:29"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2017-04-20T06:27"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2017-05-21T05:31"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2017-06-21T13:24"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2017-07-23T00:15"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2017-08-23T07:20"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2017-09-23T05:02"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2017-10-23T14:27"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2017-11-22T12:05"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2017-12-22T01:28"
+   }
+  ],
+  "2018": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2018-01-20T12:09"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2018-02-19T02:18"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2018-03-21T01:15"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2018-04-20T12:12"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2018-05-21T11:15"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2018-06-21T19:07"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2018-07-23T06:00"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2018-08-23T13:08"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2018-09-23T10:54"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2018-10-23T20:22"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2018-11-22T18:01"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2018-12-22T07:22"
+   }
+  ],
+  "2019": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2019-01-20T17:59"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2019-02-19T08:04"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2019-03-21T06:58"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2019-04-20T17:55"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2019-05-21T16:59"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2019-06-22T00:54"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2019-07-23T11:50"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2019-08-23T19:02"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2019-09-23T16:50"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2019-10-24T02:20"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2019-11-22T23:59"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2019-12-22T13:20"
+   }
+  ],
+  "2020": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2020-01-20T23:55"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2020-02-19T13:57"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2020-03-20T12:50"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2020-04-19T23:46"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2020-05-20T22:49"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2020-06-21T06:44"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2020-07-22T17:37"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2020-08-23T00:45"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2020-09-22T22:31"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2020-10-23T08:00"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2020-11-22T05:40"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2020-12-21T19:03"
+   }
+  ],
+  "2021": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2021-01-20T05:40"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2021-02-18T19:44"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2021-03-20T18:37"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2021-04-20T05:33"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2021-05-21T04:37"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2021-06-21T12:32"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2021-07-22T23:26"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2021-08-23T06:35"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2021-09-23T04:21"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2021-10-23T13:51"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2021-11-22T11:34"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2021-12-22T00:59"
+   }
+  ],
+  "2022": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2022-01-20T11:39"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2022-02-19T01:43"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2022-03-21T00:33"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2022-04-20T11:24"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2022-05-21T10:22"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2022-06-21T18:14"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2022-07-23T05:07"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2022-08-23T12:16"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2022-09-23T10:04"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2022-10-23T19:36"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2022-11-22T17:21"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2022-12-22T06:48"
+   }
+  ],
+  "2023": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2023-01-20T17:29"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2023-02-19T07:34"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2023-03-21T06:24"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2023-04-20T17:13"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2023-05-21T16:09"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2023-06-21T23:57"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2023-07-23T10:50"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2023-08-23T18:01"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2023-09-23T15:50"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2023-10-24T01:21"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2023-11-22T23:03"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2023-12-22T12:28"
+   }
+  ],
+  "2024": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2024-01-20T23:07"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2024-02-19T13:13"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2024-03-20T12:06"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2024-04-19T23:00"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2024-05-20T22:00"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2024-06-21T05:51"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2024-07-22T16:44"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2024-08-22T23:55"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2024-09-22T21:44"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2024-10-23T07:15"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2024-11-22T04:56"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2024-12-21T18:20"
+   }
+  ],
+  "2025": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2025-01-20T05:00"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2025-02-18T19:07"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2025-03-20T18:01"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2025-04-20T04:56"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2025-05-21T03:55"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2025-06-21T11:42"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2025-07-22T22:29"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2025-08-23T05:34"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2025-09-23T03:20"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2025-10-23T12:51"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2025-11-22T10:36"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2025-12-22T00:03"
+   }
+  ],
+  "2026": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2026-01-20T10:45"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2026-02-19T00:52"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2026-03-20T23:46"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2026-04-20T10:39"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2026-05-21T09:37"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2026-06-21T17:25"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2026-07-23T04:13"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2026-08-23T11:19"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2026-09-23T09:06"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2026-10-23T18:38"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2026-11-22T16:24"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2026-12-22T05:50"
+   }
+  ],
+  "2027": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2027-01-20T16:30"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2027-02-19T06:34"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2027-03-21T05:25"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2027-04-20T16:17"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2027-05-21T15:18"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2027-06-21T23:11"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2027-07-23T10:04"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2027-08-23T17:14"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2027-09-23T15:01"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2027-10-24T00:33"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2027-11-22T22:16"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2027-12-22T11:42"
+   }
+  ],
+  "2028": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2028-01-20T22:22"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2028-02-19T12:26"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2028-03-20T11:17"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2028-04-19T22:09"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2028-05-20T21:10"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2028-06-21T05:02"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2028-07-22T15:54"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2028-08-22T23:01"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2028-09-22T20:45"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2028-10-23T06:14"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2028-11-22T03:55"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2028-12-21T17:20"
+   }
+  ],
+  "2029": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2029-01-20T04:01"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2029-02-18T18:08"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2029-03-20T17:02"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2029-04-20T03:55"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2029-05-21T02:56"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2029-06-21T10:48"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2029-07-22T21:42"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2029-08-23T04:51"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2029-09-23T02:38"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2029-10-23T12:08"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2029-11-22T09:49"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2029-12-21T23:14"
+   }
+  ],
+  "2030": [
+   {
+    "deg": 300,
+    "term": "대한",
+    "starts": "aquarius",
+    "kst": "2030-01-20T09:54"
+   },
+   {
+    "deg": 330,
+    "term": "우수",
+    "starts": "pisces",
+    "kst": "2030-02-19T00:00"
+   },
+   {
+    "deg": 0,
+    "term": "춘분",
+    "starts": "aries",
+    "kst": "2030-03-20T22:52"
+   },
+   {
+    "deg": 30,
+    "term": "곡우",
+    "starts": "taurus",
+    "kst": "2030-04-20T09:43"
+   },
+   {
+    "deg": 60,
+    "term": "소만",
+    "starts": "gemini",
+    "kst": "2030-05-21T08:41"
+   },
+   {
+    "deg": 90,
+    "term": "하지",
+    "starts": "cancer",
+    "kst": "2030-06-21T16:31"
+   },
+   {
+    "deg": 120,
+    "term": "대서",
+    "starts": "leo",
+    "kst": "2030-07-23T03:25"
+   },
+   {
+    "deg": 150,
+    "term": "처서",
+    "starts": "virgo",
+    "kst": "2030-08-23T10:37"
+   },
+   {
+    "deg": 180,
+    "term": "추분",
+    "starts": "libra",
+    "kst": "2030-09-23T08:27"
+   },
+   {
+    "deg": 210,
+    "term": "상강",
+    "starts": "scorpio",
+    "kst": "2030-10-23T18:01"
+   },
+   {
+    "deg": 240,
+    "term": "소설",
+    "starts": "sagittarius",
+    "kst": "2030-11-22T15:45"
+   },
+   {
+    "deg": 270,
+    "term": "동지",
+    "starts": "capricorn",
+    "kst": "2030-12-22T05:10"
+   }
+  ]
+ }
+}
