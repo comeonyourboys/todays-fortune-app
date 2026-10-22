@@ -1,0 +1,1478 @@
+{
+ "_comment": "별자리 페이지 \"실제 하늘의 별자리\" 섹션 자료. 필드마다 src(아래 sources 키)가 있어야 하고, 빌드는 출처가 없거나 sources 에 없는 키를 가리키는 필드를 출력하지 않는다. 값은 retrieved 날짜에 각 출처에서 직접 확인했다. 태양이 실제로 지나는 기간은 data/sun-passage-iau.json(계산값)을 쓴다.",
+ "retrieved": "2026-10-22",
+ "sources": {
+  "iauList": {
+   "label": "Wikipedia — IAU designated constellations (List 표: 약어·기원·뜻·가장 밝은 별·등급)",
+   "url": "https://en.wikipedia.org/wiki/IAU_designated_constellations"
+  },
+  "iauArea": {
+   "label": "Wikipedia — IAU designated constellations by solid angle (넓이·순위)",
+   "url": "https://en.wikipedia.org/wiki/IAU_designated_constellations_by_solid_angle"
+  },
+  "almagest": {
+   "label": "Wikipedia — Almagest (2세기, 48개 별자리에 황도 12개 포함)",
+   "url": "https://en.wikipedia.org/wiki/Almagest"
+  },
+  "zodiac1977": {
+   "label": "Wikipedia — Zodiac (1977년 IAU 경계 기준 태양 통과 날짜 표, 근사값)",
+   "url": "https://en.wikipedia.org/wiki/Zodiac"
+  },
+  "precession": {
+   "label": "Wikipedia — Axial precession (약 72년에 1°)",
+   "url": "https://en.wikipedia.org/wiki/Axial_precession"
+  },
+  "seoul": {
+   "label": "Wikipedia — Seoul (좌표 37°33′36″N)",
+   "url": "https://en.wikipedia.org/wiki/Seoul"
+  },
+  "passage": {
+   "label": "Astronomy Engine 계산 — data/sun-passage-iau.json (tools/sun-ingress/passage.mjs)",
+   "url": "https://github.com/cosinekitty/astronomy"
+  },
+  "const_aries": {
+   "label": "Wikipedia — Aries (constellation) (정보 상자: 관측 가능 위도, 밤 9시에 가장 잘 보이는 달, 메시에 천체 수, 이웃 별자리)",
+   "url": "https://en.wikipedia.org/wiki/Aries_(constellation)"
+  },
+  "star_aries": {
+   "label": "Wikipedia — Hamal (정보 상자: 거리, 바이어 명칭)",
+   "url": "https://en.wikipedia.org/wiki/Hamal"
+  },
+  "const_taurus": {
+   "label": "Wikipedia — Taurus (constellation) (정보 상자: 관측 가능 위도, 밤 9시에 가장 잘 보이는 달, 메시에 천체 수, 이웃 별자리)",
+   "url": "https://en.wikipedia.org/wiki/Taurus_(constellation)"
+  },
+  "star_taurus": {
+   "label": "Wikipedia — Aldebaran (정보 상자: 거리, 바이어 명칭)",
+   "url": "https://en.wikipedia.org/wiki/Aldebaran"
+  },
+  "const_gemini": {
+   "label": "Wikipedia — Gemini (constellation) (정보 상자: 관측 가능 위도, 밤 9시에 가장 잘 보이는 달, 메시에 천체 수, 이웃 별자리)",
+   "url": "https://en.wikipedia.org/wiki/Gemini_(constellation)"
+  },
+  "star_gemini": {
+   "label": "Wikipedia — Pollux (star) (정보 상자: 거리, 바이어 명칭)",
+   "url": "https://en.wikipedia.org/wiki/Pollux_(star)"
+  },
+  "const_cancer": {
+   "label": "Wikipedia — Cancer (constellation) (정보 상자: 관측 가능 위도, 밤 9시에 가장 잘 보이는 달, 메시에 천체 수, 이웃 별자리)",
+   "url": "https://en.wikipedia.org/wiki/Cancer_(constellation)"
+  },
+  "star_cancer": {
+   "label": "Wikipedia — Beta Cancri (정보 상자: 거리, 바이어 명칭)",
+   "url": "https://en.wikipedia.org/wiki/Beta_Cancri"
+  },
+  "const_leo": {
+   "label": "Wikipedia — Leo (constellation) (정보 상자: 관측 가능 위도, 밤 9시에 가장 잘 보이는 달, 메시에 천체 수, 이웃 별자리)",
+   "url": "https://en.wikipedia.org/wiki/Leo_(constellation)"
+  },
+  "star_leo": {
+   "label": "Wikipedia — Regulus (정보 상자: 거리, 바이어 명칭)",
+   "url": "https://en.wikipedia.org/wiki/Regulus"
+  },
+  "const_virgo": {
+   "label": "Wikipedia — Virgo (constellation) (정보 상자: 관측 가능 위도, 밤 9시에 가장 잘 보이는 달, 메시에 천체 수, 이웃 별자리)",
+   "url": "https://en.wikipedia.org/wiki/Virgo_(constellation)"
+  },
+  "star_virgo": {
+   "label": "Wikipedia — Spica (정보 상자: 거리, 바이어 명칭)",
+   "url": "https://en.wikipedia.org/wiki/Spica"
+  },
+  "const_libra": {
+   "label": "Wikipedia — Libra (constellation) (정보 상자: 관측 가능 위도, 밤 9시에 가장 잘 보이는 달, 메시에 천체 수, 이웃 별자리)",
+   "url": "https://en.wikipedia.org/wiki/Libra_(constellation)"
+  },
+  "star_libra": {
+   "label": "Wikipedia — Beta Librae (정보 상자: 거리, 바이어 명칭)",
+   "url": "https://en.wikipedia.org/wiki/Beta_Librae"
+  },
+  "const_scorpio": {
+   "label": "Wikipedia — Scorpius (정보 상자: 관측 가능 위도, 밤 9시에 가장 잘 보이는 달, 메시에 천체 수, 이웃 별자리)",
+   "url": "https://en.wikipedia.org/wiki/Scorpius"
+  },
+  "star_scorpio": {
+   "label": "Wikipedia — Antares (정보 상자: 거리, 바이어 명칭)",
+   "url": "https://en.wikipedia.org/wiki/Antares"
+  },
+  "const_sagittarius": {
+   "label": "Wikipedia — Sagittarius (constellation) (정보 상자: 관측 가능 위도, 밤 9시에 가장 잘 보이는 달, 메시에 천체 수, 이웃 별자리)",
+   "url": "https://en.wikipedia.org/wiki/Sagittarius_(constellation)"
+  },
+  "star_sagittarius": {
+   "label": "Wikipedia — Epsilon Sagittarii (정보 상자: 거리, 바이어 명칭)",
+   "url": "https://en.wikipedia.org/wiki/Epsilon_Sagittarii"
+  },
+  "const_capricorn": {
+   "label": "Wikipedia — Capricornus (정보 상자: 관측 가능 위도, 밤 9시에 가장 잘 보이는 달, 메시에 천체 수, 이웃 별자리)",
+   "url": "https://en.wikipedia.org/wiki/Capricornus"
+  },
+  "star_capricorn": {
+   "label": "Wikipedia — Delta Capricorni (정보 상자: 거리, 바이어 명칭)",
+   "url": "https://en.wikipedia.org/wiki/Delta_Capricorni"
+  },
+  "const_aquarius": {
+   "label": "Wikipedia — Aquarius (constellation) (정보 상자: 관측 가능 위도, 밤 9시에 가장 잘 보이는 달, 메시에 천체 수, 이웃 별자리)",
+   "url": "https://en.wikipedia.org/wiki/Aquarius_(constellation)"
+  },
+  "star_aquarius": {
+   "label": "Wikipedia — Beta Aquarii (정보 상자: 거리, 바이어 명칭)",
+   "url": "https://en.wikipedia.org/wiki/Beta_Aquarii"
+  },
+  "const_pisces": {
+   "label": "Wikipedia — Pisces (constellation) (정보 상자: 관측 가능 위도, 밤 9시에 가장 잘 보이는 달, 메시에 천체 수, 이웃 별자리)",
+   "url": "https://en.wikipedia.org/wiki/Pisces_(constellation)"
+  },
+  "star_pisces": {
+   "label": "Wikipedia — Eta Piscium (정보 상자: 거리, 바이어 명칭)",
+   "url": "https://en.wikipedia.org/wiki/Eta_Piscium"
+  }
+ },
+ "signs": {
+  "aries": {
+   "latin": {
+    "v": "Aries",
+    "src": [
+     "iauList"
+    ]
+   },
+   "abbr": {
+    "v": "Ari",
+    "src": [
+     "iauList"
+    ]
+   },
+   "area": {
+    "v": 441.395,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "areaRank": {
+    "v": 39,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "brightest": {
+    "v": "Hamal",
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestMag": {
+    "v": 2.0,
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestBayer": {
+    "v": "α Arietis",
+    "src": [
+     "star_aries"
+    ]
+   },
+   "brightestDistLy": {
+    "v": 65.8,
+    "approx": false,
+    "src": [
+     "star_aries"
+    ]
+   },
+   "bestMonth9pm": {
+    "v": 12,
+    "src": [
+     "const_aries"
+    ]
+   },
+   "visibleLat": {
+    "v": {
+     "north": 90,
+     "south": 60
+    },
+    "src": [
+     "const_aries"
+    ]
+   },
+   "ptolemy48": {
+    "v": true,
+    "src": [
+     "iauList",
+     "almagest"
+    ]
+   },
+   "sun1977": {
+    "v": {
+     "from": "04-19",
+     "to": "05-13",
+     "days": 25
+    },
+    "src": [
+     "zodiac1977"
+    ]
+   },
+   "meaning": {
+    "v": {
+     "en": "ram",
+     "ko": "숫양"
+    },
+    "src": [
+     "iauList"
+    ]
+   },
+   "messier": {
+    "v": 0,
+    "src": [
+     "const_aries"
+    ]
+   },
+   "bordering": {
+    "v": [
+     "Perseus",
+     "Triangulum",
+     "Pisces",
+     "Cetus",
+     "Taurus"
+    ],
+    "src": [
+     "const_aries"
+    ]
+   }
+  },
+  "taurus": {
+   "latin": {
+    "v": "Taurus",
+    "src": [
+     "iauList"
+    ]
+   },
+   "abbr": {
+    "v": "Tau",
+    "src": [
+     "iauList"
+    ]
+   },
+   "area": {
+    "v": 797.249,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "areaRank": {
+    "v": 17,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "brightest": {
+    "v": "Aldebaran",
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestMag": {
+    "v": 0.86,
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestBayer": {
+    "v": "α Tauri",
+    "src": [
+     "star_taurus"
+    ]
+   },
+   "brightestDistLy": {
+    "v": 67,
+    "approx": false,
+    "src": [
+     "star_taurus"
+    ]
+   },
+   "bestMonth9pm": {
+    "v": 1,
+    "src": [
+     "const_taurus"
+    ]
+   },
+   "visibleLat": {
+    "v": {
+     "north": 89,
+     "south": 59
+    },
+    "src": [
+     "const_taurus"
+    ]
+   },
+   "ptolemy48": {
+    "v": true,
+    "src": [
+     "iauList",
+     "almagest"
+    ]
+   },
+   "sun1977": {
+    "v": {
+     "from": "05-14",
+     "to": "06-19",
+     "days": 37
+    },
+    "src": [
+     "zodiac1977"
+    ]
+   },
+   "meaning": {
+    "v": {
+     "en": "bull",
+     "ko": "황소"
+    },
+    "src": [
+     "iauList"
+    ]
+   },
+   "messier": {
+    "v": 2,
+    "src": [
+     "const_taurus"
+    ]
+   },
+   "bordering": {
+    "v": [
+     "Auriga",
+     "Perseus",
+     "Aries",
+     "Cetus",
+     "Eridanus",
+     "Orion",
+     "Gemini"
+    ],
+    "src": [
+     "const_taurus"
+    ]
+   }
+  },
+  "gemini": {
+   "latin": {
+    "v": "Gemini",
+    "src": [
+     "iauList"
+    ]
+   },
+   "abbr": {
+    "v": "Gem",
+    "src": [
+     "iauList"
+    ]
+   },
+   "area": {
+    "v": 513.761,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "areaRank": {
+    "v": 30,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "brightest": {
+    "v": "Pollux",
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestMag": {
+    "v": 1.14,
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestBayer": {
+    "v": "β Geminorum",
+    "src": [
+     "star_gemini"
+    ]
+   },
+   "brightestDistLy": {
+    "v": 33.78,
+    "approx": false,
+    "src": [
+     "star_gemini"
+    ]
+   },
+   "bestMonth9pm": {
+    "v": 2,
+    "src": [
+     "const_gemini"
+    ]
+   },
+   "visibleLat": {
+    "v": {
+     "north": 90,
+     "south": 55
+    },
+    "src": [
+     "const_gemini"
+    ]
+   },
+   "ptolemy48": {
+    "v": true,
+    "src": [
+     "iauList",
+     "almagest"
+    ]
+   },
+   "sun1977": {
+    "v": {
+     "from": "06-20",
+     "to": "07-20",
+     "days": 31
+    },
+    "src": [
+     "zodiac1977"
+    ]
+   },
+   "meaning": {
+    "v": {
+     "en": "twins",
+     "ko": "쌍둥이"
+    },
+    "src": [
+     "iauList"
+    ]
+   },
+   "messier": {
+    "v": 1,
+    "src": [
+     "const_gemini"
+    ]
+   },
+   "bordering": {
+    "v": [
+     "Lynx",
+     "Auriga",
+     "Taurus",
+     "Orion",
+     "Monoceros",
+     "Canis Minor",
+     "Cancer"
+    ],
+    "src": [
+     "const_gemini"
+    ]
+   }
+  },
+  "cancer": {
+   "latin": {
+    "v": "Cancer",
+    "src": [
+     "iauList"
+    ]
+   },
+   "abbr": {
+    "v": "Cnc",
+    "src": [
+     "iauList"
+    ]
+   },
+   "area": {
+    "v": 505.872,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "areaRank": {
+    "v": 31,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "brightest": {
+    "v": "Tarf",
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestMag": {
+    "v": 3.52,
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestBayer": {
+    "v": "β Cancri",
+    "src": [
+     "star_cancer"
+    ]
+   },
+   "brightestDistLy": {
+    "v": 303,
+    "approx": false,
+    "src": [
+     "star_cancer"
+    ]
+   },
+   "bestMonth9pm": {
+    "v": 3,
+    "src": [
+     "const_cancer"
+    ]
+   },
+   "visibleLat": {
+    "v": {
+     "north": 90,
+     "south": 60
+    },
+    "src": [
+     "const_cancer"
+    ]
+   },
+   "ptolemy48": {
+    "v": true,
+    "src": [
+     "iauList",
+     "almagest"
+    ]
+   },
+   "sun1977": {
+    "v": {
+     "from": "07-21",
+     "to": "08-09",
+     "days": 20
+    },
+    "src": [
+     "zodiac1977"
+    ]
+   },
+   "meaning": {
+    "v": {
+     "en": "crab",
+     "ko": "게"
+    },
+    "src": [
+     "iauList"
+    ]
+   },
+   "messier": {
+    "v": 2,
+    "src": [
+     "const_cancer"
+    ]
+   },
+   "bordering": {
+    "v": [
+     "Lynx",
+     "Gemini",
+     "Canis Minor",
+     "Hydra",
+     "Leo",
+     "Leo Minor (corner)"
+    ],
+    "src": [
+     "const_cancer"
+    ]
+   }
+  },
+  "leo": {
+   "latin": {
+    "v": "Leo",
+    "src": [
+     "iauList"
+    ]
+   },
+   "abbr": {
+    "v": "Leo",
+    "src": [
+     "iauList"
+    ]
+   },
+   "area": {
+    "v": 946.964,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "areaRank": {
+    "v": 12,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "brightest": {
+    "v": "Regulus",
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestMag": {
+    "v": 1.35,
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestBayer": {
+    "v": "α Leonis",
+    "src": [
+     "star_leo"
+    ]
+   },
+   "brightestDistLy": {
+    "v": 79.3,
+    "approx": false,
+    "src": [
+     "star_leo"
+    ]
+   },
+   "bestMonth9pm": {
+    "v": 4,
+    "src": [
+     "const_leo"
+    ]
+   },
+   "visibleLat": {
+    "v": {
+     "north": 85,
+     "south": 60
+    },
+    "src": [
+     "const_leo"
+    ]
+   },
+   "ptolemy48": {
+    "v": true,
+    "src": [
+     "iauList",
+     "almagest"
+    ]
+   },
+   "sun1977": {
+    "v": {
+     "from": "08-10",
+     "to": "09-15",
+     "days": 37
+    },
+    "src": [
+     "zodiac1977"
+    ]
+   },
+   "meaning": {
+    "v": {
+     "en": "lion",
+     "ko": "사자"
+    },
+    "src": [
+     "iauList"
+    ]
+   },
+   "messier": {
+    "v": 5,
+    "src": [
+     "const_leo"
+    ]
+   },
+   "bordering": {
+    "v": [
+     "Ursa Major",
+     "Leo Minor",
+     "Lynx (corner)",
+     "Cancer",
+     "Hydra",
+     "Sextans",
+     "Crater",
+     "Virgo",
+     "Coma Berenices"
+    ],
+    "src": [
+     "const_leo"
+    ]
+   }
+  },
+  "virgo": {
+   "latin": {
+    "v": "Virgo",
+    "src": [
+     "iauList"
+    ]
+   },
+   "abbr": {
+    "v": "Vir",
+    "src": [
+     "iauList"
+    ]
+   },
+   "area": {
+    "v": 1294.428,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "areaRank": {
+    "v": 2,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "brightest": {
+    "v": "Spica",
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestMag": {
+    "v": 0.97,
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestBayer": {
+    "v": "α Virginis",
+    "src": [
+     "star_virgo"
+    ]
+   },
+   "brightestDistLy": {
+    "v": 250,
+    "approx": false,
+    "src": [
+     "star_virgo"
+    ]
+   },
+   "bestMonth9pm": {
+    "v": 5,
+    "src": [
+     "const_virgo"
+    ]
+   },
+   "visibleLat": {
+    "v": {
+     "north": 68,
+     "south": 77
+    },
+    "src": [
+     "const_virgo"
+    ]
+   },
+   "ptolemy48": {
+    "v": true,
+    "src": [
+     "iauList",
+     "almagest"
+    ]
+   },
+   "sun1977": {
+    "v": {
+     "from": "09-16",
+     "to": "10-30",
+     "days": 45
+    },
+    "src": [
+     "zodiac1977"
+    ]
+   },
+   "meaning": {
+    "v": {
+     "en": "virgin, maiden",
+     "ko": "처녀"
+    },
+    "src": [
+     "iauList"
+    ]
+   },
+   "messier": {
+    "v": 11,
+    "src": [
+     "const_virgo"
+    ]
+   },
+   "bordering": {
+    "v": [
+     "Boötes",
+     "Coma Berenices",
+     "Leo",
+     "Crater",
+     "Corvus",
+     "Hydra",
+     "Libra",
+     "Serpens Caput"
+    ],
+    "src": [
+     "const_virgo"
+    ]
+   }
+  },
+  "libra": {
+   "latin": {
+    "v": "Libra",
+    "src": [
+     "iauList"
+    ]
+   },
+   "abbr": {
+    "v": "Lib",
+    "src": [
+     "iauList"
+    ]
+   },
+   "area": {
+    "v": 538.052,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "areaRank": {
+    "v": 29,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "brightest": {
+    "v": "Zubeneschamali",
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestMag": {
+    "v": 2.61,
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestBayer": {
+    "v": "β Librae",
+    "src": [
+     "star_libra"
+    ]
+   },
+   "brightestDistLy": {
+    "v": 185,
+    "approx": false,
+    "src": [
+     "star_libra"
+    ]
+   },
+   "bestMonth9pm": {
+    "v": 6,
+    "src": [
+     "const_libra"
+    ]
+   },
+   "visibleLat": {
+    "v": {
+     "north": 65,
+     "south": 90
+    },
+    "src": [
+     "const_libra"
+    ]
+   },
+   "ptolemy48": {
+    "v": true,
+    "src": [
+     "iauList",
+     "almagest"
+    ]
+   },
+   "sun1977": {
+    "v": {
+     "from": "10-31",
+     "to": "11-22",
+     "days": 23
+    },
+    "src": [
+     "zodiac1977"
+    ]
+   },
+   "meaning": {
+    "v": {
+     "en": "balance",
+     "ko": "저울"
+    },
+    "src": [
+     "iauList"
+    ]
+   },
+   "messier": {
+    "v": 0,
+    "src": [
+     "const_libra"
+    ]
+   },
+   "bordering": {
+    "v": [
+     "Serpens Caput",
+     "Virgo",
+     "Hydra",
+     "Centaurus (corner)",
+     "Lupus",
+     "Scorpius",
+     "Ophiuchus"
+    ],
+    "src": [
+     "const_libra"
+    ]
+   }
+  },
+  "scorpio": {
+   "latin": {
+    "v": "Scorpius",
+    "src": [
+     "iauList"
+    ]
+   },
+   "abbr": {
+    "v": "Sco",
+    "src": [
+     "iauList"
+    ]
+   },
+   "area": {
+    "v": 496.783,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "areaRank": {
+    "v": 33,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "brightest": {
+    "v": "Antares",
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestMag": {
+    "v": 0.91,
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestBayer": {
+    "v": "α Scorpii",
+    "src": [
+     "star_scorpio"
+    ]
+   },
+   "brightestDistLy": {
+    "v": 550,
+    "approx": true,
+    "src": [
+     "star_scorpio"
+    ]
+   },
+   "bestMonth9pm": {
+    "v": 7,
+    "src": [
+     "const_scorpio"
+    ]
+   },
+   "visibleLat": {
+    "v": {
+     "north": 40,
+     "south": 90
+    },
+    "src": [
+     "const_scorpio"
+    ]
+   },
+   "ptolemy48": {
+    "v": true,
+    "src": [
+     "iauList",
+     "almagest"
+    ]
+   },
+   "sun1977": {
+    "v": {
+     "from": "11-23",
+     "to": "11-29",
+     "days": 7
+    },
+    "src": [
+     "zodiac1977"
+    ]
+   },
+   "meaning": {
+    "v": {
+     "en": "scorpion",
+     "ko": "전갈"
+    },
+    "src": [
+     "iauList"
+    ]
+   },
+   "messier": {
+    "v": 4,
+    "src": [
+     "const_scorpio"
+    ]
+   },
+   "bordering": {
+    "v": [
+     "Sagittarius",
+     "Ophiuchus",
+     "Libra",
+     "Lupus",
+     "Norma",
+     "Ara",
+     "Corona Australis"
+    ],
+    "src": [
+     "const_scorpio"
+    ]
+   }
+  },
+  "sagittarius": {
+   "latin": {
+    "v": "Sagittarius",
+    "src": [
+     "iauList"
+    ]
+   },
+   "abbr": {
+    "v": "Sgr",
+    "src": [
+     "iauList"
+    ]
+   },
+   "area": {
+    "v": 867.432,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "areaRank": {
+    "v": 15,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "brightest": {
+    "v": "Kaus Australis",
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestMag": {
+    "v": 1.85,
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestBayer": {
+    "v": "ε Sagittarii",
+    "src": [
+     "star_sagittarius"
+    ]
+   },
+   "brightestDistLy": {
+    "v": 143,
+    "approx": false,
+    "src": [
+     "star_sagittarius"
+    ]
+   },
+   "bestMonth9pm": {
+    "v": 8,
+    "src": [
+     "const_sagittarius"
+    ]
+   },
+   "visibleLat": {
+    "v": {
+     "north": 45,
+     "south": 90
+    },
+    "src": [
+     "const_sagittarius"
+    ]
+   },
+   "ptolemy48": {
+    "v": true,
+    "src": [
+     "iauList",
+     "almagest"
+    ]
+   },
+   "sun1977": {
+    "v": {
+     "from": "12-18",
+     "to": "01-18",
+     "days": 32
+    },
+    "src": [
+     "zodiac1977"
+    ]
+   },
+   "meaning": {
+    "v": {
+     "en": "archer",
+     "ko": "궁수"
+    },
+    "src": [
+     "iauList"
+    ]
+   },
+   "messier": {
+    "v": 15,
+    "src": [
+     "const_sagittarius"
+    ]
+   },
+   "bordering": {
+    "v": [
+     "Aquila",
+     "Scutum",
+     "Serpens Cauda",
+     "Ophiuchus",
+     "Scorpius",
+     "Corona Australis",
+     "Telescopium",
+     "Indus (corner)",
+     "Microscopium",
+     "Capricornus"
+    ],
+    "src": [
+     "const_sagittarius"
+    ]
+   }
+  },
+  "capricorn": {
+   "latin": {
+    "v": "Capricornus",
+    "src": [
+     "iauList"
+    ]
+   },
+   "abbr": {
+    "v": "Cap",
+    "src": [
+     "iauList"
+    ]
+   },
+   "area": {
+    "v": 413.947,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "areaRank": {
+    "v": 40,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "brightest": {
+    "v": "Deneb Algedi",
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestMag": {
+    "v": 2.81,
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestBayer": {
+    "v": "δ Capricorni",
+    "src": [
+     "star_capricorn"
+    ]
+   },
+   "brightestDistLy": {
+    "v": 38.7,
+    "approx": false,
+    "src": [
+     "star_capricorn"
+    ]
+   },
+   "bestMonth9pm": {
+    "v": 9,
+    "src": [
+     "const_capricorn"
+    ]
+   },
+   "visibleLat": {
+    "v": {
+     "north": 62,
+     "south": 90
+    },
+    "src": [
+     "const_capricorn"
+    ]
+   },
+   "ptolemy48": {
+    "v": true,
+    "src": [
+     "iauList",
+     "almagest"
+    ]
+   },
+   "sun1977": {
+    "v": {
+     "from": "01-19",
+     "to": "02-15",
+     "days": 28
+    },
+    "src": [
+     "zodiac1977"
+    ]
+   },
+   "meaning": {
+    "v": {
+     "en": "sea goat",
+     "ko": "바다염소"
+    },
+    "src": [
+     "iauList"
+    ]
+   },
+   "messier": {
+    "v": 1,
+    "src": [
+     "const_capricorn"
+    ]
+   },
+   "bordering": {
+    "v": [
+     "Aquarius",
+     "Aquila",
+     "Sagittarius",
+     "Microscopium",
+     "Piscis Austrinus"
+    ],
+    "src": [
+     "const_capricorn"
+    ]
+   }
+  },
+  "aquarius": {
+   "latin": {
+    "v": "Aquarius",
+    "src": [
+     "iauList"
+    ]
+   },
+   "abbr": {
+    "v": "Aqr",
+    "src": [
+     "iauList"
+    ]
+   },
+   "area": {
+    "v": 979.854,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "areaRank": {
+    "v": 10,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "brightest": {
+    "v": "Sadalsuud",
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestMag": {
+    "v": 2.87,
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestBayer": {
+    "v": "β Aquarii",
+    "src": [
+     "star_aquarius"
+    ]
+   },
+   "brightestDistLy": {
+    "v": 541.8,
+    "approx": false,
+    "src": [
+     "star_aquarius"
+    ]
+   },
+   "bestMonth9pm": {
+    "v": 10,
+    "src": [
+     "const_aquarius"
+    ]
+   },
+   "visibleLat": {
+    "v": {
+     "north": 65,
+     "south": 87
+    },
+    "src": [
+     "const_aquarius"
+    ]
+   },
+   "ptolemy48": {
+    "v": true,
+    "src": [
+     "iauList",
+     "almagest"
+    ]
+   },
+   "sun1977": {
+    "v": {
+     "from": "02-16",
+     "to": "03-11",
+     "days": 24
+    },
+    "src": [
+     "zodiac1977"
+    ]
+   },
+   "meaning": {
+    "v": {
+     "en": "water-bearer",
+     "ko": "물을 나르는 사람"
+    },
+    "src": [
+     "iauList"
+    ]
+   },
+   "messier": {
+    "v": 3,
+    "src": [
+     "const_aquarius"
+    ]
+   },
+   "bordering": {
+    "v": [
+     "Pisces",
+     "Pegasus",
+     "Equuleus",
+     "Delphinus",
+     "Aquila",
+     "Capricornus",
+     "Piscis Austrinus",
+     "Sculptor",
+     "Cetus"
+    ],
+    "src": [
+     "const_aquarius"
+    ]
+   }
+  },
+  "pisces": {
+   "latin": {
+    "v": "Pisces",
+    "src": [
+     "iauList"
+    ]
+   },
+   "abbr": {
+    "v": "Psc",
+    "src": [
+     "iauList"
+    ]
+   },
+   "area": {
+    "v": 889.417,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "areaRank": {
+    "v": 14,
+    "src": [
+     "iauArea"
+    ]
+   },
+   "brightest": {
+    "v": "Alpherg",
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestMag": {
+    "v": 3.61,
+    "src": [
+     "iauList"
+    ]
+   },
+   "brightestBayer": {
+    "v": "η Piscium",
+    "src": [
+     "star_pisces"
+    ]
+   },
+   "brightestDistLy": {
+    "v": 350,
+    "approx": false,
+    "src": [
+     "star_pisces"
+    ]
+   },
+   "bestMonth9pm": {
+    "v": 11,
+    "src": [
+     "const_pisces"
+    ]
+   },
+   "visibleLat": {
+    "v": {
+     "north": 84,
+     "south": 57
+    },
+    "src": [
+     "const_pisces"
+    ]
+   },
+   "ptolemy48": {
+    "v": true,
+    "src": [
+     "iauList",
+     "almagest"
+    ]
+   },
+   "sun1977": {
+    "v": {
+     "from": "03-12",
+     "to": "04-18",
+     "days": 38
+    },
+    "src": [
+     "zodiac1977"
+    ]
+   },
+   "meaning": {
+    "v": {
+     "en": "fish (plural)",
+     "ko": "물고기 두 마리"
+    },
+    "src": [
+     "iauList"
+    ]
+   },
+   "messier": {
+    "v": 1,
+    "src": [
+     "const_pisces"
+    ]
+   },
+   "bordering": {
+    "v": [
+     "Triangulum",
+     "Andromeda",
+     "Pegasus",
+     "Aquarius",
+     "Cetus",
+     "Aries"
+    ],
+    "src": [
+     "const_pisces"
+    ]
+   }
+  }
+ }
+}

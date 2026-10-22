@@ -176,6 +176,76 @@ ${extraScript}
 </html>`;
 }
 
+
+// ---------- 실제 하늘의 별자리 (data/constellations.json + data/sun-passage-iau.json) ----------
+// 필드마다 출처 키(src)가 있고 그 키가 sources 에 URL 과 함께 있어야만 출력한다. 출처 없는 값은 문장째 빠진다.
+const CONST = JSON.parse(readFileSync(join(root, 'data/constellations.json'), 'utf8'));
+const PASSAGE = (() => { const p = join(root, 'data/sun-passage-iau.json'); return existsSync(p) ? JSON.parse(readFileSync(p, 'utf8')) : null; })();
+const constDropped = [];
+const cf = (k, f) => {
+  const x = CONST.signs?.[k]?.[f];
+  if (x == null) return null;
+  if (!Array.isArray(x.src) || !x.src.length || !x.src.every((key) => CONST.sources?.[key]?.url)) { constDropped.push(`${k}.${f}`); return null; }
+  return x;
+};
+const passOf = (abbr) => {
+  if (!PASSAGE || !CONST.sources?.passage?.url) return null;
+  const list = PASSAGE.passages.filter((x) => x.abbr === abbr);
+  return list.find((x) => x.startKst.startsWith(String(PASSAGE.year))) || list[0] || null;
+};
+const mdKo = (s) => `${Number(s.slice(-5, -3))}월 ${Number(s.slice(-2))}일`;
+const latKo = (v, ns) => (v === 90 ? (ns === 'N' ? '북극' : '남극') : `${ns === 'N' ? '북위' : '남위'} ${v}°`);
+function skySection(s) {
+  const used = [];
+  const cite = (...keys) => [...new Set(keys.flat())].map((key) => { let i = used.indexOf(key); if (i < 0) { used.push(key); i = used.length - 1; } return `<sup class="fn"><a href="#cs-${i + 1}">[${i + 1}]</a></sup>`; }).join('');
+  const g = (f) => cf(s.k, f);
+  const latin = g('latin'), abbr = g('abbr');
+  if (!latin || !abbr) return '';
+  const area = g('area'), rank = g('areaRank'), pt = g('ptolemy48'), z77 = g('sun1977');
+  const star = g('brightest'), mag = g('brightestMag'), bayer = g('brightestBayer'), dist = g('brightestDistLy');
+  const month = g('bestMonth9pm'), lat = g('visibleLat');
+  const meaning = g('meaning'), messier = g('messier'), border = g('bordering');
+  const L = esc(latin.v);
+  const pa = passOf(abbr.v);
+  const all = PASSAGE && CONST.sources?.passage?.url ? PASSAGE.passages.filter((x) => x.startKst.startsWith(String(PASSAGE.year))) : [];
+  const longest = all.length ? all.reduce((a, b) => (b.days > a.days ? b : a)) : null;
+  const shortest = all.length ? all.reduce((a, b) => (b.days < a.days ? b : a)) : null;
+  const oph = all.find((x) => x.abbr === 'Oph');
+  const nameOf = (ab) => { const k = Object.keys(CONST.signs).find((kk) => CONST.signs[kk].abbr?.v === ab); return k ? `${byKey.get(k).n}(${esc(CONST.signs[k].latin.v)})` : ab === 'Oph' ? '뱀주인자리(Ophiuchus)' : ab; };
+  const p1 = [
+    `점성술의 ${esc(s.n)}는 황도를 춘분점부터 30°씩 나눈 구간 가운데 하나지만, 밤하늘에는 같은 이름의 실제 별자리 ${L}가 있습니다. ${L}는 국제천문연맹(IAU)이 정한 88개 별자리 가운데 하나이고 공식 약어는 ${esc(abbr.v)}입니다.${cite(latin.src, abbr.src)}`,
+    meaning ? ` 라틴어 이름 ${L}의 뜻은 ‘${esc(meaning.v.ko)}’(${esc(meaning.v.en)})입니다.${cite(meaning.src)}` : '',
+    area && rank ? ` 하늘에서 차지하는 넓이는 ${area.v.toLocaleString('en-US')}제곱도로, 88개 별자리 가운데 ${rank.v}번째로 넓습니다.${cite(area.src)}` : '',
+    pt ? ` 2세기 프톨레마이오스가 『알마게스트』에 정리한 48개 별자리에도 황도의 12개 별자리 가운데 하나로 들어 있는 오래된 별자리입니다.${cite(pt.src)}` : '',
+  ].join('');
+  const p2 = pa ? [
+    `점성술에서 ${esc(s.n)}의 기간은 ${esc(fmtP(s.p))}이지만, IAU 별자리 경계를 기준으로 태양이 실제로 ${L} 구역을 지나는 때는 이와 다릅니다. ${PASSAGE.year}년을 기준으로 계산하면 태양은 한국 시각 ${mdKo(pa.startKst.slice(0, 10))}부터 ${mdKo(pa.endKst.slice(0, 10))}까지 약 ${Math.round(pa.days)}일 동안 ${L} 안에 있습니다.${cite('passage')}`,
+    z77 ? ` 1977년 IAU 경계로 정리된 근사 날짜도 ${mdKo(z77.v.from)}~${mdKo(z77.v.to)}(${z77.v.days}일)로 비슷합니다.${cite(z77.src)}` : '',
+    CONST.sources.precession?.url ? ` 이렇게 어긋나는 첫째 이유는 세차 운동입니다. 지구 자전축이 천천히 돌면서 춘분점이 별들 사이를 약 72년에 1°씩 움직이기 때문에, 춘분점을 기준으로 나눈 점성술의 구간과 실제 별자리는 오랜 세월에 걸쳐 조금씩 벌어졌습니다.${cite('precession')}` : '',
+    longest && shortest ? ` 둘째 이유는 실제 별자리의 폭이 제각각이라는 점입니다. 같은 ${PASSAGE.year}년 계산에서 태양이 가장 오래 머무는 별자리는 ${nameOf(longest.abbr)}로 약 ${Math.round(longest.days)}일, 가장 짧게 머무는 별자리는 ${nameOf(shortest.abbr)}로 약 ${Math.round(shortest.days)}일입니다.${oph ? ` 또 전갈자리와 사수자리 사이에서는 황도 12궁에 들지 않는 뱀주인자리를 약 ${Math.round(oph.days)}일 동안 지납니다.` : ''}${cite('passage')}` : '',
+  ].join('') : '';
+  const p3 = star && mag ? [
+    `${L}에서 가장 밝은 별은 ${esc(star.v)}${bayer ? `(${esc(bayer.v)})` : ''}이고 겉보기 등급은 ${mag.v.toFixed(2)}등입니다.${cite(star.src, mag.src)}`,
+    dist ? ` 지구에서 약 ${dist.v}광년 떨어져 있습니다${dist.approx ? '(거리 추정의 오차가 큰 별입니다)' : ''}.${cite(dist.src, bayer ? bayer.src : [])}` : '',
+  ].join('') : '';
+  const p5 = border || messier != null ? [
+    border ? `하늘에서 ${L}와 경계를 맞댄 별자리는 ${border.v.length}개로, ${border.v.map((x) => esc(x.replace(' (corner)', '(모서리만 맞닿음)'))).join(', ')}입니다.${cite(border.src)}` : '',
+    messier ? ` 메시에 목록에 실린 천체 가운데 ${messier.v ? `${messier.v}개가 ${L} 안에 있습니다` : `${L} 안에 있는 것은 없습니다`}.${cite(messier.src)}` : '',
+  ].join('') : '';
+  const p4 = month || lat ? [
+    month ? `${L}는 밤 9시 무렵을 기준으로 ${month.v}월에 가장 잘 보이는 별자리로 소개됩니다.${cite(month.src)}` : '',
+    lat ? ` 볼 수 있는 위도는 ${latKo(lat.v.north, 'N')}에서 ${latKo(lat.v.south, 'S')}까지${CONST.sources.seoul?.url && lat.v.north >= 38 ? `여서 북위 37°33′에 있는 서울에서도 볼 수 있습니다.${cite(lat.src, 'seoul')}` : `입니다.${cite(lat.src)}`}` : '',
+  ].join('') : '';
+  const paras = [p1, p2, p3, p4, p5].filter(Boolean);
+  return `
+<section id="sky">
+  <h2 class="sec-title">실제 하늘의 ${esc(s.n)}</h2>
+  <div class="prose">${paras.map((x) => `<p>${x}</p>`).join('')}</div>
+  <p class="prose-sm">운세에서 쓰는 ${esc(s.n)}는 날짜로 나눈 점성술의 구간이고, 이 단락은 같은 이름의 천문학적 별자리에 관한 사실 정보입니다. 수치는 아래 출처에서 ${esc(CONST.retrieved)}에 확인했습니다.</p>
+  <ol class="fn-list">${used.map((key, i) => `<li id="cs-${i + 1}"><a href="${esc(CONST.sources[key].url)}" target="_blank" rel="noopener">${esc(CONST.sources[key].label)}</a></li>`).join('')}</ol>
+</section>`;
+}
+
 // ---------- 별자리 페이지 ----------
 function pageSign(s) {
   const p = profiles[s.k];
@@ -261,6 +331,7 @@ function pageSign(s) {
   <div class="prose">${paras(p.myth)}</div>
   <p class="prose-sm">탄생석 ${esc(p.symbols.stone)} · 행운의 색 ${esc(p.symbols.color)} · 행운의 숫자 ${esc(p.symbols.number)} · ${esc(p.symbols.day)}</p>
 </section>
+${skySection(s)}
 
 <section>
   <h2 class="sec-title">다른 별자리 보기</h2>
@@ -937,7 +1008,7 @@ function pageAbout() {
 <section>
   <h2 class="sec-title">무엇을 볼 수 있나요</h2>
   <div class="prose">
-    <p><b>별자리 페이지</b>(12장)에는 오늘의 총운·연애운·직장운·재물운, 성격의 강점과 주의할 점, 연애·일·돈을 대하는 방식, 잘 맞는 별자리와 부딪히기 쉬운 별자리, 그리스 신화 속 유래와 상징을 담았습니다.</p>
+    <p><b>별자리 페이지</b>(12장)에는 오늘의 총운·연애운·직장운·재물운, 성격의 강점과 주의할 점, 연애·일·돈을 대하는 방식, 잘 맞는 별자리와 부딪히기 쉬운 별자리, 그리스 신화 속 유래와 상징을 담았습니다. 페이지 아래쪽 “실제 하늘의 별자리” 단락에는 같은 이름의 천문학적 별자리에 관한 사실 정보(IAU 약어와 넓이, 가장 밝은 별, 관측하기 좋은 달, 태양이 실제로 그 별자리를 지나는 기간)를 위키백과 영어판 등 공개 자료와 직접 계산한 값으로 정리하고, 문장마다 출처를 달았습니다.</p>
     <p><b>월별 운세</b>는 별자리마다 한 달 치 날짜별 운세를 모은 페이지입니다. 맨 위에는 그달 문장에 자주 나온 내용을 묶은 흐름 요약을, 그 아래에는 주마다 다른 날들과 내용이 가장 많이 겹치는 문장을 그대로 옮긴 주차별 대표 문장을 둡니다. 월별 운세는 이번 달과 다음 달 것만 두고, 달이 바뀌면 지난달 페이지는 내리고 그 주소는 별자리 페이지로 연결합니다. 한 달 남짓만 걸리는 페이지라 검색 결과에는 내보내지 않습니다.</p>
     <p><b><a href="/compatibility">별자리 궁합</a></b>에서는 12 × 12 궁합표와 별자리별 궁합 해설(별자리마다 한 페이지에 열두 조합, 모두 78개 조합)을, <b><a href="/zodiac-calculator">별자리 계산기</a></b>에서는 생년월일로 별자리를 찾을 수 있습니다. 계산기는 ${CALC_RANGE}년생을 태양이 별자리 경계를 지나는 시각과 분 단위로 비교해 판정하며(${KASI_RANGE}년은 한국천문연구원 시각, 그 밖은 Astronomy Engine 계산값), 그 시각 전체와 공개 자료 대비 오차는 <a href="/zodiac-calculator/boundaries">연도별 별자리 경계 시각표</a>에 공개했습니다. 원소·모달리티·지배 행성 같은 기본 개념은 <b><a href="/guide">별자리 기초</a></b>에 출처와 함께 정리했습니다.</p>
   </div>
@@ -1085,6 +1156,7 @@ for (const f of written.filter((f) => /^(compatibility\/|zodiac-calculator|guide
   console.log(`  인라인 스크립트 ${checked}개 문법 검증 통과, 깨진 값·내부 링크 검사 통과 (${written.length}개 파일)`);
 }
 
+if (constDropped.length) console.warn(`  ⚠ 출처가 없어 출력하지 않은 별자리 자료 ${new Set(constDropped).size}개: ${[...new Set(constDropped)].slice(0, 8).join(', ')}`);
 console.log(`✔ 빌드 완료 — 별자리 ${signs.length}장 + 홈, 월별 ${months.length * signs.length}장(${months.map((mo) => mo.ym).join(', ')} · noindex), 별자리별 궁합 12장(조합 78개), 리다이렉트 ${redirects.length}개(지난달 ${pastMonths.join(', ') || '없음'}), 계산기 1장 + 경계 시각표 1장(KASI 대조 최대 ${ING_CHECK.max}분·평균 ${fmtMean(ING_CHECK.mean)}분), 가이드 ${guides.length}장, sitemap ${urls.length}개 (기준일 ${TODAY})`);
 console.log(`  HTML 본문 글자수: 홈 ${homeLen}자, 별자리 최소 ${minLen}자 (${minWho}), 새 페이지 최소 ${newMin}자 (${newMinWho})`);
 if (minLen < 1500 || homeLen < 800 || newMin < 1500) { console.error('✖ 본문이 너무 짧습니다. 애드센스 재심사 전에 확인하세요.'); process.exit(1); }

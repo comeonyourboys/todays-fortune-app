@@ -40,6 +40,8 @@
 │   ├── monthly-overview-YYYY-MM.json # 월별 페이지 상단 흐름 요약 (그달 문장 근거)
 │   ├── calendar-YYYY-MM.json  # 그달 운세에 반영한 일정 + 출처 (있는 달만)
 │   ├── compat-pairs.json      # 궁합 78쌍 고유 설명
+│   ├── constellations.json    # 별자리 페이지 "실제 하늘의" 단락 자료 (필드마다 출처 키, 출처 없으면 빌드가 출력 안 함)
+│   ├── sun-passage-iau.json   # 태양의 IAU 별자리 통과 기간 (tools/sun-ingress/passage.mjs 생성)
 │   ├── sun-ingress-kasi.json  # 한국천문연구원 12중기 시각 2021~2028 (계산기 경계일 판정)
 │   ├── sun-ingress-hko.json   # 홍콩천문대 12중기 날짜 1950~2030 (시각 없음, 홍콩 시각)
 │   └── signs.json, profiles-*.json
