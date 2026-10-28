@@ -39,7 +39,7 @@ export function makeGuides({ signs, esc, urlOf, ingress, ELEM_PAIR, pairUrl }) {
   <h2 class="sec-title">12별자리 분류표</h2>
   <div class="tbl-wrap"><table class="data-table">
   <thead><tr><th>별자리</th><th>날짜(일반 범위)</th><th>원소</th><th>모달리티</th><th>지배 행성<br><small>현대 / 전통</small></th></tr></thead>
-  <tbody>${ordered.map((s) => `<tr><th scope="row">${s.e} ${link(s.k)}</th><td>${esc(s.p.replace('-', ' ~ '))}</td><td>${esc(s.el)}</td><td>${esc(MOD_OF[s.k])}</td><td>${esc(ruler(s))}${classic(s) !== ruler(s) ? ` / ${esc(classic(s))}` : ''}</td></tr>`).join('')}</tbody>
+  <tbody>${ordered.map((s) => `<tr><th scope="row">${link(s.k)}</th><td>${esc(s.p.replace('-', ' ~ '))}</td><td>${esc(s.el)}</td><td>${esc(MOD_OF[s.k])}</td><td>${esc(ruler(s))}${classic(s) !== ruler(s) ? ` / ${esc(classic(s))}` : ''}</td></tr>`).join('')}</tbody>
   </table></div>
   <p class="note">원소와 모달리티 분류는 Wikipedia “Astrological sign”, 전통 지배 행성은 “Domicile (astrology)”를 따랐습니다. 날짜 범위는 해마다 하루 정도 달라질 수 있어 <a href="/zodiac-calculator">별자리 계산기</a>에서 경계일 안내를 함께 보여 드립니다.</p>
 </section>
@@ -94,7 +94,7 @@ ${src('sign', 'domicile', 'zodiacKo')}`,
   <div class="prose"><p>점성술의 12궁은 춘분점(황경 0°)에서 시작해 30°씩 똑같이 나눈 구간입니다. 태양이 각 구간의 시작점을 지나는 순간은 24절기 가운데 12개의 “중기”와 정확히 겹칩니다. 아래 표의 시각은 한국천문연구원이 공개한 2026년 자료입니다.</p></div>
   <div class="tbl-wrap"><table class="data-table">
   <thead><tr><th>별자리</th><th>황경</th><th>시작 절기</th><th>2026년 시작 시각</th></tr></thead>
-  <tbody>${ordered.map((s, i) => `<tr><th scope="row">${s.e} ${link(s.k)}</th><td>${i * 30}° ~ ${i * 30 + 30}°</td><td>${esc(termOf(s.k))}</td><td>${esc(at26(s.k))}</td></tr>`).join('')}</tbody>
+  <tbody>${ordered.map((s, i) => `<tr><th scope="row">${link(s.k)}</th><td>${i * 30}° ~ ${i * 30 + 30}°</td><td>${esc(termOf(s.k))}</td><td>${esc(at26(s.k))}</td></tr>`).join('')}</tbody>
   </table></div>
   <p class="note">시각은 한국 표준시 기준입니다. 같은 절기라도 해마다 시각이 달라져 별자리 경계일이 하루 정도 앞뒤로 움직입니다. 내 생일이 경계에 걸리는지는 <a href="/zodiac-calculator">별자리 계산기</a>에서 확인할 수 있습니다.</p>
 </section>
@@ -150,7 +150,7 @@ ${src('zodiacEn', 'zodiacKo', 'ecliptic', 'tetrabiblos', 'terms24', 'kasi', 'iau
   <div class="prose">
     <p>한 원소에 속한 세 별자리를 트리플리시티(triplicity)라고 부릅니다. 세 별자리는 황도에서 정확히 120°씩 떨어져 정삼각형을 이루고, 각각 활동·고정·변통 가운데 서로 다른 모달리티를 하나씩 맡습니다. 그래서 같은 원소라도 시작하는 별자리, 지키는 별자리, 바꾸는 별자리로 성격이 갈립니다.</p>
   </div>
-  <div class="elem-grid">${ELEMS.map((el) => `<div class="elem-box"><h3>${esc(el)}의 별자리</h3><div class="elem-signs">${ordered.filter((s) => s.el === el).map((s) => `<a href="${urlOf(s.k)}">${s.e} ${esc(s.n)} · ${esc(MOD_OF[s.k])}</a>`).join('')}</div><p>${ordered.filter((s) => s.el === el).map((s) => `${esc(s.n)}: ${esc(s.trait)}`).join(' / ')}</p></div>`).join('')}</div>
+  <div class="elem-grid">${ELEMS.map((el) => `<div class="elem-box"><h3>${esc(el)}의 별자리</h3><div class="elem-signs">${ordered.filter((s) => s.el === el).map((s) => `<a href="${urlOf(s.k)}">${esc(s.n)} · ${esc(MOD_OF[s.k])}</a>`).join('')}</div><p>${ordered.filter((s) => s.el === el).map((s) => `${esc(s.n)}: ${esc(s.trait)}`).join(' / ')}</p></div>`).join('')}</div>
   <p class="note">각 별자리의 성향 문구는 이 사이트의 별자리 페이지 요약입니다.</p>
 </section>
 <section>
@@ -254,7 +254,7 @@ ${src('sign', 'aspect', 'kasi', 'terms24')}`,
   </div>
   <div class="tbl-wrap"><table class="data-table">
   <thead><tr><th>별자리</th><th>현대 지배 행성</th><th>전통 지배 행성</th><th>같은 행성을 쓰는 별자리</th></tr></thead>
-  <tbody>${ordered.map((s) => { const same = ordered.filter((x) => x.k !== s.k && ruler(x) === ruler(s)); return `<tr><th scope="row">${s.e} ${link(s.k)}</th><td>${esc(ruler(s))}</td><td>${esc(classic(s))}${classic(s) !== ruler(s) ? ' <small>(다름)</small>' : ''}</td><td>${same.length ? same.map((x) => link(x.k)).join(', ') : '—'}</td></tr>`; }).join('')}</tbody>
+  <tbody>${ordered.map((s) => { const same = ordered.filter((x) => x.k !== s.k && ruler(x) === ruler(s)); return `<tr><th scope="row">${link(s.k)}</th><td>${esc(ruler(s))}</td><td>${esc(classic(s))}${classic(s) !== ruler(s) ? ' <small>(다름)</small>' : ''}</td><td>${same.length ? same.map((x) => link(x.k)).join(', ') : '—'}</td></tr>`; }).join('')}</tbody>
   </table></div>
 </section>
 <section>

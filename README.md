@@ -16,7 +16,7 @@
 ## 기술 스택
 
 - HTML + CSS + Vanilla JS
-- Pretendard + Outfit 폰트
+- Pretendard + Noto Serif KR 폰트 (디자인: src/site.css, 빌드가 페이지마다 인라인)
 - Vercel 배포 (무료)
 - 운세 데이터: 월별 JSON (별자리별 직접 작성)
 
@@ -46,6 +46,7 @@
 │   ├── sun-ingress-hko.json   # 홍콩천문대 12중기 날짜 1950~2030 (시각 없음, 홍콩 시각)
 │   └── signs.json, profiles-*.json
 ├── scripts/build.mjs, content.mjs, guides.mjs
+├── src/site.css, src/privacy-body.html     # 공통 스타일 · 개인정보처리방침 본문 (privacy.html·404.html 도 빌드가 생성)
 └── sitemap.xml
 ```
 

@@ -24,10 +24,13 @@ const SITE = {
   gsv: ['1f373KtNH3atCzIil1snRuWtDwrzIfDYspZs5GWiRT4', 'WjzFs7iu4kDSzcJKM5QyAqGDAqx9J1P0uj-Ry4z1_NU'], // Search Console 인증 토큰(계정별). 어느 계정으로도 인증되게 모두 둔다
 };
 
-// 하단 320x50 은 모든 화면에 둔다. 양옆 160x600 은 본문(최대 920px) 밖에 자리가 남는
-// 넓은 화면에서만 스크립트로 만들어 붙인다 — 좁은 화면에 숨긴 광고를 두지 않기 위해서다.
+// 하단 320x50 은 모든 화면에 둔다. 160x600 두 개는 넓은 화면(1180px 이상)에서만, 페이지가 마련해 둔 자리
+// (data-adfit="0|1", 홈은 오늘 운세 옆·경계 시각표 옆, 나머지 페이지는 본문 오른쪽 세로 단)에 스크립트로 만들어 넣는다.
+// 좁은 화면에 숨긴 광고를 두지 않기 위해서다. 광고가 비어도 자리는 빈 칸으로 남을 뿐 본문 배치는 그대로다.
+const ADFIT_MIN = 1180;
+const adSlot = (i) => `<div class="ad-slot" data-adfit="${i}"></div>`;
 const adfitHtml = () => `<div class="adfit-bottom"><ins class="kakao_ad_area" style="display:none;" data-ad-unit="${SITE.adfit.bottom}" data-ad-width="320" data-ad-height="50"></ins></div>
-<script>(function(){if(window.innerWidth<1320)return;${JSON.stringify(SITE.adfit.side)}.forEach(function(id,i){var d=document.createElement('div');d.className='adfit-side '+(i?'adfit-right':'adfit-left');d.innerHTML='<ins class="kakao_ad_area" style="display:none;" data-ad-unit="'+id+'" data-ad-width="160" data-ad-height="600"></ins>';document.body.appendChild(d);});})();</script>
+<script>(function(){if(window.innerWidth<${ADFIT_MIN})return;var ids=${JSON.stringify(SITE.adfit.side)};document.querySelectorAll('[data-adfit]').forEach(function(d){var id=ids[+d.getAttribute('data-adfit')];if(!id)return;d.innerHTML='<ins class="kakao_ad_area" style="display:none;" data-ad-unit="'+id+'" data-ad-width="160" data-ad-height="600"></ins>';d.className+=' on';});})();</script>
 <script async src="https://t1.kakaocdn.net/kas/static/ba.min.js"></script>`;
 const signs = JSON.parse(readFileSync(join(root, 'data/signs.json'), 'utf8'));
 const profiles = ['profiles-a.json', 'profiles-b.json'].reduce((acc, f) => {
@@ -104,7 +107,7 @@ for (const mo of months) {
 }
 const curMonth = months.find((mo) => mo.y === Y && mo.m === M);
 const monthUrl = (k, mo) => `/zodiac/${k}/${mo.ym}`;
-const style = readFileSync(join(root, 'src/style.css'), 'utf8') + readFileSync(join(root, 'src/extra.css'), 'utf8');
+const style = readFileSync(join(root, 'src/site.css'), 'utf8');
 
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const paras = (t) => String(t).split(/\n{2,}/).map((p) => `<p>${esc(p.trim())}</p>`).join('');
@@ -119,7 +122,22 @@ let pages = 0;
 const written = [];
 const write = (rel, html) => { const p = join(root, rel); mkdirSync(dirname(p), { recursive: true }); writeFileSync(p, html); pages++; written.push(rel); };
 
-function layout({ title, desc, path, body, ld = [], extraHead = '', extraScript = '', robots = 'index, follow' }) {
+// 하단 "다른 도구" 줄 — comeonyourboyz 가 만든 사이트 8개. 자기 사이트는 강조한다
+const TOOLS = [
+  ['내 연봉 순위', 'https://salaryrank.web.app'],
+  ['오늘의 운세', SITE.url],
+  ['꿈해몽 사전', 'https://dreamdict.web.app'],
+  ['사자성어·속담 사전', 'https://idiomdict.web.app'],
+  ['실내식물 사전', 'https://plantdict.web.app'],
+  ['선물 룰렛', 'https://giftwheel.web.app'],
+  ['My Korean Name', 'https://mykoreanname.web.app'],
+  ['Tangerine 10', 'https://tangerin10.web.app'],
+];
+const NAV = [['home', '/', '별자리 12'], ['compat', '/compatibility', '궁합'], ['calc', '/zodiac-calculator', '계산기'], ['guide', '/guide', '기초'], ['about', '/about', '소개']];
+const TODAY_KO = `${Y}년 ${M}월 ${D}일 ${WD[new Date(Date.UTC(Y, M - 1, D)).getUTCDay()]}요일`;
+
+// rail: 본문 오른쪽 세로 단(넓은 화면 광고 자리). 홈처럼 자체 배치가 있으면 false
+function layout({ title, desc, path, body, ld = [], extraHead = '', extraScript = '', robots = 'index, follow', nav = '', rail = true, ads = true }) {
   return `<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -135,7 +153,8 @@ function layout({ title, desc, path, body, ld = [], extraHead = '', extraScript 
 <meta name="robots" content="${robots}">
 ${SITE.gsv.map((t) => `<meta name="google-site-verification" content="${t}">`).join('\n')}
 <meta name="google-adsense-account" content="ca-pub-5479403345572412">
-<meta name="theme-color" content="#1a1a2e">
+<meta name="theme-color" content="#0E1828">
+<meta name="color-scheme" content="dark">
 <meta property="og:type" content="${path === '/' ? 'website' : 'article'}">
 <meta property="og:site_name" content="${SITE.name}">
 <meta property="og:title" content="${esc(title)}">
@@ -151,26 +170,42 @@ ${SITE.gsv.map((t) => `<meta name="google-site-verification" content="${t}">`).j
 <meta name="twitter:description" content="${esc(desc)}">
 <meta name="twitter:image" content="${SITE.ogImage}">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&display=swap">
 <style>${style}</style>
 ${ld.map(jsonld).join('\n')}
 ${extraHead}
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" defer></script>
 </head>
 <body>
-<header class="site-hdr"><div class="container hdr-in">
-  <a class="brand" href="/"><span class="brand-star">✦</span> ${SITE.name}</a>
-  <nav class="hdr-nav"><a href="/">별자리 12</a><a href="/compatibility">궁합</a><a href="/zodiac-calculator">계산기</a><a href="/guide">기초</a><a href="/about">소개</a></nav>
-</div></header>
-<main class="container">
-${body}
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<div class="wrap">
+<header class="top">
+  <a class="brand" href="/">${SITE.name}</a>
+  <nav class="nav" aria-label="주 메뉴">${NAV.map(([k, href, label]) => `<a href="${href}"${k === nav ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
+  <p class="today tn">${TODAY_KO}</p>
+</header>
+</div>
+<main id="main" class="wrap">
+${rail && ads ? `<div class="page"><div class="page-main">${body}</div><aside class="rail" aria-label="광고">${adSlot(0)}${adSlot(1)}</aside></div>` : body}
 </main>
-${adfitHtml()}
-<footer class="site-ftr"><div class="container">
-  <div class="ftr-links">${signs.map((s) => `<a href="${urlOf(s.k)}">${esc(s.n)}</a>`).join('')}</div>
-  <div class="ftr-links"><a href="/">홈</a><a href="/compatibility">별자리 궁합</a><a href="/zodiac-calculator">별자리 계산기</a><a href="/guide">별자리 기초</a><a href="/about">사이트 소개</a><a href="/contact">문의하기</a><a href="/privacy">개인정보처리방침</a></div>
-  <p class="ftr-note">별자리 운세는 서양 점성술의 전통적 해석을 참고해 정리한 읽을거리입니다. 의학·법률·투자 등 중요한 판단의 근거로 삼지 마세요. © ${Y} ${SITE.name}</p>
-</div></footer>
+${ads ? adfitHtml() : ''}
+<footer class="tools">
+  <div class="wrap foot-signs">
+    <h2>12별자리</h2>
+    <ul>${signs.map((s) => `<li><a href="${urlOf(s.k)}">${esc(s.n)}</a></li>`).join('')}</ul>
+  </div>
+  <div class="wrap tools-row">
+    <h2>comeonyourboyz가 만든 다른 도구</h2>
+    <ul>${TOOLS.map(([n, u]) => (u === SITE.url ? `<li class="here"><a href="/" aria-current="true">${n}</a></li>` : `<li><a href="${u}">${n}</a></li>`)).join('')}</ul>
+  </div>
+  <div class="wrap foot">
+    <nav class="foot-links" aria-label="사이트 정보"><a href="/">홈</a><a href="/compatibility">별자리 궁합</a><a href="/zodiac-calculator">별자리 계산기</a><a href="/guide">별자리 기초</a><a href="/about">사이트 소개</a><a href="/contact">문의하기</a><a href="/privacy">개인정보처리방침</a></nav>
+    <p class="ftr-note">별자리 운세는 서양 점성술의 전통적 해석을 참고해 정리한 읽을거리입니다. 의학·법률·투자 등 중요한 판단의 근거로 삼지 마세요. © ${Y} ${SITE.name}</p>
+  </div>
+</footer>
 ${extraScript}
 </body>
 </html>`;
@@ -246,6 +281,84 @@ function skySection(s) {
 </section>`;
 }
 
+// ---------- 태양의 길: 점성술 구간(황경 30°) × 실제 별자리(IAU 경계) ----------
+// 점성술 구간은 data/sun-ingress-calc.json(Astronomy Engine 계산값), 실제 하늘은 data/sun-passage-iau.json.
+// 실제 하늘 자료는 그 파일의 연도(PASSAGE.year)와 빌드 연도가 같을 때만 쓰고, 다르면 해당 부분을 통째로 뺀다.
+const TK = (s) => Date.parse(`${s}:00+09:00`);
+const ingYear = (y) => (ingressCalc.years[String(y)] || []).slice().sort((a, b) => (a.kst < b.kst ? -1 : 1));
+const dotMD = (s) => `${Number(s.slice(5, 7))}.${Number(s.slice(8, 10))}`;
+const mdHM = (s) => `${Number(s.slice(5, 7))}월 ${Number(s.slice(8, 10))}일 ${s.slice(11, 16)}`;
+const SKY_YEAR = PASSAGE && CONST.sources?.passage?.url && PASSAGE.year === Y;
+const skyList = SKY_YEAR ? PASSAGE.passages : [];
+const skyYearList = skyList.filter((x) => x.startKst.startsWith(String(Y)));
+const abbrKey = (ab) => Object.keys(CONST.signs).find((k) => CONST.signs[k].abbr?.v === ab) || null;
+const skyName = (ab) => { const k = abbrKey(ab); return k ? { n: byKey.get(k).n, latin: CONST.signs[k].latin.v, k } : ab === 'Oph' ? { n: '뱀주인자리', latin: 'Ophiuchus', k: null } : { n: ab, latin: ab, k: null }; };
+function sunToday() {
+  const now = TK(`${TODAY}T12:00`);
+  const segs = [...ingYear(Y - 1).slice(-1), ...ingYear(Y), ...ingYear(Y + 1).slice(0, 1)];
+  const ai = segs.findLastIndex((r) => TK(r.kst) <= now);
+  const si = skyList.findIndex((x) => TK(x.startKst) <= now && now < TK(x.endKst));
+  return { now, segs, astro: segs[ai], astroNext: segs[ai + 1], sky: si >= 0 ? skyList[si] : null, skyNext: si >= 0 ? skyList[si + 1] : null };
+}
+// 별자리의 그해 점성술 구간과 실제 통과 기간 (별자리 페이지 머리)
+function signYearBox(s) {
+  const L = ingYear(Y), i = L.findIndex((r) => r.starts === s.k);
+  if (i < 0) return '';
+  const st = L[i], en = L[i + 1] || ingYear(Y + 1)[0];
+  const ab = CONST.signs?.[s.k]?.abbr?.v;
+  const pa = SKY_YEAR && ab ? skyYearList.find((x) => x.abbr === ab) : null;
+  return `<dl class="yearbox tn">
+    <div><dt><i class="k-sign"></i>${Y}년 점성술 구간</dt><dd>${dotMD(st.kst)} ${st.kst.slice(11)} – ${en ? `${dotMD(en.kst)} ${en.kst.slice(11)}` : ''}</dd><dd class="sub">${esc(st.term)} 황경 ${st.deg}°부터</dd></div>
+    ${pa ? `<div><dt><i class="k-sky"></i>${Y}년 실제 태양 통과</dt><dd>${dotMD(pa.startKst)} ${pa.startKst.slice(11)} – ${dotMD(pa.endKst)} ${pa.endKst.slice(11)}</dd><dd class="sub">IAU 경계 ${esc(skyName(ab).latin)} · 약 ${pa.days}일 · <a href="#sky">자세히</a></dd></div>` : ''}
+  </dl>`;
+}
+// 홈 첫 화면 원판 — 맨 위가 1월 1일, 시계 방향. 바깥 고리 점성술 구간, 안쪽 고리 IAU 별자리
+function wheelSvg(sun) {
+  const Y0 = TK(`${Y}-01-01T00:00`), YLEN = (TK(`${Y + 1}-01-01T00:00`) - Y0);
+  const ang = (t) => ((t - Y0) / YLEN) * 360 - 90;
+  const P = (r, a) => [320 + r * Math.cos((a * Math.PI) / 180), 320 + r * Math.sin((a * Math.PI) / 180)].map((v) => v.toFixed(2));
+  const seg = (r0, r1, a0, a1) => { const L = a1 - a0 > 180 ? 1 : 0; const [x0, y0] = P(r1, a0), [x1, y1] = P(r1, a1), [x2, y2] = P(r0, a1), [x3, y3] = P(r0, a0); return `M${x0} ${y0}A${r1} ${r1} 0 ${L} 1 ${x1} ${y1}L${x2} ${y2}A${r0} ${r0} 0 ${L} 0 ${x3} ${y3}Z`; };
+  const font = 'font-family="Pretendard Variable,Pretendard,sans-serif"';
+  const segs = [...ingYear(Y - 1).slice(-1), ...ingYear(Y)];
+  const sk = sun.sky ? skyName(sun.sky.abbr) : null;
+  const longest = skyYearList.length ? skyYearList.reduce((a, b) => (b.days > a.days ? b : a)) : null;
+  const shortest = skyYearList.length ? skyYearList.reduce((a, b) => (b.days < a.days ? b : a)) : null;
+  const oph = skyYearList.find((x) => x.abbr === 'Oph');
+  const desc = `${M}월 ${D}일 현재 태양은 점성술 구간으로는 ${byKey.get(sun.astro.starts).n}(${mdHM(sun.astro.kst)} 시작)${sk ? `, IAU 별자리 경계로는 ${sk.n}(${mdHM(sun.sky.startKst)}~${mdHM(sun.sky.endKst)})` : ''}에 있다.${longest ? ` 실제 별자리 가운데 ${skyName(longest.abbr).n}가 ${longest.days}일로 가장 길고 ${skyName(shortest.abbr).n}가 ${shortest.days}일로 가장 짧다.` : ''}${oph ? ` ${mdHM(oph.startKst).split(' ').slice(0, 2).join(' ')}~${mdHM(oph.endKst).split(' ').slice(0, 2).join(' ')}에는 뱀주인자리를 지난다.` : ''}`;
+  let o = `<svg viewBox="0 0 640 640" role="img" aria-labelledby="wt wd"><title id="wt">${Y}년 태양의 길: 점성술 구간${SKY_YEAR ? '과 실제 별자리' : ''}</title><desc id="wd">${esc(desc)}</desc>`;
+  o += '<circle cx="320" cy="320" r="304" fill="none" stroke="#2A3A55"/>';
+  segs.forEach((r, i) => {
+    const a0 = Math.max(-90, ang(TK(r.kst))), a1 = i < segs.length - 1 ? Math.min(270, ang(TK(segs[i + 1].kst))) : 270;
+    const on = r === sun.astro;
+    o += `<path d="${seg(252, 300, a0, a1)}" fill="${on ? '#D9BE85' : 'rgba(217,190,133,.07)'}" stroke="#0E1828" stroke-width="2"/>`;
+    if (a1 - a0 < 4 || i === segs.length - 1) return;
+    const [x, y] = P(276, (a0 + a1) / 2);
+    o += `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" class="wl" font-size="13" fill="${on ? '#0E1828' : '#D9BE85'}" font-weight="${on ? 700 : 500}" ${font}>${esc(byKey.get(r.starts).n.replace('자리', ''))}</text>`;
+  });
+  skyList.forEach((x) => {
+    const a0 = Math.max(-90, ang(TK(x.startKst))), a1 = Math.min(270, ang(TK(x.endKst)));
+    if (a1 <= a0) return;
+    const on = x === sun.sky, oph = x.abbr === 'Oph';
+    o += `<path d="${seg(204, 244, a0, a1)}" fill="${on ? '#86AED6' : oph ? 'rgba(134,174,214,.02)' : 'rgba(134,174,214,.10)'}" stroke="#0E1828" stroke-width="2"${oph ? ' stroke-dasharray="3 3"' : ''}/>`;
+    if (a1 - a0 < 3) return;
+    const [tx, ty] = P(224, (a0 + a1) / 2), small = a1 - a0 < 9;
+    o += `<text x="${tx}" y="${ty}" text-anchor="middle" dominant-baseline="central" class="${small ? 'ws' : 'wi'}" font-size="${small ? 11 : 13}" fill="${on ? '#0E1828' : oph ? '#A3AEC2' : '#86AED6'}" font-weight="${on ? 700 : 500}" ${font}>${esc(x.abbr)}</text>`;
+  });
+  o += '<line x1="320" y1="10" x2="320" y2="62" stroke="#A3AEC2" stroke-width="1"/>';
+  for (let m = 0; m < 12; m++) {
+    const a = ang(TK(`${Y}-${String(m + 1).padStart(2, '0')}-01T00:00`));
+    const [x0, y0] = P(186, a), [x1, y1] = P(196, a), [tx, ty] = P(170, a + 4.5);
+    o += `<line x1="${x0}" y1="${y0}" x2="${x1}" y2="${y1}" stroke="#55647E"/><text x="${tx}" y="${ty}" text-anchor="middle" dominant-baseline="central" class="wm" font-size="12" fill="#A3AEC2" ${font}>${m + 1}월</text>`;
+  }
+  o += '<circle cx="320" cy="320" r="196" fill="none" stroke="#2A3A55"/>';
+  const an = ang(sun.now), [sx, sy] = P(316, an), [lx, ly] = P(150, an);
+  o += `<g id="sunmark" style="transform-origin:320px 320px"><line x1="${lx}" y1="${ly}" x2="${sx}" y2="${sy}" stroke="#F4E7C0" stroke-width="1.5"/><circle cx="${sx}" cy="${sy}" r="9" fill="#F4E7C0"/><circle cx="${sx}" cy="${sy}" r="14" fill="none" stroke="#F4E7C0" stroke-opacity=".4"/></g>`;
+  o += `<text x="320" y="296" text-anchor="middle" font-size="15" fill="#A3AEC2" ${font}>오늘</text>`;
+  o += `<text x="320" y="334" text-anchor="middle" font-size="34" fill="#E8EBF1" font-family="Noto Serif KR,serif" font-weight="300">${M}월 ${D}일</text>`;
+  o += `<text x="320" y="362" text-anchor="middle" font-size="13" fill="#A3AEC2" ${font}>맨 위 1월 1일 · 시계 방향</text></svg>`;
+  return o;
+}
+
 // ---------- 별자리 페이지 ----------
 function pageSign(s) {
   const p = profiles[s.k];
@@ -259,27 +372,27 @@ function pageSign(s) {
 
 <article class="sign-page">
 <header class="sign-hero">
-  <div class="sign-emoji">${s.e}</div>
   <div>
     <h1>${esc(s.n)} <span class="sign-en">${esc(s.k)}</span></h1>
     <p class="sign-meta">${esc(s.p)} · ${esc(s.el)}의 별자리 · 지배행성 ${esc(s.ruler)}</p>
     <p class="sign-trait">${esc(s.trait)} 성향</p>
   </div>
+  ${signYearBox(s)}
 </header>
 
 <section class="today-box" id="todayBox">
-  <h2 class="sec-title">오늘의 ${esc(s.n)} 운세 <span class="today-date" id="todayDate">${Y}년 ${M}월 ${D}일</span></h2>
+  <h2 class="sec-title">오늘의 ${esc(s.n)} 운세 <span class="today-date tn" id="todayDate">${Y}년 ${M}월 ${D}일</span></h2>
   ${today ? `
-  <div class="f-card f-main"><span class="f-label">총운</span><p id="f-summary">${esc(today.summary)}</p></div>
-  <div class="f-grid">
-    <div class="f-card"><span class="f-label">💕 연애운</span><p id="f-love">${esc(today.love)}</p></div>
-    <div class="f-card"><span class="f-label">💼 직장운</span><p id="f-work">${esc(today.work)}</p></div>
-    <div class="f-card"><span class="f-label">💰 재물운</span><p id="f-money">${esc(today.money)}</p></div>
+  <div class="f-main"><span class="f-label">총운</span><p class="total" id="f-summary">${esc(today.summary)}</p></div>
+  <div class="f-grid three">
+    <div class="f-card"><h3 class="f-label">연애운</h3><p id="f-love">${esc(today.love)}</p></div>
+    <div class="f-card"><h3 class="f-label">직장운</h3><p id="f-work">${esc(today.work)}</p></div>
+    <div class="f-card"><h3 class="f-label">재물운</h3><p id="f-money">${esc(today.money)}</p></div>
   </div>` : '<p class="empty">오늘 운세를 준비 중입니다.</p>'}
   <div class="share-row">
-    <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡</button>
-    <button class="share-btn x" type="button" onclick="shareX()">𝕏 공유</button>
-    <button class="share-btn link" type="button" onclick="copyLink()">🔗 링크 복사</button>
+    <button class="share-btn kakao" type="button" onclick="shareKakao()">카카오톡으로 보내기</button>
+    <button class="share-btn x" type="button" onclick="shareX()">X에 공유</button>
+    <button class="share-btn link" type="button" onclick="copyLink()">링크 복사</button>
   </div>
 </section>
 
@@ -308,20 +421,20 @@ function pageSign(s) {
 <section>
   <h2 class="sec-title">${esc(s.n)}의 연애·일·돈 스타일</h2>
   <div class="style-grid">
-    <div class="style-card"><h3>💕 연애</h3><p>${esc(p.love)}</p></div>
-    <div class="style-card"><h3>💼 일</h3><p>${esc(p.work)}</p></div>
-    <div class="style-card"><h3>💰 돈</h3><p>${esc(p.money)}</p></div>
+    <div class="style-card"><h3>연애</h3><p>${esc(p.love)}</p></div>
+    <div class="style-card"><h3>일</h3><p>${esc(p.work)}</p></div>
+    <div class="style-card"><h3>돈</h3><p>${esc(p.money)}</p></div>
   </div>
 </section>
 
 <section>
   <h2 class="sec-title">${esc(s.n)}와 잘 맞는 별자리</h2>
   <div class="match-grid">
-    ${p.match.map((m) => { const t = byKey.get(m.key); return `<a class="match-card good" href="${pairUrl(s.k, m.key)}"><span class="m-emoji">${t ? t.e : '✦'}</span><span class="m-name">${esc(m.sign)}</span><span class="m-why">${esc(m.why)}</span></a>`; }).join('')}
+    ${p.match.map((m) => { const t = byKey.get(m.key); return `<a class="match-card good" href="${pairUrl(s.k, m.key)}"><span class="m-name">${esc(m.sign)}</span><span class="m-why">${esc(m.why)}</span></a>`; }).join('')}
   </div>
   <h3 class="sub-title">부딪히기 쉬운 별자리</h3>
   <div class="match-grid">
-    ${p.clash.map((m) => { const t = byKey.get(m.key); return `<a class="match-card bad" href="${pairUrl(s.k, m.key)}"><span class="m-emoji">${t ? t.e : '✦'}</span><span class="m-name">${esc(m.sign)}</span><span class="m-why">${esc(m.why)}</span></a>`; }).join('')}
+    ${p.clash.map((m) => { const t = byKey.get(m.key); return `<a class="match-card bad" href="${pairUrl(s.k, m.key)}"><span class="m-name">${esc(m.sign)}</span><span class="m-why">${esc(m.why)}</span></a>`; }).join('')}
   </div>
   <p class="note">궁합은 성향 차이를 보는 참고일 뿐입니다. 열두 별자리와의 조합별 해설은 <a href="${signCompatUrl(s.k)}">${esc(s.n)} 궁합 12가지</a>에 모아 두었습니다.</p>
 </section>
@@ -335,7 +448,7 @@ ${skySection(s)}
 
 <section>
   <h2 class="sec-title">다른 별자리 보기</h2>
-  <div class="sign-links">${signs.map((x) => `<a class="sign-chip${x.k === s.k ? ' on' : ''}" href="${urlOf(x.k)}"><span>${x.e}</span>${esc(x.n)}</a>`).join('')}</div>
+  <div class="sign-links">${signs.map((x) => `<a class="sign-chip${x.k === s.k ? ' on' : ''}" href="${urlOf(x.k)}">${esc(x.n)}</a>`).join('')}</div>
 </section>
 </article>`;
 
@@ -371,55 +484,143 @@ function copyLink(){navigator.clipboard.writeText(__S.url).then(function(){alert
   return layout({
     title: `${s.n} 오늘의 운세 — 성격·궁합·${s.p}`,
     desc: `${s.n}(${s.p}) 오늘의 총운·연애운·직장운·재물운. 성격과 강점·약점, 잘 맞는 별자리까지 한 페이지에 정리했습니다.`,
-    path, body, ld, extraScript,
+    path, body, ld, extraScript, nav: 'home',
   });
 }
 
 // ---------- 홈 ----------
 function pageHome() {
+  const sun = sunToday();
+  const cur = byKey.get(sun.astro.starts), nxt = byKey.get(sun.astroNext.starts);
+  const sk = sun.sky ? skyName(sun.sky.abbr) : null, skNext = sun.skyNext ? skyName(sun.skyNext.abbr) : null;
+  const dayNo = sun.sky ? Math.round((TK(`${TODAY}T00:00`) - TK(`${sun.sky.startKst.slice(0, 10)}T00:00`)) / 864e5) + 1 : 0;
+  const per = (s) => s.p.replace('-', '–');
+  const f0 = fortuneOf(cur.k, D);
+  const p0 = profiles[cur.k];
+  // 경계 시각표 — 그해 시작 시각 기준. 머무는 날은 다음 구간 시작까지
+  const segsY = [...ingYear(Y), ...ingYear(Y + 1).slice(0, 1)];
+  const brow = signs.map((s) => {
+    const i = segsY.findIndex((r) => r.starts === s.k), r = segsY[i], n = segsY[i + 1];
+    const sd = n ? (TK(n.kst) - TK(r.kst)) / 864e5 : null;
+    const ab = CONST.signs?.[s.k]?.abbr?.v, pa = SKY_YEAR && ab ? skyYearList.find((x) => x.abbr === ab) : null;
+    return { s, r, sd, pa };
+  });
+  const oph = skyYearList.find((x) => x.abbr === 'Oph');
+  const MAXD = Math.max(...brow.map((b) => b.sd || 0), ...skyYearList.map((x) => x.days)) * 1.05;
+  const bar = (cls, d) => `<div class="${cls}"><i style="width:${((d / MAXD) * 70).toFixed(1)}%"></i>${d.toFixed(1)}일</div>`;
+  // 실제 하늘 요약 — 출처가 있는 값만(cf). 출처 각주는 별자리 페이지의 "실제 하늘" 단락에 있다
+  const g = (f) => cf(cur.k, f);
+  const latin = g('latin');
+  const facts = [];
+  if (latin) {
+    const star = g('brightest'), mag = g('brightestMag'), bayer = g('brightestBayer'), dist = g('brightestDistLy'), area = g('area'), rank = g('areaRank'), month = g('bestMonth9pm'), lat = g('visibleLat'), border = g('bordering');
+    const ab = g('abbr')?.v, pa = SKY_YEAR && ab ? skyYearList.find((x) => x.abbr === ab) : null;
+    const shortest = skyYearList.length ? skyYearList.reduce((a, b) => (b.days < a.days ? b : a)) : null;
+    const longest = skyYearList.length ? skyYearList.reduce((a, b) => (b.days > a.days ? b : a)) : null;
+    if (star && mag) facts.push(['가장 밝은 별', esc(star.v), `${bayer ? `${esc(bayer.v)} · ` : ''}${mag.v.toFixed(2)}등`]);
+    if (dist) facts.push(['거리', `약 ${dist.v}광년`, dist.approx ? '거리 추정 오차가 큰 별' : '지구에서']);
+    if (area && rank) facts.push(['넓이', `${area.v.toLocaleString('en-US')} 제곱도`, `88개 중 ${rank.v}번째`]);
+    if (pa) facts.push([`${Y}년 태양이 머무는 때`, `${dotMD(pa.startKst)} – ${dotMD(pa.endKst)}`, `약 ${pa.days}일${pa === shortest ? ', 태양이 지나는 별자리 중 가장 짧음' : pa === longest ? ', 태양이 지나는 별자리 중 가장 김' : ''}`]);
+    if (month) facts.push(['잘 보이는 때', `${month.v}월 밤 9시`, lat ? `${latKo(lat.v.north, 'N')}부터 ${latKo(lat.v.south, 'S').replace(/^(남위 \d+°)$/, '$1')}까지${CONST.sources.seoul?.url && lat.v.north >= 38 ? ', 서울에서도 보임' : ''}` : '']);
+    if (border) facts.push(['이웃 별자리', `${border.v.length}개`, `${border.v.slice(0, 3).map((x) => esc(x.replace(' (corner)', ''))).join(', ')}${border.v.length > 3 ? ' 외' : ''}`]);
+  }
+  const mk = p0.match[0]?.key, mb = mk ? byKey.get(mk) : null, MP = mb ? PAIRS[pairKey(cur.k, mk)] : null;
   const body = `
-<section class="home-hero">
-  <p class="hero-date">${Y}년 ${M}월 ${D}일</p>
-  <h1>오늘의 별자리 운세</h1>
-  <p class="hero-sub">12별자리의 오늘 총운·연애운·직장운·재물운과 별자리별 성격·궁합·신화를 정리했습니다. 별자리를 눌러 보세요.</p>
-</section>
-
-<section>
-  <div class="sign-picker">
-    ${signs.map((s) => `<a class="sp-tile" href="${urlOf(s.k)}"><span class="sp-emoji">${s.e}</span><span class="sp-name">${esc(s.n)}</span><span class="sp-period">${esc(s.p)}</span></a>`).join('')}
+<section class="hero" aria-labelledby="h-now">
+  <div class="hero-txt">
+    <p class="eyebrow">오늘의 별자리 운세</p>
+    <h1 id="h-now">오늘 태양은<br>점성술로는 <span class="s">${esc(cur.n)}</span>${sk ? `,<br>실제 하늘에서는<br><span class="k">${esc(sk.n)}</span>에 있습니다.` : ' 구간에 있습니다.'}</h1>
+    <p class="lead">별자리 운세는 태양이 지나는 길(황도)을 춘분점부터 30°씩 나눈 구간으로 정합니다.${sk ? ' 밤하늘의 실제 별자리는 폭이 제각각이고 세차 운동으로 조금씩 밀려 있어, 두 날짜가 어긋납니다.' : ''}</p>
+    <div class="now${sk ? '' : ' one'}">
+      <div>
+        <p class="tag"><i class="k-sign"></i>점성술 구간 · 황경 ${sun.astro.deg}°</p>
+        <p class="big">${esc(cur.n)}</p>
+        <p class="t tn">${esc(sun.astro.term)} <b>${mdHM(sun.astro.kst)}</b> 시작<br>${esc(sun.astroNext.term)} ${mdHM(sun.astroNext.kst)}에 ${esc(nxt.n)}로</p>
+      </div>
+      ${sk ? `<div>
+        <p class="tag"><i class="k-sky"></i>실제 하늘 · IAU 경계</p>
+        <p class="big">${esc(sk.n)} <span class="lat">${esc(sk.latin)}</span></p>
+        <p class="t tn">${mdHM(sun.sky.startKst)}부터 ${dayNo}일째${skNext ? `<br><b>${mdHM(sun.sky.endKst)}</b>에 ${esc(skNext.n)}(${esc(skNext.latin)})로` : ''}</p>
+      </div>` : ''}
+    </div>
+    <nav class="picker" aria-labelledby="h-pick">
+      <h2 id="h-pick">별자리를 고르세요</h2>
+      <ul>${signs.map((s) => `<li><a href="${urlOf(s.k)}"${s.k === cur.k ? ' aria-current="true"' : ''}>${esc(s.n)}<span class="tn">${esc(per(s))}</span></a></li>`).join('')}</ul>
+      <p class="hero-sub">12별자리의 오늘 총운·연애운·직장운·재물운과 별자리별 성격·궁합·신화를 정리했습니다. 별자리를 눌러 보세요.</p>
+    </nav>
   </div>
-  <div class="share-row home-share">
-    <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡</button>
-    <button class="share-btn x" type="button" onclick="shareX()">𝕏 공유</button>
-    <button class="share-btn link" type="button" onclick="copyLink()">🔗 링크 복사</button>
+  <figure class="wheel">
+    ${wheelSvg(sun)}
+    <div class="wkey" aria-hidden="true"><span><i class="k-sign"></i>바깥 고리: 점성술 12구간 (${Y}년 절기 시각)</span>${SKY_YEAR ? '<span><i class="k-sky"></i>안쪽 고리: 태양이 실제로 지나는 IAU 별자리</span>' : ''}</div>
+    <figcaption>${Y}년 한 해를 원 하나로 그렸습니다. 맨 위가 1월 1일, 시계 방향으로 날짜가 흐릅니다. 바깥 고리는 태양 황경이 30°의 배수를 지나는 시각${SKY_YEAR ? ', 안쪽 고리는 IAU 별자리 경계 통과 시각이며 모두' : '이며'} ${esc(ingressCalc.method.library.split(' (')[0].replace('astronomy-engine', 'Astronomy Engine'))} 계산값(KST)입니다.</figcaption>
+  </figure>
+</section>
+
+<section class="reading" aria-labelledby="h-read">
+  <div>
+    <div class="h"><h2 id="h-read"><a href="${urlOf(cur.k)}">${esc(cur.n)} 오늘의 운세</a></h2><span class="meta tn">${esc(per(cur))} · ${esc(cur.el)}의 별자리 · 지배행성 ${esc(cur.ruler)}</span></div>
+    ${f0 ? `<p class="total">${esc(f0.summary)}</p>
+    <div class="three">
+      <div><h3>연애운</h3><p>${esc(f0.love)}</p></div>
+      <div><h3>직장운</h3><p>${esc(f0.work)}</p></div>
+      <div><h3>재물운</h3><p>${esc(f0.money)}</p></div>
+    </div>` : '<p class="empty">오늘 운세를 준비 중입니다.</p>'}
+    <div class="share-row">
+      <button class="share-btn kakao" type="button" onclick="shareKakao()">카카오톡으로 보내기</button>
+      <button class="share-btn x" type="button" onclick="shareX()">X에 공유</button>
+      <button class="share-btn link" type="button" onclick="copyLink()">링크 복사</button>
+      <a class="more" href="${urlOf(cur.k)}">${esc(cur.n)} 성격·궁합 보기</a>
+    </div>
   </div>
+  <aside class="side-ad" aria-label="광고">${adSlot(0)}</aside>
 </section>
 
-<section>
-  <h2 class="sec-title">오늘의 한 줄 운세</h2>
-  <div class="today-list">
-    ${signs.map((s) => { const f = fortuneOf(s.k, D); return `<a class="tl-row" href="${urlOf(s.k)}">
-      <span class="tl-emoji">${s.e}</span>
-      <span class="tl-body"><span class="tl-name">${esc(s.n)} <small>${esc(s.p)}</small></span><span class="tl-sum">${esc(f ? f.summary : s.trait + ' 별자리')}</span></span>
-    </a>`; }).join('')}
+<section class="lines" aria-labelledby="h-lines">
+  <div class="sec-h"><h2 id="h-lines">12별자리 오늘의 한 줄</h2><p class="tn">${TODAY_KO}</p></div>
+  <ol>${signs.map((s) => { const f = fortuneOf(s.k, D); return `<li${s.k === cur.k ? ' class="on"' : ''}><a href="${urlOf(s.k)}"><b>${esc(s.n)}</b><span class="d tn">${esc(per(s))}</span></a><p>${esc(f ? f.summary : s.trait + ' 별자리')}</p></li>`; }).join('')}</ol>
+</section>
+
+<section class="bounds" aria-labelledby="h-b">
+  <div>
+    <div class="sec-h"><h2 id="h-b">${Y}년 별자리 경계 시각표</h2><p>생일이 경계 근처라면 태어난 해의 시각을 확인하세요. ${CALC_RANGE}년 표는 <a href="/zodiac-calculator/boundaries">경계 시각표</a>에 있습니다.</p></div>
+    <table>
+      <caption>점성술 구간: data/sun-ingress-calc.json, 태양의 겉보기 황경이 30° 배수가 되는 순간(${esc(ingressCalc.method.library.split(' (')[0])} SearchSunLongitude).${SKY_YEAR ? ' 실제 통과: data/sun-passage-iau.json, 태양의 J2000 적경·적위를 IAU 별자리 경계로 판정.' : ''} 시각은 KST, 분 단위 반올림.</caption>
+      <thead><tr><th scope="col">별자리</th><th scope="col">점성술 구간 시작 (KST)</th>${SKY_YEAR ? '<th scope="col" class="hm">실제 태양 통과 (IAU 경계)</th>' : ''}<th scope="col">머무는 날 <span class="c-sign">점성술</span>${SKY_YEAR ? ' · <span class="c-sky">실제</span>' : ''}</th></tr></thead>
+      <tbody>${brow.map(({ s, r, sd, pa }) => `<tr${s.k === cur.k ? ' class="on"' : ''}><th scope="row"><a href="${urlOf(s.k)}">${esc(s.n)}</a></th><td class="tn">${dotMD(r.kst)} ${r.kst.slice(11)}<span class="sub">${esc(r.term)} ${r.deg}°</span></td>${SKY_YEAR ? `<td class="tn hm">${pa ? `${dotMD(pa.startKst)} ${pa.startKst.slice(11)} – ${dotMD(pa.endKst)} ${pa.endKst.slice(11)}` : '—'}</td>` : ''}<td class="dur"><div class="dbar">${sd ? bar('a', sd) : ''}${pa ? bar('b', pa.days) : ''}</div></td></tr>`).join('')}${oph ? `<tr class="oph"><th scope="row">뱀주인자리 <span class="sub">Oph</span></th><td>황도 12구간에 없음</td><td class="tn hm">${dotMD(oph.startKst)} ${oph.startKst.slice(11)} – ${dotMD(oph.endKst)} ${oph.endKst.slice(11)}</td><td class="dur"><div class="dbar">${bar('b', oph.days)}</div></td></tr>` : ''}</tbody>
+    </table>
   </div>
+  <aside class="side-ad" aria-label="광고">${adSlot(1)}</aside>
 </section>
 
-<section>
-  <h2 class="sec-title">이번 달 운세 <span class="today-date">${Y}년 ${M}월</span></h2>
-  <p class="sec-lead">별자리마다 ${M}월 한 달의 주차별 흐름과 날짜별 운세를 모아 두었습니다.</p>
-  <div class="sign-links">${signs.map((s) => `<a class="sign-chip" href="${monthUrl(s.k, curMonth)}"><span>${s.e}</span>${esc(s.n)} ${M}월</a>`).join('')}</div>
+<section class="duo">
+  ${facts.length ? `<div aria-labelledby="h-sky">
+    <h2 id="h-sky">실제 하늘의 ${esc(cur.n)}, ${esc(latin.v)}</h2>
+    <p class="lede">운세의 ${esc(cur.n)}는 날짜로 나눈 구간이고, 아래는 같은 이름의 천문학적 별자리에 관한 사실입니다. ${esc(CONST.retrieved)} 확인, 출처는 <a href="${urlOf(cur.k)}#sky">${esc(cur.n)} 페이지</a>에 있습니다.</p>
+    <dl class="facts">${facts.map(([t, v, sm]) => `<div><dt>${t}</dt><dd class="tn">${v}${sm ? `<small>${sm}</small>` : ''}</dd></div>`).join('')}</dl>
+  </div>` : ''}
+  ${MP ? `<div class="compat" aria-labelledby="h-c">
+    <h2 id="h-c">${esc(cur.n)} × ${esc(mb.n)}</h2>
+    <p class="lede">${esc(cur.n)}와 잘 맞는 별자리 · 연애할 때</p>
+    <blockquote>${esc(MP.love)}</blockquote>
+    <p class="tip"><b>대화 팁</b>${esc(MP.tip)}</p>
+    <a class="more" href="${pairUrl(cur.k, mk)}">${esc(cur.n)} 궁합 12가지 보기</a>
+  </div>` : ''}
 </section>
 
-<section class="info-sec">
+<section class="month-sec" aria-labelledby="h-month">
+  <div>
+    <h2 id="h-month" class="sec-title">이번 달 운세 <span class="today-date">${Y}년 ${M}월</span></h2>
+    <p class="sec-lead">별자리마다 ${M}월 한 달의 주차별 흐름과 날짜별 운세를 모아 두었습니다.</p>
+    <div class="sign-links">${signs.map((s) => `<a class="sign-chip" href="${monthUrl(s.k, curMonth)}">${esc(s.n)} ${M}월</a>`).join('')}</div>
+  </div>
   <div class="info-box">
-    <h2 class="info-title"><span class="info-ic">💡</span> 별자리 운세, 이렇게 보세요</h2>
+    <h2 class="sec-title">별자리 운세, 이렇게 보세요</h2>
     <p>별자리는 <b>태어난 날 태양이 지나던 구간</b>으로 정해집니다. 생일이 두 별자리 경계에 걸쳐 있다면 양쪽을 다 읽어 보세요.</p>
     <p>별자리 페이지에는 오늘의 운세와 함께 성격의 강점·약점, 잘 맞는 별자리를 정리해 두었습니다. 내 별자리가 헷갈리면 <a href="/zodiac-calculator">별자리 계산기</a>를, 원소나 지배 행성 같은 말이 궁금하면 <a href="/guide">별자리 기초</a>를 보세요.</p>
-    <p class="info-note"><span class="info-ic">⚠️</span> 점성술은 검증된 예측 도구가 아닙니다. 하루를 돌아보는 계기 정도로 가볍게 보시고, 중요한 결정은 스스로 내리시기 바랍니다.</p>
   </div>
 </section>
 
+<p class="note-end">점성술은 검증된 예측 도구가 아닙니다. 하루를 돌아보는 계기 정도로 가볍게 보시고, 중요한 결정은 스스로 내리시기 바랍니다.</p>
 `;
 
   const ld = [
@@ -438,7 +639,7 @@ function shareKakao(){if(!window.Kakao){alert('잠시 후 다시 시도해 주�
 function shareX(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(__S.title+'\\n'+__S.url),'_blank');}
 function copyLink(){navigator.clipboard.writeText(__S.url).then(function(){alert('링크를 복사했어요!');});}
 </script>`;
-  return layout({ title: `${SITE.name} — 12별자리 오늘의 운세와 별자리별 성격·궁합`, desc: SITE.desc, path: '/', body, ld, extraScript });
+  return layout({ title: `${SITE.name} — 12별자리 오늘의 운세와 별자리별 성격·궁합`, desc: SITE.desc, path: '/', body, ld, extraScript, nav: 'home', rail: false });
 }
 
 // ---------- 궁합 ----------
@@ -465,8 +666,8 @@ const pairScore = (a, b) => {
 };
 function pageCompat() {
   const matrix = signs.map((a) => signs.map((b) => { const { asp, score } = pairScore(a, b); return [score, asp.name, asp.text]; }));
-  const rows = signs.map((a, i) => `<tr><th scope="row"><a href="${signCompatUrl(a.k)}">${a.e} ${esc(a.n)}</a></th>${signs.map((b, j) => { const score = matrix[i][j][0]; const cls = score >= 88 ? 'c-best' : score >= 78 ? 'c-good' : score >= 65 ? 'c-mid' : 'c-low'; return `<td class="${cls}" title="${esc(a.n)} × ${esc(b.n)}">${score}</td>`; }).join('')}</tr>`).join('');
-  const pickGrid = (id) => `<div class="pick-grid" id="${id}">${signs.map((x, i) => `<button class="pick-btn" type="button" data-i="${i}"><span class="e">${x.e}</span><span class="n">${esc(x.n)}</span></button>`).join('')}</div>`;
+  const rows = signs.map((a, i) => `<tr><th scope="row"><a href="${signCompatUrl(a.k)}">${esc(a.n)}</a></th>${signs.map((b, j) => { const score = matrix[i][j][0]; const cls = score >= 88 ? 'c-best' : score >= 78 ? 'c-good' : score >= 65 ? 'c-mid' : 'c-low'; return `<td class="${cls}" title="${esc(a.n)} × ${esc(b.n)}">${score}</td>`; }).join('')}</tr>`).join('');
+  const pickGrid = (id) => `<div class="pick-grid" id="${id}">${signs.map((x, i) => `<button class="pick-btn" type="button" data-i="${i}"><span class="n">${esc(x.n)}</span><span class="pp">${esc(x.p.replace('-', '–'))}</span></button>`).join('')}</div>`;
   const body = `
 <nav class="crumb"><a href="/">홈</a> › <span>별자리 궁합</span></nav>
 <article class="sign-page">
@@ -490,7 +691,7 @@ function pageCompat() {
 </section>
 <section>
   <h2 class="sec-title">12 × 12 궁합표</h2>
-  <div class="month-wrap" style="overflow-x:auto;border-radius:0"><table class="compat-table"><thead><tr><th></th>${signs.map((s) => `<th title="${esc(s.n)}">${s.e}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>
+  <div class="month-wrap" style="overflow-x:auto;border-radius:0"><table class="compat-table"><thead><tr><th></th>${signs.map((s) => `<th scope="col" title="${esc(s.n)}">${esc(s.n.replace('자리', ''))}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>
   <p class="note">세로줄이 나, 가로줄이 상대입니다. 왼쪽 별자리 이름을 누르면 그 별자리의 궁합 12가지 해설로 이동합니다. 점수는 두 별자리의 원소 관계와 황도상 각도를 합쳐 계산했습니다.</p>
 </section>
 <section>
@@ -504,7 +705,7 @@ function pageCompat() {
 <section>
   <h2 class="sec-title">별자리별 궁합 해설</h2>
   <p class="sec-lead">별자리마다 열두 별자리와의 조합을 한 페이지에 모았습니다. 조합마다 원소·모달리티·지배 행성 관계와 연애·친구일 때, 다툰 뒤 회복하는 법, 대화 요령을 정리했습니다.</p>
-  <div class="sign-links">${ORDER.map((k) => { const x = byKey.get(k); return `<a class="sign-chip" href="${signCompatUrl(k)}"><span>${x.e}</span>${esc(x.n)} 궁합</a>`; }).join('')}</div>
+  <div class="sign-links">${ORDER.map((k) => { const x = byKey.get(k); return `<a class="sign-chip" href="${signCompatUrl(k)}">${esc(x.n)} 궁합</a>`; }).join('')}</div>
 </section>
 </article>`;
   const extraScript = `<script>
@@ -513,7 +714,7 @@ var my=-1, you=-1, __S={title:'별자리 궁합',url:'${SITE.url}/compatibility'
 function pick(grid,i){ if(grid==='myGrid')my=i; else you=i; document.querySelectorAll('#'+grid+' .pick-btn').forEach(function(b,j){b.classList.toggle('active',j===i);}); document.getElementById('goBtn').disabled=!(my>=0&&you>=0); }
 ['myGrid','yourGrid'].forEach(function(g){ document.querySelectorAll('#'+g+' .pick-btn').forEach(function(b){ b.addEventListener('click',function(){pick(g,Number(b.dataset.i));}); }); });
 function show(){ if(my<0||you<0)return; var a=__Z[my],b=__Z[you],m=__M[my][you];
-  document.getElementById('rcPair').innerHTML=a.e+' '+a.n+' <span style="opacity:.5">×</span> '+b.e+' '+b.n;
+  document.getElementById('rcPair').innerHTML=a.n+' <span class="x">×</span> '+b.n;
   document.getElementById('rcScore').innerHTML=m[0]+'<small>점</small>';
   document.getElementById('rcAsp').textContent=m[1]+' · '+(m[0]>=88?'최상의 조합':m[0]>=78?'잘 맞는 조합':m[0]>=65?'노력하면 좋아지는 조합':'서로를 배우는 조합');
   document.getElementById('rcText').textContent=m[2];
@@ -532,7 +733,7 @@ function copyLink(){navigator.clipboard.writeText(__S.url).then(function(){alert
     { '@context': 'https://schema.org', '@type': 'WebApplication', name: '별자리 궁합', url: SITE.url + '/compatibility', applicationCategory: 'LifestyleApplication', operatingSystem: 'Web Browser', inLanguage: 'ko', description: '내 별자리와 상대 별자리를 골라 궁합 점수와 해설을 확인하는 도구', offers: { '@type': 'Offer', price: '0', priceCurrency: 'KRW' } },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: '홈', item: SITE.url + '/' }, { '@type': 'ListItem', position: 2, name: '별자리 궁합', item: SITE.url + '/compatibility' }] },
   ];
-  return layout({ title: `별자리 궁합 — 내 별자리 × 상대 별자리 점수 바로 보기`, desc: '내 별자리와 상대 별자리를 고르면 원소와 각도로 계산한 궁합 점수와 해설을 바로 보여 드립니다. 12별자리 78개 조합.', path: '/compatibility', body, ld, extraScript });
+  return layout({ title: `별자리 궁합 — 내 별자리 × 상대 별자리 점수 바로 보기`, desc: '내 별자리와 상대 별자리를 고르면 원소와 각도로 계산한 궁합 점수와 해설을 바로 보여 드립니다. 12별자리 78개 조합.', path: '/compatibility', body, ld, extraScript, nav: 'compat' });
 }
 
 // ---------- 소개 ----------
@@ -547,7 +748,7 @@ function pageContact() {
   <h2 class="sec-title">이메일</h2>
   <div class="info-box">
     <p style="font-size:18px;font-weight:800;margin:0 0 8px"><a href="mailto:comeonyourboyz@gmail.com">comeonyourboyz@gmail.com</a></p>
-    <p style="margin:0;color:#555">운세 내용이 이상하거나, 오탈자를 찾으셨거나, 화면이 깨질 때 편하게 보내주세요.</p>
+    <p class="muted" style="margin:0">운세 내용이 이상하거나, 오탈자를 찾으셨거나, 화면이 깨질 때 편하게 보내주세요.</p>
   </div>
 </section>
 
@@ -623,7 +824,7 @@ function pageSignCompat(a) {
   const info = (s) => `${esc(fmtP(s.p))} · ${esc(s.el)} · ${esc(MOD_NAME[MOD_OF[s.k]])} · 지배 행성 ${esc(s.ruler)}${CLASSIC_RULER[s.k] ? ` (전통: ${esc(CLASSIC_RULER[s.k])})` : ''}`;
   const sec = ({ b, same, asp, score, dist, bonus, P, combo }) => `
 <section class="pair-sec" id="${b.k}">
-  <h2 class="sec-title">${a.e} ${esc(a.n)} × ${b.e} ${esc(b.n)} <span class="today-date">${score}점 · ${esc(asp.name)} · ${esc(verdict(score))}</span></h2>
+  <h2 class="sec-title">${esc(a.n)} × ${esc(b.n)} <span class="today-date">${score}점 · ${esc(asp.name)} · ${esc(verdict(score))}</span></h2>
   <p class="pair-meta">${same ? `같은 별자리끼리의 조합입니다. ${esc(a.n)}: ${info(a)}` : `상대 ${esc(b.n)}: ${info(b)}`}<br>조합: ${esc(combo.join(' · '))}</p>
   <p class="note">점수: ${same ? '같은 별자리(0°)' : `황도에서 ${dist * 30}° 떨어진`} ${esc(asp.name)}의 기본 점수 ${asp.score}점에 원소 보정 ${bonus > 0 ? '+' : ''}${bonus}점을 더하면 ${asp.score + bonus}점${asp.score + bonus > score ? `이고, 점수는 최대 ${score}점으로 표시합니다` : asp.score + bonus < score ? `이고, 점수는 최소 ${score}점으로 표시합니다` : '입니다'}.</p>
   <h3 class="sub-title">연애할 때</h3>
@@ -639,7 +840,7 @@ function pageSignCompat(a) {
 ${crumbHtml([['홈', '/'], ['별자리 궁합', '/compatibility'], [`${a.n} 궁합`, path]])}
 <article class="sign-page">
 <header class="pair-hero">
-  <div class="ph-signs"><a href="${urlOf(a.k)}">${a.e}</a></div>
+  <p class="ph-signs"><a href="${urlOf(a.k)}">${esc(a.n)} 오늘의 운세</a></p>
   <h1>${esc(a.n)} 궁합 12가지</h1>
   <p class="ph-asp">${info(a)}</p>
 </header>
@@ -649,14 +850,14 @@ ${crumbHtml([['홈', '/'], ['별자리 궁합', '/compatibility'], [`${a.n} 궁�
   <p class="sec-lead">${esc(a.n)}와 열두 별자리의 궁합 점수입니다. 별자리를 누르면 아래 해당 조합 해설로 이동합니다. 점수는 두 별자리의 황도상 각도(합·섹스타일·스퀘어·트라인·어포지션 등)의 기본 점수에 원소 조합 보정을 더해 계산했고, 계산 방식은 <a href="/compatibility">궁합표</a>와 같습니다.</p>
   <div class="tbl-wrap"><table class="data-table">
   <thead><tr><th>상대</th><th>점수</th><th>각도</th><th>원소 조합</th></tr></thead>
-  <tbody>${ranked.map(({ b, score, asp, combo }) => `<tr><th scope="row"><a href="#${b.k}">${b.e} ${esc(b.n)}</a></th><td>${score}</td><td>${esc(asp.name)}</td><td>${esc(combo[0])}</td></tr>`).join('')}</tbody>
+  <tbody>${ranked.map(({ b, score, asp, combo }) => `<tr><th scope="row"><a href="#${b.k}">${esc(b.n)}</a></th><td>${score}</td><td>${esc(asp.name)}</td><td>${esc(combo[0])}</td></tr>`).join('')}</tbody>
   </table></div>
 </section>
 ${list.map(sec).join('\n')}
 
 <section>
   <h2 class="sec-title">다른 별자리의 궁합</h2>
-  <div class="sign-links">${ORDER.filter((k) => k !== a.k).map((k) => { const x = byKey.get(k); return `<a class="sign-chip" href="${signCompatUrl(k)}"><span>${x.e}</span>${esc(x.n)}</a>`; }).join('')}</div>
+  <div class="sign-links">${ORDER.filter((k) => k !== a.k).map((k) => { const x = byKey.get(k); return `<a class="sign-chip" href="${signCompatUrl(k)}">${esc(x.n)}</a>`; }).join('')}</div>
   <p class="note">${esc(a.n)}의 성격과 오늘의 운세는 <a href="${urlOf(a.k)}">${esc(a.n)} 페이지</a>에 있습니다.</p>
 </section>
 <p class="note">궁합은 재미로 읽는 점성술 해석입니다. 분류 출처: ${srcLinks(['sign', 'element', 'domicile', 'aspect'])}</p>
@@ -668,7 +869,7 @@ ${list.map(sec).join('\n')}
     { '@context': 'https://schema.org', '@type': 'Article', headline: title, description: desc, inLanguage: 'ko', mainEntityOfPage: SITE.url + path, image: SITE.ogImage, dateModified: CONTENT_UPDATED, author: { '@type': 'Organization', name: SITE.name, url: SITE.url }, publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url } },
     crumbLd([['홈', '/'], ['별자리 궁합', '/compatibility'], [`${a.n} 궁합`, path]]),
   ];
-  return layout({ title, desc, path, body, ld });
+  return layout({ title, desc, path, body, ld, nav: 'compat' });
 }
 
 // ---------- 월별 운세 ----------
@@ -715,7 +916,6 @@ function pageMonth(s, mo, idx) {
 ${crumbHtml([['홈', '/'], [s.n, urlOf(s.k)], [`${mo.y}년 ${mo.m}월`, path]])}
 <article class="sign-page">
 <header class="sign-hero">
-  <div class="sign-emoji">${s.e}</div>
   <div>
     <h1>${esc(s.n)} ${mo.m}월 운세 <span class="sign-en">${mo.y}</span></h1>
     <p class="sign-meta">${esc(fmtP(s.p))} · ${esc(s.el)}의 별자리 · 지배행성 ${esc(s.ruler)}</p>
@@ -750,7 +950,7 @@ ${mo.events.length ? `
   <h2 class="sec-title">다른 달, 다른 별자리</h2>
   <div class="month-nav">${prev ? `<a href="${monthUrl(s.k, prev)}">‹ ${prev.y}년 ${prev.m}월</a>` : '<span></span>'}<a href="${urlOf(s.k)}">${esc(s.n)} 오늘의 운세</a>${next ? `<a href="${monthUrl(s.k, next)}">${next.y}년 ${next.m}월 ›</a>` : '<span></span>'}</div>
   <h3 class="sub-title">${mo.m}월 다른 별자리 운세</h3>
-  <div class="sign-links">${signs.map((x) => `<a class="sign-chip${x.k === s.k ? ' on' : ''}" href="${monthUrl(x.k, mo)}"><span>${x.e}</span>${esc(x.n)}</a>`).join('')}</div>
+  <div class="sign-links">${signs.map((x) => `<a class="sign-chip${x.k === s.k ? ' on' : ''}" href="${monthUrl(x.k, mo)}">${esc(x.n)}</a>`).join('')}</div>
 </section>
 </article>`;
   const title = `${s.n} ${mo.m}월 운세 (${mo.y}) — 연애·일·돈 흐름`;
@@ -760,7 +960,7 @@ ${mo.events.length ? `
     crumbLd([['홈', '/'], [s.n, urlOf(s.k)], [`${mo.y}년 ${mo.m}월`, path]]),
   ];
   // 월별 페이지는 한 달 남짓만 걸려 있다 내려가는 페이지라 검색에는 내보내지 않는다(sitemap 에서도 뺀다)
-  return layout({ title, desc, path, body, ld, robots: 'noindex, follow' });
+  return layout({ title, desc, path, body, ld, robots: 'noindex, follow', nav: 'home' });
 }
 
 // ---------- 별자리 경계 시각 (계산기·경계 시각표 공용) ----------
@@ -831,7 +1031,7 @@ ${crumbHtml([['홈', '/'], ['별자리 계산기', path]])}
   </div>
   <div class="tbl-wrap"><table class="data-table">
   <thead><tr><th>별자리</th><th>일반 날짜 범위</th><th>시작 절기</th><th>원소</th></tr></thead>
-  <tbody>${ordered.map((s) => `<tr><th scope="row">${s.e} <a href="${urlOf(s.k)}">${esc(s.n)}</a></th><td>${esc(fmtP(s.p))}</td><td>${esc(startTerm(s.k))}</td><td>${esc(s.el)}</td></tr>`).join('')}</tbody>
+  <tbody>${ordered.map((s) => `<tr><th scope="row"><a href="${urlOf(s.k)}">${esc(s.n)}</a></th><td>${esc(fmtP(s.p))}</td><td>${esc(startTerm(s.k))}</td><td>${esc(s.el)}</td></tr>`).join('')}</tbody>
   </table></div>
 </section>
 
@@ -868,7 +1068,7 @@ function rng(p){var a=p.split('-'),s=a[0].split('.'),e=a[1].split('.');return {s
 function byDate(m,d){var v=m*100+d;for(var i=0;i<Z.length;i++){var r=rng(Z[i].p);if(r.s<=r.e?(v>=r.s&&v<=r.e):(v>=r.s||v<=r.e))return Z[i];}return null;}
 function byKey(k){for(var i=0;i<Z.length;i++)if(Z[i].k===k)return Z[i];return null;}
 function pad(n){return (n<10?'0':'')+n;}
-function card(z){return '<div class="rc-pair">'+z.e+' '+z.n+'</div><p class="rc-asp">'+z.p.replace('-',' ~ ')+' · '+z.el+'의 별자리 · 지배 행성 '+z.r+'</p>';}
+function card(z){return '<div class="rc-pair">'+z.n+'</div><p class="rc-asp">'+z.p.replace('-',' ~ ')+' · '+z.el+'의 별자리 · 지배 행성 '+z.r+'</p>';}
 function links(z){return '<div class="rc-links"><a href="/zodiac/'+z.k+'">'+z.n+' 페이지</a><a href="/zodiac/'+z.k+'/'+MU+'">'+MM+'월 운세</a><a href="/compatibility/'+z.k+'">'+z.n+' 궁합</a></div>';}
 function hm(s){return (+s.slice(5,7))+'월 '+(+s.slice(8,10))+'일 '+s.slice(11);}
 function dayNo(s){return Date.UTC(+s.slice(0,4),+s.slice(5,7)-1,+s.slice(8,10))/864e5;}
@@ -884,7 +1084,7 @@ function calc(){
     if(t){var full=ds+'T'+t;z=byKey('capricorn');for(var j=0;j<L.length;j++)if(L[j][1]<=full)z=byKey(L[j][0]);
       html=card(z)+'<p class="rc-text">'+y+'년 '+m+'월 '+d+'일 '+t+'(한국 시각)에 태양은 <b>'+z.n+'</b> 구간에 있었습니다.'+(near?' 가장 가까운 경계는 '+hm(near[1])+'에 '+byKey(near[0]).n+'로 바뀌는 시각입니다.'+tzNote:'')+' 판정 근거: '+src+'.</p>'+links(z);}
     else if(near&&near[1].slice(0,10)===ds){var nz=byKey(near[0]);
-      html='<div class="rc-pair">'+prev.e+' '+prev.n+' 또는 '+nz.e+' '+nz.n+'</div><p class="rc-text">'+y+'년 '+m+'월 '+d+'일은 별자리가 바뀌는 날입니다. '+src+'으로 이날 '+near[1].slice(11)+'(한국 시각) 전에 태어났다면 '+prev.n+', 그 뒤라면 '+nz.n+'입니다. <b>태어난 시각을 넣으면 하나로 알려 드립니다.</b>'+tzNote+'</p><div class="rc-links"><a href="/zodiac/'+prev.k+'">'+prev.n+' 페이지</a><a href="/zodiac/'+nz.k+'">'+nz.n+' 페이지</a></div>';}
+      html='<div class="rc-pair">'+prev.n+' 또는 '+nz.n+'</div><p class="rc-text">'+y+'년 '+m+'월 '+d+'일은 별자리가 바뀌는 날입니다. '+src+'으로 이날 '+near[1].slice(11)+'(한국 시각) 전에 태어났다면 '+prev.n+', 그 뒤라면 '+nz.n+'입니다. <b>태어난 시각을 넣으면 하나로 알려 드립니다.</b>'+tzNote+'</p><div class="rc-links"><a href="/zodiac/'+prev.k+'">'+prev.n+' 페이지</a><a href="/zodiac/'+nz.k+'">'+nz.n+' 페이지</a></div>';}
     else{z=cur;html=card(z)+'<p class="rc-text">'+y+'년 '+m+'월 '+d+'일에 태양은 '+z.n+' 구간에 있었습니다. 판정 근거: '+src+'.</p>';
       if(near)html+='<p class="rc-text"><b>경계일 바로 옆입니다</b> — '+hm(near[1])+'(한국 시각)에 '+byKey(near[0]).n+'로 바뀝니다. 해외에서 태어났거나 출생 시각 기준이 다르면 결과가 달라질 수 있으니, 태어난 시각을 넣어 분 단위로 확인해 보세요.'+tzNote+'</p>';
       html+=links(z);}
@@ -907,7 +1107,7 @@ document.getElementById('calcBtn').addEventListener('click',calc);
     { '@context': 'https://schema.org', '@type': 'WebApplication', name: '별자리 계산기', url: SITE.url + path, applicationCategory: 'LifestyleApplication', operatingSystem: 'Web Browser', inLanguage: 'ko', description: '생년월일과 시각으로 태양 별자리를 찾고 경계일이면 분 단위 경계 시각으로 판정하는 도구', offers: { '@type': 'Offer', price: '0', priceCurrency: 'KRW' } },
     crumbLd([['홈', '/'], ['별자리 계산기', path]]),
   ];
-  return layout({ title: '별자리 계산기 — 생년월일로 내 별자리 찾기 (경계일 판정)', desc: `생년월일을 넣으면 태양 별자리를 알려 드립니다. ${CALC_RANGE}년생은 경계 시각을 분 단위로 비교해 판정합니다(${KASI_RANGE}년은 한국천문연구원 시각, 그 밖은 천문 계산값).`, path, body, ld, extraScript });
+  return layout({ title: '별자리 계산기 — 생년월일로 내 별자리 찾기 (경계일 판정)', desc: `생년월일을 넣으면 태양 별자리를 알려 드립니다. ${CALC_RANGE}년생은 경계 시각을 분 단위로 비교해 판정합니다(${KASI_RANGE}년은 한국천문연구원 시각, 그 밖은 천문 계산값).`, path, body, ld, extraScript, nav: 'calc' });
 }
 
 // ---------- 연도별 별자리 경계 시각표 ----------
@@ -935,7 +1135,7 @@ ${crumbHtml([['홈', '/'], ['별자리 계산기', '/zodiac-calculator'], ['연�
   <h2 class="sec-title">경계 시각표</h2>
   <div class="calc-row" style="margin-bottom:12px"><label>연도 선택<select id="yf"><option value="">전체 (${ING_YEARS.length}년)</option>${ING_YEARS.map((y) => `<option value="${y}">${y}년</option>`).join('')}</select></label></div>
   <div class="tbl-wrap"><table class="data-table nowrap" id="bt">
-  <thead><tr><th>연도</th>${cols.map((c) => `<th title="${esc(termOf[c.k] || '')}">${c.e} ${esc(c.n)}<br><small>${esc(termOf[c.k] || '')}</small></th>`).join('')}</tr></thead>
+  <thead><tr><th>연도</th>${cols.map((c) => `<th scope="col" title="${esc(termOf[c.k] || '')}">${esc(c.n)}<br><small>${esc(termOf[c.k] || '')}</small></th>`).join('')}</tr></thead>
   <tbody>${rows}</tbody>
   </table></div>
   <p class="note">시각은 모두 UTC+9 기준 “월/일 시:분”입니다. 1954~1961년의 UTC+8:30 표준시나 일광절약시간(1948~1951·1955~1960·1987~1988년)은 반영하지 않았습니다(<a href="${SRC.tzKorea.url}" target="_blank" rel="noopener">Wikipedia — Time in South Korea</a>).</p>
@@ -975,7 +1175,7 @@ try{var q=new URLSearchParams(location.search).get('y');if(q&&s.querySelector('o
     { '@context': 'https://schema.org', '@type': 'Dataset', name: '연도별 별자리 경계 시각표', description: desc, url: SITE.url + path, inLanguage: 'ko', temporalCoverage: `${ING_YEARS[0]}/${ING_YEARS[ING_YEARS.length - 1]}`, creator: { '@type': 'Organization', name: SITE.name, url: SITE.url } },
     crumbLd([['홈', '/'], ['별자리 계산기', '/zodiac-calculator'], ['연도별 경계 시각표', path]]),
   ];
-  return layout({ title, desc, path, body, ld, extraScript });
+  return layout({ title, desc, path, body, ld, extraScript, nav: 'calc' });
 }
 
 // ---------- 가이드 ----------
@@ -986,7 +1186,7 @@ function pageGuide(g) {
     { '@context': 'https://schema.org', '@type': 'Article', headline: g.title, description: g.desc, inLanguage: 'ko', mainEntityOfPage: SITE.url + g.path, image: SITE.ogImage, dateModified: CONTENT_UPDATED, author: { '@type': 'Organization', name: SITE.name, url: SITE.url }, publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url } },
     crumbLd(crumbs),
   ];
-  return layout({ title: g.title, desc: g.desc, path: g.path, body, ld });
+  return layout({ title: g.title, desc: g.desc, path: g.path, body, ld, nav: 'guide' });
 }
 
 // ---------- 소개 ----------
@@ -1061,12 +1261,41 @@ function pageAbout() {
 
 <section>
   <h2 class="sec-title">별자리 바로 가기</h2>
-  <div class="sign-links">${signs.map((x) => `<a class="sign-chip" href="${urlOf(x.k)}"><span>${x.e}</span>${esc(x.n)}</a>`).join('')}</div>
+  <div class="sign-links">${signs.map((x) => `<a class="sign-chip" href="${urlOf(x.k)}">${esc(x.n)}</a>`).join('')}</div>
 </section>
 </article>`;
   const ld = [{ '@context': 'https://schema.org', '@type': 'AboutPage', name: '사이트 소개', url: SITE.url + '/about', inLanguage: 'ko', description: `${SITE.name} 소개와 운세 작성 방식, 이용 시 유의사항` },
     crumbLd([['홈', '/'], ['사이트 소개', '/about']])];
-  return layout({ title: `사이트 소개 — 운세 작성 방식과 출처`, desc: `${SITE.name}가 어떤 사이트인지, 운세를 어떤 규칙과 검사를 거쳐 작성하는지(AI 도움·운영자 검토), 일정과 사실 정보의 출처, 문의처를 정리했습니다.`, path: '/about', body, ld });
+  return layout({ title: `사이트 소개 — 운세 작성 방식과 출처`, desc: `${SITE.name}가 어떤 사이트인지, 운세를 어떤 규칙과 검사를 거쳐 작성하는지(AI 도움·운영자 검토), 일정과 사실 정보의 출처, 문의처를 정리했습니다.`, path: '/about', body, ld, nav: 'about' });
+}
+
+// ---------- 개인정보처리방침 (본문은 src/privacy-body.html) ----------
+function pagePrivacy() {
+  const body = `
+${crumbHtml([['홈', '/'], ['개인정보처리방침', '/privacy']])}
+<article class="sign-page doc">
+${readFileSync(join(root, 'src/privacy-body.html'), 'utf8').trim()}
+</article>`;
+  return layout({ title: '개인정보처리방침 — 오늘의 운세', desc: '오늘의 운세가 수집하는 정보와 쿠키·광고 처리 방침입니다. 회원가입 없이 이용하며 생년월일은 저장하지 않습니다.', path: '/privacy', body, ads: false });
+}
+
+// ---------- 404 (Vercel 이 없는 주소에 404.html 을 돌려준다. 검색 제외·sitemap 제외) ----------
+function pageNotFound() {
+  const sun = sunToday(), cur = byKey.get(sun.astro.starts);
+  const body = `
+<article class="sign-page nf">
+<header class="home-hero"><p class="eyebrow">404</p><h1>찾는 페이지가 없습니다</h1>
+<p class="hero-sub">주소가 바뀌었거나 내려간 페이지입니다. 지난달 월별 운세는 달이 바뀌면 내리고 별자리 페이지로 연결합니다.</p></header>
+<section>
+  <h2 class="sec-title">여기서 다시 찾아 보세요</h2>
+  <div class="guide-cards"><a class="guide-card" href="/"><b>오늘의 운세 홈</b><span>12별자리 오늘의 한 줄과 별자리 경계 시각표</span></a><a class="guide-card" href="${urlOf(cur.k)}"><b>${esc(cur.n)} 오늘의 운세</b><span>오늘 태양이 지나는 점성술 구간의 별자리</span></a><a class="guide-card" href="/compatibility"><b>별자리 궁합</b><span>12 × 12 궁합표와 별자리별 해설</span></a><a class="guide-card" href="/zodiac-calculator"><b>별자리 계산기</b><span>생년월일로 내 별자리 찾기</span></a></div>
+</section>
+<section>
+  <h2 class="sec-title">별자리 바로 가기</h2>
+  <div class="sign-links">${signs.map((x) => `<a class="sign-chip" href="${urlOf(x.k)}">${esc(x.n)}</a>`).join('')}</div>
+</section>
+</article>`;
+  return layout({ title: '페이지를 찾을 수 없습니다 — 오늘의 운세', desc: '찾는 페이지가 없습니다. 오늘의 운세 홈이나 별자리 페이지에서 다시 찾아 보세요.', path: '/404', body, robots: 'noindex, follow', ads: false });
 }
 
 // ---------- 실행 ----------
@@ -1075,6 +1304,8 @@ write('index.html', pageHome());
 write('compatibility.html', pageCompat());
 write('about.html', pageAbout());
 write('contact.html', pageContact());
+write('privacy.html', pagePrivacy());
+write('404.html', pageNotFound());
 months.forEach((mo, i) => { for (const s of signs) write(`zodiac/${s.k}/${mo.ym}/index.html`, pageMonth(s, mo, i)); });
 for (const k of ORDER) write(`compatibility/${k}/index.html`, pageSignCompat(byKey.get(k)));
 write('zodiac-calculator/index.html', pageCalculator());
