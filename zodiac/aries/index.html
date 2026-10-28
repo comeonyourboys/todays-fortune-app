@@ -53,6 +53,16 @@
   --serif:"Noto Serif KR",serif;
   --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;
   color-scheme:dark;
+  /* 페이지 공통 치수 — 폭·간격·글자 단계는 여기서만 정한다 */
+  --gutter:56px;       /* 좌우 여백 (헤더·본문·푸터 공통) */
+  --rail:160px;        /* 오른쪽 광고 단 폭 (160x600) */
+  --rail-gap:64px;     /* 본문과 오른쪽 단 사이 */
+  --h1:44px;           /* 모든 페이지 제목 */
+  --h2:26px;           /* 섹션 제목 */
+  --sec-y:48px;        /* 섹션 위아래 안쪽 여백 */
+  --hero-top:32px;     /* 빵부스러기(또는 머리) 아래 → 제목 */
+  --hero-bot:8px;      /* 머리 → 첫 섹션 (섹션 안쪽 여백 --sec-y 와 더해짐) */
+  --foot-gap:64px;     /* 마지막 섹션 → 푸터 */
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -63,39 +73,47 @@ a{color:inherit}
 .tn{font-variant-numeric:tabular-nums}
 .skip{position:absolute;left:-9999px;top:8px;z-index:100;background:var(--sun);color:var(--night);padding:8px 14px;text-decoration:none;font-weight:600}
 .skip:focus{left:16px}
-.wrap{max-width:1440px;margin:0 auto;padding:0 56px}
+.wrap{max-width:1440px;margin:0 auto;padding:0 var(--gutter)}
 .muted{color:var(--muted)}
 
 /* ---------- 머리 ---------- */
 .top{display:flex;align-items:center;gap:44px;padding:22px 0;border-bottom:1px solid var(--line)}
 .brand{font-family:var(--serif);font-weight:600;font-size:21px;text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
 .nav{display:flex;gap:28px}
-.nav a{text-decoration:none;color:var(--muted);white-space:nowrap}
+.nav a{text-decoration:none;color:var(--muted);white-space:nowrap;padding-bottom:4px}
 .nav a:hover{color:var(--text)}
-.nav a[aria-current]{color:var(--text);box-shadow:inset 0 -2px 0 var(--sign);padding-bottom:4px}
+.nav a[aria-current]{color:var(--text);box-shadow:inset 0 -2px 0 var(--sign)}
 .today{margin-left:auto;color:var(--muted);font-size:15px;white-space:nowrap}
 
 /* ---------- 본문 + 오른쪽 광고 단 ---------- */
-.page{display:grid;grid-template-columns:minmax(0,1fr);gap:72px}
-.page-main{min-width:0;max-width:980px}
+/* 본문 단은 오른쪽 단 앞까지 꽉 채운다(글 단락은 .prose 등이 각자 줄 길이를 제한). 홈의 오늘 운세·경계 시각표 옆 광고도 같은 선에 선다 */
+main{padding-bottom:var(--foot-gap)}
+.page{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--rail-gap)}
+.page-main{min-width:0}
 .rail{display:none}
-.ad-slot{display:none}
-.ad-slot.on{display:block;width:160px}
 @media (min-width:1180px){
-  .page{grid-template-columns:minmax(0,1fr) 160px}
-  .rail{display:flex;flex-direction:column;gap:48px;padding-top:40px}
-  .rail .ad-slot.on:last-child{position:sticky;top:24px}
+  .page{grid-template-columns:minmax(0,1fr) var(--rail)}
+  .rail{display:flex;flex-direction:column;gap:48px;padding-top:var(--hero-top)}
+  .rail .ad.on:last-child{position:sticky;top:24px}
 }
-.adfit-bottom{display:flex;justify-content:center;margin:40px auto 8px;min-height:0}
+/* 광고 자리: 단위 크기만큼 미리 잡아 두고(CLS 방지), 못 채우면 .off 로 접는다. 점선 박스는 그리지 않는다 */
+.ad-side{display:none}
+.ad-side.on{display:block;width:var(--rail);min-height:624px}
+.ad-label{font-size:12px;line-height:16px;color:var(--muted);margin:0 0 8px;letter-spacing:.02em}
+.ad-banner{min-height:74px;margin:0 0 var(--sec-y)}
+.ad-banner ins{display:block}
+.ad.off{min-height:0;margin:0}
+.ad.off .ad-label{display:none}
+.ad.off:has(ins:not([style*="none"])) .ad-label{display:block}
 
 /* ---------- 공통 글 요소 ---------- */
 .crumb{font-size:14px;color:var(--muted);margin:24px 0 0;display:flex;gap:8px;flex-wrap:wrap}
 .crumb a{color:var(--sky);text-decoration:none}
 .crumb a:hover{text-decoration:underline}
-.sign-page > section{margin:0;padding:44px 0;border-top:1px solid var(--line)}
+.sign-page > section{margin:0;padding:var(--sec-y) 0;border-top:1px solid var(--line)}
 .sign-page > section:first-of-type{border-top:0}
 .sign-page > header + section{border-top:1px solid var(--line)}
-.sec-title{font-family:var(--serif);font-weight:400;font-size:26px;line-height:1.35;letter-spacing:-.02em;margin:0 0 20px;display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap}
+.sec-title{font-family:var(--serif);font-weight:400;font-size:var(--h2);line-height:1.35;letter-spacing:-.02em;margin:0 0 20px;display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap}
 .sub-title{font-size:15px;font-weight:600;color:var(--sign);margin:28px 0 10px}
 .today-date{font-family:var(--sans);font-size:15px;color:var(--muted);font-weight:400;letter-spacing:0}
 .sec-lead{color:var(--muted);font-size:15px;line-height:1.7;margin:-8px 0 20px;max-width:46em}
@@ -109,14 +127,15 @@ a{color:inherit}
 .empty{color:var(--muted);padding:16px 0}
 .eyebrow{font-size:14px;color:var(--muted);letter-spacing:.04em;margin:0 0 14px}
 
-/* 페이지 머리 (궁합·계산기·가이드·소개 등) */
-.home-hero{padding:40px 0 36px !important}
-.home-hero h1{font-family:var(--serif);font-weight:300;font-size:44px;line-height:1.3;letter-spacing:-.025em;margin:0 0 16px}
+/* 페이지 머리 (궁합·계산기·가이드·소개 등) — 별자리·궁합 상세·문서 머리와 같은 간격·글자 단계 */
+.home-hero{padding:var(--hero-top) 0 var(--hero-bot)}
+.home-hero h1,.sign-hero h1,.pair-hero h1,.doc h1{font-family:var(--serif);font-weight:300;font-size:var(--h1);line-height:1.3;letter-spacing:-.025em}
+.home-hero h1{margin:0 0 16px}
 .hero-sub{color:var(--muted);font-size:17px;line-height:1.75;max-width:40em}
 
 /* ---------- 홈 첫 화면 ---------- */
-.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center;padding:32px 0 32px}
-.hero h1{font-family:var(--serif);font-weight:300;font-size:44px;line-height:1.3;letter-spacing:-.025em;margin:0 0 20px}
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center;padding:var(--hero-top) 0 var(--sec-y)}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:var(--h1);line-height:1.3;letter-spacing:-.025em;margin:0 0 20px}
 .hero h1 .s{color:var(--sign)}
 .hero h1 .k{color:var(--sky)}
 .lead{color:var(--muted);max-width:34em;margin:0 0 22px}
@@ -150,9 +169,9 @@ a{color:inherit}
 .wkey i{width:14px;margin-right:7px;vertical-align:4px}
 
 /* 오늘 운세 */
-.reading{display:grid;grid-template-columns:minmax(0,1fr);gap:64px;padding:56px 0;border-top:1px solid var(--line)}
+.reading{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--rail-gap);padding:var(--sec-y) 0;border-top:1px solid var(--line)}
 .reading .h{display:flex;align-items:baseline;gap:6px 18px;margin-bottom:22px;flex-wrap:wrap}
-.reading h2{font-family:var(--serif);font-weight:400;font-size:30px;letter-spacing:-.02em}
+.reading h2{font-family:var(--serif);font-weight:400;font-size:var(--h2);letter-spacing:-.02em}
 .reading h2 a{text-decoration:none}
 .reading h2 a:hover{color:var(--sign)}
 .reading .meta{color:var(--muted);font-size:15px}
@@ -162,8 +181,9 @@ a{color:inherit}
 .three p{font-size:17px;line-height:1.7}
 .side-ad{display:none}
 @media (min-width:1180px){
-  .reading{grid-template-columns:minmax(0,1fr) 160px}
+  .reading{grid-template-columns:minmax(0,1fr) var(--rail)}
   .side-ad{display:block}
+  .bounds .side-ad .ad{position:sticky;top:24px}
 }
 .share-row{display:flex;gap:8px;margin-top:32px;flex-wrap:wrap;align-items:center}
 .share-btn{font:inherit;font-size:15px;background:transparent;color:var(--text);border:1px solid var(--line);padding:8px 16px;cursor:pointer;border-radius:999px;white-space:nowrap}
@@ -172,9 +192,9 @@ a{color:inherit}
 .more{color:var(--sky);text-underline-offset:3px}
 
 /* 12별자리 한 줄 */
-.lines{padding:48px 0 56px;border-top:1px solid var(--line)}
-.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin-bottom:24px}
-.sec-h h2{font-family:var(--serif);font-weight:400;font-size:26px}
+.lines{padding:var(--sec-y) 0;border-top:1px solid var(--line)}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:6px 24px;margin-bottom:24px}
+.sec-h h2{font-family:var(--serif);font-weight:400;font-size:var(--h2);flex:none}
 .sec-h p{color:var(--muted);font-size:15px}
 .sec-h p a{color:var(--sky)}
 .lines ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);column-gap:48px}
@@ -187,8 +207,8 @@ a{color:inherit}
 .lines li.on b{color:var(--sign)}
 
 /* 경계 시각표 */
-.bounds{padding:48px 0 56px;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr);gap:64px}
-@media (min-width:1180px){.bounds{grid-template-columns:minmax(0,1fr) 160px}}
+.bounds{padding:var(--sec-y) 0;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--rail-gap)}
+@media (min-width:1180px){.bounds{grid-template-columns:minmax(0,1fr) var(--rail)}}
 .bounds table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
 .bounds th,.bounds td{text-align:left;padding:11px 14px 11px 0;border-bottom:1px solid var(--line);font-size:16px;vertical-align:middle;font-weight:400}
 .bounds tbody th a{text-decoration:none}
@@ -207,8 +227,8 @@ a{color:inherit}
 .bounds caption{caption-side:bottom;text-align:left;color:var(--muted);font-size:14px;padding-top:14px;line-height:1.6}
 
 /* 실제 하늘 + 궁합 */
-.duo{display:grid;grid-template-columns:7fr 5fr;gap:64px;padding:48px 0 56px;border-top:1px solid var(--line)}
-.duo h2{font-family:var(--serif);font-weight:400;font-size:26px;margin:0 0 6px}
+.duo{display:grid;grid-template-columns:7fr 5fr;gap:var(--rail-gap);padding:var(--sec-y) 0;border-top:1px solid var(--line)}
+.duo h2{font-family:var(--serif);font-weight:400;font-size:var(--h2);margin:0 0 6px}
 .lede{color:var(--muted);margin:0 0 22px;max-width:40em}
 dl.facts{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
 dl.facts div{padding:16px 18px 16px 0;border-bottom:1px solid var(--line)}
@@ -219,15 +239,14 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
 .compat .tip{margin:22px 0 0;padding:16px 0 0;border-top:1px solid var(--line);color:var(--soft)}
 .compat .tip b{color:var(--sign);font-weight:600;margin-right:8px}
 .compat .more{display:inline-block;margin-top:18px}
-.month-sec{display:grid;grid-template-columns:7fr 5fr;gap:64px;padding:48px 0;border-top:1px solid var(--line)}
-.note-end{color:var(--muted);font-size:14px;max-width:60em;padding:0 0 24px}
+.month-sec{display:grid;grid-template-columns:7fr 5fr;gap:var(--rail-gap);padding:var(--sec-y) 0;border-top:1px solid var(--line)}
+.note-end{color:var(--muted);font-size:14px;max-width:60em;padding:24px 0 0;border-top:1px solid var(--line)}
 
 /* ---------- 칩·카드 ---------- */
 .sign-links,.elem-signs{display:flex;flex-wrap:wrap;gap:2px}
 .sign-chip,.elem-signs a{display:inline-block;background:var(--night-2);padding:8px 14px;font-size:15px;text-decoration:none;color:var(--text)}
 .sign-chip:hover,.elem-signs a:hover{background:var(--night-3)}
 .sign-chip.on{background:var(--sign);color:var(--night);font-weight:600}
-.info-box h2{font-size:22px}
 .info-box p{color:var(--soft);margin:0 0 12px;line-height:1.8}
 .info-box p:last-child{margin-bottom:0}
 .info-box b{color:var(--text);font-weight:600}
@@ -247,6 +266,7 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
 .elem-box p{font-size:14px;color:var(--muted);line-height:1.7;margin-top:12px}
 
 /* ---------- 표 ---------- */
+.data-table .num{text-align:right;padding-right:24px}
 .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-top:1px solid var(--muted)}
 .data-table{width:100%;border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums}
 .data-table th,.data-table td{padding:11px 14px 11px 0;text-align:left;border-bottom:1px solid var(--line);line-height:1.55;vertical-align:top}
@@ -258,8 +278,8 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
 .data-table.nowrap td{white-space:nowrap}
 
 /* ---------- 별자리 페이지 ---------- */
-.sign-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 56px;align-items:end;padding:36px 0 40px}
-.sign-hero h1{font-family:var(--serif);font-weight:300;font-size:52px;line-height:1.2;letter-spacing:-.025em;display:flex;align-items:baseline;gap:4px 16px;flex-wrap:wrap}
+.sign-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 56px;align-items:end;padding:var(--hero-top) 0 var(--hero-bot)}
+.sign-hero h1{display:flex;align-items:baseline;gap:4px 16px;flex-wrap:wrap}
 .sign-en{font-family:var(--sans);font-size:15px;color:var(--muted);font-weight:400;text-transform:capitalize;letter-spacing:.02em}
 .sign-meta{color:var(--muted);margin-top:12px}
 .sign-trait{color:var(--sign);margin-top:2px}
@@ -344,10 +364,9 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
 .compat-table td.c-mid{background:rgba(217,190,133,.14);color:var(--soft)}
 .compat-table td.c-low{background:var(--night-2);color:var(--muted)}
 .compat-table td a{color:inherit;text-decoration:none;display:block}
-.pair-hero{padding:36px 0 40px}
+.pair-hero{padding:var(--hero-top) 0 var(--hero-bot)}
 .ph-signs{margin:0 0 10px}
 .ph-signs a{color:var(--sky);font-size:15px}
-.pair-hero h1{font-family:var(--serif);font-weight:300;font-size:44px;line-height:1.3;letter-spacing:-.025em}
 .ph-asp{color:var(--muted);margin-top:10px}
 .pair-sec{scroll-margin-top:24px}
 .pair-sec:target .sec-title{color:var(--sign)}
@@ -396,20 +415,24 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
 .calc-row small{font-size:13px}
 .calc-row input,.calc-row select{font:inherit;font-size:17px;color:var(--text);background:var(--night-2);border:1px solid var(--line);border-bottom-color:var(--muted);padding:10px 12px;width:100%;min-width:0;border-radius:0;color-scheme:dark}
 .calc-row input:focus,.calc-row select:focus{border-color:var(--sign);outline:none;box-shadow:0 0 0 1px var(--sign)}
+.calc-row.calc-filter{margin-bottom:12px}
+.prose-after{margin-top:14px}
+.info-box .mail{font-size:18px;font-weight:600;margin:0 0 8px}
+.info-box .mail a{color:var(--sky);text-underline-offset:3px}
+.info-box p.muted{margin:0;color:var(--muted)}
 
 /* ---------- 문서(개인정보처리방침) ---------- */
-.doc{max-width:46em;padding-bottom:24px}
-.doc h1{font-family:var(--serif);font-weight:300;font-size:44px;line-height:1.3;letter-spacing:-.025em;margin:40px 0 8px}
+.doc{max-width:46em}
+.doc h1{margin:var(--hero-top) 0 12px}
 .doc .sub{color:var(--muted);font-size:15px;margin-bottom:32px}
-.doc h2{font-family:var(--serif);font-weight:400;font-size:22px;margin:36px 0 10px;padding-top:24px;border-top:1px solid var(--line)}
+.doc h2{font-family:var(--serif);font-weight:400;font-size:var(--h2);margin:36px 0 10px;padding-top:24px;border-top:1px solid var(--line)}
 .doc p,.doc li{color:var(--soft);line-height:1.85}
 .doc p{margin:0 0 12px}
 .doc ul{padding-left:20px;margin:0 0 12px}
 .doc b{color:var(--text)}
-.nf .home-hero h1{font-size:44px}
 
 /* ---------- 바닥 ---------- */
-.tools{border-top:1px solid var(--line);margin-top:24px}
+.tools{border-top:1px solid var(--line)}
 .foot-signs,.tools-row{display:grid;grid-template-columns:300px 1fr;gap:16px 40px;padding-top:28px;padding-bottom:4px}
 .tools-row{padding-bottom:24px}
 .tools h2{font-family:var(--serif);font-weight:400;font-size:17px;color:var(--muted)}
@@ -428,6 +451,7 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
 
 /* ---------- 좁은 화면 ---------- */
 @media (max-width:1180px){
+  .sec-h{flex-direction:column;gap:6px}
   .hero{grid-template-columns:1fr}
   .wheel svg{margin:0 auto}
   .wheel figcaption,.wkey{text-align:left;justify-content:flex-start;margin-left:0}
@@ -436,23 +460,20 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
   .sign-hero{grid-template-columns:1fr;align-items:start}
 }
 @media (max-width:760px){
-  .wrap{padding:0 16px}
+  :root{--gutter:16px;--h1:33px;--h2:23px;--sec-y:36px;--hero-top:24px;--hero-bot:4px;--foot-gap:48px}
   .top{flex-wrap:wrap;gap:8px 20px;padding:16px 0}
   .nav{gap:16px;flex-wrap:wrap;font-size:15px}
   .today{margin-left:0;width:100%;font-size:14px}
-  .hero{padding-top:24px;gap:28px}
-  .hero h1,.home-hero h1,.pair-hero h1,.doc h1,.nf .home-hero h1{font-size:33px}
-  .sign-hero h1{font-size:40px}
+  .hero{gap:28px}
   .now{grid-template-columns:1fr}
   .now > div + div{padding-left:0;border-left:0;border-top:1px solid var(--line)}
   .picker ul{grid-template-columns:repeat(3,1fr)}
   .picker a{padding:6px 10px}
-  .reading{gap:32px;padding:40px 0}
+  .reading{gap:32px}
   .total{font-size:23px}
   .three,.style-grid{grid-template-columns:1fr;gap:22px}
   .lines ol{grid-template-columns:1fr}
   .lines li{grid-template-columns:80px 1fr}
-  .sec-h{flex-direction:column;gap:6px}
   .bounds th.hm,.bounds td.hm{display:none}
   .bounds td.dur{width:auto}
   .bounds th,.bounds td{font-size:15px;padding-right:8px}
@@ -461,8 +482,6 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
   dl.facts dd{font-size:20px}
   .wheel .wl{font-size:21px}.wheel .wi{font-size:19px}.wheel .ws{font-size:14px}.wheel .wm{font-size:18px}
   .reading .h{flex-direction:column;gap:4px}
-  .reading h2{font-size:26px}
-  .sec-title,.sec-h h2,.duo h2{font-size:23px}
   .two-col,.match-grid,.guide-cards,.elem-grid{grid-template-columns:1fr}
   .match-grid{gap:0}
   .yearbox{grid-template-columns:1fr}
@@ -471,7 +490,6 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
   .pick-grid{grid-template-columns:repeat(3,1fr)}
   .calc-row{grid-template-columns:1fr 1fr}
   .prose p{font-size:16px}
-  .sign-page > section{padding:36px 0}
   .foot-signs,.tools-row{grid-template-columns:1fr;gap:14px}
   .tools ul{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px}
   .tools li + li::before{display:none}
@@ -535,6 +553,7 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
     <button class="share-btn link" type="button" onclick="copyLink()">링크 복사</button>
   </div>
 </section>
+<div class="ad ad-banner" aria-label="광고"><p class="ad-label">광고</p><ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-XKdPIuDkSo3uxN1l" data-ad-width="320" data-ad-height="50" data-ad-onfail="__adFail"></ins></div>
 
 <section>
   <h2 class="sec-title">월별 양자리 운세</h2>
@@ -596,10 +615,11 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
   <h2 class="sec-title">다른 별자리 보기</h2>
   <div class="sign-links"><a class="sign-chip" href="/zodiac/aquarius">물병자리</a><a class="sign-chip" href="/zodiac/pisces">물고기자리</a><a class="sign-chip on" href="/zodiac/aries">양자리</a><a class="sign-chip" href="/zodiac/taurus">황소자리</a><a class="sign-chip" href="/zodiac/gemini">쌍둥이자리</a><a class="sign-chip" href="/zodiac/cancer">게자리</a><a class="sign-chip" href="/zodiac/leo">사자자리</a><a class="sign-chip" href="/zodiac/virgo">처녀자리</a><a class="sign-chip" href="/zodiac/libra">천칭자리</a><a class="sign-chip" href="/zodiac/scorpio">전갈자리</a><a class="sign-chip" href="/zodiac/sagittarius">사수자리</a><a class="sign-chip" href="/zodiac/capricorn">염소자리</a></div>
 </section>
-</article></div><aside class="rail" aria-label="광고"><div class="ad-slot" data-adfit="0"></div><div class="ad-slot" data-adfit="1"></div></aside></div>
+</article></div><aside class="rail" aria-label="광고"><div class="ad ad-side" data-adfit="0"></div><div class="ad ad-side" data-adfit="1"></div></aside></div>
 </main>
-<div class="adfit-bottom"><ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-XKdPIuDkSo3uxN1l" data-ad-width="320" data-ad-height="50"></ins></div>
-<script>(function(){if(window.innerWidth<1180)return;var ids=["DAN-PJDk9Ix8QSZwmho2","DAN-oPwQwRMLYEcXD02F"];document.querySelectorAll('[data-adfit]').forEach(function(d){var id=ids[+d.getAttribute('data-adfit')];if(!id)return;d.innerHTML='<ins class="kakao_ad_area" style="display:none;" data-ad-unit="'+id+'" data-ad-width="160" data-ad-height="600"></ins>';d.className+=' on';});})();</script>
+<script>function __adFail(el){var b=el&&el.closest&&el.closest('.ad');if(b)b.className+=' off';}
+(function(){if(window.innerWidth>=1180){var ids=["DAN-PJDk9Ix8QSZwmho2","DAN-oPwQwRMLYEcXD02F"];document.querySelectorAll('[data-adfit]').forEach(function(d){var id=ids[+d.getAttribute('data-adfit')];if(!id)return;d.innerHTML='<p class="ad-label">광고</p><ins class="kakao_ad_area" style="display:none;" data-ad-unit="'+id+'" data-ad-width="160" data-ad-height="600" data-ad-onfail="__adFail"></ins>';d.className+=' on';});}
+window.addEventListener('load',function(){setTimeout(function(){document.querySelectorAll('.ad ins').forEach(function(i){if(i.style.display==='none')__adFail(i);});},4000);});})();</script>
 <script async src="https://t1.kakaocdn.net/kas/static/ba.min.js"></script>
 <footer class="tools">
   <div class="wrap foot-signs">

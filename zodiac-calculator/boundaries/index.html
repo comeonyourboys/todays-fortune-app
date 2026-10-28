@@ -53,6 +53,16 @@
   --serif:"Noto Serif KR",serif;
   --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;
   color-scheme:dark;
+  /* 페이지 공통 치수 — 폭·간격·글자 단계는 여기서만 정한다 */
+  --gutter:56px;       /* 좌우 여백 (헤더·본문·푸터 공통) */
+  --rail:160px;        /* 오른쪽 광고 단 폭 (160x600) */
+  --rail-gap:64px;     /* 본문과 오른쪽 단 사이 */
+  --h1:44px;           /* 모든 페이지 제목 */
+  --h2:26px;           /* 섹션 제목 */
+  --sec-y:48px;        /* 섹션 위아래 안쪽 여백 */
+  --hero-top:32px;     /* 빵부스러기(또는 머리) 아래 → 제목 */
+  --hero-bot:8px;      /* 머리 → 첫 섹션 (섹션 안쪽 여백 --sec-y 와 더해짐) */
+  --foot-gap:64px;     /* 마지막 섹션 → 푸터 */
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -63,39 +73,47 @@ a{color:inherit}
 .tn{font-variant-numeric:tabular-nums}
 .skip{position:absolute;left:-9999px;top:8px;z-index:100;background:var(--sun);color:var(--night);padding:8px 14px;text-decoration:none;font-weight:600}
 .skip:focus{left:16px}
-.wrap{max-width:1440px;margin:0 auto;padding:0 56px}
+.wrap{max-width:1440px;margin:0 auto;padding:0 var(--gutter)}
 .muted{color:var(--muted)}
 
 /* ---------- 머리 ---------- */
 .top{display:flex;align-items:center;gap:44px;padding:22px 0;border-bottom:1px solid var(--line)}
 .brand{font-family:var(--serif);font-weight:600;font-size:21px;text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
 .nav{display:flex;gap:28px}
-.nav a{text-decoration:none;color:var(--muted);white-space:nowrap}
+.nav a{text-decoration:none;color:var(--muted);white-space:nowrap;padding-bottom:4px}
 .nav a:hover{color:var(--text)}
-.nav a[aria-current]{color:var(--text);box-shadow:inset 0 -2px 0 var(--sign);padding-bottom:4px}
+.nav a[aria-current]{color:var(--text);box-shadow:inset 0 -2px 0 var(--sign)}
 .today{margin-left:auto;color:var(--muted);font-size:15px;white-space:nowrap}
 
 /* ---------- 본문 + 오른쪽 광고 단 ---------- */
-.page{display:grid;grid-template-columns:minmax(0,1fr);gap:72px}
-.page-main{min-width:0;max-width:980px}
+/* 본문 단은 오른쪽 단 앞까지 꽉 채운다(글 단락은 .prose 등이 각자 줄 길이를 제한). 홈의 오늘 운세·경계 시각표 옆 광고도 같은 선에 선다 */
+main{padding-bottom:var(--foot-gap)}
+.page{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--rail-gap)}
+.page-main{min-width:0}
 .rail{display:none}
-.ad-slot{display:none}
-.ad-slot.on{display:block;width:160px}
 @media (min-width:1180px){
-  .page{grid-template-columns:minmax(0,1fr) 160px}
-  .rail{display:flex;flex-direction:column;gap:48px;padding-top:40px}
-  .rail .ad-slot.on:last-child{position:sticky;top:24px}
+  .page{grid-template-columns:minmax(0,1fr) var(--rail)}
+  .rail{display:flex;flex-direction:column;gap:48px;padding-top:var(--hero-top)}
+  .rail .ad.on:last-child{position:sticky;top:24px}
 }
-.adfit-bottom{display:flex;justify-content:center;margin:40px auto 8px;min-height:0}
+/* 광고 자리: 단위 크기만큼 미리 잡아 두고(CLS 방지), 못 채우면 .off 로 접는다. 점선 박스는 그리지 않는다 */
+.ad-side{display:none}
+.ad-side.on{display:block;width:var(--rail);min-height:624px}
+.ad-label{font-size:12px;line-height:16px;color:var(--muted);margin:0 0 8px;letter-spacing:.02em}
+.ad-banner{min-height:74px;margin:0 0 var(--sec-y)}
+.ad-banner ins{display:block}
+.ad.off{min-height:0;margin:0}
+.ad.off .ad-label{display:none}
+.ad.off:has(ins:not([style*="none"])) .ad-label{display:block}
 
 /* ---------- 공통 글 요소 ---------- */
 .crumb{font-size:14px;color:var(--muted);margin:24px 0 0;display:flex;gap:8px;flex-wrap:wrap}
 .crumb a{color:var(--sky);text-decoration:none}
 .crumb a:hover{text-decoration:underline}
-.sign-page > section{margin:0;padding:44px 0;border-top:1px solid var(--line)}
+.sign-page > section{margin:0;padding:var(--sec-y) 0;border-top:1px solid var(--line)}
 .sign-page > section:first-of-type{border-top:0}
 .sign-page > header + section{border-top:1px solid var(--line)}
-.sec-title{font-family:var(--serif);font-weight:400;font-size:26px;line-height:1.35;letter-spacing:-.02em;margin:0 0 20px;display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap}
+.sec-title{font-family:var(--serif);font-weight:400;font-size:var(--h2);line-height:1.35;letter-spacing:-.02em;margin:0 0 20px;display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap}
 .sub-title{font-size:15px;font-weight:600;color:var(--sign);margin:28px 0 10px}
 .today-date{font-family:var(--sans);font-size:15px;color:var(--muted);font-weight:400;letter-spacing:0}
 .sec-lead{color:var(--muted);font-size:15px;line-height:1.7;margin:-8px 0 20px;max-width:46em}
@@ -109,14 +127,15 @@ a{color:inherit}
 .empty{color:var(--muted);padding:16px 0}
 .eyebrow{font-size:14px;color:var(--muted);letter-spacing:.04em;margin:0 0 14px}
 
-/* 페이지 머리 (궁합·계산기·가이드·소개 등) */
-.home-hero{padding:40px 0 36px !important}
-.home-hero h1{font-family:var(--serif);font-weight:300;font-size:44px;line-height:1.3;letter-spacing:-.025em;margin:0 0 16px}
+/* 페이지 머리 (궁합·계산기·가이드·소개 등) — 별자리·궁합 상세·문서 머리와 같은 간격·글자 단계 */
+.home-hero{padding:var(--hero-top) 0 var(--hero-bot)}
+.home-hero h1,.sign-hero h1,.pair-hero h1,.doc h1{font-family:var(--serif);font-weight:300;font-size:var(--h1);line-height:1.3;letter-spacing:-.025em}
+.home-hero h1{margin:0 0 16px}
 .hero-sub{color:var(--muted);font-size:17px;line-height:1.75;max-width:40em}
 
 /* ---------- 홈 첫 화면 ---------- */
-.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center;padding:32px 0 32px}
-.hero h1{font-family:var(--serif);font-weight:300;font-size:44px;line-height:1.3;letter-spacing:-.025em;margin:0 0 20px}
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center;padding:var(--hero-top) 0 var(--sec-y)}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:var(--h1);line-height:1.3;letter-spacing:-.025em;margin:0 0 20px}
 .hero h1 .s{color:var(--sign)}
 .hero h1 .k{color:var(--sky)}
 .lead{color:var(--muted);max-width:34em;margin:0 0 22px}
@@ -150,9 +169,9 @@ a{color:inherit}
 .wkey i{width:14px;margin-right:7px;vertical-align:4px}
 
 /* 오늘 운세 */
-.reading{display:grid;grid-template-columns:minmax(0,1fr);gap:64px;padding:56px 0;border-top:1px solid var(--line)}
+.reading{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--rail-gap);padding:var(--sec-y) 0;border-top:1px solid var(--line)}
 .reading .h{display:flex;align-items:baseline;gap:6px 18px;margin-bottom:22px;flex-wrap:wrap}
-.reading h2{font-family:var(--serif);font-weight:400;font-size:30px;letter-spacing:-.02em}
+.reading h2{font-family:var(--serif);font-weight:400;font-size:var(--h2);letter-spacing:-.02em}
 .reading h2 a{text-decoration:none}
 .reading h2 a:hover{color:var(--sign)}
 .reading .meta{color:var(--muted);font-size:15px}
@@ -162,8 +181,9 @@ a{color:inherit}
 .three p{font-size:17px;line-height:1.7}
 .side-ad{display:none}
 @media (min-width:1180px){
-  .reading{grid-template-columns:minmax(0,1fr) 160px}
+  .reading{grid-template-columns:minmax(0,1fr) var(--rail)}
   .side-ad{display:block}
+  .bounds .side-ad .ad{position:sticky;top:24px}
 }
 .share-row{display:flex;gap:8px;margin-top:32px;flex-wrap:wrap;align-items:center}
 .share-btn{font:inherit;font-size:15px;background:transparent;color:var(--text);border:1px solid var(--line);padding:8px 16px;cursor:pointer;border-radius:999px;white-space:nowrap}
@@ -172,9 +192,9 @@ a{color:inherit}
 .more{color:var(--sky);text-underline-offset:3px}
 
 /* 12별자리 한 줄 */
-.lines{padding:48px 0 56px;border-top:1px solid var(--line)}
-.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin-bottom:24px}
-.sec-h h2{font-family:var(--serif);font-weight:400;font-size:26px}
+.lines{padding:var(--sec-y) 0;border-top:1px solid var(--line)}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:6px 24px;margin-bottom:24px}
+.sec-h h2{font-family:var(--serif);font-weight:400;font-size:var(--h2);flex:none}
 .sec-h p{color:var(--muted);font-size:15px}
 .sec-h p a{color:var(--sky)}
 .lines ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);column-gap:48px}
@@ -187,8 +207,8 @@ a{color:inherit}
 .lines li.on b{color:var(--sign)}
 
 /* 경계 시각표 */
-.bounds{padding:48px 0 56px;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr);gap:64px}
-@media (min-width:1180px){.bounds{grid-template-columns:minmax(0,1fr) 160px}}
+.bounds{padding:var(--sec-y) 0;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--rail-gap)}
+@media (min-width:1180px){.bounds{grid-template-columns:minmax(0,1fr) var(--rail)}}
 .bounds table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
 .bounds th,.bounds td{text-align:left;padding:11px 14px 11px 0;border-bottom:1px solid var(--line);font-size:16px;vertical-align:middle;font-weight:400}
 .bounds tbody th a{text-decoration:none}
@@ -207,8 +227,8 @@ a{color:inherit}
 .bounds caption{caption-side:bottom;text-align:left;color:var(--muted);font-size:14px;padding-top:14px;line-height:1.6}
 
 /* 실제 하늘 + 궁합 */
-.duo{display:grid;grid-template-columns:7fr 5fr;gap:64px;padding:48px 0 56px;border-top:1px solid var(--line)}
-.duo h2{font-family:var(--serif);font-weight:400;font-size:26px;margin:0 0 6px}
+.duo{display:grid;grid-template-columns:7fr 5fr;gap:var(--rail-gap);padding:var(--sec-y) 0;border-top:1px solid var(--line)}
+.duo h2{font-family:var(--serif);font-weight:400;font-size:var(--h2);margin:0 0 6px}
 .lede{color:var(--muted);margin:0 0 22px;max-width:40em}
 dl.facts{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
 dl.facts div{padding:16px 18px 16px 0;border-bottom:1px solid var(--line)}
@@ -219,15 +239,14 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
 .compat .tip{margin:22px 0 0;padding:16px 0 0;border-top:1px solid var(--line);color:var(--soft)}
 .compat .tip b{color:var(--sign);font-weight:600;margin-right:8px}
 .compat .more{display:inline-block;margin-top:18px}
-.month-sec{display:grid;grid-template-columns:7fr 5fr;gap:64px;padding:48px 0;border-top:1px solid var(--line)}
-.note-end{color:var(--muted);font-size:14px;max-width:60em;padding:0 0 24px}
+.month-sec{display:grid;grid-template-columns:7fr 5fr;gap:var(--rail-gap);padding:var(--sec-y) 0;border-top:1px solid var(--line)}
+.note-end{color:var(--muted);font-size:14px;max-width:60em;padding:24px 0 0;border-top:1px solid var(--line)}
 
 /* ---------- 칩·카드 ---------- */
 .sign-links,.elem-signs{display:flex;flex-wrap:wrap;gap:2px}
 .sign-chip,.elem-signs a{display:inline-block;background:var(--night-2);padding:8px 14px;font-size:15px;text-decoration:none;color:var(--text)}
 .sign-chip:hover,.elem-signs a:hover{background:var(--night-3)}
 .sign-chip.on{background:var(--sign);color:var(--night);font-weight:600}
-.info-box h2{font-size:22px}
 .info-box p{color:var(--soft);margin:0 0 12px;line-height:1.8}
 .info-box p:last-child{margin-bottom:0}
 .info-box b{color:var(--text);font-weight:600}
@@ -247,6 +266,7 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
 .elem-box p{font-size:14px;color:var(--muted);line-height:1.7;margin-top:12px}
 
 /* ---------- 표 ---------- */
+.data-table .num{text-align:right;padding-right:24px}
 .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-top:1px solid var(--muted)}
 .data-table{width:100%;border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums}
 .data-table th,.data-table td{padding:11px 14px 11px 0;text-align:left;border-bottom:1px solid var(--line);line-height:1.55;vertical-align:top}
@@ -258,8 +278,8 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
 .data-table.nowrap td{white-space:nowrap}
 
 /* ---------- 별자리 페이지 ---------- */
-.sign-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 56px;align-items:end;padding:36px 0 40px}
-.sign-hero h1{font-family:var(--serif);font-weight:300;font-size:52px;line-height:1.2;letter-spacing:-.025em;display:flex;align-items:baseline;gap:4px 16px;flex-wrap:wrap}
+.sign-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 56px;align-items:end;padding:var(--hero-top) 0 var(--hero-bot)}
+.sign-hero h1{display:flex;align-items:baseline;gap:4px 16px;flex-wrap:wrap}
 .sign-en{font-family:var(--sans);font-size:15px;color:var(--muted);font-weight:400;text-transform:capitalize;letter-spacing:.02em}
 .sign-meta{color:var(--muted);margin-top:12px}
 .sign-trait{color:var(--sign);margin-top:2px}
@@ -344,10 +364,9 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
 .compat-table td.c-mid{background:rgba(217,190,133,.14);color:var(--soft)}
 .compat-table td.c-low{background:var(--night-2);color:var(--muted)}
 .compat-table td a{color:inherit;text-decoration:none;display:block}
-.pair-hero{padding:36px 0 40px}
+.pair-hero{padding:var(--hero-top) 0 var(--hero-bot)}
 .ph-signs{margin:0 0 10px}
 .ph-signs a{color:var(--sky);font-size:15px}
-.pair-hero h1{font-family:var(--serif);font-weight:300;font-size:44px;line-height:1.3;letter-spacing:-.025em}
 .ph-asp{color:var(--muted);margin-top:10px}
 .pair-sec{scroll-margin-top:24px}
 .pair-sec:target .sec-title{color:var(--sign)}
@@ -396,20 +415,24 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
 .calc-row small{font-size:13px}
 .calc-row input,.calc-row select{font:inherit;font-size:17px;color:var(--text);background:var(--night-2);border:1px solid var(--line);border-bottom-color:var(--muted);padding:10px 12px;width:100%;min-width:0;border-radius:0;color-scheme:dark}
 .calc-row input:focus,.calc-row select:focus{border-color:var(--sign);outline:none;box-shadow:0 0 0 1px var(--sign)}
+.calc-row.calc-filter{margin-bottom:12px}
+.prose-after{margin-top:14px}
+.info-box .mail{font-size:18px;font-weight:600;margin:0 0 8px}
+.info-box .mail a{color:var(--sky);text-underline-offset:3px}
+.info-box p.muted{margin:0;color:var(--muted)}
 
 /* ---------- 문서(개인정보처리방침) ---------- */
-.doc{max-width:46em;padding-bottom:24px}
-.doc h1{font-family:var(--serif);font-weight:300;font-size:44px;line-height:1.3;letter-spacing:-.025em;margin:40px 0 8px}
+.doc{max-width:46em}
+.doc h1{margin:var(--hero-top) 0 12px}
 .doc .sub{color:var(--muted);font-size:15px;margin-bottom:32px}
-.doc h2{font-family:var(--serif);font-weight:400;font-size:22px;margin:36px 0 10px;padding-top:24px;border-top:1px solid var(--line)}
+.doc h2{font-family:var(--serif);font-weight:400;font-size:var(--h2);margin:36px 0 10px;padding-top:24px;border-top:1px solid var(--line)}
 .doc p,.doc li{color:var(--soft);line-height:1.85}
 .doc p{margin:0 0 12px}
 .doc ul{padding-left:20px;margin:0 0 12px}
 .doc b{color:var(--text)}
-.nf .home-hero h1{font-size:44px}
 
 /* ---------- 바닥 ---------- */
-.tools{border-top:1px solid var(--line);margin-top:24px}
+.tools{border-top:1px solid var(--line)}
 .foot-signs,.tools-row{display:grid;grid-template-columns:300px 1fr;gap:16px 40px;padding-top:28px;padding-bottom:4px}
 .tools-row{padding-bottom:24px}
 .tools h2{font-family:var(--serif);font-weight:400;font-size:17px;color:var(--muted)}
@@ -428,6 +451,7 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
 
 /* ---------- 좁은 화면 ---------- */
 @media (max-width:1180px){
+  .sec-h{flex-direction:column;gap:6px}
   .hero{grid-template-columns:1fr}
   .wheel svg{margin:0 auto}
   .wheel figcaption,.wkey{text-align:left;justify-content:flex-start;margin-left:0}
@@ -436,23 +460,20 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
   .sign-hero{grid-template-columns:1fr;align-items:start}
 }
 @media (max-width:760px){
-  .wrap{padding:0 16px}
+  :root{--gutter:16px;--h1:33px;--h2:23px;--sec-y:36px;--hero-top:24px;--hero-bot:4px;--foot-gap:48px}
   .top{flex-wrap:wrap;gap:8px 20px;padding:16px 0}
   .nav{gap:16px;flex-wrap:wrap;font-size:15px}
   .today{margin-left:0;width:100%;font-size:14px}
-  .hero{padding-top:24px;gap:28px}
-  .hero h1,.home-hero h1,.pair-hero h1,.doc h1,.nf .home-hero h1{font-size:33px}
-  .sign-hero h1{font-size:40px}
+  .hero{gap:28px}
   .now{grid-template-columns:1fr}
   .now > div + div{padding-left:0;border-left:0;border-top:1px solid var(--line)}
   .picker ul{grid-template-columns:repeat(3,1fr)}
   .picker a{padding:6px 10px}
-  .reading{gap:32px;padding:40px 0}
+  .reading{gap:32px}
   .total{font-size:23px}
   .three,.style-grid{grid-template-columns:1fr;gap:22px}
   .lines ol{grid-template-columns:1fr}
   .lines li{grid-template-columns:80px 1fr}
-  .sec-h{flex-direction:column;gap:6px}
   .bounds th.hm,.bounds td.hm{display:none}
   .bounds td.dur{width:auto}
   .bounds th,.bounds td{font-size:15px;padding-right:8px}
@@ -461,8 +482,6 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
   dl.facts dd{font-size:20px}
   .wheel .wl{font-size:21px}.wheel .wi{font-size:19px}.wheel .ws{font-size:14px}.wheel .wm{font-size:18px}
   .reading .h{flex-direction:column;gap:4px}
-  .reading h2{font-size:26px}
-  .sec-title,.sec-h h2,.duo h2{font-size:23px}
   .two-col,.match-grid,.guide-cards,.elem-grid{grid-template-columns:1fr}
   .match-grid{gap:0}
   .yearbox{grid-template-columns:1fr}
@@ -471,7 +490,6 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
   .pick-grid{grid-template-columns:repeat(3,1fr)}
   .calc-row{grid-template-columns:1fr 1fr}
   .prose p{font-size:16px}
-  .sign-page > section{padding:36px 0}
   .foot-signs,.tools-row{grid-template-columns:1fr;gap:14px}
   .tools ul{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px}
   .tools li + li::before{display:none}
@@ -506,7 +524,7 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
 <div class="page"><div class="page-main">
 <nav class="crumb"><a href="/">홈</a> › <a href="/zodiac-calculator">별자리 계산기</a> › <span>연도별 경계 시각표</span></nav>
 <article class="sign-page">
-<header class="home-hero" style="padding-top:20px"><h1>연도별 별자리 경계 시각표</h1>
+<header class="home-hero"><h1>연도별 별자리 경계 시각표</h1>
 <p class="hero-sub">1950~2030년, 태양이 황경 30°의 배수를 지나 별자리가 바뀌는 순간을 한국 시각(UTC+9) 분 단위로 정리했습니다.</p></header>
 
 <section>
@@ -516,10 +534,11 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
     <p>연도 옆에 <b>천문연</b>이라고 적힌 2021~2028년은 한국천문연구원이 공개한 절기 시각이고, <b>계산</b>이라고 적힌 해는 아래 방법으로 직접 계산한 값입니다. <a href="/zodiac-calculator">별자리 계산기</a>도 같은 값으로 판정합니다.</p>
   </div>
 </section>
+<div class="ad ad-banner" aria-label="광고"><p class="ad-label">광고</p><ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-XKdPIuDkSo3uxN1l" data-ad-width="320" data-ad-height="50" data-ad-onfail="__adFail"></ins></div>
 
 <section>
   <h2 class="sec-title">경계 시각표</h2>
-  <div class="calc-row" style="margin-bottom:12px"><label>연도 선택<select id="yf"><option value="">전체 (81년)</option><option value="1950">1950년</option><option value="1951">1951년</option><option value="1952">1952년</option><option value="1953">1953년</option><option value="1954">1954년</option><option value="1955">1955년</option><option value="1956">1956년</option><option value="1957">1957년</option><option value="1958">1958년</option><option value="1959">1959년</option><option value="1960">1960년</option><option value="1961">1961년</option><option value="1962">1962년</option><option value="1963">1963년</option><option value="1964">1964년</option><option value="1965">1965년</option><option value="1966">1966년</option><option value="1967">1967년</option><option value="1968">1968년</option><option value="1969">1969년</option><option value="1970">1970년</option><option value="1971">1971년</option><option value="1972">1972년</option><option value="1973">1973년</option><option value="1974">1974년</option><option value="1975">1975년</option><option value="1976">1976년</option><option value="1977">1977년</option><option value="1978">1978년</option><option value="1979">1979년</option><option value="1980">1980년</option><option value="1981">1981년</option><option value="1982">1982년</option><option value="1983">1983년</option><option value="1984">1984년</option><option value="1985">1985년</option><option value="1986">1986년</option><option value="1987">1987년</option><option value="1988">1988년</option><option value="1989">1989년</option><option value="1990">1990년</option><option value="1991">1991년</option><option value="1992">1992년</option><option value="1993">1993년</option><option value="1994">1994년</option><option value="1995">1995년</option><option value="1996">1996년</option><option value="1997">1997년</option><option value="1998">1998년</option><option value="1999">1999년</option><option value="2000">2000년</option><option value="2001">2001년</option><option value="2002">2002년</option><option value="2003">2003년</option><option value="2004">2004년</option><option value="2005">2005년</option><option value="2006">2006년</option><option value="2007">2007년</option><option value="2008">2008년</option><option value="2009">2009년</option><option value="2010">2010년</option><option value="2011">2011년</option><option value="2012">2012년</option><option value="2013">2013년</option><option value="2014">2014년</option><option value="2015">2015년</option><option value="2016">2016년</option><option value="2017">2017년</option><option value="2018">2018년</option><option value="2019">2019년</option><option value="2020">2020년</option><option value="2021">2021년</option><option value="2022">2022년</option><option value="2023">2023년</option><option value="2024">2024년</option><option value="2025">2025년</option><option value="2026">2026년</option><option value="2027">2027년</option><option value="2028">2028년</option><option value="2029">2029년</option><option value="2030">2030년</option></select></label></div>
+  <div class="calc-row calc-filter"><label>연도 선택<select id="yf"><option value="">전체 (81년)</option><option value="1950">1950년</option><option value="1951">1951년</option><option value="1952">1952년</option><option value="1953">1953년</option><option value="1954">1954년</option><option value="1955">1955년</option><option value="1956">1956년</option><option value="1957">1957년</option><option value="1958">1958년</option><option value="1959">1959년</option><option value="1960">1960년</option><option value="1961">1961년</option><option value="1962">1962년</option><option value="1963">1963년</option><option value="1964">1964년</option><option value="1965">1965년</option><option value="1966">1966년</option><option value="1967">1967년</option><option value="1968">1968년</option><option value="1969">1969년</option><option value="1970">1970년</option><option value="1971">1971년</option><option value="1972">1972년</option><option value="1973">1973년</option><option value="1974">1974년</option><option value="1975">1975년</option><option value="1976">1976년</option><option value="1977">1977년</option><option value="1978">1978년</option><option value="1979">1979년</option><option value="1980">1980년</option><option value="1981">1981년</option><option value="1982">1982년</option><option value="1983">1983년</option><option value="1984">1984년</option><option value="1985">1985년</option><option value="1986">1986년</option><option value="1987">1987년</option><option value="1988">1988년</option><option value="1989">1989년</option><option value="1990">1990년</option><option value="1991">1991년</option><option value="1992">1992년</option><option value="1993">1993년</option><option value="1994">1994년</option><option value="1995">1995년</option><option value="1996">1996년</option><option value="1997">1997년</option><option value="1998">1998년</option><option value="1999">1999년</option><option value="2000">2000년</option><option value="2001">2001년</option><option value="2002">2002년</option><option value="2003">2003년</option><option value="2004">2004년</option><option value="2005">2005년</option><option value="2006">2006년</option><option value="2007">2007년</option><option value="2008">2008년</option><option value="2009">2009년</option><option value="2010">2010년</option><option value="2011">2011년</option><option value="2012">2012년</option><option value="2013">2013년</option><option value="2014">2014년</option><option value="2015">2015년</option><option value="2016">2016년</option><option value="2017">2017년</option><option value="2018">2018년</option><option value="2019">2019년</option><option value="2020">2020년</option><option value="2021">2021년</option><option value="2022">2022년</option><option value="2023">2023년</option><option value="2024">2024년</option><option value="2025">2025년</option><option value="2026">2026년</option><option value="2027">2027년</option><option value="2028">2028년</option><option value="2029">2029년</option><option value="2030">2030년</option></select></label></div>
   <div class="tbl-wrap"><table class="data-table nowrap" id="bt">
   <thead><tr><th>연도</th><th scope="col" title="대한">물병자리<br><small>대한</small></th><th scope="col" title="우수">물고기자리<br><small>우수</small></th><th scope="col" title="춘분">양자리<br><small>춘분</small></th><th scope="col" title="곡우">황소자리<br><small>곡우</small></th><th scope="col" title="소만">쌍둥이자리<br><small>소만</small></th><th scope="col" title="하지">게자리<br><small>하지</small></th><th scope="col" title="대서">사자자리<br><small>대서</small></th><th scope="col" title="처서">처녀자리<br><small>처서</small></th><th scope="col" title="추분">천칭자리<br><small>추분</small></th><th scope="col" title="상강">전갈자리<br><small>상강</small></th><th scope="col" title="소설">사수자리<br><small>소설</small></th><th scope="col" title="동지">염소자리<br><small>동지</small></th></tr></thead>
   <tbody><tr data-y="1950"><th scope="row">1950<small> 계산</small></th><td>1/21 00:00</td><td>2/19 14:17</td><td>3/21 13:35</td><td>4/21 00:59</td><td>5/22 00:27</td><td>6/22 08:36</td><td>7/23 19:30</td><td>8/24 02:23</td><td>9/23 23:44</td><td>10/24 08:45</td><td>11/23 06:02</td><td>12/22 19:13</td></tr><tr data-y="1951"><th scope="row">1951<small> 계산</small></th><td>1/21 05:52</td><td>2/19 20:10</td><td>3/21 19:26</td><td>4/21 06:48</td><td>5/22 06:15</td><td>6/22 14:25</td><td>7/24 01:21</td><td>8/24 08:16</td><td>9/24 05:37</td><td>10/24 14:36</td><td>11/23 11:51</td><td>12/23 01:00</td></tr><tr data-y="1952"><th scope="row">1952<small> 계산</small></th><td>1/21 11:38</td><td>2/20 01:56</td><td>3/21 01:13</td><td>4/20 12:36</td><td>5/21 12:04</td><td>6/21 20:13</td><td>7/23 07:08</td><td>8/23 14:03</td><td>9/23 11:24</td><td>10/23 20:22</td><td>11/22 17:36</td><td>12/22 06:43</td></tr><tr data-y="1953"><th scope="row">1953<small> 계산</small></th><td>1/20 17:21</td><td>2/19 07:41</td><td>3/21 07:01</td><td>4/20 18:26</td><td>5/21 17:53</td><td>6/22 02:00</td><td>7/23 12:52</td><td>8/23 19:45</td><td>9/23 17:06</td><td>10/24 02:06</td><td>11/22 23:22</td><td>12/22 12:32</td></tr><tr data-y="1954"><th scope="row">1954<small> 계산</small></th><td>1/20 23:11</td><td>2/19 13:32</td><td>3/21 12:53</td><td>4/21 00:20</td><td>5/21 23:48</td><td>6/22 07:54</td><td>7/23 18:45</td><td>8/24 01:36</td><td>9/23 22:56</td><td>10/24 07:57</td><td>11/23 05:14</td><td>12/22 18:24</td></tr><tr data-y="1955"><th scope="row">1955<small> 계산</small></th><td>1/21 05:02</td><td>2/19 19:19</td><td>3/21 18:35</td><td>4/21 05:58</td><td>5/22 05:25</td><td>6/22 13:32</td><td>7/24 00:25</td><td>8/24 07:19</td><td>9/24 04:41</td><td>10/24 13:43</td><td>11/23 11:01</td><td>12/23 00:11</td></tr><tr data-y="1956"><th scope="row">1956<small> 계산</small></th><td>1/21 10:49</td><td>2/20 01:05</td><td>3/21 00:21</td><td>4/20 11:44</td><td>5/21 11:13</td><td>6/21 19:24</td><td>7/23 06:20</td><td>8/23 13:15</td><td>9/23 10:35</td><td>10/23 19:35</td><td>11/22 16:50</td><td>12/22 06:00</td></tr><tr data-y="1957"><th scope="row">1957<small> 계산</small></th><td>1/20 16:39</td><td>2/19 06:58</td><td>3/21 06:16</td><td>4/20 17:41</td><td>5/21 17:10</td><td>6/22 01:21</td><td>7/23 12:15</td><td>8/23 19:08</td><td>9/23 16:26</td><td>10/24 01:24</td><td>11/22 22:39</td><td>12/22 11:49</td></tr><tr data-y="1958"><th scope="row">1958<small> 계산</small></th><td>1/20 22:29</td><td>2/19 12:48</td><td>3/21 12:05</td><td>4/20 23:27</td><td>5/21 22:51</td><td>6/22 06:57</td><td>7/23 17:50</td><td>8/24 00:46</td><td>9/23 22:09</td><td>10/24 07:11</td><td>11/23 04:29</td><td>12/22 17:40</td></tr><tr data-y="1959"><th scope="row">1959<small> 계산</small></th><td>1/21 04:19</td><td>2/19 18:38</td><td>3/21 17:55</td><td>4/21 05:16</td><td>5/22 04:42</td><td>6/22 12:50</td><td>7/23 23:45</td><td>8/24 06:44</td><td>9/24 04:08</td><td>10/24 13:11</td><td>11/23 10:27</td><td>12/22 23:34</td></tr><tr data-y="1960"><th scope="row">1960<small> 계산</small></th><td>1/21 10:10</td><td>2/20 00:26</td><td>3/20 23:42</td><td>4/20 11:06</td><td>5/21 10:33</td><td>6/21 18:42</td><td>7/23 05:37</td><td>8/23 12:34</td><td>9/23 09:59</td><td>10/23 19:02</td><td>11/22 16:18</td><td>12/22 05:26</td></tr><tr data-y="1961"><th scope="row">1961<small> 계산</small></th><td>1/20 16:01</td><td>2/19 06:17</td><td>3/21 05:32</td><td>4/20 16:55</td><td>5/21 16:22</td><td>6/22 00:30</td><td>7/23 11:24</td><td>8/23 18:19</td><td>9/23 15:42</td><td>10/24 00:47</td><td>11/22 22:08</td><td>12/22 11:20</td></tr><tr data-y="1962"><th scope="row">1962<small> 계산</small></th><td>1/20 21:58</td><td>2/19 12:15</td><td>3/21 11:30</td><td>4/20 22:51</td><td>5/21 22:17</td><td>6/22 06:25</td><td>7/23 17:18</td><td>8/24 00:13</td><td>9/23 21:36</td><td>10/24 06:41</td><td>11/23 04:02</td><td>12/22 17:15</td></tr><tr data-y="1963"><th scope="row">1963<small> 계산</small></th><td>1/21 03:54</td><td>2/19 18:09</td><td>3/21 17:20</td><td>4/21 04:36</td><td>5/22 03:58</td><td>6/22 12:04</td><td>7/23 22:59</td><td>8/24 05:58</td><td>9/24 03:23</td><td>10/24 12:29</td><td>11/23 09:50</td><td>12/22 23:02</td></tr><tr data-y="1964"><th scope="row">1964<small> 계산</small></th><td>1/21 09:41</td><td>2/19 23:57</td><td>3/20 23:10</td><td>4/20 10:27</td><td>5/21 09:50</td><td>6/21 17:57</td><td>7/23 04:53</td><td>8/23 11:51</td><td>9/23 09:17</td><td>10/23 18:21</td><td>11/22 15:39</td><td>12/22 04:50</td></tr><tr data-y="1965"><th scope="row">1965<small> 계산</small></th><td>1/20 15:29</td><td>2/19 05:48</td><td>3/21 05:05</td><td>4/20 16:26</td><td>5/21 15:50</td><td>6/21 23:55</td><td>7/23 10:48</td><td>8/23 17:42</td><td>9/23 15:06</td><td>10/24 00:10</td><td>11/22 21:29</td><td>12/22 10:40</td></tr><tr data-y="1966"><th scope="row">1966<small> 계산</small></th><td>1/20 21:20</td><td>2/19 11:37</td><td>3/21 10:52</td><td>4/20 22:11</td><td>5/21 21:32</td><td>6/22 05:33</td><td>7/23 16:23</td><td>8/23 23:18</td><td>9/23 20:43</td><td>10/24 05:51</td><td>11/23 03:14</td><td>12/22 16:28</td></tr><tr data-y="1967"><th scope="row">1967<small> 계산</small></th><td>1/21 03:07</td><td>2/19 17:24</td><td>3/21 16:37</td><td>4/21 03:55</td><td>5/22 03:18</td><td>6/22 11:23</td><td>7/23 22:16</td><td>8/24 05:12</td><td>9/24 02:38</td><td>10/24 11:44</td><td>11/23 09:05</td><td>12/22 22:16</td></tr><tr data-y="1968"><th scope="row">1968<small> 계산</small></th><td>1/21 08:54</td><td>2/19 23:09</td><td>3/20 22:22</td><td>4/20 09:41</td><td>5/21 09:06</td><td>6/21 17:13</td><td>7/23 04:07</td><td>8/23 11:03</td><td>9/23 08:26</td><td>10/23 17:30</td><td>11/22 14:49</td><td>12/22 04:00</td></tr><tr data-y="1969"><th scope="row">1969<small> 계산</small></th><td>1/20 14:38</td><td>2/19 04:55</td><td>3/21 04:08</td><td>4/20 15:27</td><td>5/21 14:50</td><td>6/21 22:55</td><td>7/23 09:48</td><td>8/23 16:43</td><td>9/23 14:07</td><td>10/23 23:11</td><td>11/22 20:31</td><td>12/22 09:44</td></tr><tr data-y="1970"><th scope="row">1970<small> 계산</small></th><td>1/20 20:24</td><td>2/19 10:42</td><td>3/21 09:56</td><td>4/20 21:15</td><td>5/21 20:38</td><td>6/22 04:43</td><td>7/23 15:37</td><td>8/23 22:34</td><td>9/23 19:59</td><td>10/24 05:05</td><td>11/23 02:25</td><td>12/22 15:36</td></tr><tr data-y="1971"><th scope="row">1971<small> 계산</small></th><td>1/21 02:13</td><td>2/19 16:27</td><td>3/21 15:38</td><td>4/21 02:54</td><td>5/22 02:15</td><td>6/22 10:19</td><td>7/23 21:15</td><td>8/24 04:15</td><td>9/24 01:45</td><td>10/24 10:53</td><td>11/23 08:14</td><td>12/22 21:24</td></tr><tr data-y="1972"><th scope="row">1972<small> 계산</small></th><td>1/21 07:59</td><td>2/19 22:11</td><td>3/20 21:21</td><td>4/20 08:37</td><td>5/21 07:59</td><td>6/21 16:06</td><td>7/23 03:02</td><td>8/23 10:03</td><td>9/23 07:33</td><td>10/23 16:41</td><td>11/22 14:03</td><td>12/22 03:13</td></tr><tr data-y="1973"><th scope="row">1973<small> 계산</small></th><td>1/20 13:49</td><td>2/19 04:02</td><td>3/21 03:13</td><td>4/20 14:31</td><td>5/21 13:54</td><td>6/21 22:01</td><td>7/23 08:56</td><td>8/23 15:53</td><td>9/23 13:21</td><td>10/23 22:30</td><td>11/22 19:54</td><td>12/22 09:08</td></tr><tr data-y="1974"><th scope="row">1974<small> 계산</small></th><td>1/20 19:46</td><td>2/19 09:58</td><td>3/21 09:06</td><td>4/20 20:18</td><td>5/21 19:36</td><td>6/22 03:37</td><td>7/23 14:30</td><td>8/23 21:29</td><td>9/23 18:59</td><td>10/24 04:11</td><td>11/23 01:38</td><td>12/22 14:56</td></tr><tr data-y="1975"><th scope="row">1975<small> 계산</small></th><td>1/21 01:36</td><td>2/19 15:50</td><td>3/21 14:57</td><td>4/21 02:07</td><td>5/22 01:23</td><td>6/22 09:26</td><td>7/23 20:22</td><td>8/24 03:23</td><td>9/24 00:55</td><td>10/24 10:06</td><td>11/23 07:31</td><td>12/22 20:45</td></tr><tr data-y="1976"><th scope="row">1976<small> 계산</small></th><td>1/21 07:25</td><td>2/19 21:40</td><td>3/20 20:49</td><td>4/20 08:03</td><td>5/21 07:21</td><td>6/21 15:24</td><td>7/23 02:18</td><td>8/23 09:18</td><td>9/23 06:48</td><td>10/23 15:58</td><td>11/22 13:22</td><td>12/22 02:35</td></tr><tr data-y="1977"><th scope="row">1977<small> 계산</small></th><td>1/20 13:14</td><td>2/19 03:31</td><td>3/21 02:43</td><td>4/20 13:57</td><td>5/21 13:14</td><td>6/21 21:14</td><td>7/23 08:04</td><td>8/23 15:00</td><td>9/23 12:29</td><td>10/23 21:41</td><td>11/22 19:07</td><td>12/22 08:23</td></tr><tr data-y="1978"><th scope="row">1978<small> 계산</small></th><td>1/20 19:04</td><td>2/19 09:21</td><td>3/21 08:33</td><td>4/20 19:50</td><td>5/21 19:09</td><td>6/22 03:10</td><td>7/23 14:00</td><td>8/23 20:57</td><td>9/23 18:26</td><td>10/24 03:38</td><td>11/23 01:05</td><td>12/22 14:21</td></tr><tr data-y="1979"><th scope="row">1979<small> 계산</small></th><td>1/21 01:00</td><td>2/19 15:13</td><td>3/21 14:22</td><td>4/21 01:35</td><td>5/22 00:54</td><td>6/22 08:57</td><td>7/23 19:49</td><td>8/24 02:47</td><td>9/24 00:17</td><td>10/24 09:28</td><td>11/23 06:54</td><td>12/22 20:10</td></tr><tr data-y="1980"><th scope="row">1980<small> 계산</small></th><td>1/21 06:49</td><td>2/19 21:02</td><td>3/20 20:10</td><td>4/20 07:23</td><td>5/21 06:42</td><td>6/21 14:47</td><td>7/23 01:42</td><td>8/23 08:40</td><td>9/23 06:08</td><td>10/23 15:17</td><td>11/22 12:41</td><td>12/22 01:56</td></tr><tr data-y="1981"><th scope="row">1981<small> 계산</small></th><td>1/20 12:36</td><td>2/19 02:52</td><td>3/21 02:03</td><td>4/20 13:19</td><td>5/21 12:40</td><td>6/21 20:45</td><td>7/23 07:40</td><td>8/23 14:38</td><td>9/23 12:05</td><td>10/23 21:13</td><td>11/22 18:36</td><td>12/22 07:51</td></tr><tr data-y="1982"><th scope="row">1982<small> 계산</small></th><td>1/20 18:31</td><td>2/19 08:46</td><td>3/21 07:55</td><td>4/20 19:07</td><td>5/21 18:23</td><td>6/22 02:23</td><td>7/23 13:15</td><td>8/23 20:15</td><td>9/23 17:46</td><td>10/24 02:58</td><td>11/23 00:23</td><td>12/22 13:38</td></tr><tr data-y="1983"><th scope="row">1983<small> 계산</small></th><td>1/21 00:17</td><td>2/19 14:31</td><td>3/21 13:39</td><td>4/21 00:50</td><td>5/22 00:06</td><td>6/22 08:09</td><td>7/23 19:04</td><td>8/24 02:07</td><td>9/23 23:42</td><td>10/24 08:54</td><td>11/23 06:19</td><td>12/22 19:30</td></tr><tr data-y="1984"><th scope="row">1984<small> 계산</small></th><td>1/21 06:05</td><td>2/19 20:16</td><td>3/20 19:24</td><td>4/20 06:38</td><td>5/21 05:57</td><td>6/21 14:02</td><td>7/23 00:58</td><td>8/23 08:00</td><td>9/23 05:33</td><td>10/23 14:46</td><td>11/22 12:11</td><td>12/22 01:23</td></tr><tr data-y="1985"><th scope="row">1985<small> 계산</small></th><td>1/20 11:58</td><td>2/19 02:08</td><td>3/21 01:14</td><td>4/20 12:26</td><td>5/21 11:43</td><td>6/21 19:44</td><td>7/23 06:37</td><td>8/23 13:36</td><td>9/23 11:08</td><td>10/23 20:22</td><td>11/22 17:51</td><td>12/22 07:08</td></tr><tr data-y="1986"><th scope="row">1986<small> 계산</small></th><td>1/20 17:47</td><td>2/19 07:58</td><td>3/21 07:03</td><td>4/20 18:12</td><td>5/21 17:28</td><td>6/22 01:30</td><td>7/23 12:24</td><td>8/23 19:26</td><td>9/23 16:59</td><td>10/24 02:14</td><td>11/22 23:44</td><td>12/22 13:02</td></tr><tr data-y="1987"><th scope="row">1987<small> 계산</small></th><td>1/20 23:40</td><td>2/19 13:50</td><td>3/21 12:52</td><td>4/20 23:57</td><td>5/21 23:10</td><td>6/22 07:11</td><td>7/23 18:06</td><td>8/24 01:10</td><td>9/23 22:45</td><td>10/24 08:01</td><td>11/23 05:30</td><td>12/22 18:46</td></tr><tr data-y="1988"><th scope="row">1988<small> 계산</small></th><td>1/21 05:25</td><td>2/19 19:36</td><td>3/20 18:39</td><td>4/20 05:45</td><td>5/21 04:57</td><td>6/21 12:56</td><td>7/22 23:51</td><td>8/23 06:54</td><td>9/23 04:29</td><td>10/23 13:44</td><td>11/22 11:12</td><td>12/22 00:28</td></tr><tr data-y="1989"><th scope="row">1989<small> 계산</small></th><td>1/20 11:07</td><td>2/19 01:21</td><td>3/21 00:28</td><td>4/20 11:39</td><td>5/21 10:54</td><td>6/21 18:53</td><td>7/23 05:45</td><td>8/23 12:46</td><td>9/23 10:20</td><td>10/23 19:35</td><td>11/22 17:05</td><td>12/22 06:22</td></tr><tr data-y="1990"><th scope="row">1990<small> 계산</small></th><td>1/20 17:02</td><td>2/19 07:14</td><td>3/21 06:19</td><td>4/20 17:27</td><td>5/21 16:37</td><td>6/22 00:33</td><td>7/23 11:22</td><td>8/23 18:21</td><td>9/23 15:56</td><td>10/24 01:14</td><td>11/22 22:47</td><td>12/22 12:07</td></tr><tr data-y="1991"><th scope="row">1991<small> 계산</small></th><td>1/20 22:47</td><td>2/19 12:58</td><td>3/21 12:02</td><td>4/20 23:08</td><td>5/21 22:20</td><td>6/22 06:19</td><td>7/23 17:11</td><td>8/24 00:13</td><td>9/23 21:48</td><td>10/24 07:05</td><td>11/23 04:36</td><td>12/22 17:54</td></tr><tr data-y="1992"><th scope="row">1992<small> 계산</small></th><td>1/21 04:33</td><td>2/19 18:44</td><td>3/20 17:48</td><td>4/20 04:57</td><td>5/21 04:12</td><td>6/21 12:14</td><td>7/22 23:09</td><td>8/23 06:10</td><td>9/23 03:43</td><td>10/23 12:57</td><td>11/22 10:26</td><td>12/21 23:43</td></tr><tr data-y="1993"><th scope="row">1993<small> 계산</small></th><td>1/20 10:23</td><td>2/19 00:35</td><td>3/20 23:41</td><td>4/20 10:49</td><td>5/21 10:02</td><td>6/21 18:00</td><td>7/23 04:51</td><td>8/23 11:50</td><td>9/23 09:22</td><td>10/23 18:37</td><td>11/22 16:07</td><td>12/22 05:26</td></tr><tr data-y="1994"><th scope="row">1994<small> 계산</small></th><td>1/20 16:08</td><td>2/19 06:22</td><td>3/21 05:28</td><td>4/20 16:36</td><td>5/21 15:49</td><td>6/21 23:48</td><td>7/23 10:41</td><td>8/23 17:44</td><td>9/23 15:20</td><td>10/24 00:36</td><td>11/22 22:06</td><td>12/22 11:23</td></tr><tr data-y="1995"><th scope="row">1995<small> 계산</small></th><td>1/20 22:01</td><td>2/19 12:11</td><td>3/21 11:15</td><td>4/20 22:21</td><td>5/21 21:34</td><td>6/22 05:34</td><td>7/23 16:30</td><td>8/23 23:35</td><td>9/23 21:13</td><td>10/24 06:32</td><td>11/23 04:02</td><td>12/22 17:17</td></tr><tr data-y="1996"><th scope="row">1996<small> 계산</small></th><td>1/21 03:53</td><td>2/19 18:01</td><td>3/20 17:03</td><td>4/20 04:10</td><td>5/21 03:23</td><td>6/21 11:24</td><td>7/22 22:19</td><td>8/23 05:23</td><td>9/23 03:00</td><td>10/23 12:19</td><td>11/22 09:50</td><td>12/21 23:06</td></tr><tr data-y="1997"><th scope="row">1997<small> 계산</small></th><td>1/20 09:43</td><td>2/18 23:52</td><td>3/20 22:55</td><td>4/20 10:03</td><td>5/21 09:18</td><td>6/21 17:20</td><td>7/23 04:15</td><td>8/23 11:19</td><td>9/23 08:56</td><td>10/23 18:15</td><td>11/22 15:48</td><td>12/22 05:07</td></tr><tr data-y="1998"><th scope="row">1998<small> 계산</small></th><td>1/20 15:46</td><td>2/19 05:55</td><td>3/21 04:54</td><td>4/20 15:57</td><td>5/21 15:05</td><td>6/21 23:03</td><td>7/23 09:56</td><td>8/23 16:59</td><td>9/23 14:38</td><td>10/23 23:59</td><td>11/22 21:35</td><td>12/22 10:57</td></tr><tr data-y="1999"><th scope="row">1999<small> 계산</small></th><td>1/20 21:37</td><td>2/19 11:47</td><td>3/21 10:46</td><td>4/20 21:46</td><td>5/21 20:52</td><td>6/22 04:49</td><td>7/23 15:44</td><td>8/23 22:51</td><td>9/23 20:32</td><td>10/24 05:53</td><td>11/23 03:25</td><td>12/22 16:44</td></tr><tr data-y="2000"><th scope="row">2000<small> 계산</small></th><td>1/21 03:23</td><td>2/19 17:33</td><td>3/20 16:35</td><td>4/20 03:40</td><td>5/21 02:49</td><td>6/21 10:48</td><td>7/22 21:43</td><td>8/23 04:49</td><td>9/23 02:28</td><td>10/23 11:48</td><td>11/22 09:20</td><td>12/21 22:38</td></tr><tr data-y="2001"><th scope="row">2001<small> 계산</small></th><td>1/20 09:17</td><td>2/18 23:28</td><td>3/20 22:31</td><td>4/20 09:36</td><td>5/21 08:44</td><td>6/21 16:38</td><td>7/23 03:26</td><td>8/23 10:27</td><td>9/23 08:05</td><td>10/23 17:26</td><td>11/22 15:00</td><td>12/22 04:22</td></tr><tr data-y="2002"><th scope="row">2002<small> 계산</small></th><td>1/20 15:02</td><td>2/19 05:13</td><td>3/21 04:16</td><td>4/20 15:21</td><td>5/21 14:30</td><td>6/21 22:25</td><td>7/23 09:15</td><td>8/23 16:17</td><td>9/23 13:56</td><td>10/23 23:18</td><td>11/22 20:54</td><td>12/22 10:15</td></tr><tr data-y="2003"><th scope="row">2003<small> 계산</small></th><td>1/20 20:53</td><td>2/19 11:01</td><td>3/21 10:00</td><td>4/20 21:03</td><td>5/21 20:13</td><td>6/22 04:11</td><td>7/23 15:04</td><td>8/23 22:08</td><td>9/23 19:47</td><td>10/24 05:09</td><td>11/23 02:43</td><td>12/22 16:04</td></tr><tr data-y="2004"><th scope="row">2004<small> 계산</small></th><td>1/21 02:42</td><td>2/19 16:50</td><td>3/20 15:48</td><td>4/20 02:50</td><td>5/21 01:59</td><td>6/21 09:57</td><td>7/22 20:50</td><td>8/23 03:53</td><td>9/23 01:30</td><td>10/23 10:49</td><td>11/22 08:22</td><td>12/21 21:42</td></tr><tr data-y="2005"><th scope="row">2005<small> 계산</small></th><td>1/20 08:22</td><td>2/18 22:32</td><td>3/20 21:34</td><td>4/20 08:37</td><td>5/21 07:48</td><td>6/21 15:46</td><td>7/23 02:41</td><td>8/23 09:45</td><td>9/23 07:23</td><td>10/23 16:42</td><td>11/22 14:15</td><td>12/22 03:35</td></tr><tr data-y="2006"><th scope="row">2006<small> 계산</small></th><td>1/20 14:15</td><td>2/19 04:25</td><td>3/21 03:25</td><td>4/20 14:26</td><td>5/21 13:31</td><td>6/21 21:26</td><td>7/23 08:18</td><td>8/23 15:23</td><td>9/23 13:04</td><td>10/23 22:27</td><td>11/22 20:02</td><td>12/22 09:22</td></tr><tr data-y="2007"><th scope="row">2007<small> 계산</small></th><td>1/20 20:01</td><td>2/19 10:09</td><td>3/21 09:07</td><td>4/20 20:07</td><td>5/21 19:12</td><td>6/22 03:06</td><td>7/23 14:00</td><td>8/23 21:08</td><td>9/23 18:51</td><td>10/24 04:15</td><td>11/23 01:50</td><td>12/22 15:08</td></tr><tr data-y="2008"><th scope="row">2008<small> 계산</small></th><td>1/21 01:44</td><td>2/19 15:50</td><td>3/20 14:48</td><td>4/20 01:51</td><td>5/21 01:01</td><td>6/21 08:59</td><td>7/22 19:55</td><td>8/23 03:02</td><td>9/23 00:45</td><td>10/23 10:09</td><td>11/22 07:44</td><td>12/21 21:04</td></tr><tr data-y="2009"><th scope="row">2009<small> 계산</small></th><td>1/20 07:41</td><td>2/18 21:47</td><td>3/20 20:44</td><td>4/20 07:45</td><td>5/21 06:51</td><td>6/21 14:46</td><td>7/23 01:36</td><td>8/23 08:39</td><td>9/23 06:19</td><td>10/23 15:44</td><td>11/22 13:23</td><td>12/22 02:47</td></tr><tr data-y="2010"><th scope="row">2010<small> 계산</small></th><td>1/20 13:28</td><td>2/19 03:35</td><td>3/21 02:32</td><td>4/20 13:30</td><td>5/21 12:34</td><td>6/21 20:28</td><td>7/23 07:21</td><td>8/23 14:27</td><td>9/23 12:09</td><td>10/23 21:35</td><td>11/22 19:15</td><td>12/22 08:38</td></tr><tr data-y="2011"><th scope="row">2011<small> 계산</small></th><td>1/20 19:19</td><td>2/19 09:25</td><td>3/21 08:21</td><td>4/20 19:17</td><td>5/21 18:21</td><td>6/22 02:16</td><td>7/23 13:12</td><td>8/23 20:21</td><td>9/23 18:05</td><td>10/24 03:31</td><td>11/23 01:08</td><td>12/22 14:30</td></tr><tr data-y="2012"><th scope="row">2012<small> 계산</small></th><td>1/21 01:10</td><td>2/19 15:17</td><td>3/20 14:14</td><td>4/20 01:12</td><td>5/21 00:15</td><td>6/21 08:08</td><td>7/22 19:00</td><td>8/23 02:07</td><td>9/22 23:49</td><td>10/23 09:13</td><td>11/22 06:50</td><td>12/21 20:12</td></tr><tr data-y="2013"><th scope="row">2013<small> 계산</small></th><td>1/20 06:52</td><td>2/18 21:02</td><td>3/20 20:02</td><td>4/20 07:03</td><td>5/21 06:10</td><td>6/21 14:04</td><td>7/23 00:56</td><td>8/23 08:01</td><td>9/23 05:44</td><td>10/23 15:10</td><td>11/22 12:48</td><td>12/22 02:11</td></tr><tr data-y="2014"><th scope="row">2014<small> 계산</small></th><td>1/20 12:51</td><td>2/19 02:59</td><td>3/21 01:57</td><td>4/20 12:55</td><td>5/21 11:59</td><td>6/21 19:51</td><td>7/23 06:42</td><td>8/23 13:46</td><td>9/23 11:29</td><td>10/23 20:57</td><td>11/22 18:38</td><td>12/22 08:03</td></tr><tr data-y="2015"><th scope="row">2015<small> 계산</small></th><td>1/20 18:43</td><td>2/19 08:50</td><td>3/21 07:45</td><td>4/20 18:42</td><td>5/21 17:45</td><td>6/22 01:38</td><td>7/23 12:31</td><td>8/23 19:37</td><td>9/23 17:21</td><td>10/24 02:47</td><td>11/23 00:26</td><td>12/22 13:48</td></tr><tr data-y="2016"><th scope="row">2016<small> 계산</small></th><td>1/21 00:27</td><td>2/19 14:34</td><td>3/20 13:30</td><td>4/20 00:29</td><td>5/20 23:36</td><td>6/21 07:34</td><td>7/22 18:30</td><td>8/23 01:39</td><td>9/22 23:21</td><td>10/23 08:45</td><td>11/22 06:22</td><td>12/21 19:44</td></tr><tr data-y="2017"><th scope="row">2017<small> 계산</small></th><td>1/20 06:24</td><td>2/18 20:32</td><td>3/20 19:29</td><td>4/20 06:27</td><td>5/21 05:31</td><td>6/21 13:24</td><td>7/23 00:15</td><td>8/23 07:20</td><td>9/23 05:02</td><td>10/23 14:27</td><td>11/22 12:05</td><td>12/22 01:28</td></tr><tr data-y="2018"><th scope="row">2018<small> 계산</small></th><td>1/20 12:09</td><td>2/19 02:18</td><td>3/21 01:15</td><td>4/20 12:12</td><td>5/21 11:15</td><td>6/21 19:07</td><td>7/23 06:00</td><td>8/23 13:08</td><td>9/23 10:54</td><td>10/23 20:22</td><td>11/22 18:01</td><td>12/22 07:22</td></tr><tr data-y="2019"><th scope="row">2019<small> 계산</small></th><td>1/20 17:59</td><td>2/19 08:04</td><td>3/21 06:58</td><td>4/20 17:55</td><td>5/21 16:59</td><td>6/22 00:54</td><td>7/23 11:50</td><td>8/23 19:02</td><td>9/23 16:50</td><td>10/24 02:20</td><td>11/22 23:59</td><td>12/22 13:20</td></tr><tr data-y="2020"><th scope="row">2020<small> 계산</small></th><td>1/20 23:55</td><td>2/19 13:57</td><td>3/20 12:50</td><td>4/19 23:46</td><td>5/20 22:49</td><td>6/21 06:44</td><td>7/22 17:37</td><td>8/23 00:45</td><td>9/22 22:31</td><td>10/23 08:00</td><td>11/22 05:40</td><td>12/21 19:03</td></tr><tr data-y="2021"><th scope="row">2021<small> 천문연</small></th><td>1/20 05:40</td><td>2/18 19:44</td><td>3/20 18:37</td><td>4/20 05:33</td><td>5/21 04:37</td><td>6/21 12:32</td><td>7/22 23:26</td><td>8/23 06:35</td><td>9/23 04:21</td><td>10/23 13:51</td><td>11/22 11:34</td><td>12/22 00:59</td></tr><tr data-y="2022"><th scope="row">2022<small> 천문연</small></th><td>1/20 11:39</td><td>2/19 01:43</td><td>3/21 00:33</td><td>4/20 11:24</td><td>5/21 10:23</td><td>6/21 18:14</td><td>7/23 05:07</td><td>8/23 12:16</td><td>9/23 10:04</td><td>10/23 19:36</td><td>11/22 17:20</td><td>12/22 06:48</td></tr><tr data-y="2023"><th scope="row">2023<small> 천문연</small></th><td>1/20 17:30</td><td>2/19 07:34</td><td>3/21 06:24</td><td>4/20 17:14</td><td>5/21 16:09</td><td>6/21 23:58</td><td>7/23 10:50</td><td>8/23 18:01</td><td>9/23 15:50</td><td>10/24 01:21</td><td>11/22 23:03</td><td>12/22 12:27</td></tr><tr data-y="2024"><th scope="row">2024<small> 천문연</small></th><td>1/20 23:07</td><td>2/19 13:13</td><td>3/20 12:06</td><td>4/19 23:00</td><td>5/20 22:00</td><td>6/21 05:51</td><td>7/22 16:44</td><td>8/22 23:55</td><td>9/22 21:44</td><td>10/23 07:15</td><td>11/22 04:56</td><td>12/21 18:21</td></tr><tr data-y="2025"><th scope="row">2025<small> 천문연</small></th><td>1/20 05:00</td><td>2/18 19:07</td><td>3/20 18:01</td><td>4/20 04:56</td><td>5/21 03:55</td><td>6/21 11:42</td><td>7/22 22:29</td><td>8/23 05:34</td><td>9/23 03:19</td><td>10/23 12:51</td><td>11/22 10:36</td><td>12/22 00:03</td></tr><tr data-y="2026"><th scope="row">2026<small> 천문연</small></th><td>1/20 10:45</td><td>2/19 00:52</td><td>3/20 23:46</td><td>4/20 10:39</td><td>5/21 09:37</td><td>6/21 17:25</td><td>7/23 04:13</td><td>8/23 11:19</td><td>9/23 09:05</td><td>10/23 18:38</td><td>11/22 16:23</td><td>12/22 05:50</td></tr><tr data-y="2027"><th scope="row">2027<small> 천문연</small></th><td>1/20 16:30</td><td>2/19 06:33</td><td>3/21 05:25</td><td>4/20 16:18</td><td>5/21 15:18</td><td>6/21 23:11</td><td>7/23 10:05</td><td>8/23 17:14</td><td>9/23 15:02</td><td>10/24 00:33</td><td>11/22 22:16</td><td>12/22 11:42</td></tr><tr data-y="2028"><th scope="row">2028<small> 천문연</small></th><td>1/20 22:22</td><td>2/19 12:26</td><td>3/20 11:17</td><td>4/19 22:09</td><td>5/20 21:10</td><td>6/21 05:02</td><td>7/22 15:54</td><td>8/22 23:01</td><td>9/22 20:45</td><td>10/23 06:13</td><td>11/22 03:54</td><td>12/21 17:20</td></tr><tr data-y="2029"><th scope="row">2029<small> 계산</small></th><td>1/20 04:01</td><td>2/18 18:08</td><td>3/20 17:02</td><td>4/20 03:55</td><td>5/21 02:56</td><td>6/21 10:48</td><td>7/22 21:42</td><td>8/23 04:51</td><td>9/23 02:38</td><td>10/23 12:08</td><td>11/22 09:49</td><td>12/21 23:14</td></tr><tr data-y="2030"><th scope="row">2030<small> 계산</small></th><td>1/20 09:54</td><td>2/19 00:00</td><td>3/20 22:52</td><td>4/20 09:43</td><td>5/21 08:41</td><td>6/21 16:31</td><td>7/23 03:25</td><td>8/23 10:37</td><td>9/23 08:27</td><td>10/23 18:01</td><td>11/22 15:45</td><td>12/22 05:10</td></tr></tbody>
@@ -538,20 +557,21 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
 <section>
   <h2 class="sec-title">공개 자료와 비교한 오차</h2>
   <div class="tbl-wrap"><table class="data-table">
-  <thead><tr><th>비교 대상</th><th>비교 개수</th><th>결과</th></tr></thead>
+  <thead><tr><th>비교 대상</th><th class="num">비교 개수</th><th>결과</th></tr></thead>
   <tbody>
-  <tr><th scope="row"><a href="https://astro.kasi.re.kr/kor/life/post/calendarData?year=2026" target="_blank" rel="noopener">한국천문연구원</a> 절기 시각 (2021~2028년, 분 단위)</th><td>96개</td><td>분까지 같음 80개 · 1분 차이 16개<br>최대 오차 1분, 평균 절대 오차 0.17분</td></tr>
-  <tr><th scope="row"><a href="https://www.hko.gov.hk/en/gts/time/conversion.htm" target="_blank" rel="noopener">홍콩천문대</a> 절기 날짜 (1950~2030년, 홍콩 시각 날짜)</th><td>972개</td><td>계산 시각을 홍콩 시각(UTC+8)으로 바꾼 날짜가 같은 것 972개</td></tr>
+  <tr><th scope="row"><a href="https://astro.kasi.re.kr/kor/life/post/calendarData?year=2026" target="_blank" rel="noopener">한국천문연구원</a> 절기 시각 (2021~2028년, 분 단위)</th><td class="num">96개</td><td>분까지 같음 80개 · 1분 차이 16개<br>최대 오차 1분, 평균 절대 오차 0.17분</td></tr>
+  <tr><th scope="row"><a href="https://www.hko.gov.hk/en/gts/time/conversion.htm" target="_blank" rel="noopener">홍콩천문대</a> 절기 날짜 (1950~2030년, 홍콩 시각 날짜)</th><td class="num">972개</td><td>계산 시각을 홍콩 시각(UTC+8)으로 바꾼 날짜가 같은 것 972개</td></tr>
   </tbody></table></div>
-  <div class="prose" style="margin-top:14px">
+  <div class="prose prose-after">
     <p>1분 차이는 두 자료가 초 단위 값을 분으로 줄이는 방식이나 계산에 쓴 천체력이 조금씩 다르기 때문으로 보입니다. 분 단위 판정에서는 경계 시각과 같은 분에 태어난 경우만 결과가 갈릴 수 있습니다. 이 비교는 사이트를 빌드할 때마다 두 자료 파일로 다시 계산해 표시하며, 한국천문연구원 값과 2분 넘게 어긋나면 빌드가 멈추도록 해 두었습니다.</p>
   </div>
 </section>
 <p class="note">출처: <a href="https://astro.kasi.re.kr/kor/life/post/calendarData?year=2026" target="_blank" rel="noopener">한국천문연구원 — 연도별 달력자료(24절기)</a> · <a href="https://astro.kasi.re.kr/kor/life/post/almanac" target="_blank" rel="noopener">한국천문연구원 — 월력요항</a> · <a href="https://github.com/cosinekitty/astronomy" target="_blank" rel="noopener">Astronomy Engine (MIT, cosinekitty)</a> · <a href="https://www.hko.gov.hk/en/gts/time/conversion.htm" target="_blank" rel="noopener">홍콩천문대 — 양력-음력 대조표(절기 날짜)</a> · <a href="https://en.wikipedia.org/wiki/Time_in_South_Korea" target="_blank" rel="noopener">Wikipedia — Time in South Korea</a> · <a href="https://ko.wikipedia.org/wiki/24절기" target="_blank" rel="noopener">위키백과 — 24절기</a></p>
-</article></div><aside class="rail" aria-label="광고"><div class="ad-slot" data-adfit="0"></div><div class="ad-slot" data-adfit="1"></div></aside></div>
+</article></div><aside class="rail" aria-label="광고"><div class="ad ad-side" data-adfit="0"></div><div class="ad ad-side" data-adfit="1"></div></aside></div>
 </main>
-<div class="adfit-bottom"><ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-XKdPIuDkSo3uxN1l" data-ad-width="320" data-ad-height="50"></ins></div>
-<script>(function(){if(window.innerWidth<1180)return;var ids=["DAN-PJDk9Ix8QSZwmho2","DAN-oPwQwRMLYEcXD02F"];document.querySelectorAll('[data-adfit]').forEach(function(d){var id=ids[+d.getAttribute('data-adfit')];if(!id)return;d.innerHTML='<ins class="kakao_ad_area" style="display:none;" data-ad-unit="'+id+'" data-ad-width="160" data-ad-height="600"></ins>';d.className+=' on';});})();</script>
+<script>function __adFail(el){var b=el&&el.closest&&el.closest('.ad');if(b)b.className+=' off';}
+(function(){if(window.innerWidth>=1180){var ids=["DAN-PJDk9Ix8QSZwmho2","DAN-oPwQwRMLYEcXD02F"];document.querySelectorAll('[data-adfit]').forEach(function(d){var id=ids[+d.getAttribute('data-adfit')];if(!id)return;d.innerHTML='<p class="ad-label">광고</p><ins class="kakao_ad_area" style="display:none;" data-ad-unit="'+id+'" data-ad-width="160" data-ad-height="600" data-ad-onfail="__adFail"></ins>';d.className+=' on';});}
+window.addEventListener('load',function(){setTimeout(function(){document.querySelectorAll('.ad ins').forEach(function(i){if(i.style.display==='none')__adFail(i);});},4000);});})();</script>
 <script async src="https://t1.kakaocdn.net/kas/static/ba.min.js"></script>
 <footer class="tools">
   <div class="wrap foot-signs">

@@ -33,7 +33,7 @@ export function makeGuides({ signs, esc, urlOf, ingress, ELEM_PAIR, pairUrl }) {
     title: '별자리 기초 — 원소·모달리티·지배 행성 한눈에 보기',
     desc: '12별자리의 날짜 범위와 원소, 활동·고정·변통 모달리티, 전통·현대 지배 행성을 한 표로 정리하고 각각의 뜻을 출처와 함께 설명합니다.',
     body: `
-<header class="home-hero" style="padding-top:20px"><h1>별자리 기초</h1>
+<header class="home-hero"><h1>별자리 기초</h1>
 <p class="hero-sub">별자리 운세와 궁합에서 자주 나오는 말 — 원소, 모달리티, 지배 행성 — 을 출처와 함께 정리했습니다.</p></header>
 <section>
   <h2 class="sec-title">12별자리 분류표</h2>
@@ -73,7 +73,7 @@ ${src('sign', 'domicile', 'zodiacKo')}`,
     title: '황도 12궁이란 — 별자리의 유래와 천문 별자리와의 차이',
     desc: '황도 12궁은 기원전 바빌로니아 천문학에서 시작됐습니다. 12궁이 정해진 과정, 30°씩 나눈 점성술 별자리와 국제천문연맹(IAU) 별자리의 차이, 뱀주인자리와 세차운동을 출처와 함께 정리했습니다.',
     body: `
-<header class="home-hero" style="padding-top:20px"><h1>황도 12궁이란</h1>
+<header class="home-hero"><h1>황도 12궁이란</h1>
 <p class="hero-sub">운세에서 말하는 “별자리”가 어디서 왔는지, 밤하늘의 실제 별자리와는 무엇이 다른지 정리했습니다.</p></header>
 <section>
   <h2 class="sec-title">황도와 황도대</h2>
@@ -131,7 +131,7 @@ ${src('zodiacEn', 'zodiacKo', 'ecliptic', 'tetrabiblos', 'terms24', 'kasi', 'iau
     title: '별자리 4원소 — 불·땅·공기·물 별자리와 원소 궁합',
     desc: '별자리의 4원소는 고대 그리스의 4원소설에서 왔습니다. 불·땅·공기·물에 속하는 별자리, 아리스토텔레스의 네 성질, 원소 조합에 따른 궁합 점수 보정을 정리했습니다.',
     body: `
-<header class="home-hero" style="padding-top:20px"><h1>별자리 4원소</h1>
+<header class="home-hero"><h1>별자리 4원소</h1>
 <p class="hero-sub">12별자리는 불·땅·공기·물 네 원소에 세 개씩 나뉩니다. 이 분류가 어디서 왔고 운세와 궁합에 어떻게 쓰이는지 정리했습니다.</p></header>
 <section>
   <h2 class="sec-title">4원소설의 기원</h2>
@@ -188,7 +188,7 @@ ${src('element', 'triplicity', 'sign')}`,
     title: '별자리 모달리티 — 활동궁·고정궁·변통궁의 뜻과 계절',
     desc: '별자리의 세 모달리티(활동·고정·변통)는 계절 안에서의 위치로 정해집니다. 춘분·하지·추분·동지에 시작하는 활동궁부터 각 모달리티의 별자리와 궁합에서의 의미를 정리했습니다.',
     body: `
-<header class="home-hero" style="padding-top:20px"><h1>활동궁 · 고정궁 · 변통궁</h1>
+<header class="home-hero"><h1>활동궁 · 고정궁 · 변통궁</h1>
 <p class="hero-sub">원소가 “무엇으로 반응하는지”를 말한다면, 모달리티는 “어떤 방식으로 움직이는지”를 말합니다.</p></header>
 <section>
   <h2 class="sec-title">모달리티는 계절 속 위치입니다</h2>
@@ -238,7 +238,7 @@ ${src('sign', 'aspect', 'kasi', 'terms24')}`,
     title: '별자리 지배 행성 — 전통 지배 행성과 현대 지배 행성의 차이',
     desc: '별자리마다 정해진 지배 행성을 정리했습니다. 맨눈으로 보이는 일곱 천체로 정한 전통 체계와, 천왕성·해왕성·명왕성 발견 뒤 바뀐 현대 체계의 차이를 출처와 함께 설명합니다.',
     body: `
-<header class="home-hero" style="padding-top:20px"><h1>별자리 지배 행성</h1>
+<header class="home-hero"><h1>별자리 지배 행성</h1>
 <p class="hero-sub">점성술에서는 별자리마다 그 별자리를 “다스리는” 행성이 하나씩 정해져 있습니다.</p></header>
 <section>
   <h2 class="sec-title">전통 체계 — 맨눈으로 보이는 일곱 천체</h2>

@@ -24,13 +24,20 @@ const SITE = {
   gsv: ['1f373KtNH3atCzIil1snRuWtDwrzIfDYspZs5GWiRT4', 'WjzFs7iu4kDSzcJKM5QyAqGDAqx9J1P0uj-Ry4z1_NU'], // Search Console 인증 토큰(계정별). 어느 계정으로도 인증되게 모두 둔다
 };
 
-// 하단 320x50 은 모든 화면에 둔다. 160x600 두 개는 넓은 화면(1180px 이상)에서만, 페이지가 마련해 둔 자리
-// (data-adfit="0|1", 홈은 오늘 운세 옆·경계 시각표 옆, 나머지 페이지는 본문 오른쪽 세로 단)에 스크립트로 만들어 넣는다.
-// 좁은 화면에 숨긴 광고를 두지 않기 위해서다. 광고가 비어도 자리는 빈 칸으로 남을 뿐 본문 배치는 그대로다.
+// 광고 자리 — 기존 애드핏 단위 3개만 쓴다(새 단위 없음).
+//  - 320x50 (bottom): 모든 화면 폭에서 한 번만. 본문 첫 섹션 바로 뒤(홈은 오늘 운세 뒤 <!--ad-->)에 둔다.
+//    예전엔 푸터 바로 위에만 있어 모바일에서 거의 보이지 않았다.
+//  - 160x600 두 개(side): 넓은 화면(1180px 이상)에서만 페이지가 마련한 자리(data-adfit="0|1")에 스크립트로 만들어 넣는다.
+//    좁은 화면에 숨긴 채 로딩되는 단위를 두지 않기 위해서다. 홈은 오늘 운세 옆·경계 시각표 옆, 나머지는 본문 오른쪽 단(두 번째는 sticky).
+//  - 자리마다 단위 높이만큼 min-height 를 잡아 두고(CLS 방지), 애드핏이 못 채우면(data-ad-onfail) 또는 몇 초 뒤에도 비어 있으면 .off 로 접는다.
 const ADFIT_MIN = 1180;
-const adSlot = (i) => `<div class="ad-slot" data-adfit="${i}"></div>`;
-const adfitHtml = () => `<div class="adfit-bottom"><ins class="kakao_ad_area" style="display:none;" data-ad-unit="${SITE.adfit.bottom}" data-ad-width="320" data-ad-height="50"></ins></div>
-<script>(function(){if(window.innerWidth<${ADFIT_MIN})return;var ids=${JSON.stringify(SITE.adfit.side)};document.querySelectorAll('[data-adfit]').forEach(function(d){var id=ids[+d.getAttribute('data-adfit')];if(!id)return;d.innerHTML='<ins class="kakao_ad_area" style="display:none;" data-ad-unit="'+id+'" data-ad-width="160" data-ad-height="600"></ins>';d.className+=' on';});})();</script>
+const adSlot = (i) => `<div class="ad ad-side" data-adfit="${i}"></div>`;
+const adBanner = () => `<div class="ad ad-banner" aria-label="광고"><p class="ad-label">광고</p><ins class="kakao_ad_area" style="display:none;" data-ad-unit="${SITE.adfit.bottom}" data-ad-width="320" data-ad-height="50" data-ad-onfail="__adFail"></ins></div>`;
+// 본문에 <!--ad--> 표시가 있으면 그 자리, 없으면 첫 </section> 뒤에 320x50 을 넣는다
+const withBanner = (body) => (body.includes('<!--ad-->') ? body.replace('<!--ad-->', adBanner()) : body.replace('</section>', `</section>\n${adBanner()}`));
+const adfitHtml = () => `<script>function __adFail(el){var b=el&&el.closest&&el.closest('.ad');if(b)b.className+=' off';}
+(function(){if(window.innerWidth>=${ADFIT_MIN}){var ids=${JSON.stringify(SITE.adfit.side)};document.querySelectorAll('[data-adfit]').forEach(function(d){var id=ids[+d.getAttribute('data-adfit')];if(!id)return;d.innerHTML='<p class="ad-label">광고</p><ins class="kakao_ad_area" style="display:none;" data-ad-unit="'+id+'" data-ad-width="160" data-ad-height="600" data-ad-onfail="__adFail"></ins>';d.className+=' on';});}
+window.addEventListener('load',function(){setTimeout(function(){document.querySelectorAll('.ad ins').forEach(function(i){if(i.style.display==='none')__adFail(i);});},4000);});})();</script>
 <script async src="https://t1.kakaocdn.net/kas/static/ba.min.js"></script>`;
 const signs = JSON.parse(readFileSync(join(root, 'data/signs.json'), 'utf8'));
 const profiles = ['profiles-a.json', 'profiles-b.json'].reduce((acc, f) => {
@@ -189,7 +196,7 @@ ${extraHead}
 </header>
 </div>
 <main id="main" class="wrap">
-${rail && ads ? `<div class="page"><div class="page-main">${body}</div><aside class="rail" aria-label="광고">${adSlot(0)}${adSlot(1)}</aside></div>` : body}
+${!ads ? body : rail ? `<div class="page"><div class="page-main">${withBanner(body)}</div><aside class="rail" aria-label="광고">${adSlot(0)}${adSlot(1)}</aside></div>` : withBanner(body)}
 </main>
 ${ads ? adfitHtml() : ''}
 <footer class="tools">
@@ -574,6 +581,7 @@ function pageHome() {
   </div>
   <aside class="side-ad" aria-label="광고">${adSlot(0)}</aside>
 </section>
+<!--ad-->
 
 <section class="lines" aria-labelledby="h-lines">
   <div class="sec-h"><h2 id="h-lines">12별자리 오늘의 한 줄</h2><p class="tn">${TODAY_KO}</p></div>
@@ -671,7 +679,7 @@ function pageCompat() {
   const body = `
 <nav class="crumb"><a href="/">홈</a> › <span>별자리 궁합</span></nav>
 <article class="sign-page">
-<header class="home-hero" style="padding-top:20px"><h1>별자리 궁합</h1><p class="hero-sub">내 별자리와 상대 별자리를 고르면 궁합 점수와 해설을 바로 보여 드립니다.</p></header>
+<header class="home-hero"><h1>별자리 궁합</h1><p class="hero-sub">내 별자리와 상대 별자리를 고르면 궁합 점수와 해설을 바로 보여 드립니다.</p></header>
 <section>
   <div class="pick-label">내 별자리</div>${pickGrid('myGrid')}
   <div class="pick-label">상대 별자리</div>${pickGrid('yourGrid')}
@@ -691,7 +699,7 @@ function pageCompat() {
 </section>
 <section>
   <h2 class="sec-title">12 × 12 궁합표</h2>
-  <div class="month-wrap" style="overflow-x:auto;border-radius:0"><table class="compat-table"><thead><tr><th></th>${signs.map((s) => `<th scope="col" title="${esc(s.n)}">${esc(s.n.replace('자리', ''))}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>
+  <div class="month-wrap"><table class="compat-table"><thead><tr><th></th>${signs.map((s) => `<th scope="col" title="${esc(s.n)}">${esc(s.n.replace('자리', ''))}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>
   <p class="note">세로줄이 나, 가로줄이 상대입니다. 왼쪽 별자리 이름을 누르면 그 별자리의 궁합 12가지 해설로 이동합니다. 점수는 두 별자리의 원소 관계와 황도상 각도를 합쳐 계산했습니다.</p>
 </section>
 <section>
@@ -741,14 +749,14 @@ function pageContact() {
   const body = `
 <nav class="crumb"><a href="/">홈</a> › <span>문의하기</span></nav>
 <article class="sign-page">
-<header class="home-hero" style="padding-top:20px"><h1>문의하기</h1>
+<header class="home-hero"><h1>문의하기</h1>
   <p class="hero-sub">${SITE.name}는 개인이 혼자 만들고 운영하는 사이트입니다. 답변이 며칠 걸릴 수 있습니다.</p></header>
 
 <section>
   <h2 class="sec-title">이메일</h2>
   <div class="info-box">
-    <p style="font-size:18px;font-weight:800;margin:0 0 8px"><a href="mailto:comeonyourboyz@gmail.com">comeonyourboyz@gmail.com</a></p>
-    <p class="muted" style="margin:0">운세 내용이 이상하거나, 오탈자를 찾으셨거나, 화면이 깨질 때 편하게 보내주세요.</p>
+    <p class="mail"><a href="mailto:comeonyourboyz@gmail.com">comeonyourboyz@gmail.com</a></p>
+    <p class="muted">운세 내용이 이상하거나, 오탈자를 찾으셨거나, 화면이 깨질 때 편하게 보내주세요.</p>
   </div>
 </section>
 
@@ -849,8 +857,8 @@ ${crumbHtml([['홈', '/'], ['별자리 궁합', '/compatibility'], [`${a.n} 궁�
   <h2 class="sec-title">점수 순으로 보기</h2>
   <p class="sec-lead">${esc(a.n)}와 열두 별자리의 궁합 점수입니다. 별자리를 누르면 아래 해당 조합 해설로 이동합니다. 점수는 두 별자리의 황도상 각도(합·섹스타일·스퀘어·트라인·어포지션 등)의 기본 점수에 원소 조합 보정을 더해 계산했고, 계산 방식은 <a href="/compatibility">궁합표</a>와 같습니다.</p>
   <div class="tbl-wrap"><table class="data-table">
-  <thead><tr><th>상대</th><th>점수</th><th>각도</th><th>원소 조합</th></tr></thead>
-  <tbody>${ranked.map(({ b, score, asp, combo }) => `<tr><th scope="row"><a href="#${b.k}">${esc(b.n)}</a></th><td>${score}</td><td>${esc(asp.name)}</td><td>${esc(combo[0])}</td></tr>`).join('')}</tbody>
+  <thead><tr><th>상대</th><th class="num">점수</th><th>각도</th><th>원소 조합</th></tr></thead>
+  <tbody>${ranked.map(({ b, score, asp, combo }) => `<tr><th scope="row"><a href="#${b.k}">${esc(b.n)}</a></th><td class="num">${score}</td><td>${esc(asp.name)}</td><td>${esc(combo[0])}</td></tr>`).join('')}</tbody>
   </table></div>
 </section>
 ${list.map(sec).join('\n')}
@@ -1009,7 +1017,7 @@ function pageCalculator() {
   const body = `
 ${crumbHtml([['홈', '/'], ['별자리 계산기', path]])}
 <article class="sign-page">
-<header class="home-hero" style="padding-top:20px"><h1>별자리 계산기</h1>
+<header class="home-hero"><h1>별자리 계산기</h1>
 <p class="hero-sub">생년월일을 넣으면 태양 별자리를 알려 드립니다. ${CALC_RANGE}년생은 태양이 별자리 경계를 지나는 시각을 분 단위로 비교해 판정합니다.</p></header>
 <section class="calc-box">
   <div class="calc-row">
@@ -1120,7 +1128,7 @@ function pageBoundaries() {
   const body = `
 ${crumbHtml([['홈', '/'], ['별자리 계산기', '/zodiac-calculator'], ['연도별 경계 시각표', path]])}
 <article class="sign-page">
-<header class="home-hero" style="padding-top:20px"><h1>연도별 별자리 경계 시각표</h1>
+<header class="home-hero"><h1>연도별 별자리 경계 시각표</h1>
 <p class="hero-sub">${CALC_RANGE}년, 태양이 황경 30°의 배수를 지나 별자리가 바뀌는 순간을 한국 시각(UTC+9) 분 단위로 정리했습니다.</p></header>
 
 <section>
@@ -1133,7 +1141,7 @@ ${crumbHtml([['홈', '/'], ['별자리 계산기', '/zodiac-calculator'], ['연�
 
 <section>
   <h2 class="sec-title">경계 시각표</h2>
-  <div class="calc-row" style="margin-bottom:12px"><label>연도 선택<select id="yf"><option value="">전체 (${ING_YEARS.length}년)</option>${ING_YEARS.map((y) => `<option value="${y}">${y}년</option>`).join('')}</select></label></div>
+  <div class="calc-row calc-filter"><label>연도 선택<select id="yf"><option value="">전체 (${ING_YEARS.length}년)</option>${ING_YEARS.map((y) => `<option value="${y}">${y}년</option>`).join('')}</select></label></div>
   <div class="tbl-wrap"><table class="data-table nowrap" id="bt">
   <thead><tr><th>연도</th>${cols.map((c) => `<th scope="col" title="${esc(termOf[c.k] || '')}">${esc(c.n)}<br><small>${esc(termOf[c.k] || '')}</small></th>`).join('')}</tr></thead>
   <tbody>${rows}</tbody>
@@ -1152,12 +1160,12 @@ ${crumbHtml([['홈', '/'], ['별자리 계산기', '/zodiac-calculator'], ['연�
 <section>
   <h2 class="sec-title">공개 자료와 비교한 오차</h2>
   <div class="tbl-wrap"><table class="data-table">
-  <thead><tr><th>비교 대상</th><th>비교 개수</th><th>결과</th></tr></thead>
+  <thead><tr><th>비교 대상</th><th class="num">비교 개수</th><th>결과</th></tr></thead>
   <tbody>
-  <tr><th scope="row"><a href="${SRC.kasi.url}" target="_blank" rel="noopener">한국천문연구원</a> 절기 시각 (${KASI_RANGE}년, 분 단위)</th><td>${ING_CHECK.n}개</td><td>분까지 같음 ${ING_CHECK.exact}개 · 1분 차이 ${ING_CHECK.one}개${ING_CHECK.max > 1 ? ` · 최대 ${ING_CHECK.max}분` : ''}<br>최대 오차 ${ING_CHECK.max}분, 평균 절대 오차 ${fmtMean(ING_CHECK.mean)}분</td></tr>
-  <tr><th scope="row"><a href="${SRC.hko.url}" target="_blank" rel="noopener">홍콩천문대</a> 절기 날짜 (${CALC_RANGE}년, 홍콩 시각 날짜)</th><td>${ING_CHECK.hkoN}개</td><td>계산 시각을 홍콩 시각(UTC+8)으로 바꾼 날짜가 같은 것 ${ING_CHECK.hkoSame}개</td></tr>
+  <tr><th scope="row"><a href="${SRC.kasi.url}" target="_blank" rel="noopener">한국천문연구원</a> 절기 시각 (${KASI_RANGE}년, 분 단위)</th><td class="num">${ING_CHECK.n}개</td><td>분까지 같음 ${ING_CHECK.exact}개 · 1분 차이 ${ING_CHECK.one}개${ING_CHECK.max > 1 ? ` · 최대 ${ING_CHECK.max}분` : ''}<br>최대 오차 ${ING_CHECK.max}분, 평균 절대 오차 ${fmtMean(ING_CHECK.mean)}분</td></tr>
+  <tr><th scope="row"><a href="${SRC.hko.url}" target="_blank" rel="noopener">홍콩천문대</a> 절기 날짜 (${CALC_RANGE}년, 홍콩 시각 날짜)</th><td class="num">${ING_CHECK.hkoN}개</td><td>계산 시각을 홍콩 시각(UTC+8)으로 바꾼 날짜가 같은 것 ${ING_CHECK.hkoSame}개</td></tr>
   </tbody></table></div>
-  <div class="prose" style="margin-top:14px">
+  <div class="prose prose-after">
     <p>1분 차이는 두 자료가 초 단위 값을 분으로 줄이는 방식이나 계산에 쓴 천체력이 조금씩 다르기 때문으로 보입니다. 분 단위 판정에서는 경계 시각과 같은 분에 태어난 경우만 결과가 갈릴 수 있습니다. 이 비교는 사이트를 빌드할 때마다 두 자료 파일로 다시 계산해 표시하며, 한국천문연구원 값과 2분 넘게 어긋나면 빌드가 멈추도록 해 두었습니다.</p>
   </div>
 </section>
@@ -1195,7 +1203,7 @@ function pageAbout() {
   const body = `
 <nav class="crumb"><a href="/">홈</a> › <span>사이트 소개</span></nav>
 <article class="sign-page">
-<header class="home-hero" style="padding-top:20px"><h1>사이트 소개</h1>
+<header class="home-hero"><h1>사이트 소개</h1>
   <p class="hero-sub">${SITE.name}는 12별자리의 오늘 운세와 별자리별 성격·궁합·유래를 정리한 무료 읽을거리입니다.</p></header>
 
 <section>
@@ -1255,7 +1263,7 @@ function pageAbout() {
 <section>
   <h2 class="sec-title">광고와 개인정보</h2>
   <div class="prose">
-    <p>이 사이트는 회원가입 없이 누구나 무료로 볼 수 있습니다. 광고는 본문이 끝난 뒤 페이지 아래쪽과, 넓은 화면의 양옆 여백에만 둡니다. 수집하는 정보와 쿠키에 관한 내용은 <a href="/privacy">개인정보처리방침</a>에 정리해 두었습니다. 별자리 계산기에 넣은 생년월일은 브라우저 안에서만 계산하고 저장하지 않습니다.</p>
+    <p>이 사이트는 회원가입 없이 누구나 무료로 볼 수 있습니다. 광고는 첫 단락이 끝난 뒤 한 곳과, 넓은 화면의 오른쪽 여백에만 둡니다. 광고 위에는 “광고”라고 표시합니다. 수집하는 정보와 쿠키에 관한 내용은 <a href="/privacy">개인정보처리방침</a>에 정리해 두었습니다. 별자리 계산기에 넣은 생년월일은 브라우저 안에서만 계산하고 저장하지 않습니다.</p>
   </div>
 </section>
 
