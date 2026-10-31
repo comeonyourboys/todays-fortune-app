@@ -36,6 +36,11 @@
       "statusCode": 301
     },
     {
+      "source": "/zodiac/:sign(aries|taurus|gemini|cancer|leo|virgo|libra|scorpio|sagittarius|capricorn|aquarius|pisces)/2026-10",
+      "destination": "/zodiac/:sign",
+      "statusCode": 301
+    },
+    {
       "source": "/compatibility/aries-aries",
       "destination": "/compatibility/aries#aries",
       "statusCode": 301
