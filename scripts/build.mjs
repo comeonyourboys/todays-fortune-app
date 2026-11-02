@@ -160,6 +160,7 @@ function layout({ title, desc, path, body, ld = [], extraHead = '', extraScript 
 <meta name="robots" content="${robots}">
 ${SITE.gsv.map((t) => `<meta name="google-site-verification" content="${t}">`).join('\n')}
 <meta name="google-adsense-account" content="ca-pub-5479403345572412">
+<meta name="naver-site-verification" content="71b27dbf489a7eab0a0e44cb180cd1fc70b8342b">
 ${ads ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5479403345572412" crossorigin="anonymous"></script>\n` : ''}<meta name="theme-color" content="#0E1828">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="${path === '/' ? 'website' : 'article'}">
