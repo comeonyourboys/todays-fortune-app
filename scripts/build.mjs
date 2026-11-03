@@ -15,10 +15,10 @@ import { makeGuides } from './guides.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = {
-  url: 'https://todays-fortune-app.vercel.app',
+  url: 'https://todays-fortune.comeonyourboyz.app',
   name: '오늘의 운세',
   desc: '12별자리 오늘의 운세와 이달의 운세, 별자리 궁합 78가지, 생일로 찾는 별자리 계산기를 한곳에서 확인하세요.',
-  ogImage: 'https://todays-fortune-app.vercel.app/og-image.png?v=2',
+  ogImage: 'https://todays-fortune.comeonyourboyz.app/og-image.png?v=2',
   // 카카오 애드핏 — 2026-08 에 이 사이트 매체로 등록해 둔 기존 광고 단위
   adfit: { bottom: 'DAN-XKdPIuDkSo3uxN1l', side: ['DAN-PJDk9Ix8QSZwmho2', 'DAN-oPwQwRMLYEcXD02F'] },
   gsv: ['1f373KtNH3atCzIil1snRuWtDwrzIfDYspZs5GWiRT4', 'WjzFs7iu4kDSzcJKM5QyAqGDAqx9J1P0uj-Ry4z1_NU'], // Search Console 인증 토큰(계정별). 어느 계정으로도 인증되게 모두 둔다
@@ -131,14 +131,14 @@ const write = (rel, html) => { const p = join(root, rel); mkdirSync(dirname(p), 
 
 // 하단 "다른 도구" 줄 — comeonyourboyz 가 만든 사이트 8개. 자기 사이트는 강조한다
 const TOOLS = [
-  ['내 연봉 순위', 'https://salaryrank.web.app'],
+  ['내 연봉 순위', 'https://salaryrank.comeonyourboyz.app'],
   ['오늘의 운세', SITE.url],
-  ['꿈해몽 사전', 'https://dreamdict.web.app'],
-  ['사자성어·속담 사전', 'https://idiomdict.web.app'],
-  ['실내식물 사전', 'https://plantdict.web.app'],
-  ['선물 룰렛', 'https://giftwheel.web.app'],
-  ['My Korean Name', 'https://mykoreanname.web.app'],
-  ['Tangerine 10', 'https://tangerin10.web.app'],
+  ['꿈해몽 사전', 'https://dreamdict.comeonyourboyz.app'],
+  ['사자성어·속담 사전', 'https://idiomdict.comeonyourboyz.app'],
+  ['실내식물 사전', 'https://plantdict.comeonyourboyz.app'],
+  ['선물 룰렛', 'https://giftwheel.comeonyourboyz.app'],
+  ['My Korean Name', 'https://mykoreanname.comeonyourboyz.app'],
+  ['Tangerine 10', 'https://tangerin10.comeonyourboyz.app'],
 ];
 const NAV = [['home', '/', '별자리 12'], ['compat', '/compatibility', '궁합'], ['calc', '/zodiac-calculator', '계산기'], ['guide', '/guide', '기초'], ['about', '/about', '소개']];
 const TODAY_KO = `${Y}년 ${M}월 ${D}일 ${WD[new Date(Date.UTC(Y, M - 1, D)).getUTCDay()]}요일`;

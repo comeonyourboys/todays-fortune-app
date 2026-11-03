@@ -2,7 +2,7 @@
 
 매일 업데이트되는 12별자리 맞춤 운세 서비스.
 
-👉 **[사이트 바로가기](https://todays-fortune-app.vercel.app/)**
+👉 **[사이트 바로가기](https://todays-fortune.comeonyourboyz.app/)**
 
 ## 특징
 
