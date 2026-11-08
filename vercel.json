@@ -26,17 +26,6 @@
   ],
   "redirects": [
     {
-      "source": "/:path(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "todays-fortune-app.vercel.app"
-        }
-      ],
-      "destination": "https://todays-fortune.comeonyourboyz.app/:path",
-      "permanent": true
-    },
-    {
       "source": "/zodiac/:sign(aries|taurus|gemini|cancer|leo|virgo|libra|scorpio|sagittarius|capricorn|aquarius|pisces)/2026-08",
       "destination": "/zodiac/:sign",
       "statusCode": 301

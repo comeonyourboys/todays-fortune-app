@@ -1346,6 +1346,16 @@ const redirects = [
   vj.redirects = redirects;
   writeFileSync(vp, JSON.stringify(vj, null, 2) + '\n');
 }
+// firebase.json redirects — Firebase Hosting 은 :sign(a|b) 패턴이 없어 별자리별로 풀어서 쓴다
+{
+  const fp = join(root, 'firebase.json');
+  const fj = JSON.parse(readFileSync(fp, 'utf8'));
+  fj.hosting.redirects = [
+    ...pastMonths.flatMap((ym) => ORDER.map((a) => ({ source: `/zodiac/${a}/${ym}`, destination: `/zodiac/${a}`, type: 301 }))),
+    ...ORDER.flatMap((a) => ORDER.map((b) => ({ source: `/compatibility/${a}-${b}`, destination: `/compatibility/${a}#${b}`, type: 301 }))),
+  ];
+  writeFileSync(fp, JSON.stringify(fj, null, 2) + '\n');
+}
 
 const urls = [
   { loc: '/', p: '1.0', f: 'daily', lm: TODAY },

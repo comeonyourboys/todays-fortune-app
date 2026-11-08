@@ -1,0 +1,942 @@
+{
+  "hosting": {
+    "site": "cyb-todays-fortune",
+    "public": ".",
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "ignore": [
+      "firebase.json",
+      "vercel.json",
+      "package.json",
+      "README.md",
+      "**/.*",
+      "**/node_modules/**",
+      "scripts/**",
+      "src/**",
+      ".github/**",
+      ".omc/**"
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=0, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "**/*.png",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=86400"
+          }
+        ]
+      }
+    ],
+    "redirects": [
+      {
+        "source": "/zodiac/aries/2026-08",
+        "destination": "/zodiac/aries",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/taurus/2026-08",
+        "destination": "/zodiac/taurus",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/gemini/2026-08",
+        "destination": "/zodiac/gemini",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/cancer/2026-08",
+        "destination": "/zodiac/cancer",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/leo/2026-08",
+        "destination": "/zodiac/leo",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/virgo/2026-08",
+        "destination": "/zodiac/virgo",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/libra/2026-08",
+        "destination": "/zodiac/libra",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/scorpio/2026-08",
+        "destination": "/zodiac/scorpio",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/sagittarius/2026-08",
+        "destination": "/zodiac/sagittarius",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/capricorn/2026-08",
+        "destination": "/zodiac/capricorn",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/aquarius/2026-08",
+        "destination": "/zodiac/aquarius",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/pisces/2026-08",
+        "destination": "/zodiac/pisces",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/aries/2026-09",
+        "destination": "/zodiac/aries",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/taurus/2026-09",
+        "destination": "/zodiac/taurus",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/gemini/2026-09",
+        "destination": "/zodiac/gemini",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/cancer/2026-09",
+        "destination": "/zodiac/cancer",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/leo/2026-09",
+        "destination": "/zodiac/leo",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/virgo/2026-09",
+        "destination": "/zodiac/virgo",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/libra/2026-09",
+        "destination": "/zodiac/libra",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/scorpio/2026-09",
+        "destination": "/zodiac/scorpio",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/sagittarius/2026-09",
+        "destination": "/zodiac/sagittarius",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/capricorn/2026-09",
+        "destination": "/zodiac/capricorn",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/aquarius/2026-09",
+        "destination": "/zodiac/aquarius",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/pisces/2026-09",
+        "destination": "/zodiac/pisces",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/aries/2026-10",
+        "destination": "/zodiac/aries",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/taurus/2026-10",
+        "destination": "/zodiac/taurus",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/gemini/2026-10",
+        "destination": "/zodiac/gemini",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/cancer/2026-10",
+        "destination": "/zodiac/cancer",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/leo/2026-10",
+        "destination": "/zodiac/leo",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/virgo/2026-10",
+        "destination": "/zodiac/virgo",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/libra/2026-10",
+        "destination": "/zodiac/libra",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/scorpio/2026-10",
+        "destination": "/zodiac/scorpio",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/sagittarius/2026-10",
+        "destination": "/zodiac/sagittarius",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/capricorn/2026-10",
+        "destination": "/zodiac/capricorn",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/aquarius/2026-10",
+        "destination": "/zodiac/aquarius",
+        "type": 301
+      },
+      {
+        "source": "/zodiac/pisces/2026-10",
+        "destination": "/zodiac/pisces",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aries-aries",
+        "destination": "/compatibility/aries#aries",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aries-taurus",
+        "destination": "/compatibility/aries#taurus",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aries-gemini",
+        "destination": "/compatibility/aries#gemini",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aries-cancer",
+        "destination": "/compatibility/aries#cancer",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aries-leo",
+        "destination": "/compatibility/aries#leo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aries-virgo",
+        "destination": "/compatibility/aries#virgo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aries-libra",
+        "destination": "/compatibility/aries#libra",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aries-scorpio",
+        "destination": "/compatibility/aries#scorpio",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aries-sagittarius",
+        "destination": "/compatibility/aries#sagittarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aries-capricorn",
+        "destination": "/compatibility/aries#capricorn",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aries-aquarius",
+        "destination": "/compatibility/aries#aquarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aries-pisces",
+        "destination": "/compatibility/aries#pisces",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/taurus-aries",
+        "destination": "/compatibility/taurus#aries",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/taurus-taurus",
+        "destination": "/compatibility/taurus#taurus",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/taurus-gemini",
+        "destination": "/compatibility/taurus#gemini",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/taurus-cancer",
+        "destination": "/compatibility/taurus#cancer",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/taurus-leo",
+        "destination": "/compatibility/taurus#leo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/taurus-virgo",
+        "destination": "/compatibility/taurus#virgo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/taurus-libra",
+        "destination": "/compatibility/taurus#libra",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/taurus-scorpio",
+        "destination": "/compatibility/taurus#scorpio",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/taurus-sagittarius",
+        "destination": "/compatibility/taurus#sagittarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/taurus-capricorn",
+        "destination": "/compatibility/taurus#capricorn",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/taurus-aquarius",
+        "destination": "/compatibility/taurus#aquarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/taurus-pisces",
+        "destination": "/compatibility/taurus#pisces",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/gemini-aries",
+        "destination": "/compatibility/gemini#aries",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/gemini-taurus",
+        "destination": "/compatibility/gemini#taurus",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/gemini-gemini",
+        "destination": "/compatibility/gemini#gemini",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/gemini-cancer",
+        "destination": "/compatibility/gemini#cancer",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/gemini-leo",
+        "destination": "/compatibility/gemini#leo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/gemini-virgo",
+        "destination": "/compatibility/gemini#virgo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/gemini-libra",
+        "destination": "/compatibility/gemini#libra",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/gemini-scorpio",
+        "destination": "/compatibility/gemini#scorpio",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/gemini-sagittarius",
+        "destination": "/compatibility/gemini#sagittarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/gemini-capricorn",
+        "destination": "/compatibility/gemini#capricorn",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/gemini-aquarius",
+        "destination": "/compatibility/gemini#aquarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/gemini-pisces",
+        "destination": "/compatibility/gemini#pisces",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/cancer-aries",
+        "destination": "/compatibility/cancer#aries",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/cancer-taurus",
+        "destination": "/compatibility/cancer#taurus",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/cancer-gemini",
+        "destination": "/compatibility/cancer#gemini",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/cancer-cancer",
+        "destination": "/compatibility/cancer#cancer",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/cancer-leo",
+        "destination": "/compatibility/cancer#leo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/cancer-virgo",
+        "destination": "/compatibility/cancer#virgo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/cancer-libra",
+        "destination": "/compatibility/cancer#libra",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/cancer-scorpio",
+        "destination": "/compatibility/cancer#scorpio",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/cancer-sagittarius",
+        "destination": "/compatibility/cancer#sagittarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/cancer-capricorn",
+        "destination": "/compatibility/cancer#capricorn",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/cancer-aquarius",
+        "destination": "/compatibility/cancer#aquarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/cancer-pisces",
+        "destination": "/compatibility/cancer#pisces",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/leo-aries",
+        "destination": "/compatibility/leo#aries",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/leo-taurus",
+        "destination": "/compatibility/leo#taurus",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/leo-gemini",
+        "destination": "/compatibility/leo#gemini",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/leo-cancer",
+        "destination": "/compatibility/leo#cancer",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/leo-leo",
+        "destination": "/compatibility/leo#leo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/leo-virgo",
+        "destination": "/compatibility/leo#virgo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/leo-libra",
+        "destination": "/compatibility/leo#libra",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/leo-scorpio",
+        "destination": "/compatibility/leo#scorpio",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/leo-sagittarius",
+        "destination": "/compatibility/leo#sagittarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/leo-capricorn",
+        "destination": "/compatibility/leo#capricorn",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/leo-aquarius",
+        "destination": "/compatibility/leo#aquarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/leo-pisces",
+        "destination": "/compatibility/leo#pisces",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/virgo-aries",
+        "destination": "/compatibility/virgo#aries",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/virgo-taurus",
+        "destination": "/compatibility/virgo#taurus",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/virgo-gemini",
+        "destination": "/compatibility/virgo#gemini",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/virgo-cancer",
+        "destination": "/compatibility/virgo#cancer",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/virgo-leo",
+        "destination": "/compatibility/virgo#leo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/virgo-virgo",
+        "destination": "/compatibility/virgo#virgo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/virgo-libra",
+        "destination": "/compatibility/virgo#libra",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/virgo-scorpio",
+        "destination": "/compatibility/virgo#scorpio",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/virgo-sagittarius",
+        "destination": "/compatibility/virgo#sagittarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/virgo-capricorn",
+        "destination": "/compatibility/virgo#capricorn",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/virgo-aquarius",
+        "destination": "/compatibility/virgo#aquarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/virgo-pisces",
+        "destination": "/compatibility/virgo#pisces",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/libra-aries",
+        "destination": "/compatibility/libra#aries",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/libra-taurus",
+        "destination": "/compatibility/libra#taurus",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/libra-gemini",
+        "destination": "/compatibility/libra#gemini",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/libra-cancer",
+        "destination": "/compatibility/libra#cancer",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/libra-leo",
+        "destination": "/compatibility/libra#leo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/libra-virgo",
+        "destination": "/compatibility/libra#virgo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/libra-libra",
+        "destination": "/compatibility/libra#libra",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/libra-scorpio",
+        "destination": "/compatibility/libra#scorpio",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/libra-sagittarius",
+        "destination": "/compatibility/libra#sagittarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/libra-capricorn",
+        "destination": "/compatibility/libra#capricorn",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/libra-aquarius",
+        "destination": "/compatibility/libra#aquarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/libra-pisces",
+        "destination": "/compatibility/libra#pisces",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/scorpio-aries",
+        "destination": "/compatibility/scorpio#aries",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/scorpio-taurus",
+        "destination": "/compatibility/scorpio#taurus",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/scorpio-gemini",
+        "destination": "/compatibility/scorpio#gemini",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/scorpio-cancer",
+        "destination": "/compatibility/scorpio#cancer",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/scorpio-leo",
+        "destination": "/compatibility/scorpio#leo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/scorpio-virgo",
+        "destination": "/compatibility/scorpio#virgo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/scorpio-libra",
+        "destination": "/compatibility/scorpio#libra",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/scorpio-scorpio",
+        "destination": "/compatibility/scorpio#scorpio",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/scorpio-sagittarius",
+        "destination": "/compatibility/scorpio#sagittarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/scorpio-capricorn",
+        "destination": "/compatibility/scorpio#capricorn",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/scorpio-aquarius",
+        "destination": "/compatibility/scorpio#aquarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/scorpio-pisces",
+        "destination": "/compatibility/scorpio#pisces",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/sagittarius-aries",
+        "destination": "/compatibility/sagittarius#aries",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/sagittarius-taurus",
+        "destination": "/compatibility/sagittarius#taurus",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/sagittarius-gemini",
+        "destination": "/compatibility/sagittarius#gemini",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/sagittarius-cancer",
+        "destination": "/compatibility/sagittarius#cancer",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/sagittarius-leo",
+        "destination": "/compatibility/sagittarius#leo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/sagittarius-virgo",
+        "destination": "/compatibility/sagittarius#virgo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/sagittarius-libra",
+        "destination": "/compatibility/sagittarius#libra",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/sagittarius-scorpio",
+        "destination": "/compatibility/sagittarius#scorpio",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/sagittarius-sagittarius",
+        "destination": "/compatibility/sagittarius#sagittarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/sagittarius-capricorn",
+        "destination": "/compatibility/sagittarius#capricorn",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/sagittarius-aquarius",
+        "destination": "/compatibility/sagittarius#aquarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/sagittarius-pisces",
+        "destination": "/compatibility/sagittarius#pisces",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/capricorn-aries",
+        "destination": "/compatibility/capricorn#aries",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/capricorn-taurus",
+        "destination": "/compatibility/capricorn#taurus",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/capricorn-gemini",
+        "destination": "/compatibility/capricorn#gemini",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/capricorn-cancer",
+        "destination": "/compatibility/capricorn#cancer",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/capricorn-leo",
+        "destination": "/compatibility/capricorn#leo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/capricorn-virgo",
+        "destination": "/compatibility/capricorn#virgo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/capricorn-libra",
+        "destination": "/compatibility/capricorn#libra",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/capricorn-scorpio",
+        "destination": "/compatibility/capricorn#scorpio",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/capricorn-sagittarius",
+        "destination": "/compatibility/capricorn#sagittarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/capricorn-capricorn",
+        "destination": "/compatibility/capricorn#capricorn",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/capricorn-aquarius",
+        "destination": "/compatibility/capricorn#aquarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/capricorn-pisces",
+        "destination": "/compatibility/capricorn#pisces",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aquarius-aries",
+        "destination": "/compatibility/aquarius#aries",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aquarius-taurus",
+        "destination": "/compatibility/aquarius#taurus",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aquarius-gemini",
+        "destination": "/compatibility/aquarius#gemini",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aquarius-cancer",
+        "destination": "/compatibility/aquarius#cancer",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aquarius-leo",
+        "destination": "/compatibility/aquarius#leo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aquarius-virgo",
+        "destination": "/compatibility/aquarius#virgo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aquarius-libra",
+        "destination": "/compatibility/aquarius#libra",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aquarius-scorpio",
+        "destination": "/compatibility/aquarius#scorpio",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aquarius-sagittarius",
+        "destination": "/compatibility/aquarius#sagittarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aquarius-capricorn",
+        "destination": "/compatibility/aquarius#capricorn",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aquarius-aquarius",
+        "destination": "/compatibility/aquarius#aquarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/aquarius-pisces",
+        "destination": "/compatibility/aquarius#pisces",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/pisces-aries",
+        "destination": "/compatibility/pisces#aries",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/pisces-taurus",
+        "destination": "/compatibility/pisces#taurus",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/pisces-gemini",
+        "destination": "/compatibility/pisces#gemini",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/pisces-cancer",
+        "destination": "/compatibility/pisces#cancer",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/pisces-leo",
+        "destination": "/compatibility/pisces#leo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/pisces-virgo",
+        "destination": "/compatibility/pisces#virgo",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/pisces-libra",
+        "destination": "/compatibility/pisces#libra",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/pisces-scorpio",
+        "destination": "/compatibility/pisces#scorpio",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/pisces-sagittarius",
+        "destination": "/compatibility/pisces#sagittarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/pisces-capricorn",
+        "destination": "/compatibility/pisces#capricorn",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/pisces-aquarius",
+        "destination": "/compatibility/pisces#aquarius",
+        "type": 301
+      },
+      {
+        "source": "/compatibility/pisces-pisces",
+        "destination": "/compatibility/pisces#pisces",
+        "type": 301
+      }
+    ]
+  }
+}
