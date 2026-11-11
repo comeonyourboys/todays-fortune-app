@@ -187,9 +187,15 @@ main{padding-bottom:var(--foot-gap)}
   .side-ad{display:block}
   .bounds .side-ad .ad{position:sticky;top:24px}
 }
-.share-row{display:flex;gap:8px;margin-top:32px;flex-wrap:wrap;align-items:center}
-.share-btn{font:inherit;font-size:15px;background:transparent;color:var(--text);border:1px solid var(--line);padding:8px 16px;cursor:pointer;border-radius:999px;white-space:nowrap}
-.share-btn:hover{border-color:var(--muted)}
+.share-t{margin:32px 0 10px;font-size:15px;font-weight:700;color:var(--text)}
+.share-t + .share-row{margin-top:0}
+.share-row{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap;align-items:center}
+.share-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;flex:1 1 140px;height:50px;font:inherit;font-size:15px;font-weight:700;background:transparent;color:var(--text);border:1px solid transparent;padding:0 14px;cursor:pointer;border-radius:12px;white-space:nowrap;transition:transform .15s,filter .15s}
+.share-btn svg{width:20px;height:20px;flex:none}
+.share-btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.share-btn.kakao{background:#fee500;color:#191919}
+.share-btn.x{background:#000;color:#fff}
+.share-btn.link{background:transparent;color:var(--text);border-color:var(--line)}
 .share-row .more{margin-left:8px}
 .more{color:var(--sky);text-underline-offset:3px}
 
@@ -519,7 +525,7 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
 <header class="top">
   <a class="brand" href="/">오늘의 운세</a>
   <nav class="nav" aria-label="주 메뉴"><a href="/" aria-current="page">별자리 12</a><a href="/compatibility">궁합</a><a href="/zodiac-calculator">계산기</a><a href="/guide">기초</a><a href="/about">소개</a></nav>
-  <p class="today tn">2026년 11월 8일 일요일</p>
+  <p class="today tn">2026년 11월 11일 수요일</p>
 </header>
 </div>
 <main id="main" class="wrap">

@@ -187,9 +187,15 @@ main{padding-bottom:var(--foot-gap)}
   .side-ad{display:block}
   .bounds .side-ad .ad{position:sticky;top:24px}
 }
-.share-row{display:flex;gap:8px;margin-top:32px;flex-wrap:wrap;align-items:center}
-.share-btn{font:inherit;font-size:15px;background:transparent;color:var(--text);border:1px solid var(--line);padding:8px 16px;cursor:pointer;border-radius:999px;white-space:nowrap}
-.share-btn:hover{border-color:var(--muted)}
+.share-t{margin:32px 0 10px;font-size:15px;font-weight:700;color:var(--text)}
+.share-t + .share-row{margin-top:0}
+.share-row{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap;align-items:center}
+.share-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;flex:1 1 140px;height:50px;font:inherit;font-size:15px;font-weight:700;background:transparent;color:var(--text);border:1px solid transparent;padding:0 14px;cursor:pointer;border-radius:12px;white-space:nowrap;transition:transform .15s,filter .15s}
+.share-btn svg{width:20px;height:20px;flex:none}
+.share-btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.share-btn.kakao{background:#fee500;color:#191919}
+.share-btn.x{background:#000;color:#fff}
+.share-btn.link{background:transparent;color:var(--text);border-color:var(--line)}
 .share-row .more{margin-left:8px}
 .more{color:var(--sky);text-underline-offset:3px}
 
@@ -519,7 +525,7 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
 <header class="top">
   <a class="brand" href="/">오늘의 운세</a>
   <nav class="nav" aria-label="주 메뉴"><a href="/">별자리 12</a><a href="/compatibility" aria-current="page">궁합</a><a href="/zodiac-calculator">계산기</a><a href="/guide">기초</a><a href="/about">소개</a></nav>
-  <p class="today tn">2026년 11월 8일 일요일</p>
+  <p class="today tn">2026년 11월 11일 수요일</p>
 </header>
 </div>
 <main id="main" class="wrap">
@@ -537,10 +543,11 @@ dl.facts dd small{font-size:14px;color:var(--muted);font-weight:400;display:bloc
     <div class="rc-asp" id="rcAsp"></div>
     <p class="rc-text" id="rcText"></p>
     <div class="rc-links" id="rcLinks"></div>
-    <div class="share-row">
-      <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡</button>
-      <button class="share-btn x" type="button" onclick="shareX()">𝕏 공유</button>
-      <button class="share-btn link" type="button" onclick="copyLink()">🔗 링크 복사</button>
+    <p class="share-t">친구에게도 오늘의 운세를 보내 보세요</p>
+  <div class="share-row">
+      <button class="share-btn kakao" type="button" onclick="shareKakao()"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.48 3 2 6.58 2 11c0 2.84 1.87 5.33 4.69 6.75l-1 3.66c-.09.32.27.58.55.4l4.36-2.9c.46.06.93.09 1.4.09 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg><span>카카오톡</span></button>
+      <button class="share-btn x" type="button" onclick="shareX()"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span>X</span></button>
+      <button class="share-btn link" type="button" onclick="copyLink()"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg><span>링크 복사</span></button>
     </div>
   </div>
 </section>

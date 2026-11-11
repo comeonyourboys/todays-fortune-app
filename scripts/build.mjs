@@ -397,10 +397,11 @@ function pageSign(s) {
     <div class="f-card"><h3 class="f-label">직장운</h3><p id="f-work">${esc(today.work)}</p></div>
     <div class="f-card"><h3 class="f-label">재물운</h3><p id="f-money">${esc(today.money)}</p></div>
   </div>` : '<p class="empty">오늘 운세를 준비 중입니다.</p>'}
+  <p class="share-t">친구에게도 오늘의 운세를 보내 보세요</p>
   <div class="share-row">
-    <button class="share-btn kakao" type="button" onclick="shareKakao()">카카오톡으로 보내기</button>
-    <button class="share-btn x" type="button" onclick="shareX()">X에 공유</button>
-    <button class="share-btn link" type="button" onclick="copyLink()">링크 복사</button>
+    <button class="share-btn kakao" type="button" onclick="shareKakao()"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.48 3 2 6.58 2 11c0 2.84 1.87 5.33 4.69 6.75l-1 3.66c-.09.32.27.58.55.4l4.36-2.9c.46.06.93.09 1.4.09 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg><span>카카오톡</span></button>
+    <button class="share-btn x" type="button" onclick="shareX()"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span>X</span></button>
+    <button class="share-btn link" type="button" onclick="copyLink()"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg><span>링크 복사</span></button>
   </div>
 </section>
 
@@ -573,10 +574,11 @@ function pageHome() {
       <div><h3>직장운</h3><p>${esc(f0.work)}</p></div>
       <div><h3>재물운</h3><p>${esc(f0.money)}</p></div>
     </div>` : '<p class="empty">오늘 운세를 준비 중입니다.</p>'}
-    <div class="share-row">
-      <button class="share-btn kakao" type="button" onclick="shareKakao()">카카오톡으로 보내기</button>
-      <button class="share-btn x" type="button" onclick="shareX()">X에 공유</button>
-      <button class="share-btn link" type="button" onclick="copyLink()">링크 복사</button>
+    <p class="share-t">친구에게도 오늘의 운세를 보내 보세요</p>
+  <div class="share-row">
+      <button class="share-btn kakao" type="button" onclick="shareKakao()"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.48 3 2 6.58 2 11c0 2.84 1.87 5.33 4.69 6.75l-1 3.66c-.09.32.27.58.55.4l4.36-2.9c.46.06.93.09 1.4.09 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg><span>카카오톡</span></button>
+      <button class="share-btn x" type="button" onclick="shareX()"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span>X</span></button>
+      <button class="share-btn link" type="button" onclick="copyLink()"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg><span>링크 복사</span></button>
       <a class="more" href="${urlOf(cur.k)}">${esc(cur.n)} 성격·궁합 보기</a>
     </div>
   </div>
@@ -691,10 +693,11 @@ function pageCompat() {
     <div class="rc-asp" id="rcAsp"></div>
     <p class="rc-text" id="rcText"></p>
     <div class="rc-links" id="rcLinks"></div>
-    <div class="share-row">
-      <button class="share-btn kakao" type="button" onclick="shareKakao()">💬 카카오톡</button>
-      <button class="share-btn x" type="button" onclick="shareX()">𝕏 공유</button>
-      <button class="share-btn link" type="button" onclick="copyLink()">🔗 링크 복사</button>
+    <p class="share-t">친구에게도 오늘의 운세를 보내 보세요</p>
+  <div class="share-row">
+      <button class="share-btn kakao" type="button" onclick="shareKakao()"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.48 3 2 6.58 2 11c0 2.84 1.87 5.33 4.69 6.75l-1 3.66c-.09.32.27.58.55.4l4.36-2.9c.46.06.93.09 1.4.09 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg><span>카카오톡</span></button>
+      <button class="share-btn x" type="button" onclick="shareX()"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span>X</span></button>
+      <button class="share-btn link" type="button" onclick="copyLink()"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg><span>링크 복사</span></button>
     </div>
   </div>
 </section>
