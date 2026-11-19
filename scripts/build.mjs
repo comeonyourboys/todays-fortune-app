@@ -114,6 +114,21 @@ for (const mo of months) {
 }
 const curMonth = months.find((mo) => mo.y === Y && mo.m === M);
 const monthUrl = (k, mo) => `/zodiac/${k}/${mo.ym}`;
+
+// ---------- 신년운세 데이터 (data/yearly-YYYY.json) ----------
+// 빌드 기준 연도와 다음 연도 파일로만 페이지를 만든다(11~12월에 다음 해 운세를 미리 연다). 지난해 파일은 남겨 두고 주소는 301.
+// 검사: python3 tools/check-yearly.py data/yearly-YYYY.json
+const yearlyFiles = readdirSync(join(root, 'data')).map((f) => f.match(/^yearly-(\d{4})\.json$/)).filter(Boolean).map((m) => Number(m[1])).sort();
+const years = yearlyFiles.filter((y) => y === Y || y === Y + 1).map((y) => ({ y, data: JSON.parse(readFileSync(join(root, `data/yearly-${y}.json`), 'utf8')) }));
+const pastYears = yearlyFiles.filter((y) => y < Y);
+for (const yr of years) {
+  const miss = signs.filter((s) => !yr.data[s.k]).map((s) => s.k);
+  if (miss.length) { console.error(`✖ data/yearly-${yr.y}.json 에 없는 별자리: ${miss.join(', ')}`); process.exit(1); }
+}
+const yearUrl = (k, yr) => `/zodiac/${k}/${yr.y}`;
+const yearHubUrl = (yr) => `/${yr.y}`;
+const curYear = years[years.length - 1] || null; // 링크는 가장 최근(다음 해가 있으면 다음 해) 신년운세로
+const YEARLY_PUBLISHED = '2026-11-19'; // 신년운세 본문을 처음 올린 날(본문을 고치면 함께 올린다) — 구조화 데이터·sitemap lastmod
 const style = readFileSync(join(root, 'src/site.css'), 'utf8');
 
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -140,7 +155,7 @@ const TOOLS = [
   ['My Korean Name', 'https://mykoreanname.comeonyourboyz.app'],
   ['Tangerine 10', 'https://tangerin10.comeonyourboyz.app'],
 ];
-const NAV = [['home', '/', '별자리 12'], ['compat', '/compatibility', '궁합'], ['calc', '/zodiac-calculator', '계산기'], ['guide', '/guide', '기초'], ['about', '/about', '소개']];
+const NAV = [['home', '/', '별자리 12'], ...(curYear ? [['year', yearHubUrl(curYear), `${curYear.y} 운세`]] : []), ['compat', '/compatibility', '궁합'], ['calc', '/zodiac-calculator', '계산기'], ['guide', '/guide', '기초'], ['about', '/about', '소개']];
 const TODAY_KO = `${Y}년 ${M}월 ${D}일 ${WD[new Date(Date.UTC(Y, M - 1, D)).getUTCDay()]}요일`;
 
 // rail: 본문 오른쪽 세로 단(넓은 화면 광고 자리). 홈처럼 자체 배치가 있으면 false
@@ -409,6 +424,7 @@ function pageSign(s) {
   <h2 class="sec-title">월별 ${esc(s.n)} 운세</h2>
   <a class="month-cta" href="${monthUrl(s.k, curMonth)}"><b>${M}월 운세 전체 보기</b><span>주차별 흐름과 ${curMonth.days}일치 날짜별 운세를 한 페이지에 모았습니다</span></a>
   ${months.length > 1 ? `<p class="note">${months.filter((mo) => mo !== curMonth).map((mo) => `<a href="${monthUrl(s.k, mo)}">${mo.y}년 ${mo.m}월 운세</a>`).join(' · ')}도 미리 볼 수 있습니다. 지난달 운세는 달이 바뀌면 내립니다.</p>` : ''}
+  ${curYear ? `<a class="month-cta" href="${yearUrl(s.k, curYear)}"><b>${curYear.y}년 신년운세</b><span>${esc(curYear.data[s.k].headline)}</span></a>` : ''}
 </section>
 
 <section>
@@ -555,7 +571,7 @@ function pageHome() {
     <nav class="picker" aria-labelledby="h-pick">
       <h2 id="h-pick">별자리를 고르세요</h2>
       <ul>${signs.map((s) => `<li><a href="${urlOf(s.k)}"${s.k === cur.k ? ' aria-current="true"' : ''}>${esc(s.n)}<span class="tn">${esc(per(s))}</span></a></li>`).join('')}</ul>
-      <p class="hero-sub">12별자리의 오늘 총운·연애운·직장운·재물운과 별자리별 성격·궁합·신화를 정리했습니다. 별자리를 눌러 보세요.</p>
+      <p class="hero-sub">12별자리의 오늘 총운·연애운·직장운·재물운과 별자리별 성격·궁합·신화를 정리했습니다. 별자리를 눌러 보세요.${curYear ? ` 한 해 흐름은 <a href="${yearHubUrl(curYear)}">${curYear.y}년 별자리 신년운세</a>에 모았습니다.` : ''}</p>
     </nav>
   </div>
   <figure class="wheel">
@@ -961,6 +977,7 @@ ${mo.events.length ? `
 <section>
   <h2 class="sec-title">다른 달, 다른 별자리</h2>
   <div class="month-nav">${prev ? `<a href="${monthUrl(s.k, prev)}">‹ ${prev.y}년 ${prev.m}월</a>` : '<span></span>'}<a href="${urlOf(s.k)}">${esc(s.n)} 오늘의 운세</a>${next ? `<a href="${monthUrl(s.k, next)}">${next.y}년 ${next.m}월 ›</a>` : '<span></span>'}</div>
+  ${curYear ? `<p class="note"><a href="${yearUrl(s.k, curYear)}">${esc(s.n)} ${curYear.y}년 신년운세</a>도 함께 보세요.</p>` : ''}
   <h3 class="sub-title">${mo.m}월 다른 별자리 운세</h3>
   <div class="sign-links">${signs.map((x) => `<a class="sign-chip${x.k === s.k ? ' on' : ''}" href="${monthUrl(x.k, mo)}">${esc(x.n)}</a>`).join('')}</div>
 </section>
@@ -973,6 +990,138 @@ ${mo.events.length ? `
   ];
   // 월별 페이지는 한 달 남짓만 걸려 있다 내려가는 페이지라 검색에는 내보내지 않는다(sitemap 에서도 뺀다)
   return layout({ title, desc, path, body, ld, robots: 'noindex, follow', nav: 'home' });
+}
+
+// ---------- 신년운세 ----------
+// 문장은 data/yearly-YYYY.json. 뼈대인 행성 위치(_sky.placements)는 별자리마다 "몇 번째 자리"(태양 별자리 기준 하우스)로 풀어 보여 준다.
+const ZORDER = ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces'];
+const HOUSE = ['', '자신과 새 출발', '돈과 가치', '공부·소통·이동', '집과 가족', '연애·즐거움·창작', '일상·건강·일하는 습관', '파트너와 협력', '함께 나누는 돈과 깊은 관계', '배움·여행·넓은 시야', '일과 평판', '친구·모임·목표', '휴식·정리·내면'];
+const houseOf = (planetSign, k) => ((ZORDER.indexOf(planetSign) - ZORDER.indexOf(k) + 12) % 12) + 1;
+const QLABEL = ['1분기 · 1~3월', '2분기 · 4~6월', '3분기 · 7~9월', '4분기 · 10~12월'];
+
+function yearSkySection(yr, s) {
+  const sky = yr.data._sky;
+  const rows = sky.placements.map((pl) => {
+    const h = s ? houseOf(pl.sign, s.k) : 0;
+    return `<tr><th>${esc(pl.planet)}</th><td>${esc(byKey.get(pl.sign).n)}</td><td>${esc(pl.period)}</td>${s ? `<td>${h}번째 자리 · ${esc(HOUSE[h])}</td>` : ''}</tr>`;
+  }).join('');
+  return `
+<section>
+  <h2 class="sec-title">${yr.y}년 하늘의 큰 흐름</h2>
+  <p class="sec-lead">${s ? `${esc(s.n)} 운세의 뼈대가 된 실제 행성 위치입니다. "몇 번째 자리"는 ${esc(s.n)}를 첫 번째로 놓고 세었을 때 그 행성이 머무는 별자리의 순서로, 점성술에서 그 자리가 맡는 삶의 영역을 함께 적었습니다.` : '신년운세의 뼈대가 된 실제 행성 위치와 일식입니다. 별자리마다 이 행성들이 몇 번째 자리에 머무는지에 따라 한 해의 흐름을 풀었습니다.'}</p>
+  <div class="tbl-wrap"><table class="data-table"><thead><tr><th>행성</th><th>머무는 별자리</th><th>기간</th>${s ? `<th>${esc(s.n)}에게는</th>` : ''}</tr></thead><tbody>${rows}</tbody></table></div>
+  <h3 class="sub-title">${yr.y}년 주요 날짜</h3>
+  <ul class="ev-list">${sky.events.map((e) => `<li><b>${mdKo(e.date)} ${esc(e.name)}</b><p>${esc(e.desc)}</p><p class="ev-src">출처: ${e.sources.map((x) => `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)}</a>`).join(' · ')}</p></li>`).join('')}</ul>
+  <p class="note">${esc(sky.note)} 운세 문장은 이 흐름을 바탕으로 재미로 읽도록 쓴 글이며, 행성 위치 외의 내용은 예측이 아닙니다.</p>
+</section>`;
+}
+
+function pageYear(s, yr) {
+  const f = yr.data[s.k];
+  const path = yearUrl(s.k, yr);
+  const crumbs = [['홈', '/'], [s.n, urlOf(s.k)], [`${yr.y}년 운세`, path]];
+  const body = `
+${crumbHtml(crumbs)}
+<article class="sign-page">
+<header class="sign-hero">
+  <div>
+    <h1>${esc(s.n)} ${yr.y}년 운세 <span class="sign-en">신년운세</span></h1>
+    <p class="sign-meta">${esc(fmtP(s.p))} · ${esc(s.el)}의 별자리 · 지배행성 ${esc(s.ruler)}</p>
+    <p class="sign-trait">${esc(f.headline)}</p>
+  </div>
+</header>
+
+<section>
+  <div class="prose"><p>${yr.y}년 ${esc(s.n)}의 한 해 흐름을 총운, 연애·일·돈·건강, 분기별로 정리했습니다. 운세는 재미로 읽는 글입니다.</p></div>
+  <div class="month-quote"><h2 class="ov-title">${yr.y}년 총운</h2><p>${esc(f.overview)}</p></div>
+</section>
+
+<section>
+  <h2 class="sec-title">분야별 ${yr.y}년 운세</h2>
+  <div class="style-grid g2">
+    <div class="style-card"><h3>연애운</h3><p>${esc(f.love)}</p></div>
+    <div class="style-card"><h3>직장운</h3><p>${esc(f.work)}</p></div>
+    <div class="style-card"><h3>재물운</h3><p>${esc(f.money)}</p></div>
+    <div class="style-card"><h3>건강운</h3><p>${esc(f.health)}</p></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">분기별 흐름</h2>
+  <div class="style-grid g2">${f.quarters.map((q, i) => `<div class="style-card"><h3>${QLABEL[i]}</h3><p>${esc(q)}</p></div>`).join('')}</div>
+</section>
+
+<section class="two-col">
+  <div class="list-box good">
+    <h3>힘이 붙는 달</h3>
+    <ul>${f.goodMonths.slice().sort((a, b) => a - b).map((m) => `<li>${m}월</li>`).join('')}</ul>
+  </div>
+  <div class="list-box bad">
+    <h3>한 템포 쉬어 갈 달</h3>
+    <ul>${f.careMonths.slice().sort((a, b) => a - b).map((m) => `<li>${m}월</li>`).join('')}</ul>
+  </div>
+</section>
+<p class="note">달은 위 분기별 흐름과 행성 날짜에 맞춰 고른 참고용입니다.</p>
+
+<section>
+  <div class="month-quote"><h2 class="ov-title">${yr.y}년 ${esc(s.n)}에게 건네는 한마디</h2><p>${esc(f.advice)}</p></div>
+</section>
+${yearSkySection(yr, s)}
+
+<section>
+  <h2 class="sec-title">다른 별자리 ${yr.y}년 운세</h2>
+  <div class="sign-links">${signs.map((x) => `<a class="sign-chip${x.k === s.k ? ' on' : ''}" href="${yearUrl(x.k, yr)}">${esc(x.n)}</a>`).join('')}</div>
+  <p class="note"><a href="${yearHubUrl(yr)}">${yr.y}년 12별자리 신년운세 모아보기</a> · <a href="${urlOf(s.k)}">${esc(s.n)} 오늘의 운세</a>${curMonth ? ` · <a href="${monthUrl(s.k, curMonth)}">${curMonth.m}월 운세</a>` : ''}</p>
+</section>
+</article>`;
+  const title = `${s.n} ${yr.y}년 운세 — 신년운세 연애·직장·재물·분기별 흐름`;
+  const desc = `${yr.y}년 ${s.n}(${fmtP(s.p)}) 신년운세. ${f.headline} 총운과 연애·직장·재물·건강운, 분기별 흐름과 실제 행성 날짜를 정리했습니다.`.slice(0, 160);
+  const ld = [
+    { '@context': 'https://schema.org', '@type': 'Article', headline: title, description: desc, inLanguage: 'ko', mainEntityOfPage: SITE.url + path, image: SITE.ogImage, datePublished: YEARLY_PUBLISHED, dateModified: YEARLY_PUBLISHED, author: { '@type': 'Organization', name: SITE.name, url: SITE.url }, publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url } },
+    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
+      { '@type': 'Question', name: `${yr.y}년 ${s.n} 운세는?`, acceptedAnswer: { '@type': 'Answer', text: `${f.headline} ${f.overview}` } },
+      { '@type': 'Question', name: `${yr.y}년 ${s.n} 연애운은?`, acceptedAnswer: { '@type': 'Answer', text: f.love } },
+      { '@type': 'Question', name: `${yr.y}년 ${s.n} 재물운은?`, acceptedAnswer: { '@type': 'Answer', text: f.money } },
+    ] },
+    crumbLd(crumbs),
+  ];
+  return layout({ title, desc, path, body, ld, nav: 'year' });
+}
+
+function pageYearHub(yr) {
+  const path = yearHubUrl(yr);
+  const crumbs = [['홈', '/'], [`${yr.y}년 신년운세`, path]];
+  const body = `
+${crumbHtml(crumbs)}
+<article class="sign-page">
+<header class="sign-hero">
+  <div>
+    <h1>${yr.y}년 별자리 신년운세</h1>
+    <p class="sign-trait">12별자리의 한 해 총운과 연애·직장·재물·건강, 분기별 흐름</p>
+  </div>
+</header>
+
+<section>
+  <div class="prose">
+    <p>${yr.y}년 12별자리 신년운세를 한곳에 모았습니다. 별자리마다 한 해 총운과 분야별 운세, 분기별 흐름, 힘이 붙는 달과 쉬어 갈 달을 정리했습니다.</p>
+    <p>운세의 뼈대는 ${yr.y}년 실제 행성 위치입니다. ${esc(yr.data._sky.summary)} 이 행성들이 별자리마다 어느 자리를 지나는지에 따라 한 해의 흐름을 풀었습니다. 운세는 재미로 읽는 글입니다.</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">별자리를 고르세요</h2>
+  <div class="guide-cards">${signs.map((s) => `<a class="guide-card" href="${yearUrl(s.k, yr)}"><b>${esc(s.n)} <small class="tn">${esc(fmtP(s.p))}</small></b><span>${esc(yr.data[s.k].headline)}</span></a>`).join('')}</div>
+</section>
+${yearSkySection(yr, null)}
+</article>`;
+  const title = `${yr.y}년 별자리 신년운세 — 12별자리 한 해 운세 모아보기`;
+  const desc = `${yr.y}년 12별자리 신년운세. 별자리별 총운과 연애·직장·재물·건강운, 분기별 흐름을 실제 행성 날짜와 함께 정리했습니다.`;
+  const ld = [
+    { '@context': 'https://schema.org', '@type': 'Article', headline: title, description: desc, inLanguage: 'ko', mainEntityOfPage: SITE.url + path, image: SITE.ogImage, datePublished: YEARLY_PUBLISHED, dateModified: YEARLY_PUBLISHED, author: { '@type': 'Organization', name: SITE.name, url: SITE.url }, publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url } },
+    { '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: signs.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: `${s.n} ${yr.y}년 운세`, url: SITE.url + yearUrl(s.k, yr) })) },
+    crumbLd(crumbs),
+  ];
+  return layout({ title, desc, path, body, ld, nav: 'year' });
 }
 
 // ---------- 별자리 경계 시각 (계산기·경계 시각표 공용) ----------
@@ -1319,6 +1468,7 @@ write('contact.html', pageContact());
 write('privacy.html', pagePrivacy());
 write('404.html', pageNotFound());
 months.forEach((mo, i) => { for (const s of signs) write(`zodiac/${s.k}/${mo.ym}/index.html`, pageMonth(s, mo, i)); });
+for (const yr of years) { write(`${yr.y}/index.html`, pageYearHub(yr)); for (const s of signs) write(`zodiac/${s.k}/${yr.y}/index.html`, pageYear(s, yr)); }
 for (const k of ORDER) write(`compatibility/${k}/index.html`, pageSignCompat(byKey.get(k)));
 write('zodiac-calculator/index.html', pageCalculator());
 write('zodiac-calculator/boundaries/index.html', pageBoundaries());
@@ -1331,7 +1481,9 @@ const removed = [];
 for (const s of signs) {
   const dir = join(root, 'zodiac', s.k);
   for (const d of readdirSync(dir)) if (/^\d{4}-\d{2}$/.test(d) && !months.some((mo) => mo.ym === d)) { rmSync(join(dir, d), { recursive: true, force: true }); removed.push(`zodiac/${s.k}/${d}`); }
+  for (const d of readdirSync(dir)) if (/^\d{4}$/.test(d) && !years.some((yr) => String(yr.y) === d)) { rmSync(join(dir, d), { recursive: true, force: true }); removed.push(`zodiac/${s.k}/${d}`); }
 }
+for (const d of readdirSync(root)) if (/^\d{4}$/.test(d) && !years.some((yr) => String(yr.y) === d)) { rmSync(join(root, d), { recursive: true, force: true }); removed.push(d); }
 for (const d of readdirSync(join(root, 'compatibility'))) if (!ORDER.includes(d)) { rmSync(join(root, 'compatibility', d), { recursive: true, force: true }); removed.push(`compatibility/${d}`); }
 if (removed.length) console.log(`  예전 산출물 ${removed.length}개 정리 (${removed.slice(0, 3).join(', ')}${removed.length > 3 ? ' …' : ''})`);
 
@@ -1355,6 +1507,8 @@ const redirects = [
   const fj = JSON.parse(readFileSync(fp, 'utf8'));
   fj.hosting.redirects = [
     ...pastMonths.flatMap((ym) => ORDER.map((a) => ({ source: `/zodiac/${a}/${ym}`, destination: `/zodiac/${a}`, type: 301 }))),
+    // 지난해 신년운세 → 별자리 페이지, 모아보기 → 홈
+    ...pastYears.flatMap((y) => [...ORDER.map((a) => ({ source: `/zodiac/${a}/${y}`, destination: `/zodiac/${a}`, type: 301 })), { source: `/${y}`, destination: '/', type: 301 }]),
     ...ORDER.flatMap((a) => ORDER.map((b) => ({ source: `/compatibility/${a}-${b}`, destination: `/compatibility/${a}#${b}`, type: 301 }))),
   ];
   writeFileSync(fp, JSON.stringify(fj, null, 2) + '\n');
@@ -1363,6 +1517,7 @@ const redirects = [
 const urls = [
   { loc: '/', p: '1.0', f: 'daily', lm: TODAY },
   ...signs.map((s) => ({ loc: urlOf(s.k), p: '0.9', f: 'daily', lm: TODAY })),
+  ...years.flatMap((yr) => [{ loc: yearHubUrl(yr), p: '0.9', f: 'monthly', lm: YEARLY_PUBLISHED }, ...signs.map((s) => ({ loc: yearUrl(s.k, yr), p: '0.8', f: 'monthly', lm: YEARLY_PUBLISHED }))]),
   { loc: '/compatibility', p: '0.8', f: 'monthly', lm: CONTENT_UPDATED },
   ...ORDER.map((a) => ({ loc: signCompatUrl(a), p: '0.7', f: 'yearly', lm: CONTENT_UPDATED })),
   { loc: '/zodiac-calculator', p: '0.7', f: 'yearly', lm: CONTENT_UPDATED },
@@ -1380,7 +1535,7 @@ let minLen = Infinity, minWho = '';
 for (const s of signs) { const n = strip(readFileSync(join(root, `zodiac/${s.k}/index.html`), 'utf8')).length; if (n < minLen) { minLen = n; minWho = s.k; } }
 const homeLen = strip(readFileSync(join(root, 'index.html'), 'utf8')).length;
 let newMin = Infinity, newMinWho = '';
-for (const f of written.filter((f) => /^(compatibility\/|zodiac-calculator|guide|zodiac\/[a-z]+\/\d{4}-\d{2})/.test(f))) { const n = strip(readFileSync(join(root, f), 'utf8')).length; if (n < newMin) { newMin = n; newMinWho = f; } }
+for (const f of written.filter((f) => /^(compatibility\/|zodiac-calculator|guide|zodiac\/[a-z]+\/\d{4}(-\d{2})?\/|\d{4}\/)/.test(f))) { const n = strip(readFileSync(join(root, f), 'utf8')).length; if (n < newMin) { newMin = n; newMinWho = f; } }
 
 // 생성된 HTML 검사 — 인라인 <script> 문법, 깨진 값 누출, 사이트 안 링크
 {
