@@ -129,6 +129,11 @@ const yearUrl = (k, yr) => `/zodiac/${k}/${yr.y}`;
 const yearHubUrl = (yr) => `/${yr.y}`;
 const curYear = years[years.length - 1] || null; // 링크는 가장 최근(다음 해가 있으면 다음 해) 신년운세로
 const YEARLY_PUBLISHED = '2026-11-19'; // 신년운세 본문을 처음 올린 날(본문을 고치면 함께 올린다) — 구조화 데이터·sitemap lastmod
+// 띠별 신년운세(data/yearly-YYYY-tti.json) — 별자리 신년운세가 있는 해에만 /YYYY/tti 아래에 만든다. 검사: python3 tools/check-yearly-tti.py
+const ttiYears = years.filter((yr) => existsSync(join(root, `data/yearly-${yr.y}-tti.json`))).map((yr) => ({ y: yr.y, data: JSON.parse(readFileSync(join(root, `data/yearly-${yr.y}-tti.json`), 'utf8')) }));
+const pastTtiYears = readdirSync(join(root, 'data')).map((f) => f.match(/^yearly-(\d{4})-tti\.json$/)).filter(Boolean).map((m) => Number(m[1])).filter((y) => y < Y);
+const IPCHUN = JSON.parse(readFileSync(join(root, 'data/ipchun-calc.json'), 'utf8')).years; // tools/sun-ingress/ipchun.mjs 생성
+const TTI_PUBLISHED = '2026-11-25';
 const style = readFileSync(join(root, 'src/site.css'), 'utf8');
 
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -571,7 +576,7 @@ function pageHome() {
     <nav class="picker" aria-labelledby="h-pick">
       <h2 id="h-pick">별자리를 고르세요</h2>
       <ul>${signs.map((s) => `<li><a href="${urlOf(s.k)}"${s.k === cur.k ? ' aria-current="true"' : ''}>${esc(s.n)}<span class="tn">${esc(per(s))}</span></a></li>`).join('')}</ul>
-      <p class="hero-sub">12별자리의 오늘 총운·연애운·직장운·재물운과 별자리별 성격·궁합·신화를 정리했습니다. 별자리를 눌러 보세요.${curYear ? ` 한 해 흐름은 <a href="${yearHubUrl(curYear)}">${curYear.y}년 별자리 신년운세</a>에 모았습니다.` : ''}</p>
+      <p class="hero-sub">12별자리의 오늘 총운·연애운·직장운·재물운과 별자리별 성격·궁합·신화를 정리했습니다. 별자리를 눌러 보세요.${curYear ? ` 한 해 흐름은 <a href="${yearHubUrl(curYear)}">${curYear.y}년 별자리 신년운세</a>${ttiYears.some((ty) => ty.y === curYear.y) ? `와 <a href="/${curYear.y}/tti">${curYear.y}년 띠별 운세</a>` : ''}에 모았습니다.` : ''}</p>
     </nav>
   </div>
   <figure class="wheel">
@@ -1071,7 +1076,7 @@ ${yearSkySection(yr, s)}
 <section>
   <h2 class="sec-title">다른 별자리 ${yr.y}년 운세</h2>
   <div class="sign-links">${signs.map((x) => `<a class="sign-chip${x.k === s.k ? ' on' : ''}" href="${yearUrl(x.k, yr)}">${esc(x.n)}</a>`).join('')}</div>
-  <p class="note"><a href="${yearHubUrl(yr)}">${yr.y}년 12별자리 신년운세 모아보기</a> · <a href="${urlOf(s.k)}">${esc(s.n)} 오늘의 운세</a>${curMonth ? ` · <a href="${monthUrl(s.k, curMonth)}">${curMonth.m}월 운세</a>` : ''}</p>
+  <p class="note"><a href="${yearHubUrl(yr)}">${yr.y}년 12별자리 신년운세 모아보기</a>${ttiYears.some((ty) => ty.y === yr.y) ? ` · <a href="/${yr.y}/tti">${yr.y}년 띠별 운세</a>` : ''} · <a href="${urlOf(s.k)}">${esc(s.n)} 오늘의 운세</a>${curMonth ? ` · <a href="${monthUrl(s.k, curMonth)}">${curMonth.m}월 운세</a>` : ''}</p>
 </section>
 </article>`;
   const title = `${s.n} ${yr.y}년 운세 — 신년운세 연애·직장·재물·분기별 흐름`;
@@ -1112,6 +1117,7 @@ ${crumbHtml(crumbs)}
   <h2 class="sec-title">별자리를 고르세요</h2>
   <div class="guide-cards">${signs.map((s) => `<a class="guide-card" href="${yearUrl(s.k, yr)}"><b>${esc(s.n)} <small class="tn">${esc(fmtP(s.p))}</small></b><span>${esc(yr.data[s.k].headline)}</span></a>`).join('')}</div>
 </section>
+${(() => { const ty = ttiYears.find((x) => x.y === yr.y); return ty ? `<a class="month-cta" href="${ttiHubUrl(ty)}"><b>${yr.y}년 띠별 운세</b><span>${esc(ty.data._year.ganji)}년 ${esc(ty.data._year.nick)} · 열두 띠 총운과 태어난 해별 운세</span></a>` : ''; })()}
 ${yearSkySection(yr, null)}
 </article>`;
   const title = `${yr.y}년 별자리 신년운세 — 12별자리 한 해 운세 모아보기`;
@@ -1119,6 +1125,210 @@ ${yearSkySection(yr, null)}
   const ld = [
     { '@context': 'https://schema.org', '@type': 'Article', headline: title, description: desc, inLanguage: 'ko', mainEntityOfPage: SITE.url + path, image: SITE.ogImage, datePublished: YEARLY_PUBLISHED, dateModified: YEARLY_PUBLISHED, author: { '@type': 'Organization', name: SITE.name, url: SITE.url }, publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url } },
     { '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: signs.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: `${s.n} ${yr.y}년 운세`, url: SITE.url + yearUrl(s.k, yr) })) },
+    crumbLd(crumbs),
+  ];
+  return layout({ title, desc, path, body, ld, nav: 'year' });
+}
+
+// ---------- 띠별 신년운세 ----------
+// 문장은 data/yearly-YYYY-tti.json. 그해 지지와 띠의 관계(합·충·형·파·해·원진·삼재)는 아래 규칙으로 계산해 보여 준다.
+const TTI = [['rat', '쥐띠', '자', '子'], ['ox', '소띠', '축', '丑'], ['tiger', '호랑이띠', '인', '寅'], ['rabbit', '토끼띠', '묘', '卯'], ['dragon', '용띠', '진', '辰'], ['snake', '뱀띠', '사', '巳'], ['horse', '말띠', '오', '午'], ['goat', '양띠', '미', '未'], ['monkey', '원숭이띠', '신', '申'], ['rooster', '닭띠', '유', '酉'], ['dog', '개띠', '술', '戌'], ['pig', '돼지띠', '해', '亥']].map(([k, n, b, h], i) => ({ k, n, b, h, i }));
+const ttiUrl = (k, ty) => `/${ty.y}/tti/${k}`;
+const ttiHubUrl = (ty) => `/${ty.y}/tti`;
+const branchOf = (y) => (((y - 4) % 12) + 12) % 12;
+const T_YUKHAP = [1, 0, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
+const T_SAMHAP = [[8, 0, 4], [11, 3, 7], [2, 6, 10], [5, 9, 1]];
+const T_BANGHAP = [[2, 3, 4], [5, 6, 7], [8, 9, 10], [11, 0, 1]];
+const T_HYEONG = [[2, 5, 8], [1, 10, 7], [0, 3]];
+const T_PA = [[0, 9], [1, 4], [2, 11], [3, 6], [5, 8], [7, 10]];
+const T_HAE = [[0, 7], [1, 6], [2, 5], [3, 4], [8, 11], [9, 10]];
+const T_WONJIN = [[0, 7], [1, 6], [2, 9], [3, 8], [4, 11], [5, 10]];
+// 삼합 묶음 → 삼재가 드는 세 해의 지지: 신자진→인묘진, 해묘미→사오미, 인오술→신유술, 사유축→해자축
+const T_SAMJAE = new Map([[0, [2, 3, 4]], [1, [5, 6, 7]], [2, [8, 9, 10]], [3, [11, 0, 1]]]);
+const REL_DESC = {
+  본명년: ['mix', '자기 띠가 열두 해 만에 돌아온 해입니다. 좋은 일과 바쁜 일이 함께 몰리기 쉬운 해로 봅니다.'],
+  육합: ['good', '두 지지가 짝을 이루는 관계로, 띠 사이에서 가장 순하게 어울린다고 봅니다.'],
+  삼합: ['good', '세 지지가 한 기운으로 모이는 관계로, 사람과 일이 잘 엮인다고 봅니다.'],
+  방합: ['good', '같은 계절을 이루는 지지끼리의 관계로, 기운이 잘 통한다고 봅니다.'],
+  충: ['care', '정반대에 놓인 지지끼리의 관계로, 변동과 이동이 많아진다고 봅니다. 나쁜 일보다는 고여 있던 것이 움직인다는 뜻으로도 읽습니다.'],
+  형: ['care', '서로 부딪혀 마찰이 생기기 쉬운 관계로, 서류·약속·건강을 꼼꼼히 챙기라고 봅니다.'],
+  파: ['care', '계획이 어긋나거나 깨지기 쉬운 관계로, 한 번 더 확인하라고 봅니다.'],
+  해: ['care', '서로 해를 끼치기 쉽다고 보는 관계(육해)로, 오해를 조심하라고 봅니다.'],
+  원진: ['care', '이유 없이 서운함이 쌓이기 쉬운 관계로, 말을 아끼라고 봅니다.'],
+  들삼재: ['care', '세 해 동안 조심하라는 삼재가 들어오는 첫해입니다.'],
+  눌삼재: ['care', '삼재의 가운데 해입니다.'],
+  날삼재: ['mix', '삼재가 끝나고 나가는 마지막 해입니다. 묵은 일을 정리하기 좋은 해로 봅니다.'],
+};
+function ttiRelations(b, yb) {
+  const r = [];
+  const has = (groups) => b !== yb && groups.some((g) => g.includes(b) && g.includes(yb)); // 자기 띠끼리는 관계로 세지 않는다(본명년)
+  if (b === yb) r.push('본명년');
+  if (T_YUKHAP[b] === yb) r.push('육합');
+  if (has(T_SAMHAP)) r.push('삼합');
+  if (has(T_BANGHAP)) r.push('방합');
+  if ((b + 6) % 12 === yb) r.push('충');
+  if (has(T_HYEONG)) r.push('형');
+  if (has(T_PA)) r.push('파');
+  if (has(T_HAE)) r.push('해');
+  if (has(T_WONJIN)) r.push('원진');
+  const sj = T_SAMJAE.get(T_SAMHAP.findIndex((g) => g.includes(b)));
+  if (sj.includes(yb)) r.push(['들삼재', '눌삼재', '날삼재'][sj.indexOf(yb)]);
+  return r;
+}
+const relLabel = (rels) => (rels.length ? rels.map((x) => (x === '해' ? '육해' : x)).join(' · ') : '큰 합·충 없음');
+const relTone = (rels) => (rels.some((x) => REL_DESC[x][0] === 'care') && !rels.some((x) => REL_DESC[x][0] === 'good') ? 'care' : rels.some((x) => REL_DESC[x][0] === 'good') ? 'good' : 'mix');
+const ttiBirthYears = (t, ty) => Object.keys(IPCHUN).map(Number).filter((y) => y < ty.y && branchOf(y) === t.i);
+const hm = (kst) => `${mdKo(kst.slice(0, 10))} ${kst.slice(11)}`;
+const TTI_MONTH_NOTE = '달은 절기 기준입니다. 2월 입춘부터 인월이 시작되고, 그 뒤로 달마다 초순 절기에서 다음 지지의 달로 넘어갑니다. 띠와 합이 되는 지지의 달을 힘이 붙는 달로, 충·원진이 되는 지지의 달을 쉬어 갈 달로 골랐습니다.';
+
+function ttiYearIntro(ty) {
+  const ip = IPCHUN[ty.y], prev = TTI[branchOf(ty.y - 1)], cur = TTI[branchOf(ty.y)];
+  return `${esc(ty.data._year.summary)} 띠는 ${ty.y}년 입춘인 ${hm(ip.ipchun)}(한국 시각)부터 ${esc(cur.n)}로 바뀌고, 설날(음력 1월 1일)은 ${mdKo(ip.seollal)}입니다. 그 전에 태어났다면 ${esc(prev.n)}입니다.`;
+}
+
+function pageTti(t, ty) {
+  const f = ty.data[t.k];
+  const yb = branchOf(ty.y), yt = TTI[yb];
+  const rels = ttiRelations(t.i, yb);
+  const path = ttiUrl(t.k, ty);
+  const crumbs = [['홈', '/'], [`${ty.y}년 신년운세`, `/${ty.y}`], [`${ty.y}년 띠별 운세`, ttiHubUrl(ty)], [t.n, path]];
+  const births = ttiBirthYears(t, ty);
+  const rows = births.slice().reverse().map((y) => {
+    const ip = IPCHUN[y];
+    return `<tr><th scope="row">${y}년생</th><td class="tn">만 ${ty.y - y}세</td><td class="tn">${hm(ip.ipchun)}</td><td class="tn hm">${mdKo(ip.seollal)}</td><td>${f.byYear?.[y] ? esc(f.byYear[y]) : '아직 어린 나이라 건강하게 자라는 것이 가장 큰 운입니다.'}</td></tr>`;
+  }).join('');
+  const body = `
+${crumbHtml(crumbs)}
+<article class="sign-page">
+<header class="sign-hero">
+  <div>
+    <h1>${esc(t.n)} ${ty.y}년 운세 <span class="sign-en">${esc(ty.data._year.ganji)}년 신년운세</span></h1>
+    <p class="sign-meta">지지 ${esc(t.b)}(${t.h}) · ${ty.y}년 ${esc(ty.data._year.ganji)}년(${esc(ty.data._year.hanja)})과의 관계: ${esc(relLabel(rels))}</p>
+    <p class="sign-trait">${esc(f.headline)}</p>
+  </div>
+</header>
+
+<section>
+  <div class="prose"><p>${ty.y}년 ${esc(t.n)}의 한 해 흐름을 총운, 연애·일·돈·건강, 분기별로 정리하고 태어난 해별 한 줄 운세를 붙였습니다. 운세는 재미로 읽는 글입니다.</p></div>
+  <div class="month-quote"><h2 class="ov-title">${ty.y}년 ${esc(t.n)} 총운</h2><p>${esc(f.overview)}</p></div>
+</section>
+
+<section>
+  <h2 class="sec-title">분야별 ${ty.y}년 운세</h2>
+  <div class="style-grid g2">
+    <div class="style-card"><h3>연애운</h3><p>${esc(f.love)}</p></div>
+    <div class="style-card"><h3>직장운</h3><p>${esc(f.work)}</p></div>
+    <div class="style-card"><h3>재물운</h3><p>${esc(f.money)}</p></div>
+    <div class="style-card"><h3>건강운</h3><p>${esc(f.health)}</p></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">분기별 흐름</h2>
+  <div class="style-grid g2">${f.quarters.map((q, i) => `<div class="style-card"><h3>${QLABEL[i]}</h3><p>${esc(q)}</p></div>`).join('')}</div>
+</section>
+
+<section class="two-col">
+  <div class="list-box good">
+    <h3>힘이 붙는 달</h3>
+    <ul>${f.goodMonths.slice().sort((a, b) => a - b).map((m) => `<li>${m}월</li>`).join('')}</ul>
+  </div>
+  <div class="list-box bad">
+    <h3>한 템포 쉬어 갈 달</h3>
+    <ul>${f.careMonths.slice().sort((a, b) => a - b).map((m) => `<li>${m}월</li>`).join('')}</ul>
+  </div>
+</section>
+<p class="note">${TTI_MONTH_NOTE}</p>
+
+<section>
+  <div class="month-quote"><h2 class="ov-title">${ty.y}년 ${esc(t.n)}에게 건네는 한마디</h2><p>${esc(f.advice)}</p></div>
+</section>
+
+<section>
+  <h2 class="sec-title">${esc(t.n)} 태어난 해별 ${ty.y}년 운세</h2>
+  <p class="sec-lead">띠는 그해 입춘 시각에 바뀝니다. 아래 입춘 시각보다 앞서 태어났다면 앞 띠(${esc(TTI[(t.i + 11) % 12].n)})입니다. 설날을 기준으로 보는 곳도 있어 설날 날짜를 함께 적었습니다.</p>
+  <div class="tbl-wrap"><table class="data-table tti-years"><thead><tr><th scope="col">태어난 해</th><th scope="col">${ty.y}년 만 나이<br><small>생일 지난 뒤</small></th><th scope="col">${esc(t.n)} 시작 (입춘)</th><th scope="col" class="hm">그해 설날</th><th scope="col">${ty.y}년 한 줄</th></tr></thead><tbody>${rows}</tbody></table></div>
+  <p class="note">입춘·설날은 한국 시각(UTC+9)으로 계산한 값입니다(${esc('Astronomy Engine')}, 태양 황경 315°와 동지 뒤 두 번째 합삭). 1948~1961년·1987~1988년처럼 표준시나 서머타임이 지금과 달랐던 해는 당시 시계와 최대 1시간 차이가 날 수 있습니다.</p>
+</section>
+
+<section>
+  <h2 class="sec-title">${ty.y}년 ${esc(yt.n)} 해와 ${esc(t.n)}의 관계</h2>
+  ${rels.length ? `<ul class="ev-list">${rels.map((x) => `<li><b>${x === '해' ? '육해' : x}</b><p>${esc(REL_DESC[x][1])}</p></li>`).join('')}</ul>` : `<div class="prose"><p>${esc(t.n)}의 지지 ${esc(t.b)}와 ${ty.y}년의 지지 ${esc(yt.b)}는 합이나 충처럼 크게 묶이거나 부딪히는 관계가 없습니다. 그래서 한 해를 무난하게 흘러가는 해로 풀었습니다.</p></div>`}
+  <p class="note">합·충·형·파·해·원진·삼재는 띠(지지)끼리의 전통적인 관계입니다. 운세 문장은 이 관계를 바탕으로 재미로 읽도록 쓴 글이며 예측이 아닙니다.</p>
+</section>
+
+<section>
+  <h2 class="sec-title">다른 띠 ${ty.y}년 운세</h2>
+  <div class="sign-links">${TTI.map((x) => `<a class="sign-chip${x.k === t.k ? ' on' : ''}" href="${ttiUrl(x.k, ty)}">${esc(x.n)}</a>`).join('')}</div>
+  <p class="note"><a href="${ttiHubUrl(ty)}">${ty.y}년 띠별 운세 모아보기</a> · <a href="/${ty.y}">${ty.y}년 별자리 신년운세</a></p>
+</section>
+</article>`;
+  const title = `${t.n} ${ty.y}년 운세 — ${ty.data._year.ganji}년 신년운세 연애·직장·재물·태어난 해별`;
+  const desc = `${ty.y}년 ${ty.data._year.ganji}년 ${t.n} 신년운세. ${f.headline} ${births.slice(-4).map((y) => `${String(y).slice(2)}년생`).join('·')} 태어난 해별 운세와 좋은 달을 정리했습니다.`.slice(0, 160);
+  const ld = [
+    { '@context': 'https://schema.org', '@type': 'Article', headline: title, description: desc, inLanguage: 'ko', mainEntityOfPage: SITE.url + path, image: SITE.ogImage, datePublished: TTI_PUBLISHED, dateModified: TTI_PUBLISHED, author: { '@type': 'Organization', name: SITE.name, url: SITE.url }, publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url } },
+    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
+      { '@type': 'Question', name: `${ty.y}년 ${t.n} 운세는?`, acceptedAnswer: { '@type': 'Answer', text: `${f.headline} ${f.overview}` } },
+      { '@type': 'Question', name: `${t.n}는 몇 년생인가요?`, acceptedAnswer: { '@type': 'Answer', text: `${births.join('·')}년생이 ${t.n}입니다. 그해 1월 1일부터 입춘 전까지 태어났다면 앞 띠인 ${TTI[(t.i + 11) % 12].n}입니다.` } },
+      { '@type': 'Question', name: `${ty.y}년 ${t.n} 재물운은?`, acceptedAnswer: { '@type': 'Answer', text: f.money } },
+    ] },
+    crumbLd(crumbs),
+  ];
+  return layout({ title, desc, path, body, ld, nav: 'year' });
+}
+
+function pageTtiHub(ty) {
+  const path = ttiHubUrl(ty);
+  const yb = branchOf(ty.y), yt = TTI[yb];
+  const crumbs = [['홈', '/'], [`${ty.y}년 신년운세`, `/${ty.y}`], [`${ty.y}년 띠별 운세`, path]];
+  const rel = TTI.map((t) => ({ t, rels: ttiRelations(t.i, yb) }));
+  const samjae = rel.filter((x) => x.rels.some((r) => r.endsWith('삼재')));
+  const rows = rel.map(({ t, rels }) => `<tr><th scope="row"><a href="${ttiUrl(t.k, ty)}">${esc(t.n)}</a></th><td class="tn">${ttiBirthYears(t, ty).slice(-4).map((y) => `${String(y).slice(2)}`).join(' · ')}년생 …</td><td><span class="rel-${relTone(rels)}">${esc(relLabel(rels))}</span></td></tr>`).join('');
+  const body = `
+${crumbHtml(crumbs)}
+<article class="sign-page">
+<header class="sign-hero">
+  <div>
+    <h1>${ty.y}년 띠별 운세</h1>
+    <p class="sign-trait">${esc(ty.data._year.ganji)}년(${esc(ty.data._year.hanja)}) · ${esc(ty.data._year.nick)}, 열두 띠의 한 해 총운과 태어난 해별 운세</p>
+  </div>
+</header>
+
+<section>
+  <div class="prose">
+    <p>${ttiYearIntro(ty)}</p>
+    <p>띠마다 ${ty.y}년의 지지 ${esc(yt.b)}(${yt.h})와 어떤 관계인지(합·충·형·원진·삼재)를 바탕으로 한 해 총운, 연애·직장·재물·건강운, 분기별 흐름, 힘이 붙는 달과 쉬어 갈 달을 정리했습니다. 띠 페이지에는 태어난 해별 한 줄 운세와 그해 입춘 시각도 함께 실었습니다. 운세는 재미로 읽는 글입니다.</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">띠를 고르세요</h2>
+  <div class="guide-cards">${TTI.map((t) => `<a class="guide-card" href="${ttiUrl(t.k, ty)}"><b>${esc(t.n)} <small class="tn">${esc(t.b)}(${t.h})</small></b><span>${esc(ty.data[t.k].headline)}</span></a>`).join('')}</div>
+</section>
+
+<section>
+  <h2 class="sec-title">${ty.y}년과 열두 띠의 관계</h2>
+  <div class="tbl-wrap"><table class="data-table"><thead><tr><th scope="col">띠</th><th scope="col">태어난 해 (최근)</th><th scope="col">${esc(ty.data._year.ganji)}년과의 관계</th></tr></thead><tbody>${rows}</tbody></table></div>
+  <p class="note">${samjae.length ? `${ty.y}년 삼재: ${samjae.map(({ t, rels }) => `${t.n}(${rels.find((r) => r.endsWith('삼재'))})`).join(', ')}. ` : ''}합은 잘 어울리는 관계, 충·형·파·해·원진은 부딪히거나 엇갈리기 쉬운 관계로 봅니다. 모두 띠(지지)끼리의 전통적인 관계이며, 운세 문장은 이를 바탕으로 재미로 읽도록 쓴 글입니다.</p>
+</section>
+
+<section>
+  <h2 class="sec-title">자주 묻는 질문</h2>
+  <div class="prose">
+    <h3>${ty.y}년은 무슨 띠의 해인가요?</h3>
+    <p>${ty.y}년은 ${esc(ty.data._year.ganji)}년으로 ${esc(yt.n)}의 해입니다. ${esc(ty.data._year.nick)}라고도 부릅니다.</p>
+    <h3>띠는 1월 1일에 바뀌나요?</h3>
+    <p>아닙니다. 사주와 띠는 보통 입춘을 새해의 시작으로 봅니다. ${ty.y}년 입춘은 ${hm(IPCHUN[ty.y].ipchun)}입니다. 설날(${mdKo(IPCHUN[ty.y].seollal)})을 기준으로 보는 곳도 있으니 1월~2월 초에 태어났다면 두 기준을 함께 확인해 보세요.</p>
+    ${samjae.length ? `<h3>${ty.y}년 삼재는 어느 띠인가요?</h3><p>${samjae.map(({ t }) => t.n).join(', ')}입니다. ${samjae.every(({ rels }) => rels.includes('날삼재')) ? '세 띠 모두 삼재가 끝나는 날삼재라, 묵은 일을 정리하고 내보내는 해로 봅니다.' : ''}</p>` : ''}
+  </div>
+</section>
+<p class="note"><a href="/${ty.y}">${ty.y}년 별자리 신년운세</a>도 함께 보세요.</p>
+</article>`;
+  const title = `${ty.y}년 띠별 운세 — ${ty.data._year.ganji}년 신년운세 열두 띠 모아보기`;
+  const desc = `${ty.y}년 ${ty.data._year.ganji}년(${ty.data._year.nick}) 띠별 신년운세. 열두 띠의 총운과 연애·직장·재물운, 태어난 해별 운세, ${ty.y}년 삼재와 입춘 시각을 정리했습니다.`.slice(0, 160);
+  const ld = [
+    { '@context': 'https://schema.org', '@type': 'Article', headline: title, description: desc, inLanguage: 'ko', mainEntityOfPage: SITE.url + path, image: SITE.ogImage, datePublished: TTI_PUBLISHED, dateModified: TTI_PUBLISHED, author: { '@type': 'Organization', name: SITE.name, url: SITE.url }, publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url } },
+    { '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: TTI.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: `${t.n} ${ty.y}년 운세`, url: SITE.url + ttiUrl(t.k, ty) })) },
     crumbLd(crumbs),
   ];
   return layout({ title, desc, path, body, ld, nav: 'year' });
@@ -1469,6 +1679,7 @@ write('privacy.html', pagePrivacy());
 write('404.html', pageNotFound());
 months.forEach((mo, i) => { for (const s of signs) write(`zodiac/${s.k}/${mo.ym}/index.html`, pageMonth(s, mo, i)); });
 for (const yr of years) { write(`${yr.y}/index.html`, pageYearHub(yr)); for (const s of signs) write(`zodiac/${s.k}/${yr.y}/index.html`, pageYear(s, yr)); }
+for (const ty of ttiYears) { write(`${ty.y}/tti/index.html`, pageTtiHub(ty)); for (const t of TTI) write(`${ty.y}/tti/${t.k}/index.html`, pageTti(t, ty)); }
 for (const k of ORDER) write(`compatibility/${k}/index.html`, pageSignCompat(byKey.get(k)));
 write('zodiac-calculator/index.html', pageCalculator());
 write('zodiac-calculator/boundaries/index.html', pageBoundaries());
@@ -1484,6 +1695,7 @@ for (const s of signs) {
   for (const d of readdirSync(dir)) if (/^\d{4}$/.test(d) && !years.some((yr) => String(yr.y) === d)) { rmSync(join(dir, d), { recursive: true, force: true }); removed.push(`zodiac/${s.k}/${d}`); }
 }
 for (const d of readdirSync(root)) if (/^\d{4}$/.test(d) && !years.some((yr) => String(yr.y) === d)) { rmSync(join(root, d), { recursive: true, force: true }); removed.push(d); }
+for (const yr of years) if (!ttiYears.some((ty) => ty.y === yr.y) && existsSync(join(root, String(yr.y), 'tti'))) { rmSync(join(root, String(yr.y), 'tti'), { recursive: true, force: true }); removed.push(`${yr.y}/tti`); }
 for (const d of readdirSync(join(root, 'compatibility'))) if (!ORDER.includes(d)) { rmSync(join(root, 'compatibility', d), { recursive: true, force: true }); removed.push(`compatibility/${d}`); }
 if (removed.length) console.log(`  예전 산출물 ${removed.length}개 정리 (${removed.slice(0, 3).join(', ')}${removed.length > 3 ? ' …' : ''})`);
 
@@ -1509,6 +1721,8 @@ const redirects = [
     ...pastMonths.flatMap((ym) => ORDER.map((a) => ({ source: `/zodiac/${a}/${ym}`, destination: `/zodiac/${a}`, type: 301 }))),
     // 지난해 신년운세 → 별자리 페이지, 모아보기 → 홈
     ...pastYears.flatMap((y) => [...ORDER.map((a) => ({ source: `/zodiac/${a}/${y}`, destination: `/zodiac/${a}`, type: 301 })), { source: `/${y}`, destination: '/', type: 301 }]),
+    // 지난해 띠별 운세 → 홈
+    ...pastTtiYears.flatMap((y) => [{ source: `/${y}/tti`, destination: '/', type: 301 }, ...TTI.map((t) => ({ source: `/${y}/tti/${t.k}`, destination: '/', type: 301 }))]),
     ...ORDER.flatMap((a) => ORDER.map((b) => ({ source: `/compatibility/${a}-${b}`, destination: `/compatibility/${a}#${b}`, type: 301 }))),
   ];
   writeFileSync(fp, JSON.stringify(fj, null, 2) + '\n');
@@ -1518,6 +1732,7 @@ const urls = [
   { loc: '/', p: '1.0', f: 'daily', lm: TODAY },
   ...signs.map((s) => ({ loc: urlOf(s.k), p: '0.9', f: 'daily', lm: TODAY })),
   ...years.flatMap((yr) => [{ loc: yearHubUrl(yr), p: '0.9', f: 'monthly', lm: YEARLY_PUBLISHED }, ...signs.map((s) => ({ loc: yearUrl(s.k, yr), p: '0.8', f: 'monthly', lm: YEARLY_PUBLISHED }))]),
+  ...ttiYears.flatMap((ty) => [{ loc: ttiHubUrl(ty), p: '0.9', f: 'monthly', lm: TTI_PUBLISHED }, ...TTI.map((t) => ({ loc: ttiUrl(t.k, ty), p: '0.8', f: 'monthly', lm: TTI_PUBLISHED }))]),
   { loc: '/compatibility', p: '0.8', f: 'monthly', lm: CONTENT_UPDATED },
   ...ORDER.map((a) => ({ loc: signCompatUrl(a), p: '0.7', f: 'yearly', lm: CONTENT_UPDATED })),
   { loc: '/zodiac-calculator', p: '0.7', f: 'yearly', lm: CONTENT_UPDATED },
@@ -1565,6 +1780,6 @@ for (const f of written.filter((f) => /^(compatibility\/|zodiac-calculator|guide
 }
 
 if (constDropped.length) console.warn(`  ⚠ 출처가 없어 출력하지 않은 별자리 자료 ${new Set(constDropped).size}개: ${[...new Set(constDropped)].slice(0, 8).join(', ')}`);
-console.log(`✔ 빌드 완료 — 별자리 ${signs.length}장 + 홈, 월별 ${months.length * signs.length}장(${months.map((mo) => mo.ym).join(', ')} · noindex), 별자리별 궁합 12장(조합 78개), 리다이렉트 ${redirects.length}개(지난달 ${pastMonths.join(', ') || '없음'}), 계산기 1장 + 경계 시각표 1장(KASI 대조 최대 ${ING_CHECK.max}분·평균 ${fmtMean(ING_CHECK.mean)}분), 가이드 ${guides.length}장, sitemap ${urls.length}개 (기준일 ${TODAY})`);
+console.log(`✔ 빌드 완료 — 별자리 ${signs.length}장 + 홈, 월별 ${months.length * signs.length}장(${months.map((mo) => mo.ym).join(', ')} · noindex), 별자리별 궁합 12장(조합 78개), 리다이렉트 ${redirects.length}개(지난달 ${pastMonths.join(', ') || '없음'}), 계산기 1장 + 경계 시각표 1장(KASI 대조 최대 ${ING_CHECK.max}분·평균 ${fmtMean(ING_CHECK.mean)}분), 띠별 운세 ${ttiYears.length * 13}장, 가이드 ${guides.length}장, sitemap ${urls.length}개 (기준일 ${TODAY})`);
 console.log(`  HTML 본문 글자수: 홈 ${homeLen}자, 별자리 최소 ${minLen}자 (${minWho}), 새 페이지 최소 ${newMin}자 (${newMinWho})`);
 if (minLen < 1500 || homeLen < 800 || newMin < 1500) { console.error('✖ 본문이 너무 짧습니다. 애드센스 재심사 전에 확인하세요.'); process.exit(1); }
